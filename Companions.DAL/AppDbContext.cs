@@ -1,7 +1,7 @@
-﻿using Companions.API.Models;
+﻿using Companions.Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace Companions.API.Data
+namespace Companions.DAL
 {
     public class AppDbContext : DbContext
     {

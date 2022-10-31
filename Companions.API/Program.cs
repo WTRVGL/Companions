@@ -1,4 +1,5 @@
-using Companions.API.Data;
+
+using Companions.DAL;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,7 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(
-    options => options.UseSqlServer("Server=localhost;Database=Companions;Trusted_Connection=True;"));
+    options => options.UseSqlServer(builder.Configuration.GetConnectionString("Local")));
 
 var app = builder.Build();
 

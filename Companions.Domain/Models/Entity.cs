@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Companions.API.Models
+namespace Companions.Domain
 {
     public class Entity
     {

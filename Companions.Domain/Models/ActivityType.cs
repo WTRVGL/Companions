@@ -1,4 +1,4 @@
-﻿namespace Companions.API.Models
+﻿namespace Companions.Domain
 {
     public class ActivityType : Entity
     {
