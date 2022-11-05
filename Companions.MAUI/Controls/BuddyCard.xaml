@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<VerticalStackLayout xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                     x:Class="Companions.MAUI.Controls.BuddyCard"
+                     x:Name="this">
+    <Rectangle BackgroundColor="Black"
+               MinimumWidthRequest="200"
+               MinimumHeightRequest="200"
+               Margin="10"/>
+    <Label
+        Text="{Binding Source={x:Reference this.Buddy}, Path=Name}"/>
+</VerticalStackLayout>

@@ -8,7 +8,7 @@ namespace Companions.MAUI
         public App()
         {
             InitializeComponent();
-            MainPage = new AppShell();
+            MainPage = new MainShell();
         }
     }
 }

@@ -67,10 +67,31 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="LoginShell.xaml.cs">
+	    <DependentUpon>LoginShell.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="MainShell.xaml.cs">
+	    <DependentUpon>MainShell.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\App\HomePage.xaml.cs">
+	    <DependentUpon>HomePage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="MainShell.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Controls\Entry.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\Companions.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\BuddyCard.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\App\HomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Login\LoginPage.xaml">
@@ -82,6 +103,10 @@
 	  <MauiXaml Update="Views\Login\StartPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Models\NewFolder\" />
 	</ItemGroup>
 </Project>
 
