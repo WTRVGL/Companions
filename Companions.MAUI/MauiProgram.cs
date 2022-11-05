@@ -20,6 +20,7 @@ namespace Companions.MAUI
                     fonts.AddFont("Poppins-Black.ttf", "PoppinsBlack");
                     fonts.AddFont("Poppins-Bold.ttf", "PoppinsBold");
                     fonts.AddFont("Inter-Regular.ttf", "Inter");
+                    fonts.AddFont("Inter-Bold.ttf", "InterBold");
                 });
 
 

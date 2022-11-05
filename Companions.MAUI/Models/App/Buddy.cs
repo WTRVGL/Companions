@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,5 +10,8 @@ namespace Companions.MAUI.Models.App
     public class Buddy
     {
         public string Name { get; set; }
+        public int Age { get; set; }
+        public string Race { get; set; }
+        public string ImageURL { get; set; }
     }
 }

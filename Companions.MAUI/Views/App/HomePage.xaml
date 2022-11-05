@@ -13,7 +13,7 @@
             <HorizontalStackLayout BindableLayout.ItemsSource="{Binding Buddies}">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
-                        <controls:BuddyCard Buddy="{Binding Buddy}"/>
+                        <controls:BuddyCard Buddy="{Binding}"/>
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
             </HorizontalStackLayout>
