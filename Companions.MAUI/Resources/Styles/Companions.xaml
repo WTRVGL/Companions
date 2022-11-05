@@ -16,5 +16,9 @@
         <Setter Property="Margin" Value="0,6"/>
     </Style>
 
+    <Style x:Key="InlineTextButton" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="Transparent"/>
+        <Setter Property="Padding" Value="0"/>
+    </Style>
 
 </ResourceDictionary>

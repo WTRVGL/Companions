@@ -4,16 +4,7 @@
              xmlns:customControls="clr-namespace:Companions.MAUI.Controls"
              x:Class="Companions.MAUI.Views.Login.LoginPage"
              Shell.NavBarIsVisible="False">
-    <ContentPage.Resources>
-        <Style x:Key="InlineTextButton" TargetType="Button">
-            <Setter Property="BackgroundColor" Value="Transparent"/>
-            <Setter Property="Padding" Value="0"/>
-        </Style>
-    </ContentPage.Resources>
-    <Shell.BackButtonBehavior>
-        <BackButtonBehavior IsVisible="False"/>
-    </Shell.BackButtonBehavior>
-
+    
     <VerticalStackLayout
         VerticalOptions="Center"
         Padding="30">
@@ -21,8 +12,7 @@
         <customControls:Entry Placeholder="E-mail" Text="{Binding Email}"/>
         <customControls:Entry Placeholder="Password" IsPassword="True" Text="{Binding Password}"/>
 
-        <Button Style="{StaticResource PrimaryButton}"
-                Text="Log In"
+        <Button Text="Log In"
                 Command="{Binding LoginCommand}"/>
         <HorizontalStackLayout>
             <Label Text="No account? Click"/>
