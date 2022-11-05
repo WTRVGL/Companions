@@ -1,4 +1,6 @@
-﻿using Companions.MAUI.ViewModels.Login;
+﻿using Companions.MAUI.ViewModels.App;
+using Companions.MAUI.ViewModels.Login;
+using Companions.MAUI.Views.App;
 using Companions.MAUI.Views.Login;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -25,12 +27,16 @@ namespace Companions.MAUI
             builder.Services.AddSingleton<StartPage>();
             builder.Services.AddSingleton<LoginPage>();
             builder.Services.AddSingleton<SignUpPage>();
+
+            builder.Services.AddSingleton<HomePage>();
             #endregion
 
             #region ViewModel Services
             builder.Services.AddSingleton<StartPageViewModel>();
             builder.Services.AddSingleton<LoginPageViewModel>();
             builder.Services.AddSingleton<SignUpPageViewModel>();
+
+            builder.Services.AddSingleton<HomePageViewModel>();
             #endregion
 
             return builder.Build();
