@@ -28,6 +28,10 @@ namespace Companions.MAUI
             builder.Services.AddSingleton<StartPage>();
             builder.Services.AddSingleton<LoginPage>();
             builder.Services.AddSingleton<SignUpPage>();
+            builder.Services.AddTransient<BuddyDetailPage>();
+            builder.Services.AddTransient<SchedulePage>();
+            builder.Services.AddTransient<DiscoverPage>();
+            builder.Services.AddTransient<SettingsPage>();
 
             builder.Services.AddSingleton<HomePage>();
             #endregion
@@ -38,6 +42,10 @@ namespace Companions.MAUI
             builder.Services.AddSingleton<SignUpPageViewModel>();
 
             builder.Services.AddSingleton<HomePageViewModel>();
+            builder.Services.AddSingleton<SchedulePageViewModel>();
+            builder.Services.AddSingleton<DiscoverPageViewModel>();
+            builder.Services.AddSingleton<SettingsPageViewModel>();
+            builder.Services.AddTransient<BuddyDetailPageViewModel>();
             #endregion
 
             return builder.Build();

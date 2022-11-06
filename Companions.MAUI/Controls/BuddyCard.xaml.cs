@@ -1,3 +1,4 @@
+using CommunityToolkit.Mvvm.Input;
 using Companions.MAUI.Models.App;
 
 namespace Companions.MAUI.Controls;
@@ -31,6 +32,4 @@ public partial class BuddyCard : ContentView
         get => (Buddy)GetValue(BuddyProperty);
         set { SetValue(BuddyProperty, value); }
     }
-
-
 }

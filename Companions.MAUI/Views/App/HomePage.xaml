@@ -3,21 +3,50 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:Companions.MAUI.Controls"
              x:Class="Companions.MAUI.Views.App.HomePage"
-             Title="HomeScreen">
-
-    <VerticalStackLayout>
-        <ScrollView Margin="5" 
-                    Orientation="Horizontal"
+             Shell.TabBarIsVisible="True">
+    <ContentPage.Resources>
+        <Style x:Key="SectionTitle" TargetType="Label">
+            <Setter Property="FontFamily" Value="InterBold"/>
+            <Setter Property="FontSize" Value="36"/>
+            <Setter Property="TextColor" Value="#404348"/>
+        </Style>    
+    </ContentPage.Resources>
+    
+    <VerticalStackLayout Margin="25,30">
+        
+        <!--Buddy + Button Grid-->
+        <Grid Margin="0,0,0,16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <!--Buddy Title Label-->
+            <Label Style="{StaticResource SectionTitle}"
+               Text="Buddies"/>
+            <Rectangle Grid.Column="1" Fill="black" WidthRequest="50" HeightRequest="50"/>
+        </Grid>
+        
+        <!--Buddy Cards-->
+        <ScrollView Orientation="Horizontal"
                     HorizontalOptions="Center"
                     HorizontalScrollBarVisibility="Never">
             <HorizontalStackLayout BindableLayout.ItemsSource="{Binding Buddies}">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
-                        <controls:BuddyCard Buddy="{Binding}"/>
+                        <controls:BuddyCard 
+                            Buddy="{Binding}"/>
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
             </HorizontalStackLayout>
         </ScrollView>
+        
+        <!--Upcoming Title Label-->
+        <Label Style="{StaticResource SectionTitle}"
+               Text="Upcoming"/>
+        
+        <!--Upcoming Activities Control-->
+        <controls:UpcomingActivities Activities="{Binding UpcomingActivities}"/>
     </VerticalStackLayout>
     
 </ContentPage>

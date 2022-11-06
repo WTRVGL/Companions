@@ -4,12 +4,47 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Companions.MAUI"
-    xmlns:loginViews="clr-namespace:Companions.MAUI.Views.Login"
+    xmlns:controls="clr-namespace:Companions.MAUI.Controls"
     xmlns:mainViews="clr-namespace:Companions.MAUI.Views.App"
     Shell.FlyoutBehavior="Disabled">
 
-    <ShellContent
+    <Shell.Resources>
+        <Style TargetType="TabBar">
+            <Setter Property="Shell.TabBarBackgroundColor"
+            Value="CornflowerBlue" />
+            <Setter Property="Shell.TabBarTitleColor"
+            Value="Orange" />
+            <Setter Property="Shell.TabBarUnselectedColor"
+            Value="AntiqueWhite" />
+        </Style>
+    </Shell.Resources>
+
+    <MenuItem Text="Yooo"/>
+    <TabBar>
+        <Tab Title="Home">
+            <ShellContent
                 ContentTemplate="{DataTemplate mainViews:HomePage}"
                 Route="MainPage" />
+        </Tab>
+        <Tab Title="Schedule">
+            <ShellContent
+                ContentTemplate="{DataTemplate mainViews:SchedulePage}"
+                Route="MainPage" />
+        </Tab>
+        <Tab Title="" IsEnabled="False">
+            <ShellContent/>
+        </Tab>
+        <Tab Title="Discover">
+            <ShellContent
+                ContentTemplate="{DataTemplate mainViews:DiscoverPage}"
+                Route="MainPage" />
+        </Tab>
+        <Tab Title="Settings">
+            <ShellContent
+                ContentTemplate="{DataTemplate mainViews:SettingsPage}"
+                Route="MainPage" />
+        </Tab>
+    </TabBar>
+
 
 </Shell>

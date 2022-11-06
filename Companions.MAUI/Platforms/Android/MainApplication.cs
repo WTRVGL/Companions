@@ -1,5 +1,7 @@
 ﻿using Android.App;
 using Android.Runtime;
+using Google.Android.Material.BottomNavigation;
+using Microsoft.Maui.Controls.Platform.Compatibility;
 
 namespace Companions.MAUI
 {

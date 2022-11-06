@@ -11,7 +11,10 @@ namespace Companions.MAUI
             Routing.RegisterRoute(nameof(LoginPage),typeof(LoginPage));
             Routing.RegisterRoute(nameof(SignUpPage), typeof(SignUpPage));
             Routing.RegisterRoute(nameof(HomePage), typeof(HomePage));
-
+            Routing.RegisterRoute(nameof(BuddyDetailPage), typeof(BuddyDetailPage));
+            Routing.RegisterRoute(nameof(SchedulePage), typeof(SchedulePage));
+            Routing.RegisterRoute(nameof(DiscoverPage), typeof(DiscoverPage));
+            Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
         }
     }
 }
