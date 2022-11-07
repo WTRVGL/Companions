@@ -34,9 +34,9 @@ namespace Companions.MAUI.ViewModels.App
         {
             _buddies = new ObservableCollection<Buddy>()
             {
-                new Buddy { Name = "Bassie", Age = 6, Race = "Mixed", ImageURL = "https://i.imgur.com/848igAJ.jpg"},
-                new Buddy { Name = "Ori", Age = 4, Race = "Mixed", ImageURL="https://i.imgur.com/UUzY06O.png"},
-                new Buddy { Name = "Robot", Age = 4, Race = "Tabby", ImageURL="https://i.imgur.com/Z0J26m6.png"},
+                new Buddy { Name = "Bassie", Age = 6, Race = "Mixed", Gender= "M", Weight = 6, ImageURL = "https://i.imgur.com/GJe4t90.jpg"},
+                new Buddy { Name = "Ori", Age = 4, Race = "Mixed", Weight = 5, Gender = "M", ImageURL="https://i.imgur.com/UUzY06O.png"},
+                new Buddy { Name = "Robot", Age = 4, Race = "Tabby",Gender = "M", Weight = 3,ImageURL="https://i.imgur.com/Z0J26m6.png"},
 
             };
 

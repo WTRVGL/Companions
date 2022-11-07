@@ -13,5 +13,7 @@ namespace Companions.MAUI.Models.App
         public int Age { get; set; }
         public string Race { get; set; }
         public string ImageURL { get; set; }
+        public string Gender { get; set; }
+        public int Weight { get; set; }
     }
 }

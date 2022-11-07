@@ -5,28 +5,14 @@
              x:Name="this">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="auto"/>
-        </Grid.ColumnDefinitions>
-        
         <CollectionView ItemsSource="{Binding Source={x:Reference this}, Path=Activities}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <VerticalStackLayout>
-                        <Label Text="{Binding Path=ActivityName}" />
-                    </VerticalStackLayout> 
+                    <HorizontalStackLayout>
+                        <Label Text="{Binding ActivityName}" />
+                        <Label Text=" - "/>
+                        <Label Text="{Binding BuddyName}"/>
+                    </HorizontalStackLayout> 
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

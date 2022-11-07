@@ -43,10 +43,12 @@
         
         <!--Upcoming Title Label-->
         <Label Style="{StaticResource SectionTitle}"
+               Margin="0,20,0,20"
                Text="Upcoming"/>
         
         <!--Upcoming Activities Control-->
         <controls:UpcomingActivities Activities="{Binding UpcomingActivities}"/>
+
     </VerticalStackLayout>
     
 </ContentPage>
