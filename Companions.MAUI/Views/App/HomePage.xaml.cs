@@ -9,4 +9,9 @@ public partial class HomePage : ContentPage
 		InitializeComponent();
 		this.BindingContext = vm;
 	}
+
+	protected override void OnNavigatedTo(NavigatedToEventArgs args)
+	{
+		base.OnNavigatedTo(args);
+	 }
 }

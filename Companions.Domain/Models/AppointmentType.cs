@@ -5,4 +5,4 @@
         public string Description { get; set; }
         public List<Appointment> Appointments { get; set; }
     }
-}
+} 

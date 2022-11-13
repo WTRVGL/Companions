@@ -9,6 +9,6 @@ namespace Companions.Domain
         public List<Buddy> Buddies { get; set; }
 
         [Required]
-        public List<AppointmentType> AppointmentType { get; set; }
+        public AppointmentType AppointmentType { get; set; }
     }
 }

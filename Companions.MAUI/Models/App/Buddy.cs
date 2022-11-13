@@ -15,5 +15,6 @@ namespace Companions.MAUI.Models.App
         public string ImageURL { get; set; }
         public string Gender { get; set; }
         public int Weight { get; set; }
+        public List<Activity> Activities { get; set; }
     }
 }

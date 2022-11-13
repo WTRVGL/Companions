@@ -15,6 +15,7 @@
     </ContentView.Resources>
 
     <VerticalStackLayout>
+        
         <Frame 
             WidthRequest="200" 
             HeightRequest="200" Padding="0" CornerRadius="25"
@@ -49,4 +50,5 @@
             </HorizontalStackLayout>
         </VerticalStackLayout>
     </VerticalStackLayout>
+    
 </ContentView>

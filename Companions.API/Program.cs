@@ -1,5 +1,5 @@
 
-using Companions.DAL;
+using Companions.Api;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

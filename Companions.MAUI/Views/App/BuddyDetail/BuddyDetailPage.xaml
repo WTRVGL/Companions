@@ -1,22 +1,28 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Companions.MAUI.Views.App.BuddyDetailPage"
+             xmlns:buddyControls="clr-namespace:Companions.MAUI.Views.App.BuddyDetail"
+             xmlns:App="clr-namespace:Companions.MAUI.ViewModels.App"
+             x:Class="Companions.MAUI.Views.App.BuddyDetail.BuddyDetailPage"
              Title="BuddyDetailPage"
              Shell.TabBarIsVisible="False"
              Shell.NavBarIsVisible="False">
+
     <ContentPage.Resources>
-        <Style x:Key="BuddyName" TargetType="Label">
+        <Style x:Key="BuddyName" TargetType="{Type Label}">
             <Setter Property="FontSize" Value="36"/>
             <Setter Property="FontFamily" Value="InterBold"/>
             <Setter Property="TextColor" Value="White"/>
         </Style>
-        <Style x:Key="BuddySubtext" TargetType="Label">
+        <Style x:Key="BuddySubtext" TargetType="{Type Label}">
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="FontFamily" Value="Inter"/>
             <Setter Property="TextColor" Value="White"/>
         </Style>
     </ContentPage.Resources>
+	<ContentPage.BindingContext>
+		<App:BuddyDetailPageViewModel/>
+	</ContentPage.BindingContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.7*"/>
@@ -51,38 +57,31 @@
             <VerticalStackLayout Grid.Row="1"
                                  HorizontalOptions="Center"
                                  VerticalOptions="End">
-                <Label Style="{StaticResource BuddyName}" 
+                <Label Style="{StaticResource Key=BuddyName}" 
                        HorizontalOptions="Center"
                        Text="{Binding Buddy.Name}"/>
                 <HorizontalStackLayout HorizontalOptions="Center"
                                        Margin="0,0,0,30">
-                    <Label Style="{StaticResource BuddySubtext}"
-                           Text="{Binding Buddy.Race}"/>
-                    <Label Style="{StaticResource BuddySubtext}"
-                           Text=" - "/>
-                    <Label Style="{StaticResource BuddySubtext}"
-                           Text="{Binding Buddy.Age}"/>
-                    <Label Style="{StaticResource BuddySubtext}"
-                           Text=" years - "/>
-                    <Label Style="{StaticResource BuddySubtext}"
-                           Text="{Binding Buddy.Gender}"/>
-                    <Label Style="{StaticResource BuddySubtext}"
-                           Text=" - "/>
-                    <Label Style="{StaticResource BuddySubtext}"
-                           Text="{Binding Buddy.Weight}"/>
-                    <Label Style="{StaticResource BuddySubtext}"
-                           Text="kg"/>
+                    <Label Style="{StaticResource Key=BuddySubtext}">
+                        <Label.Text>
+                            <MultiBinding StringFormat="{} {0} - {1} years - {2} - {3}kg">
+                                <Binding Path="Buddy.Race"/>
+                                <Binding Path="Buddy.Age"/>
+                                <Binding Path="Buddy.Gender"/>
+                                <Binding Path="Buddy.Weight"/>
+                            </MultiBinding>
+                        </Label.Text>
+                    </Label>
                 </HorizontalStackLayout>
             </VerticalStackLayout>
         </Grid>
-        
-        
+
         <Frame BackgroundColor="White" 
                BorderColor="Transparent"
                Grid.Row="1" Grid.RowSpan="2"
                CornerRadius="25"
                ZIndex="10">
-
+            <buddyControls:TabControl/>
         </Frame>
 
     </Grid>

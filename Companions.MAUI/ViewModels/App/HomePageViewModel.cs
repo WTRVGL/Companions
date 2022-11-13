@@ -1,7 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Companions.MAUI.Models.App;
+using Companions.MAUI.Services;
 using Companions.MAUI.Views.App;
+using Companions.MAUI.Views.App.BuddyDetail;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,11 +15,28 @@ namespace Companions.MAUI.ViewModels.App
 {
     public partial class HomePageViewModel : BaseViewModel
     {
+        private readonly IBuddyService _buddyService;
+
+        [ObservableProperty]
+        private bool _isRefreshing;
+
+   
+        
         [ObservableProperty]
         private ObservableCollection<Buddy> _buddies;
 
         [ObservableProperty]
         private ObservableCollection<UpcomingActivitesActivityModel> _upcomingActivities;
+
+        [RelayCommand]
+        async void Refresh()
+        {
+            
+            await Shell.Current.GoToAsync(nameof(HomePage),false);
+            var previousPage = Application.Current.MainPage.Navigation.NavigationStack.LastOrDefault();
+            Application.Current.MainPage.Navigation.RemovePage(previousPage);
+            IsRefreshing = false;
+        }
 
 
         [RelayCommand]
@@ -28,17 +47,13 @@ namespace Companions.MAUI.ViewModels.App
                 {
                     {"Buddy",buddy }
                 });
+
         }
 
-        public HomePageViewModel()
+        public HomePageViewModel(IBuddyService buddyservice)
         {
-            _buddies = new ObservableCollection<Buddy>()
-            {
-                new Buddy { Name = "Bassie", Age = 6, Race = "Mixed", Gender= "M", Weight = 6, ImageURL = "https://i.imgur.com/GJe4t90.jpg"},
-                new Buddy { Name = "Ori", Age = 4, Race = "Mixed", Weight = 5, Gender = "M", ImageURL="https://i.imgur.com/UUzY06O.png"},
-                new Buddy { Name = "Robot", Age = 4, Race = "Tabby",Gender = "M", Weight = 3,ImageURL="https://i.imgur.com/Z0J26m6.png"},
-
-            };
+            _buddyService = buddyservice;
+            _buddies = _buddyService.GetBuddies();
 
             _upcomingActivities = new ObservableCollection<UpcomingActivitesActivityModel>()
             {
@@ -46,5 +61,6 @@ namespace Companions.MAUI.ViewModels.App
                 new UpcomingActivitesActivityModel {ActivityName = "CPV Vaccinatie", BuddyName = "Bassie"},
             };
         }
+
     }
 }

@@ -11,44 +11,49 @@
             <Setter Property="TextColor" Value="#404348"/>
         </Style>    
     </ContentPage.Resources>
-    
-    <VerticalStackLayout Margin="25,30">
-        
-        <!--Buddy + Button Grid-->
-        <Grid Margin="0,0,0,16">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
-            
-            <!--Buddy Title Label-->
-            <Label Style="{StaticResource SectionTitle}"
+
+    <RefreshView IsRefreshing="{Binding IsRefreshing}"
+                 Command="{Binding RefreshCommand}"
+                 Margin="25,30">
+        <VerticalStackLayout>
+
+            <!--Buddy + Button Grid-->
+            <Grid Margin="0,0,0,16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!--Buddy Title Label-->
+                <Label Style="{StaticResource SectionTitle}"
                Text="Buddies"/>
-            <Rectangle Grid.Column="1" Fill="black" WidthRequest="50" HeightRequest="50"/>
-        </Grid>
-        
-        <!--Buddy Cards-->
-        <ScrollView Orientation="Horizontal"
+                <Rectangle Grid.Column="1" Fill="black" WidthRequest="50" HeightRequest="50"/>
+            </Grid>
+
+            <!--Buddy Cards-->
+            <ScrollView Orientation="Horizontal"
                     HorizontalOptions="Center"
                     HorizontalScrollBarVisibility="Never">
-            <HorizontalStackLayout BindableLayout.ItemsSource="{Binding Buddies}">
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate>
-                        <controls:BuddyCard 
+                <HorizontalStackLayout BindableLayout.ItemsSource="{Binding Buddies}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <controls:BuddyCard 
                             Buddy="{Binding}"/>
-                    </DataTemplate>
-                </BindableLayout.ItemTemplate>
-            </HorizontalStackLayout>
-        </ScrollView>
-        
-        <!--Upcoming Title Label-->
-        <Label Style="{StaticResource SectionTitle}"
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </HorizontalStackLayout>
+            </ScrollView>
+
+            <!--Upcoming Title Label-->
+            <Label Style="{StaticResource SectionTitle}"
                Margin="0,20,0,20"
                Text="Upcoming"/>
-        
-        <!--Upcoming Activities Control-->
-        <controls:UpcomingActivities Activities="{Binding UpcomingActivities}"/>
 
-    </VerticalStackLayout>
+            <!--Upcoming Activities Control-->
+            <controls:UpcomingActivities Activities="{Binding UpcomingActivities}"/>
+
+
+        </VerticalStackLayout>
+    </RefreshView>
     
 </ContentPage>
