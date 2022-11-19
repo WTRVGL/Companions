@@ -18,7 +18,8 @@ namespace Companions.Domain
         public List<Activity> Activities { get; set; }
         public List<Appointment> Appointments { get; set; }
         public List<Vaccination> Vaccinations { get; set; }
-        public List<DailyFeeding> DailyFeedings { get; set; }
+        public List<DailyFeedingEvents> DailyFeedingEvents { get; set; }
+        public List<FeedingSchedule> FeedingSchedules { get; set; }
 
 
     }

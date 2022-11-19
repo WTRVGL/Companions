@@ -1,16 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Companions.Domain
+namespace Companions.MAUI.Models.App
 {
-    public class FeedingSchedule : Entity
+    public class FeedingSchedule
     {
-        [Required]
         public FeedProduct FeedProduct { get; set; }
-
-        [Required]
         public string TimeOfDay { get; set; }
-
-        [Required]
         public double Amount { get; set; }
     }
 }

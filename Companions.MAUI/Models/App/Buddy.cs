@@ -16,5 +16,8 @@ namespace Companions.MAUI.Models.App
         public string Gender { get; set; }
         public int Weight { get; set; }
         public List<Activity> Activities { get; set; }
+        public List<FeedingSchedule> FeedingSchedules { get; set; }
+
+
     }
 }

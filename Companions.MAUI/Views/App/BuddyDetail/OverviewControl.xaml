@@ -45,7 +45,7 @@
                                 <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2">
                                     <Label.Text>
                                         <MultiBinding Converter="{StaticResource TimeBetweenDates}"
-                                                      StringFormat="{}Just finished a {0} hour walk">
+                                                      StringFormat="{}Just finished a {0} walk!">
                                             <Binding Path="StartDate" />
                                             <Binding Path="EndDate"/>
                                         </MultiBinding>

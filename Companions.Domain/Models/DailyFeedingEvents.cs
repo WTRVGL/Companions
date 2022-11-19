@@ -1,6 +1,6 @@
 ﻿namespace Companions.Domain
 {
-    public class DailyFeeding : Entity
+    public class DailyFeedingEvents : Entity
     {
         public Buddy Buddy { get; set; }
         public FeedingSchedule FeedingSchedule { get; set; }
