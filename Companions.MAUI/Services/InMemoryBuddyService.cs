@@ -27,9 +27,9 @@ namespace Companions.MAUI.Services
 
             _feedProducts = new List<FeedProduct>
             {
-                new FeedProduct { BrandName = "Hill's", Name = "Hill's Science Plan Adult No Grain Medium", ProductURL = "https://shop-cdn-m.mediazs.com/bilder/hills/science/plan/adult/no/grain/medium/met/kip/0/800/4_new_project_0.jpg" },
-                new FeedProduct { BrandName = "Hill's", Name = "Hill's Science Plan Adult Perfect Digestion", ProductURL = "https://shop-cdn-m.mediazs.com/bilder/hills/science/plan/adult/perfect/digestion/medium/breed/hondenvoer/1/800/thumbnail_18__1.jpg" },
-                new FeedProduct { BrandName = "Hill's", Name = "Hill's Science Plan Adult Healthy Mobility Small", ProductURL = "https://shop-cdn-m.mediazs.com/bilder/hills/science/plan/adult/healthy/mobility/small/mini/met/kip/hondenvoer/8/800/7_new_project_8.jpg" },
+                new FeedProduct { BrandName = "Hill's", Name = "Science Plan Adult No Grain Medium", ProductURL = "https://shop-cdn-m.mediazs.com/bilder/hills/science/plan/adult/no/grain/medium/met/kip/0/800/4_new_project_0.jpg" },
+                new FeedProduct { BrandName = "Hill's", Name = "Science Plan Adult Perfect Digestion", ProductURL = "https://shop-cdn-m.mediazs.com/bilder/hills/science/plan/adult/perfect/digestion/medium/breed/hondenvoer/1/800/thumbnail_18__1.jpg" },
+                new FeedProduct { BrandName = "Hill's", Name = "Science Plan Adult Healthy Mobility Small", ProductURL = "https://shop-cdn-m.mediazs.com/bilder/hills/science/plan/adult/healthy/mobility/small/mini/met/kip/hondenvoer/8/800/7_new_project_8.jpg" },
                 new FeedProduct { BrandName = "Royal Canin", Name = "Maxi Adult", ProductURL = "https://shop-cdn-m.mediazs.com/bilder/royal/canin/maxi/adult/hondenvoer/8/800/80729_pla_royalcanin_maxiadult_15kg_hs_01_8.jpg" },
                 new FeedProduct { BrandName = "Rocco", Name = "Classic", ProductURL = "https://shop-cdn-m.mediazs.com/bilder/rocco/classic/x/g/8/800/28021_pla_megapack_rocc_classic_rindpur_400g_hs_01_8.jpg" },
                 new FeedProduct { BrandName = "Whiskas", Name = "1+ Rund", ProductURL = "https://shop-cdn-m.mediazs.com/bilder/korting/whiskas/droogvoer/7/800/908518_7.jpg" },
