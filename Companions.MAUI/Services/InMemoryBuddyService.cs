@@ -50,18 +50,18 @@ namespace Companions.MAUI.Services
             _activities = new List<Activity>
             {
                 new Activity { ActivityType = _activityTypes.FirstOrDefault(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,01,08,15,00), EndDate = new DateTime(2022,11,01,09,31,00) },
-                new Activity { ActivityType = _activityTypes.FirstOrDefault(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,01,12,00,00), EndDate = new DateTime(2022,11,01,12,31,00) },
+                new Activity { ActivityType = _activityTypes.FirstOrDefault(a => a.Name == "Feeding"), StartDate = new DateTime(2022,11,01,12,00,00), EndDate = new DateTime(2022,11,01,12,31,00) },
                 new Activity { ActivityType = _activityTypes.FirstOrDefault(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,01,16,15,00), EndDate = new DateTime(2022,11,01,16,42,00) },
                 new Activity { ActivityType = _activityTypes.FirstOrDefault(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,02,09,15,00), EndDate = new DateTime(2022,11,02,09,51,00) },
-                new Activity { ActivityType = _activityTypes.FirstOrDefault(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,02,13,15,00), EndDate = new DateTime(2022,11,02,14,03,00) },
+                new Activity { ActivityType = _activityTypes.FirstOrDefault(a => a.Name == "Feeding"), StartDate = new DateTime(2022,11,02,13,15,00), EndDate = new DateTime(2022,11,02,14,03,00) },
                 new Activity { ActivityType = _activityTypes.FirstOrDefault(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,02,16,15,00), EndDate = new DateTime(2022,11,02,17,02,00) },
                 new Activity { ActivityType = _activityTypes.FirstOrDefault(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,02,20,15,00), EndDate = new DateTime(2022,11,02,21,01,00) },
-                new Activity { ActivityType = _activityTypes.FirstOrDefault(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,03,08,30,00), EndDate = new DateTime(2022,11,03,09,02,00) },
+                new Activity { ActivityType = _activityTypes.FirstOrDefault(a => a.Name == "Feeding"), StartDate = new DateTime(2022,11,03,08,30,00), EndDate = new DateTime(2022,11,03,09,02,00) },
                 new Activity { ActivityType = _activityTypes.FirstOrDefault(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,03,12,15,00), EndDate = new DateTime(2022,11,03,12,31,00) },
                 new Activity { ActivityType = _activityTypes.FirstOrDefault(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,03,15,15,00), EndDate = new DateTime(2022,11,03,15,44,00) },
-                new Activity { ActivityType = _activityTypes.FirstOrDefault(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,03,20,15,00), EndDate = new DateTime(2022,11,03,20,41,00) },
+                new Activity { ActivityType = _activityTypes.FirstOrDefault(a => a.Name == "Feeding"), StartDate = new DateTime(2022,11,03,20,15,00), EndDate = new DateTime(2022,11,03,20,41,00) },
                 new Activity { ActivityType = _activityTypes.FirstOrDefault(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,03,23,15,00), EndDate = new DateTime(2022,11,03,23,34,00) },
-            };
+            }.OrderByDescending(x => x.StartDate).ToList();
 
             _buddies = new ObservableCollection<Buddy>()
             {
@@ -75,23 +75,24 @@ namespace Companions.MAUI.Services
                     Activities = _activities.GetRange(0, _activities.Count),
                     FeedingSchedules = _feedingSchedules.GetRange(0, 2),
                 },
-                new Buddy { 
-                    Name = "Ori", 
-                    Age = 4, 
-                    Race = "Mixed", 
-                    Weight = 5, 
-                    Gender = "M", 
+                new Buddy {
+                    Name = "Ori",
+                    Age = 4,
+                    Race = "Mixed",
+                    Weight = 5,
+                    Gender = "M",
                     ImageURL="https://i.imgur.com/UUzY06O.png",
                     Activities = _activities.GetRange(0, _activities.Count),
                     FeedingSchedules = _feedingSchedules.GetRange(2, 2)
                 },
-                new Buddy { 
-                    Name = "Robot", 
-                    Age = 4, 
+                new Buddy {
+                    Name = "Robot",
+                    Age = 4,
                     Race = "Tabby",
-                    Gender = "M", 
+                    Gender = "M",
                     Weight = 3,
                     ImageURL="https://i.imgur.com/Z0J26m6.png",
+                    Activities = _activities.Where(x => x.ActivityType.Name == "Feeding").ToList(),
                     FeedingSchedules = _feedingSchedules.GetRange(4, 2)
                 }
             };
