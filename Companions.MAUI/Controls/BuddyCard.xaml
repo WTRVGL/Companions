@@ -24,7 +24,8 @@
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer
                     Command="{Binding Source={RelativeSource AncestorType={x:Type vm:HomePageViewModel}}, Path=OpenBuddyDetailCommand}"
-                    CommandParameter="{Binding Source={RelativeSource AncestorType={x:Type appModels:Buddy}}}">
+                    CommandParameter="{Binding Source={RelativeSource AncestorType={x:Type appModels:Buddy}}}"
+                    NumberOfTapsRequired="1">
                 </TapGestureRecognizer>
             </Frame.GestureRecognizers>
             <Grid>

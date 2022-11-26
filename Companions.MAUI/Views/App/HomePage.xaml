@@ -3,15 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:Companions.MAUI.Controls"
              xmlns:scheduler="clr-namespace:Syncfusion.Maui.Scheduler;assembly=Syncfusion.Maui.Scheduler"
+             xmlns:icons="clr-namespace:Companions.MAUI.Resources.Icons"
              x:Class="Companions.MAUI.Views.App.HomePage"
-
              Shell.TabBarIsVisible="True">
     <ContentPage.Resources>
+        <Color x:Key="TitleColor">#404348</Color>
+        
         <Style x:Key="SectionTitle" TargetType="Label">
             <Setter Property="FontFamily" Value="InterBold"/>
             <Setter Property="FontSize" Value="36"/>
-            <Setter Property="TextColor" Value="#404348"/>
-        </Style>    
+            <Setter Property="TextColor" Value="{StaticResource TitleColor}"/>
+        </Style>
     </ContentPage.Resources>
 
     <RefreshView IsRefreshing="{Binding IsRefreshing}"
@@ -23,13 +25,18 @@
             <Grid Margin="0,0,0,16">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="0.2*"/>
                 </Grid.ColumnDefinitions>
 
                 <!--Buddy Title Label-->
                 <Label Style="{StaticResource SectionTitle}"
-               Text="Buddies"/>
-                <Rectangle Grid.Column="1" Fill="black" WidthRequest="50" HeightRequest="50"/>
+                       Text="Buddies"/>
+                <Label FontFamily="FaSolid" Text="{StaticResource SolidList}"
+                       TextColor="{StaticResource TitleColor}"
+                       Grid.Column="1"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       Scale="1.4"/>
             </Grid>
 
             <!--Buddy Cards-->

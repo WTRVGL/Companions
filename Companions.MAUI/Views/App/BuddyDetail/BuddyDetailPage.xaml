@@ -19,10 +19,12 @@
             <Setter Property="FontFamily" Value="Inter"/>
             <Setter Property="TextColor" Value="White"/>
         </Style>
+        
     </ContentPage.Resources>
 	<ContentPage.BindingContext>
 		<App:BuddyDetailPageViewModel/>
 	</ContentPage.BindingContext>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.7*"/>
@@ -39,7 +41,7 @@
 
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.4*"/>
+                <RowDefinition Height="0.3*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid Margin="20,0">
@@ -47,12 +49,26 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Rectangle Grid.Column="0"
-                           HorizontalOptions="Start"
-                           Fill="Black" WidthRequest="50" HeightRequest="50"/>
-                <Rectangle Grid.Column="1"
-                           HorizontalOptions="End"
-                           Fill="Black" WidthRequest="50" HeightRequest="50"/>
+                <Label Grid.Column="0"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Center"
+                       FontFamily="FaSolid"
+                       TextColor="White"
+                       Text="{StaticResource SolidArrowLeft}"
+                       Scale="2">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer 
+                            Command="{Binding GoBackCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Grid.Column="1"
+                       HorizontalOptions="End"
+                       VerticalOptions="Center"
+                       FontFamily="FaSolid"
+                       TextColor="White"
+                       Text="{StaticResource SolidGear}"
+                       Scale="2"
+                       />
             </Grid>
             <VerticalStackLayout Grid.Row="1"
                                  HorizontalOptions="Center"

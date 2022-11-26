@@ -50,6 +50,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Fonts\fa-brands-400.otf" />
+	  <None Remove="Resources\Fonts\fa-regular-400.otf" />
+	  <None Remove="Resources\Fonts\fa-solid-900.otf" />
 	  <None Remove="Resources\Fonts\Inter-Black.ttf" />
 	  <None Remove="Resources\Fonts\Inter-Bold.ttf" />
 	  <None Remove="Resources\Fonts\Inter-ExtraBold.ttf" />
@@ -78,6 +81,12 @@
 	  <Compile Update="MainShell.xaml.cs">
 	    <DependentUpon>MainShell.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Resources\Icons\Brands.xaml.cs">
+	    <DependentUpon>Brands.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Resources\Icons\Solid.xaml.cs">
+	    <DependentUpon>Solid.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\App\BuddyDetail\TabControl.xaml.cs">
 	    <DependentUpon>TabControl.xaml</DependentUpon>
 	  </Compile>
@@ -94,6 +103,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Controls\Entry.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Icons\Brands.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Icons\Solid.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\Companions.xaml">

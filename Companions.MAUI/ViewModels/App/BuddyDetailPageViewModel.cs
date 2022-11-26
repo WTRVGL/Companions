@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Companions.MAUI.Models.App;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,12 @@ namespace Companions.MAUI.ViewModels.App
     {
         [ObservableProperty]
         private Buddy _buddy;
+
+        [RelayCommand]
+        async void GoBack()
+        {
+            await Application.Current.MainPage.Navigation.PopAsync();
+        }
     }
 
 }
