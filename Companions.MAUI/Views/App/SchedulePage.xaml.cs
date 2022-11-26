@@ -9,4 +9,5 @@ public partial class SchedulePage : ContentPage
 		InitializeComponent();
 		this.BindingContext = vm;
 	}
+
 }

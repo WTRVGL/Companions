@@ -91,19 +91,16 @@
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </DataTemplate>
-
+        
     </ContentView.Resources>
-    
-    <ScrollView Orientation="Vertical" 
-                Margin="0,35,0,0">
-        <CollectionView ItemsSource="{Binding Buddy.Activities}">
-            <CollectionView.ItemTemplate>
-                <selectors:BuddyOverviewSelector WalkTemplate="{StaticResource WalkingTemplate}"
-                                                 FeedingTemplate="{StaticResource FeedingTemplate}"/>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </ScrollView>
-    
 
+    <CollectionView ItemsSource="{Binding Buddy.Activities}"
+                    Margin="0,35,0,0"
+                    VerticalScrollBarVisibility="Never">
+        <CollectionView.ItemTemplate>
+            <selectors:BuddyOverviewSelector WalkTemplate="{StaticResource WalkingTemplate}"
+                                                 FeedingTemplate="{StaticResource FeedingTemplate}"/>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentView>
  

@@ -19,27 +19,31 @@
         </Style>
     </Shell.Resources>
 
-    <MenuItem Text="Yooo"/>
     <TabBar>
-        <Tab Title="Home">
+        <Tab Title="Home"
+             Icon="{FontImage FontFamily=FaSolid, Glyph={StaticResource SolidHouse}}">
             <ShellContent
                 ContentTemplate="{DataTemplate mainViews:HomePage}"
-                Route="MainPage" />
+                Route="MainPage"/>
         </Tab>
-        <Tab Title="Schedule">
+        <Tab Title="Schedule"
+             Icon="{FontImage FontFamily=FaSolid, Glyph={StaticResource SolidCalendarDay}}">
             <ShellContent
                 ContentTemplate="{DataTemplate mainViews:SchedulePage}"
                 Route="MainPage" />
         </Tab>
-        <Tab Title="" IsEnabled="False">
-            <ShellContent/>
+        <Tab Icon="{FontImage FontFamily=FaSolid, Glyph={StaticResource BrandPlus}}">
+            <ShellContent 
+                ContentTemplate="{DataTemplate mainViews:Action}"/>
         </Tab>
-        <Tab Title="Discover">
+        <Tab Title="Discover"
+             Icon="{FontImage FontFamily=FaSolid, Glyph={StaticResource SolidCompass}}">
             <ShellContent
                 ContentTemplate="{DataTemplate mainViews:DiscoverPage}"
                 Route="MainPage" />
         </Tab>
-        <Tab Title="Settings">
+        <Tab Title="Settings"
+             Icon="{FontImage FontFamily=FaSolid, Glyph={StaticResource SolidGears}}">
             <ShellContent
                 ContentTemplate="{DataTemplate mainViews:SettingsPage}"
                 Route="MainPage" />

@@ -13,10 +13,11 @@ namespace Companions.MAUI.Converters
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         
         {
-            if (values[1] is null)
+            if (values[0] is null || values[1] is null)
             {
                 return "";
             }
+            
             DateTime startDate = (DateTime)values[0];
             DateTime endDate = (DateTime)values[1];
 

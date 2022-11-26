@@ -1,6 +1,7 @@
 ﻿using Companions.MAUI.Views.App;
 using Companions.MAUI.Views.App.BuddyDetail;
 using Companions.MAUI.Views.Login;
+using Action = Companions.MAUI.Views.App.Action;
 
 namespace Companions.MAUI
 {
@@ -16,7 +17,18 @@ namespace Companions.MAUI
             Routing.RegisterRoute(nameof(SchedulePage), typeof(SchedulePage));
             Routing.RegisterRoute(nameof(DiscoverPage), typeof(DiscoverPage));
             Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
+            Routing.RegisterRoute(nameof(Action), typeof(Action));
         }
 
+        //HACK LOL
+        protected override async void OnNavigating(ShellNavigatingEventArgs args)
+        {
+            if (args.Target.Location.OriginalString == "//D_FAULT_ShellContent6")
+            {
+                args.Cancel();
+                await DisplayAlert("yo", "yo", "cancel");
+                return;
+            }
+        }
     }
 }
