@@ -4,9 +4,6 @@
              x:Class="Companions.MAUI.Views.App.DiscoverPage"
              Title="DiscoverPage">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+     
     </VerticalStackLayout>
 </ContentPage>

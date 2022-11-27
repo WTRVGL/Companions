@@ -64,6 +64,7 @@
 	  <None Remove="Resources\Fonts\Inter-Thin.ttf" />
 	  <None Remove="Resources\Fonts\Poppins-Black.ttf" />
 	  <None Remove="Resources\Fonts\Poppins-Bold.ttf" />
+	  <None Remove="Resources\Images\icnmenuclose.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -115,6 +116,18 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Controls\BuddyCard.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ViewModels\App\Actions\AppointmentPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ViewModels\App\Actions\FeedingPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ViewModels\App\Actions\TrackWeightPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ViewModels\App\Actions\WalkingPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\App\Action.xaml">

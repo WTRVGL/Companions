@@ -1,4 +1,5 @@
-﻿using Companions.MAUI.Views.App;
+﻿using Companions.MAUI.ViewModels.App.Actions;
+using Companions.MAUI.Views.App;
 using Companions.MAUI.Views.App.BuddyDetail;
 using Companions.MAUI.Views.Login;
 using Action = Companions.MAUI.Views.App.Action;
@@ -17,7 +18,12 @@ namespace Companions.MAUI
             Routing.RegisterRoute(nameof(SchedulePage), typeof(SchedulePage));
             Routing.RegisterRoute(nameof(DiscoverPage), typeof(DiscoverPage));
             Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
+
             Routing.RegisterRoute(nameof(Action), typeof(Action));
+            Routing.RegisterRoute(nameof(FeedingPage), typeof(FeedingPage));
+            Routing.RegisterRoute(nameof(WalkingPage), typeof(WalkingPage));
+            Routing.RegisterRoute(nameof(AppointmentPage), typeof(AppointmentPage));
+            Routing.RegisterRoute(nameof(TrackWeightPage), typeof(TrackWeightPage));
         }
 
         //HACK LOL
@@ -26,7 +32,26 @@ namespace Companions.MAUI
             if (args.Target.Location.OriginalString == "//D_FAULT_ShellContent6")
             {
                 args.Cancel();
-                await DisplayAlert("yo", "yo", "cancel");
+
+                string action = await DisplayActionSheet("Add Action:", "Cancel", null, "Feeding", "Walking", "Appointment", "Track weight");
+
+                switch (action)
+                {
+                    case "Feeding":
+                        await Application.Current.MainPage.Navigation.PushAsync(new FeedingPage());
+                        return;
+                    case "Walking":
+                        await Application.Current.MainPage.Navigation.PushAsync(new WalkingPage());
+                        return;
+                    case "Appointment":
+                        await Application.Current.MainPage.Navigation.PushAsync(new AppointmentPage());
+                        return;
+                    case "Track weight":
+                        await Application.Current.MainPage.Navigation.PushAsync(new TrackWeightPage());
+                        return;
+                    default:
+                        break;
+                }
                 return;
             }
         }
