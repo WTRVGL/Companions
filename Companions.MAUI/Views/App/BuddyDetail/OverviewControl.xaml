@@ -6,13 +6,16 @@
              xmlns:converters="clr-namespace:Companions.MAUI.Converters"
              xmlns:selectors="clr-namespace:Companions.MAUI.Selectors"
              x:Class="Companions.MAUI.Views.App.BuddyDetail.OverviewControl"
+             x:DataType="vm:BuddyDetailPageViewModel"
              BackgroundColor="White">
     
     <ContentView.Resources>
         <converters:EndDateToTimeAgoConverter x:Key="DateToTimeAgo"/>
         <converters:TimeBetweenStartEndDateConverter x:Key="TimeBetweenDates"/>
 
-        <DataTemplate x:Key="WalkingTemplate">
+        <DataTemplate x:Key="WalkingTemplate"
+                      x:DataType="models:Activity">
+                        
             <VerticalStackLayout Margin="0,0,0,20">
                 <VerticalStackLayout >
                     <Grid Margin="0,0,0,15">
@@ -24,10 +27,13 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Rectangle Grid.RowSpan="2"
+                        <Image Source="{Binding ImageURL}"
+                               Grid.RowSpan="2" Margin="0,0,10,0" VerticalOptions="Center"
+                               />
+                        <!--<Rectangle Grid.RowSpan="2"
                                    Margin="0,0,10,0"
                                    Fill="black"
-                                   VerticalOptions="Center"/>
+                                   VerticalOptions="Center"/>-->
 
                         <Label Grid.Column="1" Grid.Row="0"
                                        Text="Walking"
@@ -55,7 +61,8 @@
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </DataTemplate>
-        <DataTemplate x:Key="FeedingTemplate">
+        <DataTemplate x:Key="FeedingTemplate"
+                      x:DataType="models:Activity">
             <VerticalStackLayout Margin="0,0,0,20">
                 <VerticalStackLayout >
                     <Grid Margin="0,0,0,15">
@@ -67,10 +74,13 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Rectangle Grid.RowSpan="2"
+                        <Image Source="{Binding ImageURL}"
+                               Grid.RowSpan="2" Margin="0,0,10,0" VerticalOptions="Center"
+                               />
+                        <!--<Rectangle Grid.RowSpan="2"
                                    Margin="0,0,10,0"
                                    Fill="black"
-                                   VerticalOptions="Center"/>
+                                   VerticalOptions="Center"/>-->
 
                         <Label Grid.Column="1" Grid.Row="0"
                                        Text="Feeding"
@@ -93,13 +103,13 @@
         </DataTemplate>
         
     </ContentView.Resources>
-
+   
     <CollectionView ItemsSource="{Binding Buddy.Activities}"
                     Margin="0,35,0,0"
                     VerticalScrollBarVisibility="Never">
         <CollectionView.ItemTemplate>
             <selectors:BuddyOverviewSelector WalkTemplate="{StaticResource WalkingTemplate}"
-                                                 FeedingTemplate="{StaticResource FeedingTemplate}"/>
+                                             FeedingTemplate="{StaticResource FeedingTemplate}"/>
         </CollectionView.ItemTemplate>
     </CollectionView>
 </ContentView>

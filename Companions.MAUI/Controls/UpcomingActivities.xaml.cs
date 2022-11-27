@@ -12,14 +12,14 @@ public partial class UpcomingActivities : ContentView
 
     public static readonly BindableProperty ActivitiesProperty = BindableProperty.Create(
         propertyName: nameof(Activities),
-        returnType: typeof(ObservableCollection<UpcomingActivitesActivityModel>),
+        returnType: typeof(ObservableCollection<Models.App.UpcomingActivities>),
         declaringType: typeof(ContentView),
         defaultValue: null,
         defaultBindingMode: BindingMode.TwoWay);
 
-    public ObservableCollection<UpcomingActivitesActivityModel> Activities
+    public ObservableCollection<Models.App.UpcomingActivities> Activities
     {
-        get => (ObservableCollection<UpcomingActivitesActivityModel>)GetValue(ActivitiesProperty);
+        get => (ObservableCollection<Models.App.UpcomingActivities>)GetValue(ActivitiesProperty);
         set { SetValue(ActivitiesProperty, value); }
     }
 }

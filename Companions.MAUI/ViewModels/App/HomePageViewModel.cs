@@ -26,7 +26,7 @@ namespace Companions.MAUI.ViewModels.App
         private ObservableCollection<Buddy> _buddies;
 
         [ObservableProperty]
-        private ObservableCollection<UpcomingActivitesActivityModel> _upcomingActivities;
+        private ObservableCollection<UpcomingActivities> _upcomingActivities;
 
         [RelayCommand]
         async void Refresh()
@@ -55,10 +55,10 @@ namespace Companions.MAUI.ViewModels.App
             _buddyService = buddyservice;
             _buddies = _buddyService.GetBuddies();
 
-            _upcomingActivities = new ObservableCollection<UpcomingActivitesActivityModel>()
+            _upcomingActivities = new ObservableCollection<UpcomingActivities>()
             {
-                new UpcomingActivitesActivityModel {ActivityName = "CPV Vaccinatie", BuddyName = "Ori"},
-                new UpcomingActivitesActivityModel {ActivityName = "CPV Vaccinatie", BuddyName = "Bassie"},
+                new UpcomingActivities {ActivityName = "CPV Vaccinatie", BuddyName = "Ori", ActivityDate = new DateTime(2022,12,24)},
+                new UpcomingActivities {ActivityName = "CPV Vaccinatie", BuddyName = "Bassie", ActivityDate = new DateTime(2022,12,24)},
             };
         }
 

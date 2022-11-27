@@ -5,6 +5,7 @@ namespace Companions.MAUI.Views.App.BuddyDetail;
 
 public partial class OverviewControl : ContentView
 {
+	 
 
     public OverviewControl()
 	{

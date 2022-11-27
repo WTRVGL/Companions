@@ -11,11 +11,11 @@
     <Shell.Resources>
         <Style TargetType="TabBar">
             <Setter Property="Shell.TabBarBackgroundColor"
-            Value="CornflowerBlue" />
+            Value="White" />
             <Setter Property="Shell.TabBarTitleColor"
-            Value="Orange" />
+            Value="#4F9AF0" />
             <Setter Property="Shell.TabBarUnselectedColor"
-            Value="AntiqueWhite" />
+            Value="#BAD6F7" />
         </Style>
     </Shell.Resources>
 

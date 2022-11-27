@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:Companions.MAUI.Controls"
              xmlns:icons="clr-namespace:Companions.MAUI.Resources.Icons"
+             xmlns:vm="clr-namespace:Companions.MAUI.ViewModels.App"
+             x:DataType="vm:HomePageViewModel"
              x:Class="Companions.MAUI.Views.App.HomePage"
              Shell.TabBarIsVisible="True">
     <ContentPage.Resources>
@@ -38,19 +40,15 @@
                        Scale="1.4"/>
             </Grid>
 
-            <!--Buddy Cards-->
-            <ScrollView Orientation="Horizontal"
-                    HorizontalOptions="Center"
-                    HorizontalScrollBarVisibility="Never">
-                <HorizontalStackLayout BindableLayout.ItemsSource="{Binding Buddies}">
-                    <BindableLayout.ItemTemplate>
-                        <DataTemplate>
-                            <controls:BuddyCard 
+            <CollectionView ItemsSource="{Binding Buddies}"
+                            ItemsLayout="HorizontalList">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <controls:BuddyCard 
                             Buddy="{Binding}"/>
-                        </DataTemplate>
-                    </BindableLayout.ItemTemplate>
-                </HorizontalStackLayout>
-            </ScrollView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
             <!--Upcoming Title Label-->
             <Label Style="{StaticResource SectionTitle}"

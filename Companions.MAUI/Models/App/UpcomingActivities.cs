@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Companions.MAUI.Models.App
 {
-    public class UpcomingActivitesActivityModel
+    public class UpcomingActivities
     {
         public string ActivityName { get; set; }
         public string BuddyName { get; set; }
