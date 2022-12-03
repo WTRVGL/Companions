@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Companions.MAUI.Converters
 {
+    /// <summary>
+    /// Calculates the amount of time between two DateTimes
+    /// </summary>
     public class TimeBetweenStartEndDateConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)

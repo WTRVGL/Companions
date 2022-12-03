@@ -1,90 +1,107 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:buddyControls="clr-namespace:Companions.MAUI.Views.App.BuddyDetail"
-             xmlns:App="clr-namespace:Companions.MAUI.ViewModels.App"
-             x:Class="Companions.MAUI.Views.App.BuddyDetail.BuddyDetailPage"
-             Title="BuddyDetailPage"
-             Shell.TabBarIsVisible="False"
-             Shell.NavBarIsVisible="False">
+<ContentPage
+    x:Class="Companions.MAUI.Views.App.BuddyDetail.BuddyDetailPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:App="clr-namespace:Companions.MAUI.ViewModels.App"
+    xmlns:buddyControls="clr-namespace:Companions.MAUI.Views.App.BuddyDetail"
+    Title="BuddyDetailPage"
+    Shell.NavBarIsVisible="False"
+    Shell.TabBarIsVisible="False">
 
     <ContentPage.Resources>
         <Style x:Key="BuddyName" TargetType="{Type Label}">
-            <Setter Property="FontSize" Value="36"/>
-            <Setter Property="FontFamily" Value="InterBold"/>
-            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontSize" Value="36" />
+            <Setter Property="FontFamily" Value="InterBold" />
+            <Setter Property="TextColor" Value="White" />
         </Style>
         <Style x:Key="BuddySubtext" TargetType="{Type Label}">
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="FontFamily" Value="Inter"/>
-            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontFamily" Value="Inter" />
+            <Setter Property="TextColor" Value="White" />
         </Style>
-        
-    </ContentPage.Resources>
-	<ContentPage.BindingContext>
-		<App:BuddyDetailPageViewModel/>
-	</ContentPage.BindingContext>
-    
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0.7*"/>
-            <RowDefinition Height="0.1*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        
-        <Image Grid.Row="0" Grid.RowSpan="2"
-               MinimumWidthRequest="600" Aspect="Fill"
-               Source="{Binding Buddy.ImageURL}"/>
-        
-        <Rectangle Opacity="0.4" Fill="black"
-                   Grid.RowSpan="2"/>
 
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <App:BuddyDetailPageViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid>
+        <!--  RowDefinitions  -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.7*" />
+            <RowDefinition Height="0.1*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--  Buddy Image  -->
+        <Image
+            Grid.Row="0"
+            Grid.RowSpan="2"
+            Aspect="Fill"
+            MinimumWidthRequest="600"
+            Source="{Binding Buddy.ImageURL}" />
+
+        <!--  50% opacity 'filter'  -->
+        <Rectangle
+            Grid.RowSpan="2"
+            Fill="black"
+            Opacity="0.4" />
+
+        <!--  Main grid  -->
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.3*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.3*" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid Margin="20,0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0"
-                       HorizontalOptions="Start"
-                       VerticalOptions="Center"
-                       FontFamily="FaSolid"
-                       TextColor="White"
-                       Text="{StaticResource SolidArrowLeft}"
-                       Scale="2">
+                <!--  Back Arrow Icon  -->
+                <Label
+                    Grid.Column="0"
+                    FontFamily="FaSolid"
+                    HorizontalOptions="Start"
+                    Scale="2"
+                    Text="{StaticResource SolidArrowLeft}"
+                    TextColor="White"
+                    VerticalOptions="Center">
                     <Label.GestureRecognizers>
-                        <TapGestureRecognizer 
-                            Command="{Binding GoBackCommand}"/>
+                        <TapGestureRecognizer Command="{Binding GoBackCommand}" Tapped="BackIcon_Tapped" />
                     </Label.GestureRecognizers>
                 </Label>
-                <Label Grid.Column="1"
-                       HorizontalOptions="End"
-                       VerticalOptions="Center"
-                       FontFamily="FaSolid"
-                       TextColor="White"
-                       Text="{StaticResource SolidGear}"
-                       Scale="2"
-                       />
+                <!--  Settings Icon  -->
+                <Label
+                    Grid.Column="1"
+                    FontFamily="FaSolid"
+                    HorizontalOptions="End"
+                    Scale="2"
+                    Text="{StaticResource SolidGear}"
+                    TextColor="White"
+                    VerticalOptions="Center" />
             </Grid>
-            <VerticalStackLayout Grid.Row="1"
-                                 HorizontalOptions="Center"
-                                 VerticalOptions="End">
-                <Label Style="{StaticResource Key=BuddyName}" 
-                       HorizontalOptions="Center"
-                       Text="{Binding Buddy.Name}"/>
-                <HorizontalStackLayout HorizontalOptions="Center"
-                                       Margin="0,0,0,30">
+
+            <!--  Buddy Details  -->
+            <VerticalStackLayout
+                Grid.Row="1"
+                HorizontalOptions="Center"
+                VerticalOptions="End">
+                <!--  Buddy Name  -->
+                <Label
+                    HorizontalOptions="Center"
+                    Style="{StaticResource Key=BuddyName}"
+                    Text="{Binding Buddy.Name}" />
+                <!--  Subtext  -->
+                <HorizontalStackLayout Margin="0,0,0,30" HorizontalOptions="Center">
                     <Label Style="{StaticResource Key=BuddySubtext}">
                         <Label.Text>
                             <MultiBinding StringFormat="{} {0} - {1} years - {2} - {3}kg">
-                                <Binding Path="Buddy.Race"/>
-                                <Binding Path="Buddy.Age"/>
-                                <Binding Path="Buddy.Gender"/>
-                                <Binding Path="Buddy.Weight"/>
+                                <Binding Path="Buddy.Race" />
+                                <Binding Path="Buddy.Age" />
+                                <Binding Path="Buddy.Gender" />
+                                <Binding Path="Buddy.Weight" />
                             </MultiBinding>
                         </Label.Text>
                     </Label>
@@ -92,12 +109,15 @@
             </VerticalStackLayout>
         </Grid>
 
-        <Frame BackgroundColor="White" 
-               BorderColor="Transparent"
-               Grid.Row="1" Grid.RowSpan="2"
-               CornerRadius="25"
-               ZIndex="10">
-            <buddyControls:TabControl/>
+        <!--  Frame with TabControl  -->
+        <Frame
+            Grid.Row="1"
+            Grid.RowSpan="2"
+            BackgroundColor="White"
+            BorderColor="Transparent"
+            CornerRadius="25"
+            ZIndex="10">
+            <buddyControls:TabControl />
         </Frame>
 
     </Grid>

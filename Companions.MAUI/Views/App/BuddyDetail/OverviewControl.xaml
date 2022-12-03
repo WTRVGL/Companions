@@ -1,116 +1,139 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vm="clr-namespace:Companions.MAUI.ViewModels.App"
-             xmlns:models="clr-namespace:Companions.MAUI.Models.App"
-             xmlns:converters="clr-namespace:Companions.MAUI.Converters"
-             xmlns:selectors="clr-namespace:Companions.MAUI.Selectors"
-             x:Class="Companions.MAUI.Views.App.BuddyDetail.OverviewControl"
-             x:DataType="vm:BuddyDetailPageViewModel"
-             BackgroundColor="White">
-    
-    <ContentView.Resources>
-        <converters:EndDateToTimeAgoConverter x:Key="DateToTimeAgo"/>
-        <converters:TimeBetweenStartEndDateConverter x:Key="TimeBetweenDates"/>
+<ContentView
+    x:Class="Companions.MAUI.Views.App.BuddyDetail.OverviewControl"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:Companions.MAUI.Converters"
+    xmlns:models="clr-namespace:Companions.MAUI.Models.App"
+    xmlns:selectors="clr-namespace:Companions.MAUI.Selectors"
+    xmlns:vm="clr-namespace:Companions.MAUI.ViewModels.App"
+    x:DataType="vm:BuddyDetailPageViewModel"
+    BackgroundColor="White">
 
-        <DataTemplate x:Key="WalkingTemplate"
-                      x:DataType="models:Activity">
-                        
+    <ContentView.Resources>
+        <converters:EndDateToTimeAgoConverter x:Key="DateToTimeAgo" />
+        <converters:TimeBetweenStartEndDateConverter x:Key="TimeBetweenDates" />
+
+        <DataTemplate x:Key="WalkingTemplate" x:DataType="models:Activity">
+
             <VerticalStackLayout Margin="0,0,0,20">
-                <VerticalStackLayout >
+                <VerticalStackLayout>
                     <Grid Margin="0,0,0,15">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.2*"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.2*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <Image Source="{Binding ImageURL}"
-                               Grid.RowSpan="2" Margin="0,0,10,0" VerticalOptions="Center"
-                               />
+                        <Image
+                            Grid.RowSpan="2"
+                            Margin="0,0,10,0"
+                            Source="{Binding ImageURL}"
+                            VerticalOptions="Center" />
                         <!--<Rectangle Grid.RowSpan="2"
                                    Margin="0,0,10,0"
                                    Fill="black"
                                    VerticalOptions="Center"/>-->
 
-                        <Label Grid.Column="1" Grid.Row="0"
-                                       Text="Walking"
-                                       Margin="0,0,0,5"
-                                       FontFamily="InterSemiBold"
-                                       FontSize="16"/>
-                        <Label Grid.Column="1" Grid.Row="0"
-                                    HorizontalOptions="End"
-                                    TextColor="#BDBDBD"
-                                    Text="{Binding EndDate, Converter={StaticResource DateToTimeAgo}}"/>
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Margin="0,0,0,5"
+                            FontFamily="InterSemiBold"
+                            FontSize="16"
+                            Text="Walking" />
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            HorizontalOptions="End"
+                            Text="{Binding EndDate, Converter={StaticResource DateToTimeAgo}}"
+                            TextColor="#BDBDBD" />
 
-                        <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2">
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="2">
                             <Label.Text>
-                                <MultiBinding Converter="{StaticResource TimeBetweenDates}"
-                                                      StringFormat="{}Just finished a {0} walk!">
+                                <MultiBinding Converter="{StaticResource TimeBetweenDates}" StringFormat="{}Just finished a {0} walk!">
                                     <Binding Path="StartDate" />
-                                    <Binding Path="EndDate"/>
+                                    <Binding Path="EndDate" />
                                 </MultiBinding>
                             </Label.Text>
                         </Label>
-                    </Grid >
-                    <Line X1="40" Y1="0" X2="500" Y2="0"
-                          StrokeThickness="1"
-                          Stroke="#BDBDBD" />
+                    </Grid>
+                    <Line
+                        Stroke="#BDBDBD"
+                        StrokeThickness="1"
+                        X1="40"
+                        X2="500"
+                        Y1="0"
+                        Y2="0" />
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </DataTemplate>
-        <DataTemplate x:Key="FeedingTemplate"
-                      x:DataType="models:Activity">
+        <DataTemplate x:Key="FeedingTemplate" x:DataType="models:Activity">
             <VerticalStackLayout Margin="0,0,0,20">
-                <VerticalStackLayout >
+                <VerticalStackLayout>
                     <Grid Margin="0,0,0,15">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.2*"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.2*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <Image Source="{Binding ImageURL}"
-                               Grid.RowSpan="2" Margin="0,0,10,0" VerticalOptions="Center"
-                               />
+                        <Image
+                            Grid.RowSpan="2"
+                            Margin="0,0,10,0"
+                            Source="{Binding ImageURL}"
+                            VerticalOptions="Center" />
                         <!--<Rectangle Grid.RowSpan="2"
                                    Margin="0,0,10,0"
                                    Fill="black"
                                    VerticalOptions="Center"/>-->
 
-                        <Label Grid.Column="1" Grid.Row="0"
-                                       Text="Feeding"
-                                       Margin="0,0,0,5"
-                                       FontFamily="InterSemiBold"
-                                       FontSize="16"/>
-                        <Label Grid.Column="1" Grid.Row="0"
-                                    HorizontalOptions="End"
-                                    TextColor="#BDBDBD"
-                                    Text="{Binding EndDate, Converter={StaticResource DateToTimeAgo}}"/>
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Margin="0,0,0,5"
+                            FontFamily="InterSemiBold"
+                            FontSize="16"
+                            Text="Feeding" />
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            HorizontalOptions="End"
+                            Text="{Binding EndDate, Converter={StaticResource DateToTimeAgo}}"
+                            TextColor="#BDBDBD" />
 
-                        <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"
-                               Text="Was just fed!"/>
-                    </Grid >
-                    <Line X1="40" Y1="0" X2="500" Y2="0"
-                          StrokeThickness="1"
-                          Stroke="#BDBDBD" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="2"
+                            Text="Was just fed!" />
+                    </Grid>
+                    <Line
+                        Stroke="#BDBDBD"
+                        StrokeThickness="1"
+                        X1="40"
+                        X2="500"
+                        Y1="0"
+                        Y2="0" />
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </DataTemplate>
-        
+
     </ContentView.Resources>
-   
-    <CollectionView ItemsSource="{Binding Buddy.Activities}"
-                    Margin="0,35,0,0"
-                    VerticalScrollBarVisibility="Never">
+
+    <CollectionView
+        Margin="0,35,0,0"
+        ItemsSource="{Binding Buddy.Activities}"
+        VerticalScrollBarVisibility="Never">
         <CollectionView.ItemTemplate>
-            <selectors:BuddyOverviewSelector WalkTemplate="{StaticResource WalkingTemplate}"
-                                             FeedingTemplate="{StaticResource FeedingTemplate}"/>
+            <selectors:BuddyOverviewSelector FeedingTemplate="{StaticResource FeedingTemplate}" WalkTemplate="{StaticResource WalkingTemplate}" />
         </CollectionView.ItemTemplate>
     </CollectionView>
 </ContentView>
- 

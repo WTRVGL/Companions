@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Companions.MAUI.Converters
 {
+    /// <summary>
+    /// Calculates how long ago a specific date occured.
+    /// </summary>
     public class EndDateToTimeAgoConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

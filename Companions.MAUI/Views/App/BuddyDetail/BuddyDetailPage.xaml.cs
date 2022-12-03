@@ -14,4 +14,9 @@ public partial class BuddyDetailPage : ContentPage
 	{
 		base.OnNavigatedTo(args);
 	}
-}
+
+
+	private void BackIcon_Tapped(object sender, EventArgs e)
+	{
+	}
+} 

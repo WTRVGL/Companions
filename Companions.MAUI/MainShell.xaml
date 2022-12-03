@@ -3,50 +3,34 @@
     x:Class="Companions.MAUI.MainShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:Companions.MAUI"
     xmlns:controls="clr-namespace:Companions.MAUI.Controls"
+    xmlns:local="clr-namespace:Companions.MAUI"
     xmlns:mainViews="clr-namespace:Companions.MAUI.Views.App"
     Shell.FlyoutBehavior="Disabled">
 
     <Shell.Resources>
         <Style TargetType="TabBar">
-            <Setter Property="Shell.TabBarBackgroundColor"
-            Value="White" />
-            <Setter Property="Shell.TabBarTitleColor"
-            Value="#4F9AF0" />
-            <Setter Property="Shell.TabBarUnselectedColor"
-            Value="#BAD6F7" />
+            <Setter Property="Shell.TabBarBackgroundColor" Value="White" />
+            <Setter Property="Shell.TabBarTitleColor" Value="#4F9AF0" />
+            <Setter Property="Shell.TabBarUnselectedColor" Value="#BAD6F7" />
         </Style>
     </Shell.Resources>
 
     <TabBar>
-        <Tab Title="Home"
-             Icon="{FontImage FontFamily=FaSolid, Glyph={StaticResource SolidHouse}}">
-            <ShellContent
-                ContentTemplate="{DataTemplate mainViews:HomePage}"
-                Route="MainPage"/>
+        <Tab Title="Home" Icon="{FontImage FontFamily=FaSolid, Glyph={StaticResource SolidHouse}}">
+            <ShellContent ContentTemplate="{DataTemplate mainViews:HomePage}" Route="MainPage" />
         </Tab>
-        <Tab Title="Schedule"
-             Icon="{FontImage FontFamily=FaSolid, Glyph={StaticResource SolidCalendarDay}}">
-            <ShellContent
-                ContentTemplate="{DataTemplate mainViews:SchedulePage}"
-                Route="MainPage" />
+        <Tab Title="Schedule" Icon="{FontImage FontFamily=FaSolid, Glyph={StaticResource SolidCalendarDay}}">
+            <ShellContent ContentTemplate="{DataTemplate mainViews:SchedulePage}" Route="MainPage" />
         </Tab>
         <Tab Icon="{FontImage FontFamily=FaSolid, Glyph={StaticResource BrandPlus}}">
-            <ShellContent 
-                ContentTemplate="{DataTemplate mainViews:Action}"/>
+            <ShellContent ContentTemplate="{DataTemplate mainViews:Action}" />
         </Tab>
-        <Tab Title="Discover"
-             Icon="{FontImage FontFamily=FaSolid, Glyph={StaticResource SolidCompass}}">
-            <ShellContent
-                ContentTemplate="{DataTemplate mainViews:DiscoverPage}"
-                Route="MainPage" />
+        <Tab Title="Discover" Icon="{FontImage FontFamily=FaSolid, Glyph={StaticResource SolidCompass}}">
+            <ShellContent ContentTemplate="{DataTemplate mainViews:DiscoverPage}" Route="MainPage" />
         </Tab>
-        <Tab Title="Settings"
-             Icon="{FontImage FontFamily=FaSolid, Glyph={StaticResource SolidGears}}">
-            <ShellContent
-                ContentTemplate="{DataTemplate mainViews:SettingsPage}"
-                Route="MainPage" />
+        <Tab Title="Settings" Icon="{FontImage FontFamily=FaSolid, Glyph={StaticResource SolidGears}}">
+            <ShellContent ContentTemplate="{DataTemplate mainViews:SettingsPage}" Route="MainPage" />
         </Tab>
     </TabBar>
 

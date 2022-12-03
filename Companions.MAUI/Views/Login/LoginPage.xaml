@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:customControls="clr-namespace:Companions.MAUI.Controls"
-             x:Class="Companions.MAUI.Views.Login.LoginPage"
-             Shell.NavBarIsVisible="False">
-    
-    <VerticalStackLayout
-        VerticalOptions="Center"
-        Padding="30">
-        
-        <customControls:Entry Placeholder="E-mail" Text="{Binding Email}"/>
-        <customControls:Entry Placeholder="Password" IsPassword="True" Text="{Binding Password}"/>
+<ContentPage
+    x:Class="Companions.MAUI.Views.Login.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customControls="clr-namespace:Companions.MAUI.Controls"
+    Shell.NavBarIsVisible="False">
 
-        <Button Text="Log In"
-                Command="{Binding LoginCommand}"/>
+    <VerticalStackLayout Padding="30" VerticalOptions="Center">
+
+        <customControls:Entry Placeholder="E-mail" Text="{Binding Email}" />
+        <customControls:Entry
+            IsPassword="True"
+            Placeholder="Password"
+            Text="{Binding Password}" />
+
+        <Button Command="{Binding LoginCommand}" Text="Log In" />
         <HorizontalStackLayout>
-            <Label Text="No account? Click"/>
-            <Button Style="{StaticResource InlineTextButton}"
-                    Text=" Here " 
-                    TextColor="{StaticResource Primary}"
-                    Command="{Binding GoToSignUpCommand}"/>
-            <Label Text="to sign up."/>
+            <Label Text="No account? Click" />
+            <Button
+                Command="{Binding GoToSignUpCommand}"
+                Style="{StaticResource InlineTextButton}"
+                Text=" Here "
+                TextColor="{StaticResource Primary}" />
+            <Label Text="to sign up." />
         </HorizontalStackLayout>
     </VerticalStackLayout>
 </ContentPage>

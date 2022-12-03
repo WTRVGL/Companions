@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Companions.MAUI.Selectors
 {
+    /// <summary>
+    /// DataTemplateSelector for possible Activities
+    /// </summary>
     public class BuddyOverviewSelector : DataTemplateSelector
     {
         public DataTemplate WalkTemplate { get; set; }

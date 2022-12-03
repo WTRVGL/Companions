@@ -8,8 +8,6 @@
     xmlns:mainViews="clr-namespace:Companions.MAUI.Views.App"
     Shell.FlyoutBehavior="Disabled">
 
-    <ShellContent
-        ContentTemplate="{DataTemplate loginViews:StartPage}"
-        Route="MainPage" />
+    <ShellContent ContentTemplate="{DataTemplate loginViews:StartPage}" Route="MainPage" />
 
 </Shell>

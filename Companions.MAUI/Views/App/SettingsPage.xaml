@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vm="clr-namespace:Companions.MAUI.ViewModels.App"
-             x:Class="Companions.MAUI.Views.App.SettingsPage"
-             x:DataType="vm:SettingsPageViewModel"
-             Title="SettingsPage">
+<ContentPage
+    x:Class="Companions.MAUI.Views.App.SettingsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:Companions.MAUI.ViewModels.App"
+    Title="SettingsPage"
+    x:DataType="vm:SettingsPageViewModel">
     <VerticalStackLayout>
-        <Label 
+        <Label
+            HorizontalOptions="Center"
             Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            VerticalOptions="Center" />
     </VerticalStackLayout>
 </ContentPage>
