@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="Companions.MAUI.Views.App.BuddyDetail.TabControl"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buddyTabs="clr-namespace:Companions.MAUI.Views.App.BuddyDetail"
+    xmlns:tabView="clr-namespace:Syncfusion.Maui.TabView;assembly=Syncfusion.Maui.TabView"
+    xmlns:vm="clr-namespace:Companions.MAUI.ViewModels.App"
+    x:Name="tabControl">
+
+    <ContentView.Resources>
+        <Style TargetType="tabView:SfTabItem">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup>
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="#565B61" />
+                                <Setter Property="FontFamily" Value="InterBold" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="#1D78E0" />
+                                <Setter Property="FontFamily" Value="InterBold" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentView.Resources>
+
+    <ContentView.Content>
+        <Frame Margin="0" Padding="0">
+            <tabView:SfTabView
+                x:Name="tabView"
+                BackgroundColor="#D7DDE9"
+                IndicatorBackground="#EDF2FB"
+                IndicatorPlacement="Fill">
+                <tabView:SfTabView.Items>
+                    <tabView:SfTabItem Header="Overview">
+                        <tabView:SfTabItem.Content>
+                            <buddyTabs:OverviewControl />
+                        </tabView:SfTabItem.Content>
+                    </tabView:SfTabItem>
+
+                    <tabView:SfTabItem Header="Food">
+                        <tabView:SfTabItem.Content>
+                            <buddyTabs:FoodControl />
+                        </tabView:SfTabItem.Content>
+                    </tabView:SfTabItem>
+
+                    <tabView:SfTabItem Header="Health">
+                        <tabView:SfTabItem.Content>
+                            <Grid BackgroundColor="Blue" />
+                        </tabView:SfTabItem.Content>
+                    </tabView:SfTabItem>
+                </tabView:SfTabView.Items>
+            </tabView:SfTabView>
+        </Frame>
+    </ContentView.Content>
+</ContentView>

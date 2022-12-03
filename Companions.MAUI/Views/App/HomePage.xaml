@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Companions.MAUI.Views.App.HomePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Companions.MAUI.Controls"
+    xmlns:icons="clr-namespace:Companions.MAUI.Resources.Icons"
+    xmlns:vm="clr-namespace:Companions.MAUI.ViewModels.App"
+    x:DataType="vm:HomePageViewModel"
+    Shell.TabBarIsVisible="True">
+    <ContentPage.Resources>
+        <Color x:Key="TitleColor">#404348</Color>
+
+        <Style x:Key="SectionTitle" TargetType="Label">
+            <Setter Property="FontFamily" Value="InterBold" />
+            <Setter Property="FontSize" Value="36" />
+            <Setter Property="TextColor" Value="{StaticResource TitleColor}" />
+        </Style>
+    </ContentPage.Resources>
+
+    <RefreshView
+        Margin="25,30"
+        Command="{Binding RefreshCommand}"
+        IsRefreshing="{Binding IsRefreshing}">
+        <VerticalStackLayout>
+
+            <!--  Buddy + Button Grid  -->
+            <Grid Margin="0,0,0,16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="0.2*" />
+                </Grid.ColumnDefinitions>
+
+                <!--  Buddy Title Label  -->
+                <Label Style="{StaticResource SectionTitle}" Text="Buddies" />
+
+                <!--  Menu button  -->
+                <Label
+                    Grid.Column="1"
+                    FontFamily="FaSolid"
+                    HorizontalOptions="Center"
+                    Scale="1.4"
+                    Text="{StaticResource SolidList}"
+                    TextColor="{StaticResource TitleColor}"
+                    VerticalOptions="Center" />
+            </Grid>
+
+            <CollectionView ItemsLayout="HorizontalList" ItemsSource="{Binding Buddies}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <controls:BuddyCard Buddy="{Binding}" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!--  Upcoming Title Label  -->
+            <Label
+                Margin="0,20,0,20"
+                Style="{StaticResource SectionTitle}"
+                Text="Upcoming" />
+
+            <!--  Upcoming Activities Control  -->
+            <controls:UpcomingActivities Activities="{Binding UpcomingActivities}" />
+        </VerticalStackLayout>
+    </RefreshView>
+
+</ContentPage>

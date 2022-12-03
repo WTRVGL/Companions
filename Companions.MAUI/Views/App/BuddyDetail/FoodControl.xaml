@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="Companions.MAUI.Views.App.BuddyDetail.FoodControl"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:Companions.MAUI.Models.App"
+    xmlns:vm="clr-namespace:Companions.MAUI.ViewModels.App"
+    x:DataType="vm:BuddyDetailPageViewModel"
+    BackgroundColor="White">
+
+    <CollectionView ItemsSource="{Binding Buddy.FeedingSchedules}">
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="models:FeedingSchedule">
+                <VerticalStackLayout Margin="0,25,0,0">
+                    <Grid Margin="0,0,0,15">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="0.2*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <!--  Time of Day Label  -->
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Margin="0,0,0,5"
+                            FontFamily="InterBold"
+                            FontSize="24"
+                            Text="{Binding TimeOfDay}"
+                            TextColor="Black" />
+
+                        <!--  Feed Description MultiBinding Label  -->
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            LineBreakMode="CharacterWrap">
+                            <Label.Text>
+                                <MultiBinding StringFormat="{}{0}g {1} {2}!">
+                                    <Binding Path="Amount" />
+                                    <Binding Path="FeedProduct.BrandName" />
+                                    <Binding Path="FeedProduct.Name" />
+                                </MultiBinding>
+                            </Label.Text>
+                        </Label>
+                    </Grid>
+
+                    <!--  Bottom Stroke  -->
+                    <Line
+                        Stroke="#BDBDBD"
+                        StrokeThickness="1"
+                        X1="40"
+                        X2="500"
+                        Y1="0"
+                        Y2="0" />
+                </VerticalStackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentView>
