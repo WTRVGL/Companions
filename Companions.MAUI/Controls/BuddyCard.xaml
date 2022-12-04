@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="Companions.MAUI.Controls.BuddyCard"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:appModels="clr-namespace:Companions.MAUI.Models.App"
+    xmlns:vm="clr-namespace:Companions.MAUI.ViewModels.App"
+    x:Name="this"
+    Margin="0,0,30,0"
+    Shell.NavBarIsVisible="False">
+
+    <ContentView.Resources>
+        <Color x:Key="CardSubTextColor">#C0C0C0</Color>
+        <Style x:Key="CardSubText" TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource CardSubTextColor}" />
+        </Style>
+    </ContentView.Resources>
+
+    <VerticalStackLayout>
+        <!--  Card Frame  -->
+        <Frame
+            x:Name="cardFrame"
+            Padding="0"
+            BorderColor="Transparent"
+            CornerRadius="25"
+            HeightRequest="200"
+            WidthRequest="200">
+            <!--  Open Detail Tap Gesture  -->
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer
+                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:HomePageViewModel}}, Path=OpenBuddyDetailCommand}"
+                    CommandParameter="{Binding Source={RelativeSource AncestorType={x:Type appModels:Buddy}}}"
+                    NumberOfTapsRequired="1" />
+            </Frame.GestureRecognizers>
+            <!--  Buddy Image  -->
+            <Grid>
+                <Image
+                    Aspect="AspectFill"
+                    Source="{Binding Source={x:Reference this}, Path=Buddy.ImageURL}"
+                    VerticalOptions="Center" />
+            </Grid>
+        </Frame>
+
+        <!--  Buddy Subtext  -->
+        <VerticalStackLayout Margin="6,9,0,0">
+            <!--  Buddy Name  -->
+            <Label
+                FontFamily="InterBold"
+                FontSize="16"
+                Text="{Binding Source={x:Reference this}, Path=Buddy.Name}" />
+            <HorizontalStackLayout>
+                <!--  Buddy Race  -->
+                <Label Style="{StaticResource CardSubText}" Text="{Binding Source={x:Reference this}, Path=Buddy.Race}" />
+                <Label Text=" " />
+                <Label Style="{StaticResource CardSubText}" Text="{Binding Source={x:Reference this}, Path=Buddy.Age}" />
+                <Label Style="{StaticResource CardSubText}" Text=" Years" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+
+</ContentView>

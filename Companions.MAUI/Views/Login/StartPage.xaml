@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Companions.MAUI.Views.Login.StartPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Shell.NavBarIsVisible="False">
+    <ContentPage.Resources>
+        <Style x:Key="LabelLogo" TargetType="Label">
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="FontFamily" Value="PoppinsBold" />
+        </Style>
+    </ContentPage.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+
+        <Rectangle
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            BackgroundColor="Black" />
+
+        <VerticalStackLayout
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Padding="20"
+            HorizontalOptions="Center"
+            VerticalOptions="Center">
+
+            <Label Style="{StaticResource Key=LabelLogo}" Text="Companions" />
+            <Label Margin="0,0,0,50" Text="All your pet's health and schedules instantly available in one place." />
+            <Button
+                Command="{Binding GoToLoginCommand}"
+                Style="{StaticResource PrimaryButton}"
+                Text="Login" />
+            <Button
+                Command="{Binding GoToSignUpCommand}"
+                Style="{StaticResource SecondaryButton}"
+                Text="Sign Up" />
+        </VerticalStackLayout>
+
+    </Grid>
+</ContentPage>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Companions.MAUI.Views.Login.SignUpPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customControls="clr-namespace:Companions.MAUI.Controls"
+    Shell.NavBarIsVisible="False">
+
+    <VerticalStackLayout Padding="30" VerticalOptions="Center">
+
+        <customControls:Entry Placeholder="E-mail" Text="{Binding Email}" />
+        <customControls:Entry
+            IsPassword="True"
+            Placeholder="Password"
+            Text="{Binding Password}" />
+        <customControls:Entry
+            IsPassword="True"
+            Placeholder="Repeat password"
+            Text="{Binding PasswordRepeat}" />
+
+        <HorizontalStackLayout VerticalOptions="Center">
+            <CheckBox IsChecked="{Binding TOSChecked}" />
+            <Label Text="Agree to " />
+            <Label Text="Terms of Services" TextColor="{StaticResource Primary}" />
+        </HorizontalStackLayout>
+
+        <Button
+            Command="{Binding SignUpCommand}"
+            Style="{StaticResource PrimaryButton}"
+            Text="Sign up" />
+        <HorizontalStackLayout>
+            <Label Text="Already an account? Click" />
+            <Button
+                Command="{Binding GoToLoginCommand}"
+                Style="{StaticResource InlineTextButton}"
+                Text=" Here "
+                TextColor="{StaticResource Primary}" />
+            <Label Text="here to log in" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

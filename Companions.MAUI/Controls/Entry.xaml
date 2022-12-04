@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Grid
+    x:Class="Companions.MAUI.Controls.Entry"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Name="this"
+    Margin="0,10"
+    RowDefinitions="60">
+
+    <Grid.Resources>
+        <Color x:Key="PlaceHolderColor">#BDBDBD</Color>
+    </Grid.Resources>
+
+    <!--  Main Frame  -->
+    <Frame
+        Grid.Row="0"
+        Padding="8"
+        BackgroundColor="#F6F6F6"
+        BorderColor="{StaticResource LightBorder}">
+        <!--  Entry  -->
+        <Entry
+            Focused="Entry_Focused"
+            IsPassword="{Binding Source={x:Reference this}, Path=IsPassword}"
+            Text="{Binding Source={x:Reference this}, Path=Text}"
+            Unfocused="Entry_Unfocused" />
+    </Frame>
+    <!--  Placeholder  -->
+    <Label
+        x:Name="lblPlaceholder"
+        Grid.Row="0"
+        Margin="10,18"
+        Text="{Binding Source={x:Reference this}, Path=Placeholder}"
+        TextColor="{StaticResource PlaceHolderColor}" />
+</Grid>
