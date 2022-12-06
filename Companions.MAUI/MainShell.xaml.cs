@@ -29,7 +29,11 @@ namespace Companions.MAUI
         //HACK LOL
         protected override async void OnNavigating(ShellNavigatingEventArgs args)
         {
-            if (args.Target.Location.OriginalString == "//D_FAULT_ShellContent6")
+            bool navigatedToActionButton = 
+                args.Target.Location.OriginalString == "//D_FAULT_ShellContent6" || 
+                args.Target.Location.OriginalString == "//D_FAULT_ShellContent11";
+
+            if (navigatedToActionButton)
             {
                 args.Cancel();
 

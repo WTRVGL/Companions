@@ -4,7 +4,7 @@ using Companions.MAUI.ViewModels.Login;
 using Companions.MAUI.Views.App;
 using Companions.MAUI.Views.App.BuddyDetail;
 using Companions.MAUI.Views.Login;
-using Microsoft.Extensions.DependencyInjection;
+using Syncfusion.Maui.ListView.Hosting;
 using Syncfusion.Maui.Core.Hosting;
 
 namespace Companions.MAUI
@@ -63,6 +63,8 @@ namespace Companions.MAUI
             builder.Services.AddTransient<IBuddyService, InMemoryBuddyService>();
 
             #endregion
+
+            builder.ConfigureSyncfusionListView();
 
             return builder.Build();
         }

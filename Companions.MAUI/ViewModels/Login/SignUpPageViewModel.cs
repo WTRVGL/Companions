@@ -36,7 +36,7 @@ namespace Companions.MAUI.ViewModels.Login
         [RelayCommand(CanExecute = nameof(CanSignUp))]
         async void SignUp()
         {
-
+            await Task.CompletedTask;
         }
 
         private bool CanSignUp()
