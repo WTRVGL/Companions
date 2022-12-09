@@ -17,8 +17,7 @@ Removed sections:
 -->
 
 <div align="center">
-
-  <img src="https://user-images.githubusercontent.com/73450465/205472377-69294903-cadc-4985-99de-7dc02c411cc7.png" alt="logo" width="200" height="auto" />
+  <img src="https://user-images.githubusercontent.com/73450465/206665008-63dc06cb-13d5-422e-9b7f-fb21c471d88e.png" alt="logo" width="200" height="auto" />
   <h1>Companions</h1>
   
   <p>
