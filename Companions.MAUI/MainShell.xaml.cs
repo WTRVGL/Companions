@@ -29,15 +29,36 @@ namespace Companions.MAUI
         //HACK LOL
         protected override async void OnNavigating(ShellNavigatingEventArgs args)
         {
+<<<<<<< Updated upstream
             bool navigatedToActionButton = 
                 args.Target.Location.OriginalString == "//D_FAULT_ShellContent6" || 
                 args.Target.Location.OriginalString == "//D_FAULT_ShellContent11";
 
             if (navigatedToActionButton)
+=======
+<<<<<<< Updated upstream
+            if (args.Target.Location.OriginalString == "//D_FAULT_ShellContent6")
+=======
+            bool navigatedToActionButton =
+                args.Target.Location.OriginalString == "//D_FAULT_ShellContent6" ||
+                args.Target.Location.OriginalString == "//D_FAULT_ShellContent11" ||
+                args.Target.Location.OriginalString == "//D_FAULT_ShellContent12";
+
+            if (navigatedToActionButton)
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
             {
                 args.Cancel();
 
-                string action = await DisplayActionSheet("Add Action:", "Cancel", null, "Feeding", "Walking", "Appointment", "Track weight");
+                string action =
+                    await DisplayActionSheet(
+                        "Add Action:",
+                        "Cancel",
+                        null,
+                        "Feeding",
+                        "Walking",
+                        "Appointment",
+                        "Track weight");
 
                 switch (action)
                 {

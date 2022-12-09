@@ -67,6 +67,7 @@
 	  <None Remove="Resources\Fonts\Poppins-Black.ttf" />
 	  <None Remove="Resources\Fonts\Poppins-Bold.ttf" />
 	  <None Remove="Resources\Images\icnmenuclose.png" />
+	  <None Remove="Resources\Images\startimg.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -153,6 +154,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\App\HomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\App\ScheduleDetailPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\App\SchedulePage.xaml">

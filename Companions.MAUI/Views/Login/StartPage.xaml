@@ -21,11 +21,18 @@
             <ColumnDefinition Width="auto" />
         </Grid.ColumnDefinitions>
 
-        <Rectangle
+        <Image
             Grid.Row="0"
             Grid.Column="0"
             Grid.ColumnSpan="2"
-            BackgroundColor="Black" />
+            Aspect="Fill"
+            Source="startimg.png" />
+
+        <!--<Rectangle
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            BackgroundColor="Black" />-->
 
         <VerticalStackLayout
             Grid.Row="1"

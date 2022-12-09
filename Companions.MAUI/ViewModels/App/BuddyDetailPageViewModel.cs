@@ -27,9 +27,16 @@ namespace Companions.MAUI.ViewModels.App
             await Application.Current.MainPage.Navigation.PopAsync();
         }
 
+<<<<<<< Updated upstream
         void OnBuddyChanged(Buddy buddy)
+=======
+<<<<<<< Updated upstream
+        partial void OnBuddyChanged(Buddy buddy)
+>>>>>>> Stashed changes
         {
         }
+=======
+>>>>>>> Stashed changes
     }
 
 }
