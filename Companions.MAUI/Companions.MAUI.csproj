@@ -29,6 +29,7 @@
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 		<UserSecretsId>e78ca562-8dfb-49b4-a706-259b65a790c6</UserSecretsId>
+		<Nullable>disable</Nullable>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -50,6 +51,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="appsettings.json" />
 	  <None Remove="Resources\Fonts\fa-brands-400.otf" />
 	  <None Remove="Resources\Fonts\fa-regular-400.otf" />
 	  <None Remove="Resources\Fonts\fa-solid-900.otf" />
@@ -68,9 +70,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Resource Include="appsettings.json" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
 	  <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="5.0.0" />
 	  <PackageReference Include="Syncfusion.Maui.Core" Version="20.3.56" />
+	  <PackageReference Include="Syncfusion.Maui.ListView" Version="20.3.56" />
 	  <PackageReference Include="Syncfusion.Maui.Scheduler" Version="20.3.56" />
 	  <PackageReference Include="Syncfusion.Maui.TabView" Version="20.3.56" />
 	</ItemGroup>
@@ -97,9 +104,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Controls\UpcomingActivities.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="MainShell.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

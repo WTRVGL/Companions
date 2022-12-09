@@ -5,6 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Companions.MAUI.Controls"
     xmlns:icons="clr-namespace:Companions.MAUI.Resources.Icons"
+    xmlns:models="clr-namespace:Companions.MAUI.Models.App"
+    xmlns:syncfusion="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
     xmlns:vm="clr-namespace:Companions.MAUI.ViewModels.App"
     x:DataType="vm:HomePageViewModel"
     Shell.TabBarIsVisible="True">
@@ -60,7 +62,23 @@
                 Text="Upcoming" />
 
             <!--  Upcoming Activities Control  -->
-            <controls:UpcomingActivities Activities="{Binding UpcomingActivities}" />
+            <syncfusion:SfListView ItemsSource="{Binding UpcomingActivities}">
+                <syncfusion:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <HorizontalStackLayout>
+                            <Label>
+                                <Label.Text>
+                                    <MultiBinding StringFormat="{}{0} - {1}">
+                                        <Binding Path="ActivityName" />
+                                        <Binding Path="BuddyName" />
+                                    </MultiBinding>
+                                </Label.Text>
+                            </Label>
+                        </HorizontalStackLayout>
+                    </DataTemplate>
+                </syncfusion:SfListView.ItemTemplate>
+            </syncfusion:SfListView>
+            <!--<controls:UpcomingActivities Activities="{Binding UpcomingActivities}" />-->
         </VerticalStackLayout>
     </RefreshView>
 
