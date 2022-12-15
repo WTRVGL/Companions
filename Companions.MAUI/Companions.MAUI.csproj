@@ -102,6 +102,9 @@
 	  <Compile Update="Views\App\HomePage.xaml.cs">
 	    <DependentUpon>HomePage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\App\AppointmentDetailPage.xaml.cs">
+	    <DependentUpon>AppointmentDetailPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -156,7 +159,7 @@
 	  <MauiXaml Update="Views\App\HomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\App\ScheduleDetailPage.xaml">
+	  <MauiXaml Update="Views\App\AppointmentDetailPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\App\SchedulePage.xaml">

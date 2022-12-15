@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Companions.MAUI.Models.App
 {
-    public class UpcomingActivities
+    public class Appointment
     {
-        public string ActivityName { get; set; }
+        public string AppointmentName { get; set; }
         public string BuddyName { get; set; }
-        public DateTime ActivityDate { get; set; }
+        public string BuddyURL { get; set; }
+        public DateTime AppointmentDate { get; set; }
     }
 }

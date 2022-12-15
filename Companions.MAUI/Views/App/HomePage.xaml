@@ -4,15 +4,17 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Companions.MAUI.Controls"
+    xmlns:converters="clr-namespace:Companions.MAUI.Converters"
     xmlns:icons="clr-namespace:Companions.MAUI.Resources.Icons"
     xmlns:models="clr-namespace:Companions.MAUI.Models.App"
     xmlns:syncfusion="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
     xmlns:vm="clr-namespace:Companions.MAUI.ViewModels.App"
     x:DataType="vm:HomePageViewModel"
     Shell.TabBarIsVisible="True">
-    <ContentPage.Resources>
-        <Color x:Key="TitleColor">#404348</Color>
 
+    <ContentPage.Resources>
+        <converters:TimeBetweenNowAndDateTime x:Key="TimeBetweenNowAndDateTime" />
+        <Color x:Key="TitleColor">#404348</Color>
         <Style x:Key="SectionTitle" TargetType="Label">
             <Setter Property="FontFamily" Value="InterBold" />
             <Setter Property="FontSize" Value="36" />
@@ -62,23 +64,74 @@
                 Text="Upcoming" />
 
             <!--  Upcoming Activities Control  -->
-            <syncfusion:SfListView ItemsSource="{Binding UpcomingActivities}">
+            <syncfusion:SfListView
+                x:Name="appointmentList"
+                ItemSize="80"
+                ItemsSource="{Binding Appointments}"
+                SelectionBackground="Transparent"
+                TapCommand="{Binding OpenAppointmentDetailCommand}">
                 <syncfusion:SfListView.ItemTemplate>
-                    <DataTemplate>
-                        <HorizontalStackLayout>
+                    <DataTemplate x:DataType="models:Appointment">
+                        <VerticalStackLayout Margin="0,0,0,20">
+                            <VerticalStackLayout>
+                                <Grid Margin="0,0,0,15">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.2*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Image
+                                        Grid.RowSpan="2"
+                                        Margin="0,0,10,0"
+                                        Source="{Binding BuddyURL}"
+                                        VerticalOptions="Center" />
+
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Margin="0,0,0,5"
+                                        FontFamily="InterSemiBold"
+                                        FontSize="16"
+                                        Text="{Binding AppointmentName}" />
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        HorizontalOptions="End"
+                                        Text="{Binding AppointmentDate, Converter={StaticResource TimeBetweenNowAndDateTime}}"
+                                        TextColor="#BDBDBD" />
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Text="{Binding BuddyName}"
+                                        TextColor="Black" />
+
+                                </Grid>
+                                <Line
+                                    Stroke="#BDBDBD"
+                                    StrokeThickness="1"
+                                    X1="40"
+                                    X2="500"
+                                    Y1="0"
+                                    Y2="0" />
+                            </VerticalStackLayout>
+                        </VerticalStackLayout>
+                        <!--<HorizontalStackLayout>
                             <Label>
                                 <Label.Text>
                                     <MultiBinding StringFormat="{}{0} - {1}">
-                                        <Binding Path="ActivityName" />
+                                        <Binding Path="AppointmentName" />
                                         <Binding Path="BuddyName" />
                                     </MultiBinding>
                                 </Label.Text>
                             </Label>
-                        </HorizontalStackLayout>
+                            <Label Text="{Binding AppointmentDate, Converter={StaticResource TimeBetweenNowAndDateTime}}" />
+                        </HorizontalStackLayout>-->
                     </DataTemplate>
                 </syncfusion:SfListView.ItemTemplate>
             </syncfusion:SfListView>
-            <!--<controls:UpcomingActivities Activities="{Binding UpcomingActivities}" />-->
         </VerticalStackLayout>
     </RefreshView>
 

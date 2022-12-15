@@ -6,6 +6,8 @@ using Companions.MAUI.Views.App.BuddyDetail;
 using Companions.MAUI.Views.Login;
 using Syncfusion.Maui.ListView.Hosting;
 using Syncfusion.Maui.Core.Hosting;
+using Microsoft.Maui.Handlers;
+using Microsoft.Maui.Platform;
 
 namespace Companions.MAUI
 {
@@ -13,7 +15,9 @@ namespace Companions.MAUI
     {
         public static MauiApp CreateMauiApp()
         {
+
             var builder = MauiApp.CreateBuilder();
+
             builder
                 .UseMauiApp<App>()
                 .ConfigureSyncfusionCore()
@@ -47,6 +51,7 @@ namespace Companions.MAUI
             builder.Services.AddTransient<DiscoverPage>();
             builder.Services.AddTransient<SettingsPage>();
             builder.Services.AddTransient<HomePage>();
+            builder.Services.AddTransient<AppointmentDetailPage>();
             #endregion
 
             #region ViewModel Services
@@ -59,6 +64,7 @@ namespace Companions.MAUI
             builder.Services.AddTransient<DiscoverPageViewModel>();
             builder.Services.AddTransient<SettingsPageViewModel>();
             builder.Services.AddTransient<BuddyDetailPageViewModel>();
+            builder.Services.AddTransient<AppointmentDetailPageViewModel>();
 
             builder.Services.AddTransient<IBuddyService, InMemoryBuddyService>();
 
@@ -66,7 +72,18 @@ namespace Companions.MAUI
 
             builder.ConfigureSyncfusionListView();
 
+#if __ANDROID__
+            ImageHandler.Mapper.PrependToMapping(nameof(Microsoft.Maui.IImage.Source), (handler, view) => PrependToMappingImageSource(handler, view));
+#endif
+
             return builder.Build();
         }
+
+#if __ANDROID__
+        public static void PrependToMappingImageSource(IImageHandler handler, Microsoft.Maui.IImage image)
+        {
+            handler.PlatformView?.Clear();
+        }
+#endif
     }
-} 
+}

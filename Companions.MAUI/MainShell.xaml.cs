@@ -24,6 +24,7 @@ namespace Companions.MAUI
             Routing.RegisterRoute(nameof(WalkingPage), typeof(WalkingPage));
             Routing.RegisterRoute(nameof(AppointmentPage), typeof(AppointmentPage));
             Routing.RegisterRoute(nameof(TrackWeightPage), typeof(TrackWeightPage));
+            Routing.RegisterRoute(nameof(AppointmentDetailPage), typeof(AppointmentDetailPage));
         }
 
         //HACK LOL
