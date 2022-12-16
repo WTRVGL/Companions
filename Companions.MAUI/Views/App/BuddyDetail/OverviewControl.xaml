@@ -23,7 +23,7 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
+                            <RowDefinition Height="auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <Image
@@ -31,15 +31,10 @@
                             Margin="0,0,10,0"
                             Source="{Binding ImageURL}"
                             VerticalOptions="Center" />
-                        <!--<Rectangle Grid.RowSpan="2"
-                                   Margin="0,0,10,0"
-                                   Fill="black"
-                                   VerticalOptions="Center"/>-->
-
                         <Label
                             Grid.Row="0"
                             Grid.Column="1"
-                            Margin="0,0,0,5"
+                            Margin="0,0,0,0"
                             FontFamily="InterSemiBold"
                             FontSize="16"
                             Text="Walking" />
@@ -81,7 +76,7 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
+                            <RowDefinition Height="auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <Image
@@ -89,15 +84,10 @@
                             Margin="0,0,10,0"
                             Source="{Binding ImageURL}"
                             VerticalOptions="Center" />
-                        <!--<Rectangle Grid.RowSpan="2"
-                                   Margin="0,0,10,0"
-                                   Fill="black"
-                                   VerticalOptions="Center"/>-->
-
                         <Label
                             Grid.Row="0"
                             Grid.Column="1"
-                            Margin="0,0,0,5"
+                            Margin="0,0,0,0"
                             FontFamily="InterSemiBold"
                             FontSize="16"
                             Text="Feeding" />

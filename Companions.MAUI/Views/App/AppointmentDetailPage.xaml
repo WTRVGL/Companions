@@ -4,6 +4,9 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:vm="clr-namespace:Companions.MAUI.ViewModels.App"
+    xmlns:behaviors="clr-namespace:Companions.MAUI.Behaviors"
+    xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+    xmlns:sensors="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials"
     Title="AppointmentDetailPage"
     Shell.NavBarIsVisible="False"
     Shell.TabBarIsVisible="False">
@@ -43,7 +46,7 @@
                     </Label.GestureRecognizers>
                 </Label>
 
-                <!--Settings Icon
+                <!--Settings Icon-->
                 <Label
                     Grid.Column="1"
                     FontFamily="FaSolid"
@@ -51,13 +54,17 @@
                     Scale="2"
                     Text="{StaticResource SolidGear}"
                     TextColor="Black"
-                    VerticalOptions="Center" />-->
+                    VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AppointmentSettingsCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
             </Grid>
 
             <VerticalStackLayout Grid.Row="1">
                 <Label
                     FontFamily="InterBold"
-                    FontSize="20"
+                    FontSize="30"
                     Text="{Binding Appointment.AppointmentName}" />
                 <Label
                     Margin="0,15,0,30"
@@ -73,10 +80,21 @@
                         X1="0"
                         X2="0"
                         Y1="0"
-                        Y2="200"
+                        Y2="440"
                         ZIndex="0" />
                     <VerticalStackLayout Margin="10,0,0,0">
                         <HorizontalStackLayout>
+                            <Label
+                                Margin="0,0,15,0"
+                                BackgroundColor="White"
+                                FontFamily="FaSolid"
+                                Scale="1.2"
+                                Text="{StaticResource SolidBook}"
+                                TextColor="#586470"
+                                VerticalOptions="Center" />
+                            <Label Text="{Binding Appointment.AppointmentType}" />
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout Margin="0,25,0,0">
                             <Label
                                 Margin="0,0,15,0"
                                 BackgroundColor="White"
@@ -118,13 +136,32 @@
                                 Text="{StaticResource SolidLocationDot}"
                                 TextColor="#586470"
                                 VerticalOptions="Center" />
-                            <Label Text="{Binding Appointment.LocationName}" />
+                            <Label Text="{Binding Appointment.LocationName}"/>
                         </HorizontalStackLayout>
+                        
+                        <maps:Map 
+                            HeightRequest="200"
+                            WidthRequest="300"
+                            Margin="0,25,0,0"
+                            x:Name="map">
+                            <maps:Map.Behaviors>
+                                <behaviors:MapBehavior
+                                    IsReady="{Binding IsReady}"
+                                    Places="{Binding BindablePlaces}"/>
+                            </maps:Map.Behaviors>
+                        </maps:Map>
+                        <Label 
+                            HorizontalOptions="End"
+                            Text="Open in Maps"
+                            Margin="0,0,20,0"
+                            TextColor="#8393a3"
+                            FontSize="12">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer  Command="{Binding OpenMapsAppCommand}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
                     </VerticalStackLayout>
-
                 </Grid>
-
-
             </VerticalStackLayout>
         </Grid>
     </Grid>

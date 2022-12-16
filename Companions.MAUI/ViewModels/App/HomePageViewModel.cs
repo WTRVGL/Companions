@@ -1,9 +1,12 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using Companions.MAUI.Messages;
 using Companions.MAUI.Models.App;
 using Companions.MAUI.Services;
 using Companions.MAUI.Views.App;
 using Companions.MAUI.Views.App.BuddyDetail;
+using Microsoft.Extensions.Configuration;
 using Syncfusion.Maui.ListView;
 using System;
 using System.Collections.Generic;
@@ -15,9 +18,47 @@ using ItemTappedEventArgs = Syncfusion.Maui.ListView.ItemTappedEventArgs;
 
 namespace Companions.MAUI.ViewModels.App
 {
-    public partial class HomePageViewModel : BaseViewModel
+    public partial class HomePageViewModel : BaseViewModel, IRecipient<AppointmentDeletedMessage>
     {
         private readonly IBuddyService _buddyService;
+        private readonly IConfiguration _config;
+
+        public HomePageViewModel(IBuddyService buddyservice, IConfiguration config)
+        {
+            _buddyService = buddyservice;
+            _config = config;
+
+            WeakReferenceMessenger.Default.Register<AppointmentDeletedMessage>(this);
+
+            _buddies = _buddyService.GetBuddies();
+
+            _appointments = new ObservableCollection<Appointment>()
+            {
+                new Appointment {
+                    Id = "1",
+                    AppointmentName = "CPV Vaccinatie",
+                    BuddyName = "Ori",
+                    AppointmentType = "Dierenarts",
+                    AppointmentDate = new DateTime(2022,12,24,15,30,00),
+                    Description = "Tweede herhalingsprik voor CPV. Nog één vaccinatiemoment vereist tot volledige immunisatie. Standaard checkup wordt ook uitgevoerd en voedingsschema wordt nagekeken. Gewichtsverlies zal gecheckt worden.",
+                    BuddyURL = "https://i.imgur.com/UUzY06O.png",
+                    LocationCoordinates = new Location(50.956659, 5.328609),
+                    LocationName = "DAC Prinsenhof"
+                },
+                new Appointment {
+                    Id = "2",
+                    AppointmentName = "Jaarlijkse checkup",
+                    AppointmentType = "Dierenarts",
+                    BuddyName = "Bassie",
+                    Description = "Routine checkup ter controle gewicht en voedings.",
+                    AppointmentDate = new DateTime(2022,12,24,15,30,00),
+                    LocationName = "DAC Prinsenhof",
+                    LocationCoordinates = new Location(50.956659, 5.328609),
+                    BuddyURL = "https://i.imgur.com/GJe4t90.jpg"
+                },
+            };
+        }
+
 
         [ObservableProperty]
         private bool _isRefreshing;
@@ -36,7 +77,6 @@ namespace Companions.MAUI.ViewModels.App
             Application.Current.MainPage.Navigation.RemovePage(previousPage);
             IsRefreshing = false;
         }
-
 
         [RelayCommand]
         async void OpenBuddyDetail(Buddy buddy)
@@ -60,31 +100,15 @@ namespace Companions.MAUI.ViewModels.App
                 });
         }
 
-        public HomePageViewModel(IBuddyService buddyservice)
+        public void Receive(AppointmentDeletedMessage message)
         {
-            _buddyService = buddyservice;
-            _buddies = _buddyService.GetBuddies();
-
-            _appointments = new ObservableCollection<Appointment>()
+            MainThread.BeginInvokeOnMainThread(() =>
             {
-                new Appointment {
-                    AppointmentName = "CPV Vaccinatie", 
-                    BuddyName = "Ori", 
-                    AppointmentDate = new DateTime(2022,12,24,15,30,00),
-                    Description = "Tweede herhalingsprik voor CPV. Nog één vaccinatiemoment vereist tot volledige immunisatie",
-                    BuddyURL = "https://i.imgur.com/UUzY06O.png",
-                    LocationName = "DAC Prinsenhof"
-                },
-                new Appointment {
-                    AppointmentName = "Jaarlijkse checkup", 
-                    BuddyName = "Bassie", 
-                    Description = "Routine checkup ter controle gewicht en voedings.",
-                    AppointmentDate = new DateTime(2022,12,24,15,30,00),
-                    LocationName = "DAC Prinsenhof",
-                    BuddyURL = "https://i.imgur.com/GJe4t90.jpg"
-                },
-            };
-        }
+                var appointment = Appointments.Where(a => a.Id == message.Value).First();
+                Appointments.Remove(appointment);
+            });
 
+            Refresh();
+        }
     }
 }

@@ -10,6 +10,7 @@ namespace Companions.MAUI.Models.App
     {
         public string Id { get; set; }
         public string AppointmentName { get; set; }
+        public string AppointmentType { get; set; }
         public string BuddyName { get; set; }
         public string BuddyURL { get; set; }
         public string Description { get; set; }
