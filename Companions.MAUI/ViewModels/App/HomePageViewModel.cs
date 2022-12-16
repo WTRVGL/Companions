@@ -70,13 +70,17 @@ namespace Companions.MAUI.ViewModels.App
                 new Appointment {
                     AppointmentName = "CPV Vaccinatie", 
                     BuddyName = "Ori", 
-                    AppointmentDate = new DateTime(2022,12,24),
-                    BuddyURL = "https://i.imgur.com/UUzY06O.png"
+                    AppointmentDate = new DateTime(2022,12,24,15,30,00),
+                    Description = "Tweede herhalingsprik voor CPV. Nog één vaccinatiemoment vereist tot volledige immunisatie",
+                    BuddyURL = "https://i.imgur.com/UUzY06O.png",
+                    LocationName = "DAC Prinsenhof"
                 },
                 new Appointment {
                     AppointmentName = "Jaarlijkse checkup", 
                     BuddyName = "Bassie", 
-                    AppointmentDate = new DateTime(2022,12,24),
+                    Description = "Routine checkup ter controle gewicht en voedings.",
+                    AppointmentDate = new DateTime(2022,12,24,15,30,00),
+                    LocationName = "DAC Prinsenhof",
                     BuddyURL = "https://i.imgur.com/GJe4t90.jpg"
                 },
             };

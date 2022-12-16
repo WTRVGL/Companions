@@ -3,8 +3,8 @@
     x:Class="Companions.MAUI.Views.App.BuddyDetail.BuddyDetailPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:App="clr-namespace:Companions.MAUI.ViewModels.App"
     xmlns:buddyControls="clr-namespace:Companions.MAUI.Views.App.BuddyDetail"
+    xmlns:vm="clr-namespace:Companions.MAUI.ViewModels.App"
     Title="BuddyDetailPage"
     Shell.NavBarIsVisible="False"
     Shell.TabBarIsVisible="False">
@@ -23,7 +23,7 @@
 
     </ContentPage.Resources>
     <ContentPage.BindingContext>
-        <App:BuddyDetailPageViewModel />
+        <vm:BuddyDetailPageViewModel />
     </ContentPage.BindingContext>
 
     <Grid>

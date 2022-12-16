@@ -3,12 +3,129 @@
     x:Class="Companions.MAUI.Views.App.AppointmentDetailPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:Companions.MAUI.ViewModels.App"
     Title="AppointmentDetailPage"
+    Shell.NavBarIsVisible="False"
     Shell.TabBarIsVisible="False">
-    <VerticalStackLayout>
-        <Label
-            HorizontalOptions="Center"
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" />
-    </VerticalStackLayout>
+
+    <ContentPage.BindingContext>
+        <vm:AppointmentDetailPageViewModel />
+    </ContentPage.BindingContext>
+    <Grid>
+        <!--  RowDefinitions  -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--  Main grid  -->
+        <Grid Margin="20,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <!--  Back Arrow Icon  -->
+                <Label
+                    Grid.Column="0"
+                    FontFamily="FaSolid"
+                    HorizontalOptions="Start"
+                    Scale="2"
+                    Text="{StaticResource SolidArrowLeft}"
+                    TextColor="Black"
+                    VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoBackCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <!--Settings Icon
+                <Label
+                    Grid.Column="1"
+                    FontFamily="FaSolid"
+                    HorizontalOptions="End"
+                    Scale="2"
+                    Text="{StaticResource SolidGear}"
+                    TextColor="Black"
+                    VerticalOptions="Center" />-->
+            </Grid>
+
+            <VerticalStackLayout Grid.Row="1">
+                <Label
+                    FontFamily="InterBold"
+                    FontSize="20"
+                    Text="{Binding Appointment.AppointmentName}" />
+                <Label
+                    Margin="0,15,0,30"
+                    FontFamily="Inter"
+                    Text="{Binding Appointment.Description}"
+                    TextColor="#8393a3" />
+
+                <Grid>
+                    <Line
+                        Margin="15,0,0,0"
+                        Stroke="#BDBDBD"
+                        StrokeThickness="1"
+                        X1="0"
+                        X2="0"
+                        Y1="0"
+                        Y2="200"
+                        ZIndex="0" />
+                    <VerticalStackLayout Margin="10,0,0,0">
+                        <HorizontalStackLayout>
+                            <Label
+                                Margin="0,0,15,0"
+                                BackgroundColor="White"
+                                FontFamily="FaSolid"
+                                Scale="1.2"
+                                Text="{StaticResource SolidDog}"
+                                TextColor="#586470"
+                                VerticalOptions="Center" />
+                            <Label Text="{Binding Appointment.BuddyName}" />
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout Margin="0,25,0,0">
+                            <Label
+                                Margin="0,0,18,0"
+                                BackgroundColor="White"
+                                FontFamily="FaSolid"
+                                Scale="1.2"
+                                Text="{StaticResource SolidCalendar}"
+                                TextColor="#586470"
+                                VerticalOptions="Center" />
+                            <Label Text="{Binding Appointment.AppointmentDate, StringFormat='{0:dd MMMM yyyy}'}" />
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout Margin="0,25,0,0">
+                            <Label
+                                Margin="0,0,15,0"
+                                BackgroundColor="White"
+                                FontFamily="FaSolid"
+                                Scale="1.2"
+                                Text="{StaticResource SolidClock}"
+                                TextColor="#586470"
+                                VerticalOptions="Center" />
+                            <Label Text="{Binding Appointment.AppointmentDate, StringFormat='{}{0:HH\\:mm}'}" />
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout Margin="0,25,0,0">
+                            <Label
+                                Margin="0,0,18,0"
+                                BackgroundColor="White"
+                                FontFamily="FaSolid"
+                                Scale="1.5"
+                                Text="{StaticResource SolidLocationDot}"
+                                TextColor="#586470"
+                                VerticalOptions="Center" />
+                            <Label Text="{Binding Appointment.LocationName}" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+
+                </Grid>
+
+
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
 </ContentPage>
