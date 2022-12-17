@@ -67,20 +67,19 @@
                 Margin="0,20,0,20"
                 Style="{StaticResource SectionTitle}"
                 Text="Upcoming" />
-
             <!--  Upcoming Activities Control  -->
             <syncfusion:SfListView
                 x:Name="appointmentList"
-                ItemSize="80"
+                ItemSize="70"
                 HeightRequest="200"
                 ItemsSource="{Binding Appointments}"
                 SelectionBackground="Transparent"
                 TapCommand="{Binding OpenAppointmentDetailCommand}">
                 <syncfusion:SfListView.ItemTemplate>
                     <DataTemplate x:DataType="models:Appointment">
-                        <VerticalStackLayout Margin="0,0,0,20">
+                        <VerticalStackLayout Margin="0,10,0,0">
                             <VerticalStackLayout>
-                                <Grid Margin="0,0,0,15">
+                                <Grid Margin="0,0,0,10">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="0.2*" />
                                         <ColumnDefinition Width="*" />
@@ -89,12 +88,17 @@
                                         <RowDefinition Height="auto" />
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
-                                    <Image
-                                        Grid.RowSpan="2"
-                                        Margin="0,0,10,0"
-                                        Source="{Binding Buddy.ImageURL}"
-                                        VerticalOptions="Center" />
-
+                                    <Frame Grid.RowSpan="2"
+                                           Padding="0"
+                                           BorderColor="Transparent"
+                                           CornerRadius="50">
+                                        <Grid>
+                                            <Image
+                                                HeightRequest="40"
+                                                Source="{Binding Buddy.ImageURL}"
+                                                VerticalOptions="Center" />
+                                        </Grid>
+                                    </Frame>
                                     <Label
                                         Grid.Row="0"
                                         Grid.Column="1"
@@ -118,37 +122,15 @@
                                 <Line
                                     Stroke="#BDBDBD"
                                     StrokeThickness="1"
-                                    X1="40"
+                                    X1="0"
                                     X2="500"
                                     Y1="0"
                                     Y2="0" />
                             </VerticalStackLayout>
                         </VerticalStackLayout>
-                        <!--<HorizontalStackLayout>
-                            <Label>
-                                <Label.Text>
-                                    <MultiBinding StringFormat="{}{0} - {1}">
-                                        <Binding Path="AppointmentName" />
-                                        <Binding Path="BuddyName" />
-                                    </MultiBinding>
-                                </Label.Text>
-                            </Label>
-                            <Label Text="{Binding AppointmentDate, Converter={StaticResource TimeBetweenNowAndDateTime}}" />
-                        </HorizontalStackLayout>-->
                     </DataTemplate>
                 </syncfusion:SfListView.ItemTemplate>
             </syncfusion:SfListView>
-
-            <CollectionView ItemsSource="{Binding Appointments}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="models:Appointment">
-                        <VerticalStackLayout>
-                            <Label Text="{Binding AppointmentName}"/>
-                            <Label Text="{Binding AppointmentType}"/>
-                        </VerticalStackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
         </VerticalStackLayout>
     </RefreshView>
 

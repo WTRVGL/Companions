@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:vm="clr-namespace:Companions.MAUI.ViewModels.App"
+    x:DataType="vm:AppointmentDetailPageViewModel"
     xmlns:behaviors="clr-namespace:Companions.MAUI.Behaviors"
     xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
     xmlns:sensors="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials"
@@ -89,7 +90,7 @@
                                 Text="{StaticResource SolidBook}"
                                 TextColor="#586470"
                                 VerticalOptions="Center" />
-                            <Label Text="{Binding Appointment.AppointmentType}" />
+                            <Label Text="{Binding Appointment.Place.Description}" />
                         </HorizontalStackLayout>
                         <HorizontalStackLayout Margin="0,25,0,0">
                             <Label
@@ -122,7 +123,7 @@
                                 Text="{StaticResource SolidClock}"
                                 TextColor="#586470"
                                 VerticalOptions="Center" />
-                            <Label Text="{Binding Appointment.AppointmentDate, StringFormat='{}{0:HH\\:mm}'}" />
+                            <Label Text="{Binding Appointment.AppointmentTime, StringFormat='{}{0:HH\\:mm}'}" />
                         </HorizontalStackLayout>
                         <HorizontalStackLayout Margin="0,25,0,0">
                             <Label
@@ -133,7 +134,7 @@
                                 Text="{StaticResource SolidLocationDot}"
                                 TextColor="#586470"
                                 VerticalOptions="Center" />
-                            <Label Text="{Binding Appointment.LocationName}"/>
+                            <Label Text="{Binding Appointment.Place.Name}"/>
                         </HorizontalStackLayout>
                         
                         <maps:Map 

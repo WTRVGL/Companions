@@ -9,7 +9,21 @@ namespace Companions.MAUI.Models.App
 {
     public class Appointment : ObservableObject
     {
+        public string Id { get; set; }
+
         private string _appointmentName;
+        private string _description;
+        private Buddy _buddy;
+        private DateTime _appointmentDate;
+        private DateTime _appointmentTime;
+        private Place _place;
+
+
+        public Place Place
+        {
+            get => _place;
+            set => SetProperty(ref _place, value);
+        }
 
         public string AppointmentName
         {
@@ -17,23 +31,11 @@ namespace Companions.MAUI.Models.App
             set => SetProperty(ref _appointmentName, value);
         }
 
-        private string _appointmentType;
-
-        public string AppointmentType
-        {
-            get => _appointmentType;
-            set => SetProperty(ref _appointmentType, value);
-        }
-
-        private string _description;
-
         public string Description
         {
             get => _description;
             set => SetProperty(ref _description, value);
         }
-
-        private Buddy _buddy;
 
         public Buddy Buddy
         {
@@ -41,24 +43,16 @@ namespace Companions.MAUI.Models.App
             set => SetProperty(ref _buddy, value);
         }
 
-        private DateTime _appointmentDate;
-
         public DateTime AppointmentDate
         {
             get => _appointmentDate;
             set => SetProperty(ref _appointmentDate, value);
         }
 
-        private string _locationName;
-
-        public string LocationName
+        public DateTime AppointmentTime
         {
-            get => _locationName;
-            set => SetProperty(ref _locationName, value);
+            get => _appointmentTime;
+            set => SetProperty(ref _appointmentTime, value);
         }
-
-
-        public string Id { get; set; }
-        public Location LocationCoordinates { get; set; }
     }
 }
