@@ -20,6 +20,10 @@ namespace Companions.MAUI.ViewModels.App
     public partial class AppointmentDetailPageViewModel : BaseViewModel
     {
 
+        public AppointmentDetailPageViewModel()
+        {
+        }
+
         [ObservableProperty]
         private Appointment _appointment;
 

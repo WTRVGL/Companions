@@ -66,6 +66,7 @@ namespace Companions.MAUI.Services
             _buddies = new ObservableCollection<Buddy>()
             {
                 new Buddy {
+                    Id = "1",
                     Name = "Bassie",
                     Age = 6,
                     Race = "Mixed",
@@ -76,6 +77,7 @@ namespace Companions.MAUI.Services
                     FeedingSchedules = _feedingSchedules.GetRange(0, 2),
                 },
                 new Buddy {
+                    Id = "2",
                     Name = "Ori",
                     Age = 4,
                     Race = "Mixed",
@@ -86,6 +88,7 @@ namespace Companions.MAUI.Services
                     FeedingSchedules = _feedingSchedules.GetRange(2, 2)
                 },
                 new Buddy {
+                    Id = "3",
                     Name = "Robot",
                     Age = 4,
                     Race = "Tabby",

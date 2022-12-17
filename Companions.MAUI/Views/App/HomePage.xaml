@@ -7,11 +7,16 @@
     xmlns:converters="clr-namespace:Companions.MAUI.Converters"
     xmlns:icons="clr-namespace:Companions.MAUI.Resources.Icons"
     xmlns:models="clr-namespace:Companions.MAUI.Models.App"
+    xmlns:toolkitBehaviors="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:syncfusion="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
     xmlns:vm="clr-namespace:Companions.MAUI.ViewModels.App"
     x:DataType="vm:HomePageViewModel"
     Shell.TabBarIsVisible="True">
 
+    <ContentPage.Behaviors>
+        <toolkitBehaviors:EventToCommandBehavior EventName="Appearing" Command="{Binding PageAppearingCommand}"/>
+    </ContentPage.Behaviors>
+    
     <ContentPage.Resources>
         <converters:TimeBetweenNowAndDateTime x:Key="TimeBetweenNowAndDateTime" />
         <Color x:Key="TitleColor">#404348</Color>
@@ -46,7 +51,7 @@
                     Scale="1.4"
                     Text="{StaticResource SolidList}"
                     TextColor="{StaticResource TitleColor}"
-                    VerticalOptions="Center" />
+                    VerticalOptions="Center"/>
             </Grid>
 
             <CollectionView ItemsLayout="HorizontalList" ItemsSource="{Binding Buddies}">
@@ -67,6 +72,7 @@
             <syncfusion:SfListView
                 x:Name="appointmentList"
                 ItemSize="80"
+                HeightRequest="200"
                 ItemsSource="{Binding Appointments}"
                 SelectionBackground="Transparent"
                 TapCommand="{Binding OpenAppointmentDetailCommand}">
@@ -86,7 +92,7 @@
                                     <Image
                                         Grid.RowSpan="2"
                                         Margin="0,0,10,0"
-                                        Source="{Binding BuddyURL}"
+                                        Source="{Binding Buddy.ImageURL}"
                                         VerticalOptions="Center" />
 
                                     <Label
@@ -105,7 +111,7 @@
                                     <Label
                                         Grid.Row="1"
                                         Grid.Column="1"
-                                        Text="{Binding BuddyName}"
+                                        Text="{Binding Buddy.Name}"
                                         TextColor="Black" />
 
                                 </Grid>
@@ -132,6 +138,17 @@
                     </DataTemplate>
                 </syncfusion:SfListView.ItemTemplate>
             </syncfusion:SfListView>
+
+            <CollectionView ItemsSource="{Binding Appointments}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Appointment">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding AppointmentName}"/>
+                            <Label Text="{Binding AppointmentType}"/>
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </VerticalStackLayout>
     </RefreshView>
 

@@ -11,9 +11,6 @@
     Shell.NavBarIsVisible="False"
     Shell.TabBarIsVisible="False">
 
-    <ContentPage.BindingContext>
-        <vm:AppointmentDetailPageViewModel />
-    </ContentPage.BindingContext>
     <Grid>
         <!--  RowDefinitions  -->
         <Grid.RowDefinitions>
@@ -103,7 +100,7 @@
                                 Text="{StaticResource SolidDog}"
                                 TextColor="#586470"
                                 VerticalOptions="Center" />
-                            <Label Text="{Binding Appointment.BuddyName}" />
+                            <Label Text="{Binding Appointment.Buddy.Name}" />
                         </HorizontalStackLayout>
                         <HorizontalStackLayout Margin="0,25,0,0">
                             <Label

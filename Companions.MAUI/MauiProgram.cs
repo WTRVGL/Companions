@@ -10,6 +10,7 @@ using Microsoft.Maui.Handlers;
 using Microsoft.Maui.Platform;
 using System.Reflection;
 using Microsoft.Extensions.Configuration;
+using CommunityToolkit.Maui;
 
 namespace Companions.MAUI
 {
@@ -47,9 +48,10 @@ namespace Companions.MAUI
                     fonts.AddFont("fa-solid-900.otf", "FaSolid");
 
                 })
-                .UseMauiMaps();
+                .UseMauiMaps()
+                .UseMauiCommunityToolkit();
 
-            
+
 
 
             #region View Services
@@ -79,7 +81,8 @@ namespace Companions.MAUI
             builder.Services.AddTransient<AppointmentDetailPageViewModel>();
             builder.Services.AddTransient<EditAppointmentPageViewModel>();
 
-            builder.Services.AddTransient<IBuddyService, InMemoryBuddyService>();
+            builder.Services.AddSingleton<IBuddyService, InMemoryBuddyService>();
+            builder.Services.AddSingleton<IAppointmentService, InMemoryAppointmentService>();
 
             #endregion
 
