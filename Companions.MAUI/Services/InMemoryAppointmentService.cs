@@ -21,21 +21,29 @@ namespace Companions.MAUI.Services
                     Id = "1",
                     Buddy = _buddyService.GetBuddies().FirstOrDefault(b => b.Name == "Ori"),
                     AppointmentName = "CPV Vaccinatie",
-                    AppointmentType = "Dierenarts",
-                    AppointmentDate = new DateTime(2022,12,24,15,30,00),
+                    AppointmentDate = new DateTime(2022,12,24,10,10,00),
+                    AppointmentTime = new DateTime(2022,12,24,15,45,00),
                     Description = "Tweede herhalingsprik voor CPV. Nog één vaccinatiemoment vereist tot volledige immunisatie. Standaard checkup wordt ook uitgevoerd en voedingsschema wordt nagekeken. Gewichtsverlies zal gecheckt worden.",
-                    LocationCoordinates = new Location(50.956659, 5.328609),
-                    LocationName = "DAC Prinsenhof"
+                    Place = new Place {
+                        Location =  new Location(50.956659, 5.328609),
+                        Name = "DAC Prinsenhof",
+                        Address = "Nieuwstraat 143, 3511 Hasselt",
+                        Description = "Dierenarts"
+                    }
                 },
                 new Appointment {
                     Id = "2",
                     AppointmentName = "Jaarlijkse checkup",
-                    AppointmentType = "Dierenarts",
                     Buddy = _buddyService.GetBuddies().FirstOrDefault(b => b.Name == "Bassie"),
                     Description = "Routine checkup ter controle gewicht en voedings.",
-                    AppointmentDate = new DateTime(2022,12,24,15,30,00),
-                    LocationName = "DAC Prinsenhof",
-                    LocationCoordinates = new Location(50.956659, 5.328609),
+                    AppointmentDate = new DateTime(2022,12,24,10,10,00),
+                    AppointmentTime = new DateTime(2022,12,24,15,30,00),
+                    Place = new Place {
+                        Location =  new Location(50.956659, 5.328609),
+                        Name = "DAC Prinsenhof",
+                        Address = "Nieuwstraat 143, 3511 Hasselt",
+                        Description = "Dierenarts"
+                    }
                 },
             };
         }

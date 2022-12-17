@@ -57,7 +57,7 @@
             <Label 
                 Style="{StaticResource FieldTitle}"
                 Text="Appointment type"/>
-            <Entry Text="{Binding Appointment.AppointmentType}"/>
+            <Entry Text="{Binding Appointment.Place.Description}"/>
         </VerticalStackLayout>
 
         <VerticalStackLayout Margin="0,30,0,0">
@@ -86,6 +86,19 @@
                     </DataTemplate>
                 </syncfusion:SfListView.ItemTemplate>
             </syncfusion:SfListView>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Margin="0,30,0,0">
+            <Label 
+                Style="{StaticResource FieldTitle}"
+                Text="Appointment date"/>
+            <DatePicker Date="{Binding Appointment.AppointmentDate}"/>
+        </VerticalStackLayout>
+        <VerticalStackLayout Margin="0,30,0,0">
+            <Label 
+                Style="{StaticResource FieldTitle}"
+                Text="Appointment Time"/>
+            <TimePicker Time="{Binding Appointment.AppointmentTime}"/>
         </VerticalStackLayout>
     </VerticalStackLayout>
     

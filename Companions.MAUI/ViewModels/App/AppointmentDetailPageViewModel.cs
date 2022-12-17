@@ -71,8 +71,8 @@ namespace Companions.MAUI.ViewModels.App
         [RelayCommand]
         async void OpenMapsApp()
         {
-            var location = Appointment.LocationCoordinates;
-            var options = new MapLaunchOptions { Name = Appointment.LocationName };
+            var location = Appointment.Place.Location;
+            var options = new MapLaunchOptions { Name = Appointment.Place.Name };
 
             try
             {
@@ -94,7 +94,7 @@ namespace Companions.MAUI.ViewModels.App
         {
             var places = new List<Place>
             {
-                new Place { Location = appointment.LocationCoordinates }
+                new Place { Location = appointment.Place.Location }
             };
 
             BindablePlaces = new ObservableCollection<Place>(places);
