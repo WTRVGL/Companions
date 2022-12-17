@@ -26,10 +26,6 @@ namespace Companions.MAUI.ViewModels.App
         {
             await Application.Current.MainPage.Navigation.PopAsync();
         }
-
-        partial void OnBuddyChanged(Buddy buddy)
-        {
-        }
     }
 
 }

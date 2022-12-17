@@ -24,16 +24,31 @@ namespace Companions.MAUI
             Routing.RegisterRoute(nameof(WalkingPage), typeof(WalkingPage));
             Routing.RegisterRoute(nameof(AppointmentPage), typeof(AppointmentPage));
             Routing.RegisterRoute(nameof(TrackWeightPage), typeof(TrackWeightPage));
+            Routing.RegisterRoute(nameof(AppointmentDetailPage), typeof(AppointmentDetailPage));
+            Routing.RegisterRoute(nameof(EditAppointmentPage), typeof(EditAppointmentPage));
         }
 
         //HACK LOL
         protected override async void OnNavigating(ShellNavigatingEventArgs args)
         {
-            if (args.Target.Location.OriginalString == "//D_FAULT_ShellContent6")
+            bool navigatedToActionButton =
+                args.Target.Location.OriginalString == "//D_FAULT_ShellContent6" ||
+                args.Target.Location.OriginalString == "//D_FAULT_ShellContent11" ||
+                args.Target.Location.OriginalString == "//D_FAULT_ShellContent12";
+
+            if (navigatedToActionButton)
             {
                 args.Cancel();
 
-                string action = await DisplayActionSheet("Add Action:", "Cancel", null, "Feeding", "Walking", "Appointment", "Track weight");
+                string action =
+                    await DisplayActionSheet(
+                        "Add Action:",
+                        "Cancel",
+                        null,
+                        "Feeding",
+                        "Walking",
+                        "Appointment",
+                        "Track weight");
 
                 switch (action)
                 {

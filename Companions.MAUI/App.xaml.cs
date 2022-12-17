@@ -8,8 +8,8 @@ namespace Companions.MAUI
         public static User User;
         public App(IConfiguration config)
         {
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(config["SyncfusionKey"]);
             InitializeComponent();
+            //MainPage = new LoginShell();
             MainPage = new MainShell();
         }
     }
