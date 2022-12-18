@@ -66,6 +66,7 @@ namespace Companions.MAUI
             builder.Services.AddTransient<HomePage>();
             builder.Services.AddTransient<AppointmentDetailPage>();
             builder.Services.AddTransient<EditAppointmentPage>();
+            builder.Services.AddTransient<EditBuddyPage>();
             #endregion
 
             #region ViewModel Services
@@ -80,6 +81,7 @@ namespace Companions.MAUI
             builder.Services.AddTransient<BuddyDetailPageViewModel>();
             builder.Services.AddTransient<AppointmentDetailPageViewModel>();
             builder.Services.AddTransient<EditAppointmentPageViewModel>();
+            builder.Services.AddTransient<EditBuddyPageViewModel>();
 
             builder.Services.AddSingleton<IBuddyService, InMemoryBuddyService>();
             builder.Services.AddSingleton<IAppointmentService, InMemoryAppointmentService>();

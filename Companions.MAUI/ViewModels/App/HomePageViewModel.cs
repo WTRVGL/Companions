@@ -18,7 +18,7 @@ using ItemTappedEventArgs = Syncfusion.Maui.ListView.ItemTappedEventArgs;
 
 namespace Companions.MAUI.ViewModels.App
 {
-    public partial class HomePageViewModel : BaseViewModel, IRecipient<AppointmentDeletedMessage>, IRecipient<AppointmentChangedMessage>
+    public partial class HomePageViewModel : BaseViewModel
     {
         private readonly IBuddyService _buddyService;
         private readonly IAppointmentService _appointmentService; 
@@ -30,9 +30,6 @@ namespace Companions.MAUI.ViewModels.App
             _buddyService = buddyservice;
             _appointmentService = appointmentService;
             _config = config;
-
-            WeakReferenceMessenger.Default.Register<AppointmentChangedMessage>(this);
-            WeakReferenceMessenger.Default.Register<AppointmentDeletedMessage>(this);
 
             _buddies = _buddyService.GetBuddies();
             _appointments = _appointmentService.GetAppointments();
@@ -86,25 +83,5 @@ namespace Companions.MAUI.ViewModels.App
             Appointments = _appointmentService.GetAppointments();
         }
 
-        public void Receive(AppointmentDeletedMessage message)
-        {
-            MainThread.BeginInvokeOnMainThread(() =>
-            {
-                var appointment = Appointments.Where(a => a.Id == message.Value).First();
-                Appointments.Remove(appointment);
-            });
-
-            Refresh();
-        }
-
-        public void Receive(AppointmentChangedMessage message)
-        {
-            MainThread.BeginInvokeOnMainThread(() =>
-            {
-                var index = Appointments.IndexOf(message.Value);
-                Appointments[index] = message.Value;
-            });
-
-        }
     }
 }

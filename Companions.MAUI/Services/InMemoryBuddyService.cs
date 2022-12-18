@@ -1,4 +1,5 @@
 ﻿using Companions.MAUI.Models.App;
+using Syncfusion.Maui.DataSource.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,6 +19,7 @@ namespace Companions.MAUI.Services
 
         public InMemoryBuddyService()
         {
+
             #region Add mock data to lists
 
             _activityTypes = new List<ActivityType>() {
@@ -61,7 +63,8 @@ namespace Companions.MAUI.Services
                 new Activity { ActivityType = _activityTypes.FirstOrDefault(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,03,15,15,00), EndDate = new DateTime(2022,11,03,15,44,00) },
                 new Activity { ActivityType = _activityTypes.FirstOrDefault(a => a.Name == "Feeding"), StartDate = new DateTime(2022,11,03,20,15,00), EndDate = new DateTime(2022,11,03,20,41,00) },
                 new Activity { ActivityType = _activityTypes.FirstOrDefault(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,03,23,15,00), EndDate = new DateTime(2022,11,03,23,34,00) },
-            }.OrderByDescending(x => x.StartDate).ToList();
+            }
+                 .OrderByDescending(x => x.StartDate).ToList();
 
             _buddies = new ObservableCollection<Buddy>()
             {
@@ -70,7 +73,7 @@ namespace Companions.MAUI.Services
                     Name = "Bassie",
                     Age = 6,
                     Race = "Mixed",
-                    Gender= "M",
+                    Gender= "Male",
                     Weight = 6,
                     ImageURL = "https://i.imgur.com/GJe4t90.jpg",
                     Activities = _activities.GetRange(0, _activities.Count),
@@ -82,7 +85,7 @@ namespace Companions.MAUI.Services
                     Age = 4,
                     Race = "Mixed",
                     Weight = 5,
-                    Gender = "M",
+                    Gender = "Male",
                     ImageURL="https://i.imgur.com/UUzY06O.png",
                     Activities = _activities.GetRange(0, _activities.Count),
                     FeedingSchedules = _feedingSchedules.GetRange(2, 2)
@@ -92,7 +95,7 @@ namespace Companions.MAUI.Services
                     Name = "Robot",
                     Age = 4,
                     Race = "Tabby",
-                    Gender = "M",
+                    Gender = "Male",
                     Weight = 3,
                     ImageURL="https://i.imgur.com/Z0J26m6.png",
                     Activities = _activities.Where(x => x.ActivityType.Name == "Feeding").ToList(),
@@ -103,6 +106,34 @@ namespace Companions.MAUI.Services
 
             #endregion
         }
+
+        public Buddy AddBuddy(Buddy buddy)
+        {
+            _buddies.Add(buddy);
+            return buddy;
+        }
+
+        public bool DeleteBuddy(string id)
+        {
+            var buddyToBeDeleted = _buddies.First(b => b.Id == id);
+            if (buddyToBeDeleted != null)
+            {
+                _buddies.Remove(buddyToBeDeleted);
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public Buddy UpdateBuddy(Buddy buddy)
+        {
+            var previousBuddy = _buddies.First(a => a.Id == buddy.Id);
+            _buddies.Remove(previousBuddy);
+            _buddies.Add(previousBuddy);
+            return previousBuddy;
+        }
+
         public ObservableCollection<Buddy> GetBuddies()
         {
             return _buddies;

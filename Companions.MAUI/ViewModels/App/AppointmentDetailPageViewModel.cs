@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using Companions.Domain;
 using Companions.MAUI.Messages;
 using Companions.MAUI.Models.App;
+using Companions.MAUI.Services;
 using Companions.MAUI.Views.App;
 using System;
 using System.Collections.Generic;
@@ -19,9 +20,11 @@ namespace Companions.MAUI.ViewModels.App
     [QueryProperty("Appointment", "Appointment")]
     public partial class AppointmentDetailPageViewModel : BaseViewModel
     {
+        private readonly IAppointmentService _appointmentService;
 
-        public AppointmentDetailPageViewModel()
+        public AppointmentDetailPageViewModel(IAppointmentService appointmentService)
         {
+            _appointmentService = appointmentService;
         }
 
         [ObservableProperty]
@@ -41,19 +44,13 @@ namespace Companions.MAUI.ViewModels.App
             {
                 var secondAction = await Application.Current.MainPage.DisplayActionSheet("Are you sure?", "Cancel", null, "Delete appointment");
                 if (secondAction == "Delete appointment"){
-                    //Api Call to delete appointment.
-
-                    //Send deleted event.
-                    WeakReferenceMessenger.Default.Send(new AppointmentDeletedMessage(Appointment.Id));
-                    //Go back to main menu.
-                    
+                    _appointmentService.DeleteAppointment(Appointment);
                     GoBack();
                 }
             }
 
             if(action == "Edit appointment")
             {
-
                 await Shell.Current.GoToAsync(nameof(EditAppointmentPage),
                 new Dictionary<string, object>
                 {

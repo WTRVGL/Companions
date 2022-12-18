@@ -6,6 +6,7 @@
     xmlns:buddyControls="clr-namespace:Companions.MAUI.Views.App.BuddyDetail"
     xmlns:vm="clr-namespace:Companions.MAUI.ViewModels.App"
     Title="BuddyDetailPage"
+    x:DataType="vm:BuddyDetailPageViewModel"
     Shell.NavBarIsVisible="False"
     Shell.TabBarIsVisible="False">
 
@@ -20,11 +21,7 @@
             <Setter Property="FontFamily" Value="Inter" />
             <Setter Property="TextColor" Value="White" />
         </Style>
-
     </ContentPage.Resources>
-    <ContentPage.BindingContext>
-        <vm:BuddyDetailPageViewModel />
-    </ContentPage.BindingContext>
 
     <Grid>
         <!--  RowDefinitions  -->
@@ -80,7 +77,11 @@
                     Scale="2"
                     Text="{StaticResource SolidGear}"
                     TextColor="White"
-                    VerticalOptions="Center" />
+                    VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BuddySettingsCommand}" CommandParameter="{Binding Buddy}" />
+                    </Label.GestureRecognizers>
+                </Label>
             </Grid>
 
             <!--  Buddy Details  -->

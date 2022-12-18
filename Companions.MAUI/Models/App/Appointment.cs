@@ -18,7 +18,6 @@ namespace Companions.MAUI.Models.App
         private DateTime _appointmentTime;
         private Place _place;
 
-
         public Place Place
         {
             get => _place;

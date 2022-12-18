@@ -3,17 +3,22 @@
     x:Class="Companions.MAUI.Views.App.SchedulePage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkitBehaviors="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:scheduler="clr-namespace:Syncfusion.Maui.Scheduler;assembly=Syncfusion.Maui.Scheduler"
     xmlns:vm="clr-namespace:Companions.MAUI.ViewModels.App"
-    Title="SchedulePage"
     x:DataType="vm:SchedulePageViewModel">
-    <VerticalStackLayout>
-        <Label
-            HorizontalOptions="Center"
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" />
 
+    <ContentPage.Behaviors>
+        <toolkitBehaviors:EventToCommandBehavior
+            EventName="Appearing"
+            Command="{Binding PageAppearingCommand}"/>
+    </ContentPage.Behaviors>
+    
+    <VerticalStackLayout>
         <!--  https://help.syncfusion.com/maui/scheduler/getting-started  -->
-        <scheduler:SfScheduler />
+        <scheduler:SfScheduler 
+            HeightRequest="400"
+            AppointmentsSource="{Binding Appointments}"
+            View="Month"/>
     </VerticalStackLayout>
 </ContentPage>

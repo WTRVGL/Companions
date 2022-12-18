@@ -1,4 +1,5 @@
 ﻿using Companions.MAUI.Models.App;
+using Syncfusion.Maui.Scheduler;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,6 +12,7 @@ namespace Companions.MAUI.Services
     public interface IAppointmentService
     {
         ObservableCollection<Appointment> GetAppointments();
+        ObservableCollection<SchedulerAppointment> GetSchedulerAppointments();
         Appointment UpdateAppointment(Appointment appointment);
         Appointment AddAppointment(Appointment appointment);
         bool DeleteAppointment(Appointment appointment);

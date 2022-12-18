@@ -11,5 +11,9 @@ namespace Companions.MAUI.Services
     public interface IBuddyService
     {
         ObservableCollection<Buddy> GetBuddies();
+        Buddy AddBuddy(Buddy buddy);
+        Buddy UpdateBuddy(Buddy buddy);
+        bool DeleteBuddy(string id);
+
     }
 }

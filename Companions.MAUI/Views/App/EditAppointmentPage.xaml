@@ -24,7 +24,7 @@
             <Setter Property="TextColor" Value="#BDBDBD"/>
         </Style>
     </ContentPage.Resources>
-    
+
     <VerticalStackLayout Margin="20,25">
         <Label
             FontFamily="FaSolid"
@@ -101,7 +101,4 @@
             <TimePicker Time="{Binding Appointment.AppointmentTime}"/>
         </VerticalStackLayout>
     </VerticalStackLayout>
-    
-    
-    
 </ContentPage>

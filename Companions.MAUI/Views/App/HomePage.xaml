@@ -7,16 +7,16 @@
     xmlns:converters="clr-namespace:Companions.MAUI.Converters"
     xmlns:icons="clr-namespace:Companions.MAUI.Resources.Icons"
     xmlns:models="clr-namespace:Companions.MAUI.Models.App"
-    xmlns:toolkitBehaviors="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:syncfusion="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
+    xmlns:toolkitBehaviors="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:vm="clr-namespace:Companions.MAUI.ViewModels.App"
     x:DataType="vm:HomePageViewModel"
     Shell.TabBarIsVisible="True">
 
     <ContentPage.Behaviors>
-        <toolkitBehaviors:EventToCommandBehavior EventName="Appearing" Command="{Binding PageAppearingCommand}"/>
+        <toolkitBehaviors:EventToCommandBehavior Command="{Binding PageAppearingCommand}" EventName="Appearing" />
     </ContentPage.Behaviors>
-    
+
     <ContentPage.Resources>
         <converters:TimeBetweenNowAndDateTime x:Key="TimeBetweenNowAndDateTime" />
         <Color x:Key="TitleColor">#404348</Color>
@@ -51,7 +51,7 @@
                     Scale="1.4"
                     Text="{StaticResource SolidList}"
                     TextColor="{StaticResource TitleColor}"
-                    VerticalOptions="Center"/>
+                    VerticalOptions="Center" />
             </Grid>
 
             <CollectionView ItemsLayout="HorizontalList" ItemsSource="{Binding Buddies}">
@@ -62,16 +62,17 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <!--  Upcoming Title Label  -->
+            <!--  Appointments Title Label  -->
             <Label
                 Margin="0,20,0,20"
                 Style="{StaticResource SectionTitle}"
-                Text="Upcoming" />
+                Text="Appointments" />
             <!--  Upcoming Activities Control  -->
             <syncfusion:SfListView
                 x:Name="appointmentList"
+                HeightRequest="300"
+                IsScrollingEnabled="True"
                 ItemSize="70"
-                HeightRequest="200"
                 ItemsSource="{Binding Appointments}"
                 SelectionBackground="Transparent"
                 TapCommand="{Binding OpenAppointmentDetailCommand}">
@@ -88,10 +89,11 @@
                                         <RowDefinition Height="auto" />
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
-                                    <Frame Grid.RowSpan="2"
-                                           Padding="0"
-                                           BorderColor="Transparent"
-                                           CornerRadius="50">
+                                    <Frame
+                                        Grid.RowSpan="2"
+                                        Padding="0"
+                                        BorderColor="Transparent"
+                                        CornerRadius="50">
                                         <Grid>
                                             <Image
                                                 HeightRequest="40"
@@ -131,6 +133,7 @@
                     </DataTemplate>
                 </syncfusion:SfListView.ItemTemplate>
             </syncfusion:SfListView>
+
         </VerticalStackLayout>
     </RefreshView>
 
