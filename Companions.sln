@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Companions.ImageService", "Companions.ImageService\Companions.ImageService.csproj", "{69538F6A-1AF4-4857-A9BF-7FBB3F7EA682}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{5C966D58-A4E1-44E3-A308-EF797F1D6560}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C966D58-A4E1-44E3-A308-EF797F1D6560}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C966D58-A4E1-44E3-A308-EF797F1D6560}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69538F6A-1AF4-4857-A9BF-7FBB3F7EA682}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69538F6A-1AF4-4857-A9BF-7FBB3F7EA682}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69538F6A-1AF4-4857-A9BF-7FBB3F7EA682}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69538F6A-1AF4-4857-A9BF-7FBB3F7EA682}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
