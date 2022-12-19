@@ -136,7 +136,7 @@ namespace Companions.MAUI.Services
 
         public ObservableCollection<Buddy> GetBuddies()
         {
-            return _buddies;
+            return _buddies.OrderBy(b => b.Id).ToObservableCollection();
         }
     }
 }

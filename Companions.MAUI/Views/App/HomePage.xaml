@@ -67,6 +67,15 @@
                 Margin="0,20,0,20"
                 Style="{StaticResource SectionTitle}"
                 Text="Appointments" />
+
+            <Line
+                Stroke="#BDBDBD"
+                StrokeThickness="1"
+                X1="0"
+                X2="500"
+                Y1="0"
+                Y2="0" />
+
             <!--  Upcoming Activities Control  -->
             <syncfusion:SfListView
                 x:Name="appointmentList"
@@ -119,7 +128,6 @@
                                         Grid.Column="1"
                                         Text="{Binding Buddy.Name}"
                                         TextColor="Black" />
-
                                 </Grid>
                                 <Line
                                     Stroke="#BDBDBD"
@@ -133,7 +141,6 @@
                     </DataTemplate>
                 </syncfusion:SfListView.ItemTemplate>
             </syncfusion:SfListView>
-
         </VerticalStackLayout>
     </RefreshView>
 
