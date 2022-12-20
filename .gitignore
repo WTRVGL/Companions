@@ -4,7 +4,8 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 appsettings.json
-companions.keystore
+google_service_key.json
+
 
 # User-specific files
 *.rsuser

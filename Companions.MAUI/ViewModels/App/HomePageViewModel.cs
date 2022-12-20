@@ -25,15 +25,10 @@ namespace Companions.MAUI.ViewModels.App
 
         private readonly IConfiguration _config;
 
-        public HomePageViewModel(IBuddyService buddyservice, IConfiguration config, IAppointmentService appointmentService)
+        public HomePageViewModel(IBuddyService buddyservice, IAppointmentService appointmentService)
         {
             _buddyService = buddyservice;
             _appointmentService = appointmentService;
-            _config = config;
-
-            _buddies = _buddyService.GetBuddies();
-            _appointments = _appointmentService.GetAppointments();
-            
         }
 
 
@@ -80,6 +75,7 @@ namespace Companions.MAUI.ViewModels.App
         [RelayCommand]
         async void PageAppearing()
         {
+            Buddies = _buddyService.GetBuddies();
             Appointments = _appointmentService.GetAppointments();
         }
 

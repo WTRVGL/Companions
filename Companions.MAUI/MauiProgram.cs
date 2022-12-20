@@ -20,14 +20,15 @@ namespace Companions.MAUI
         {
             var builder = MauiApp.CreateBuilder();
 
-            var a = Assembly.GetExecutingAssembly();
-            using var stream = a.GetManifestResourceStream("Companions.MAUI.appsettings.json");
 
-            var config = new ConfigurationBuilder()
-                .AddJsonStream(stream)
-                .Build();
+            //var a = Assembly.GetExecutingAssembly();
+            //using var stream = a.GetManifestResourceStream("Companions.MAUI.appsettings.json");
 
-            builder.Configuration.AddConfiguration(config);
+            //var config = new ConfigurationBuilder()
+            //    .AddJsonStream(stream)
+            //    .Build();
+
+            //builder.Configuration.AddConfiguration(config);
 
             builder
                 .UseMauiApp<App>()

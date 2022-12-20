@@ -15,7 +15,7 @@
 		<ApplicationTitle>Companions.MAUI</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.companions.maui</ApplicationId>
+		<ApplicationId>companions.maui</ApplicationId>
 		<ApplicationIdGuid>8A4F5E78-4851-4651-9F42-FF56A2373B50</ApplicationIdGuid>
 
 		<!-- Versions -->
@@ -51,7 +51,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="appsettings.json" />
 	  <None Remove="Resources\Fonts\fa-brands-400.otf" />
 	  <None Remove="Resources\Fonts\fa-regular-400.otf" />
 	  <None Remove="Resources\Fonts\fa-solid-900.otf" />
@@ -68,12 +67,6 @@
 	  <None Remove="Resources\Fonts\Poppins-Bold.ttf" />
 	  <None Remove="Resources\Images\icnmenuclose.png" />
 	  <None Remove="Resources\Images\startimg.png" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <EmbeddedResource Include="appsettings.json">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>
