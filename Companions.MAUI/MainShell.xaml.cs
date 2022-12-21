@@ -1,5 +1,5 @@
-﻿using Companions.MAUI.ViewModels.App.Actions;
-using Companions.MAUI.Views.App;
+﻿using Companions.MAUI.Views.App;
+using Companions.MAUI.Views.App.Actions;
 using Companions.MAUI.Views.App.BuddyDetail;
 using Companions.MAUI.Views.Login;
 using Action = Companions.MAUI.Views.App.Action;

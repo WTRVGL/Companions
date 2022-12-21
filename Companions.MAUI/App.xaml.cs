@@ -9,8 +9,8 @@ namespace Companions.MAUI
         public App(IConfiguration config)
         {
             InitializeComponent();
-            //MainPage = new LoginShell();
-            MainPage = new MainShell();
+            MainPage = new LoginShell();
+            //MainPage = new MainShell();
         }
     }
 }

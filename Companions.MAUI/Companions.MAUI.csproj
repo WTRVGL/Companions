@@ -130,16 +130,16 @@
 	  <MauiXaml Update="Controls\BuddyCard.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="ViewModels\App\Actions\AppointmentPage.xaml">
+	  <MauiXaml Update="Views\App\Actions\AppointmentPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="ViewModels\App\Actions\FeedingPage.xaml">
+	  <MauiXaml Update="Views\App\Actions\FeedingPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="ViewModels\App\Actions\TrackWeightPage.xaml">
+	  <MauiXaml Update="Views\App\Actions\TrackWeightPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="ViewModels\App\Actions\WalkingPage.xaml">
+	  <MauiXaml Update="Views\App\Actions\WalkingPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\App\Action.xaml">

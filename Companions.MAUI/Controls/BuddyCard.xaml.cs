@@ -12,8 +12,6 @@ public partial class BuddyCard : ContentView
         _tapGestureRecognizer = new TapGestureRecognizer();
         _tapGestureRecognizer.Tapped += _tapGestureRecognizer_Tapped;
         cardFrame.GestureRecognizers.Add(_tapGestureRecognizer);
-
-       
 	}
 
     private async void _tapGestureRecognizer_Tapped(object sender, EventArgs e)
