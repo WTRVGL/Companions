@@ -4,14 +4,16 @@ namespace Companions.AuthenticationService.Models
     public class AuthenticateResponse
     {
         //Zou custom DTO kunnen maken
-        public Gebruiker User { get; set; }
+        public User User { get; set; }
         public string Token { get; set; }
+        public string AuthStatus { get; set; }
 
 
-        public AuthenticateResponse(Gebruiker user, string token)
+        public AuthenticateResponse(User user, string token, string authStatus)
         {
             User = user;
             Token = token;
+            AuthStatus = authStatus;
         }
     }
 }

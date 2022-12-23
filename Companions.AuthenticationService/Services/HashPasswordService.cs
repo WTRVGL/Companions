@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
+using Companions.AuthenticationService.Models;
 using Companions.AuthenticationService.Services;
 
 namespace Companions.AuthenticationService.Services
@@ -20,7 +21,7 @@ namespace Companions.AuthenticationService.Services
         /// </summary>
         /// <param name="password">The entered password</param>
         /// <returns>Hash as Item 1, Salt as Item 2</returns>
-        public Tuple<string, string> generateHashAndSalt(string password)
+        public PBKDF2Keys GenerateHashAndSalt(string password)
         {
             var rng = new RNGCryptoServiceProvider();
             rng.GetBytes(saltBytes);
@@ -32,7 +33,7 @@ namespace Companions.AuthenticationService.Services
             var hashBytes = rfc.GetBytes(20);
             var hashBase64 = Convert.ToBase64String(hashBytes);
 
-            return new Tuple<string, string>(hashBase64, saltBase64);
+            return new PBKDF2Keys(hashBase64, saltBase64);
 
         }
 
@@ -43,7 +44,7 @@ namespace Companions.AuthenticationService.Services
         /// <param name="hashBase64"></param>
         /// <param name="saltBase64"></param>
         /// <returns></returns>
-        public bool checkHash(string password, string hashBase64, string saltBase64)
+        public bool CompareBase64HashValues(string password, string hashBase64, string saltBase64)
         {
             if (password == null)
             {

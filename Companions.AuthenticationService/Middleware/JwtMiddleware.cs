@@ -28,7 +28,7 @@ namespace Companions.AuthenticationService.Middleware
             
             if (token != null)
             {
-                var jwtSecurityToken = _tokenService.decodeJwtSecurityToken(token);
+                var jwtSecurityToken = _tokenService.DecodeJwtSecurityToken(token);
                 var id = _tokenService.ExtractIdFromJwtSecurityToken(jwtSecurityToken);
                 // attach user to context on successful jwt validation
                 context.Items["User"] = _userRepository.GetUser(id);

@@ -14,7 +14,7 @@ namespace Companions.AuthenticationService.Services
         public bool userAlreadyExists(string username)
         {
             var user = _repository.GetUserByUserName(username);
-            if (user.GebruikerID == 0)
+            if (user.Id == 0)
             {
                 return false;
             }

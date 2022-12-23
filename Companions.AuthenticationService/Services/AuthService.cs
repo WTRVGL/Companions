@@ -1,5 +1,6 @@
 ﻿using Companions.AuthenticationService.Models;
 using Companions.AuthenticationService.Repositories;
+using Microsoft.AspNetCore.Http.HttpResults;
 using System.Security;
 
 namespace Companions.AuthenticationService.Services
@@ -23,29 +24,26 @@ namespace Companions.AuthenticationService.Services
     /// <summary>
     /// Authenticates the user 
     /// </summary>
-    /// <returns></returns>
+    /// <returns>null if user does not exist. Empty AuthenticationResul</returns>
     public AuthenticateResponse AuthenticateUser(AuthenticateRequest model)
     {
-        var currentUser = _userRepository.GetUserByUserName(model.Username);
+        var user = _userRepository.GetUserByUserName(model.Username);
 
-        if (currentUser.GebruikerID == 0)
-        {
-            return null;
-        }
+            if (user == null) return null;
         
 
         var authenticated =
-            _hashPasswordService.checkHash(model.Password, currentUser.PasswoordHash, currentUser.PasswoordSalt);
+            _hashPasswordService.CompareBase64HashValues(model.Password, user.PasswordHash, user.PasswordSalt);
 
         if (!authenticated)
         {
-            return null;
+                return new AuthenticateResponse(null, null, "Not Authenticated");
         }
 
-        var authResult = _tokenService.getJwtSecurityToken((currentUser));
+        var authResult = _tokenService.GetJwtSecurityToken((user));
 
             
-        return new AuthenticateResponse(currentUser, authResult);
+        return new AuthenticateResponse(user, authResult, "Authenticated");
 
     }
 

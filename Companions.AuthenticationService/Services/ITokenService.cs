@@ -9,8 +9,8 @@ namespace Companions.AuthenticationService.Services
 {
     public interface ITokenService
     {
-        string getJwtSecurityToken(Gebruiker user);
-        JwtSecurityToken decodeJwtSecurityToken(string token);
+        string GetJwtSecurityToken(User user);
+        JwtSecurityToken DecodeJwtSecurityToken(string token);
         int ExtractIdFromJwtSecurityToken(JwtSecurityToken securityToken);
 
     }

@@ -13,38 +13,42 @@ namespace Companions.AuthenticationService.Services
     {
         private readonly IUserRepository _userRepository;
         private readonly IHashPasswordService _hashPasswordService;
+        private readonly IConfiguration _config;
 
-        private readonly string securityKey = "eW93YXNzdXBwb3Bpc2VwaWNyZWVlZWVlZWVlZWVlZWU=";
-        public TokenService(IUserRepository userRepository, IHashPasswordService hashPasswordService)
+        private readonly JWTConfiguration _jwtConfig;
+
+        public TokenService(IUserRepository userRepository, IHashPasswordService hashPasswordService, IConfiguration config)
         {
             _userRepository = userRepository;
             _hashPasswordService = hashPasswordService;
+            _config = config;
+
+            _jwtConfig = _config.GetSection("JWT").Get<JWTConfiguration>();
         }
 
-        public string getJwtSecurityToken(Gebruiker user)
+        public string GetJwtSecurityToken(User user)
         {
             var claims = new List<Claim>
             {
                 new Claim("username", user.Email),
-                new Claim("id", user.GebruikerID.ToString()),
+                new Claim("id", user.Id.ToString()),
                 new Claim("role", user.Role)
             };
 
             var token = new JwtSecurityToken(
-                issuer: "http://localhost:5001",
-                audience: "http://localhost:8000",
+                issuer: _jwtConfig.ValidIssuer,
+                audience: _jwtConfig.ValidAudience,
                 claims: claims,
                 expires: DateTime.UtcNow.AddDays(30),
                 notBefore: DateTime.UtcNow,
-                signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Convert.FromBase64String(securityKey)), SecurityAlgorithms.HmacSha256));
-
+                signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Convert.FromBase64String(_jwtConfig.Secret)), SecurityAlgorithms.HmacSha256));
 
             var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
 
             return tokenString;
         }
 
-        public JwtSecurityToken decodeJwtSecurityToken(string token)
+        public JwtSecurityToken DecodeJwtSecurityToken(string token)
         {
             return new JwtSecurityTokenHandler().ReadJwtToken(token);
         }

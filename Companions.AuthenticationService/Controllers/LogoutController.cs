@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Companions.AuthenticationService.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +13,19 @@ namespace Companions.AuthenticationService.Controllers
     [ApiController]
     public class LogoutController : ControllerBase
     {
+        private readonly JWTConfiguration _jwtConfig;
+
+        public LogoutController(IConfiguration config)
+        {
+            _jwtConfig = config.GetSection("JWT").Get<JWTConfiguration>();
+        }
+
         [HttpGet]
+        [SwaggerOperation("Logs out the user by removing the HTTP Only Cookie")]
+        [SwaggerResponse(StatusCodes.Status200OK, Description = "User logged out")]
         public IActionResult Logout()
         {
-            Response.Cookies.Append("JWTkoek", $"", new CookieOptions()
+            Response.Cookies.Append(_jwtConfig.JWTHttpCookieName, $"", new CookieOptions()
             {
                 Expires = DateTimeOffset.Now.AddHours(-1),
                 Path = "/",
@@ -25,7 +36,7 @@ namespace Companions.AuthenticationService.Controllers
 
             
 
-            Response.Cookies.Append("scopelandId", $"", new CookieOptions()
+            Response.Cookies.Append("Id", $"", new CookieOptions()
             {
                 Expires = DateTimeOffset.Now.AddHours(-1),
                 Path = "/",
@@ -33,7 +44,7 @@ namespace Companions.AuthenticationService.Controllers
                 Secure = true,
                 SameSite = SameSiteMode.None
             });
-            return Ok();
+            return Ok("User logged out");
         }
     }
 }

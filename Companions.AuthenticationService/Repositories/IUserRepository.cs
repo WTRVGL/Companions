@@ -8,9 +8,9 @@ namespace Companions.AuthenticationService.Repositories
 {
     public interface IUserRepository
     {
-        List<Gebruiker> GetUsers();
-        Gebruiker GetUser(int id);
-        Gebruiker GetUserByUserName(string username);
-        Gebruiker CreateUser(string username, string voornaam, string achternaam, string passwoord);
+        List<User> GetUsers();
+        User GetUser(int id);
+        User GetUserByUserName(string username);
+        User CreateUser(string username, string firstName, string lastName, string password);
     }
 }
