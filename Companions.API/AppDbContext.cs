@@ -1,7 +1,7 @@
 ﻿using Companions.Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace Companions.Api
+namespace Companions.API
 {
     public class AppDbContext : DbContext
     {
@@ -10,6 +10,12 @@ namespace Companions.Api
             : base(options)
         {
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
+
 
         public DbSet<User> Users { get; set; }
         public DbSet<Activity> Activities { get; set; }

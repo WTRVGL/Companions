@@ -113,6 +113,7 @@ namespace Companions.MAUI.Services
             return buddy;
         }
 
+
         public bool DeleteBuddy(string id)
         {
             var buddyToBeDeleted = _buddies.First(b => b.Id == id);

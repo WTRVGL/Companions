@@ -1,11 +1,11 @@
-
-using Companions.Api;
-using Companions.Api.Models;
+using Companions.API.Models;
 using Companions.API.Mapper;
 using Companions.API.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Companions.API;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -55,6 +55,7 @@ builder.Services.AddDbContext<AppDbContext>(
 builder.Services.AddTransient<IBuddyService, BuddyService>();
 builder.Services.AddAutoMapper(typeof(MapperProfile));
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -63,6 +64,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+AppDbContext context = (AppDbContext)app.Services.GetService(typeof(AppDbContext));
+
+context.Database.Migrate();
+DbInitializer.InitializeDb(context);
 
 app.UseHttpsRedirection();
 

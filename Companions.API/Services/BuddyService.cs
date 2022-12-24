@@ -1,5 +1,4 @@
-﻿using Companions.Api;
-using Companions.Domain;
+﻿using Companions.Domain;
 
 namespace Companions.API.Services
 {
@@ -58,7 +57,7 @@ namespace Companions.API.Services
             buddy.ImageURL = request.ImageURL;
             buddy.DailyFeedingEvents = request.DailyFeedingEvents;
             buddy.Activities = request.Activities;
-            buddy.Species = request.Species;
+            buddy.Race = request.Race;
             buddy.BuddyWeights = request.BuddyWeights;
 
             _db.SaveChanges();

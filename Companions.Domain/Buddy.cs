@@ -7,9 +7,10 @@ namespace Companions.Domain
         public string Name { get; set; }
         public string ImageURL { get; set; }
         public DateTime DateOfBirth { get; set; }
+        public string Gender { get; set; }
 
         [Required]
-        public Species Species { get; set; }
+        public string Race { get; set; }
 
         [Required]
         public User User { get; set; }

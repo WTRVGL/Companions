@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Companions.Domain;
 using Companions.MAUI.Messages;
 using Companions.MAUI.Models.App;
 using Companions.MAUI.Services;
@@ -40,16 +39,17 @@ namespace Companions.MAUI.ViewModels.App
         async void AppointmentSettings()
         {
             string action = await Application.Current.MainPage.DisplayActionSheet("Change appointment", "Cancel", null, "Edit appointment", "Delete appointment");
-            if(action == "Delete appointment")
+            if (action == "Delete appointment")
             {
                 var secondAction = await Application.Current.MainPage.DisplayActionSheet("Are you sure?", "Cancel", null, "Delete appointment");
-                if (secondAction == "Delete appointment"){
+                if (secondAction == "Delete appointment")
+                {
                     _appointmentService.DeleteAppointment(Appointment);
                     GoBack();
                 }
             }
 
-            if(action == "Edit appointment")
+            if (action == "Edit appointment")
             {
                 await Shell.Current.GoToAsync(nameof(EditAppointmentPage),
                 new Dictionary<string, object>
@@ -73,7 +73,7 @@ namespace Companions.MAUI.ViewModels.App
 
             try
             {
-                await Map.Default.OpenAsync(location, options );
+                await Map.Default.OpenAsync(location, options);
                 ;
             }
             catch (Exception ex)
@@ -87,7 +87,7 @@ namespace Companions.MAUI.ViewModels.App
             }
         }
 
-       partial void OnAppointmentChanged(Appointment appointment)
+        partial void OnAppointmentChanged(Appointment appointment)
         {
             var places = new List<Place>
             {

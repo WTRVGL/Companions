@@ -6,9 +6,9 @@ namespace Companions.Domain
     {
         [Required]
         public string Name { get; set; }
-        
+
         [Required]
-        public FeedBrand FeedBrand { get; set; }
+        public FeedBrand BrandName { get; set; }
         public string ProductURL { get; set; }
     }
 }
