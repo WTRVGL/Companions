@@ -15,14 +15,13 @@ namespace Companions.ImageService.Controllers
         public ImagesController(ICloudStorage cloudStorage)
         {
             _cloudStorage = cloudStorage;
-
         }
 
         [HttpPost]
         public async Task<string> UploadFile(IFormFile file)
         {
             var stream = file.OpenReadStream();
-            var fileExtension = Path.GetExtension(file.FileName);
+            var fileExtension = GetExtension(file.FileName);
             var url = await _cloudStorage.UploadFileAsync(stream, GenerateFileName(file.FileName, fileExtension));
             return url;
         }

@@ -11,7 +11,7 @@ namespace Companions.Api
         {
         }
 
-        public DbSet<Account> Accounts { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<Activity> Activities { get; set; }
         public DbSet<ActivityType> ActivityTypes { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
