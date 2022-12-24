@@ -31,8 +31,9 @@ namespace Companions.AuthenticationService.Controllers
         [SwaggerOperation("Extracts JWT from HTTP Only Cookie and returns a user")]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(User), Description = "User authenticated")]
         [SwaggerResponse(StatusCodes.Status404NotFound, Description = "No user found")]
-        public IActionResult CheckAuthentication()
+        public async Task<IActionResult> CheckAuthentication()
         {
+            var x = HttpContext;
             var token = HttpContext.Request.Cookies[_jwtConfig.JWTHttpCookieName];
 
             if (token == null) return NotFound("No user found");

@@ -3,10 +3,9 @@ using Microsoft.IdentityModel.Tokens;
 using Companions.AuthenticationService.Repositories;
 using Companions.AuthenticationService.Services;
 using Microsoft.OpenApi.Models;
+using Companions.AuthenticationService.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -15,7 +14,7 @@ builder.Services.AddSwaggerGen(config =>
 {
     config.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "Auhtenticaton Service",
+        Title = "Authentication Service",
         Version = "v1"
     });
 
@@ -28,6 +27,9 @@ builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddSingleton<ITokenService, TokenService>();
 builder.Services.AddSingleton<IHashPasswordService, HashPasswordService>();
 
+JWTConfiguration jwtConfig = builder.Configuration.GetSection("JWT").Get<JWTConfiguration>();
+
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
     {
@@ -37,7 +39,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateAudience = false,
             RequireExpirationTime = false,
             IssuerSigningKey =
-                new SymmetricSecurityKey(Convert.FromBase64String("eW93YXNzdXBwb3Bpc2VwaWNyZWVlZWVlZWVlZWVlZWU=")),
+                new SymmetricSecurityKey(Convert.FromBase64String(jwtConfig.Secret)),
             ValidateIssuerSigningKey = true
 
         };
@@ -45,7 +47,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         {
             OnMessageReceived = context =>
             {
-                context.Token = context.Request.Cookies["JWTkoek"];
+                context.Token = context.Request.Cookies[jwtConfig.JWTHttpCookieName];
                 return Task.CompletedTask;
             }
         };
@@ -69,13 +71,13 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    
 }
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
 
 app.Run();
+
