@@ -7,9 +7,7 @@ namespace Companions.Domain
         [Required]
         public string UserName { get; set; }
 
-        [Required]
         public string PasswordHash { get; set; }
-        [Required]
         public string PasswordSalt{ get; set; }
 
         [Required]

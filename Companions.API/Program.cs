@@ -65,10 +65,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-AppDbContext context = (AppDbContext)app.Services.GetService(typeof(AppDbContext));
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    context.Database.EnsureDeleted();
+    context.Database.Migrate();
+    DbInitializer.InitializeDb(context);
+}
 
-context.Database.Migrate();
-DbInitializer.InitializeDb(context);
 
 app.UseHttpsRedirection();
 

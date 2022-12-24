@@ -4,8 +4,8 @@ namespace Companions.Domain
 {
     public class Activity : Entity
     {
-        [Required]
-        public List<Buddy> Buddies { get; set; }
+        public Buddy Buddy { get; set; }
+        public string BuddyId { get; set; }
 
         [Required]
         public ActivityType ActivityType { get; set; }

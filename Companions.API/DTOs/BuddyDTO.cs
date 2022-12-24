@@ -12,11 +12,13 @@ namespace Companions.API.DTOs
         public string Name { get; set; }
         public string Race { get; set; }
         public string Gender { get; set; }
-        public int Age { get; set; }
+        public DateTime DateOfBirth { get; set; }
         public string ImageURL { get; set; }
         public int Weight { get; set; }
+        public UserDTO User { get; set; }
         public List<ActivityDTO> Activities { get; set; }
         public List<FeedingScheduleDTO> FeedingSchedules { get; set; }
+        public List<BuddyWeightDTO> BuddyWeights { get; set; }
 
 
     }

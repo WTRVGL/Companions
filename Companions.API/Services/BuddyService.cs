@@ -1,4 +1,5 @@
 ﻿using Companions.Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace Companions.API.Services
 {
@@ -31,7 +32,11 @@ namespace Companions.API.Services
 
         public List<Buddy> GetAllBuddies()
         {
-            var buddies = _db.Buddies.ToList();
+            var buddies = _db.Buddies
+                .Include(b => b.BuddyWeights)
+                .Include(b => b.Activities)
+                    .ThenInclude(a => a.ActivityType)
+                .ToList();
             return buddies;
         }
 
@@ -55,7 +60,6 @@ namespace Companions.API.Services
             buddy.Appointments = request.Appointments;
             buddy.Name = request.Name;
             buddy.ImageURL = request.ImageURL;
-            buddy.DailyFeedingEvents = request.DailyFeedingEvents;
             buddy.Activities = request.Activities;
             buddy.Race = request.Race;
             buddy.BuddyWeights = request.BuddyWeights;

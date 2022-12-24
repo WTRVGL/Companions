@@ -74,21 +74,30 @@ namespace Companions.API
 
             _activities = new List<Activity>
             {
-                new Activity { ActivityType = _activityTypes.FirstOrDefault(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,01,08,15,00), EndDate = new DateTime(2022,11,01,09,31,00) },
-                new Activity { ActivityType = _activityTypes.FirstOrDefault(a => a.Name == "Feeding"), StartDate = new DateTime(2022,11,01,12,00,00), EndDate = new DateTime(2022,11,01,12,31,00) },
-                new Activity { ActivityType = _activityTypes.FirstOrDefault(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,01,16,15,00), EndDate = new DateTime(2022,11,01,16,42,00) },
-                new Activity { ActivityType = _activityTypes.FirstOrDefault(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,02,09,15,00), EndDate = new DateTime(2022,11,02,09,51,00) },
-                new Activity { ActivityType = _activityTypes.FirstOrDefault(a => a.Name == "Feeding"), StartDate = new DateTime(2022,11,02,13,15,00), EndDate = new DateTime(2022,11,02,14,03,00) },
-                new Activity { ActivityType = _activityTypes.FirstOrDefault(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,02,16,15,00), EndDate = new DateTime(2022,11,02,17,02,00) },
-                new Activity { ActivityType = _activityTypes.FirstOrDefault(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,02,20,15,00), EndDate = new DateTime(2022,11,02,21,01,00) },
-                new Activity { ActivityType = _activityTypes.FirstOrDefault(a => a.Name == "Feeding"), StartDate = new DateTime(2022,11,03,08,30,00), EndDate = new DateTime(2022,11,03,09,02,00) },
-                new Activity { ActivityType = _activityTypes.FirstOrDefault(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,03,12,15,00), EndDate = new DateTime(2022,11,03,12,31,00) },
-                new Activity { ActivityType = _activityTypes.FirstOrDefault(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,03,15,15,00), EndDate = new DateTime(2022,11,03,15,44,00) },
-                new Activity { ActivityType = _activityTypes.FirstOrDefault(a => a.Name == "Feeding"), StartDate = new DateTime(2022,11,03,20,15,00), EndDate = new DateTime(2022,11,03,20,41,00) },
-                new Activity { ActivityType = _activityTypes.FirstOrDefault(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,03,23,15,00), EndDate = new DateTime(2022,11,03,23,34,00) },
+                new Activity { ActivityType = _activityTypes.First(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,01,08,15,00), EndDate = new DateTime(2022,11,01,09,31,00) },
+                new Activity { ActivityType = _activityTypes.First(a => a.Name == "Feeding"), StartDate = new DateTime(2022,11,01,12,00,00), EndDate = new DateTime(2022,11,01,12,31,00) },
+                new Activity { ActivityType = _activityTypes.First(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,01,16,15,00), EndDate = new DateTime(2022,11,01,16,42,00) },
+                new Activity { ActivityType = _activityTypes.First(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,02,09,15,00), EndDate = new DateTime(2022,11,02,09,51,00) },
+                new Activity { ActivityType = _activityTypes.First(a => a.Name == "Feeding"), StartDate = new DateTime(2022,11,02,13,15,00), EndDate = new DateTime(2022,11,02,14,03,00) },
+                new Activity { ActivityType = _activityTypes.First(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,02,16,15,00), EndDate = new DateTime(2022,11,02,17,02,00) },
+                new Activity { ActivityType = _activityTypes.First(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,02,20,15,00), EndDate = new DateTime(2022,11,02,21,01,00) },
+                new Activity { ActivityType = _activityTypes.First(a => a.Name == "Feeding"), StartDate = new DateTime(2022,11,03,08,30,00), EndDate = new DateTime(2022,11,03,09,02,00) },
+                new Activity { ActivityType = _activityTypes.First(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,03,12,15,00), EndDate = new DateTime(2022,11,03,12,31,00) },
+                new Activity { ActivityType = _activityTypes.First(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,03,15,15,00), EndDate = new DateTime(2022,11,03,15,44,00) },
+                new Activity { ActivityType = _activityTypes.First(a => a.Name == "Feeding"), StartDate = new DateTime(2022,11,03,20,15,00), EndDate = new DateTime(2022,11,03,20,41,00) },
+                new Activity { ActivityType = _activityTypes.First(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,03,23,15,00), EndDate = new DateTime(2022,11,03,23,34,00) },
             };
 
             context.Activities.AddRange(_activities);
+            context.SaveChanges();
+
+            _users = new List<User>()
+            {
+                new User { FirstName = "Wouter", LastName = "Vangeel", UserName = "admin"}
+            };
+
+
+            context.Users.AddRange(_users);
             context.SaveChanges();
 
             _buddyWeights = new List<BuddyWeight>()
@@ -108,49 +117,53 @@ namespace Companions.API
             {
                 new Buddy {
                     Name = "Bassie",
+                    User = _users.First(u => u.UserName == "admin"),
                     DateOfBirth = DateTime.Parse("2015-09-14"),
                     Race = "Mixed",
                     Gender = "Male",
                     BuddyWeights = new List<BuddyWeight>(),
                     ImageURL = "https://i.imgur.com/GJe4t90.jpg",
-                    Activities = _activities.GetRange(0, _activities.Count),
+                    Activities = new List<Activity>(),
                     FeedingSchedules = _feedingSchedules.GetRange(0, 2),
                 },
                 new Buddy {
                     Name = "Ori",
+                    User = _users.First(u => u.UserName == "admin"),
                     DateOfBirth = DateTime.Parse("2016-09-14"),
                     Race = "Mixed",
                     BuddyWeights = new List<BuddyWeight>(),
                     Gender = "Male",
                     ImageURL="https://i.imgur.com/UUzY06O.png",
-                    Activities = _activities.GetRange(0, _activities.Count),
+                    Activities = new List<Activity>(),
                     FeedingSchedules = _feedingSchedules.GetRange(2, 2)
                 },
                 new Buddy {
                     Name = "Robot",
+                    User = _users.First(u => u.UserName == "admin"),
                     DateOfBirth = DateTime.Parse("2018-09-14"),
                     Race = "Tabby",
                     Gender = "Male",
                     BuddyWeights = new List<BuddyWeight>(),
                     ImageURL="https://i.imgur.com/Z0J26m6.png",
-                    Activities = _activities.Where(x => x.ActivityType.Name == "Feeding").ToList(),
+                    Activities = new List<Activity>(),
                     FeedingSchedules = _feedingSchedules.GetRange(4, 2)
                 }
             };
 
+            _buddies.First(b => b.Name == "Bassie").BuddyWeights.AddRange(_buddyWeights.Take(2));
 
+            _buddies.First(b => b.Name == "Bassie").Activities.AddRange(_activities.GetRange(0, _activities.Count));
+
+            _buddies.First(b => b.Name == "Ori").Activities.AddRange(_activities.GetRange(0, _activities.Count));
+
+            _buddies.First(b => b.Name == "Robot").Activities.AddRange(_activities.Where(x => x.ActivityType.Name == "Feeding").ToList());
+            
+            
             context.Buddies.AddRange(_buddies);
             context.SaveChanges();
 
 
-            _users = new List<User>()
-            {
-                new User { FirstName = "Wouter", LastName = "Vangeel", UserName = "admin"}
-            };
 
-
-            context.Users.AddRange(_users);
-            context.SaveChanges();
 
             //var userRoles = new List<IdentityUserRole<string>>
             //{
