@@ -58,6 +58,31 @@ builder.Services.AddSwaggerGen(config =>
     });
 
     config.EnableAnnotations();
+
+    config.AddSecurityDefinition("Cookie", new OpenApiSecurityScheme
+    {
+        In = ParameterLocation.Header,
+        Description = $"Supply a valid JWT containing an \"id\" claim",
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        BearerFormat = "JWT",
+        Scheme = "Bearer",
+
+    });
+    config.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type=ReferenceType.SecurityScheme,
+                    Id="Bearer"
+                }
+            },
+            new string[]{}
+        }
+    });
 });
 
 builder.Services.AddDbContext<AppDbContext>(
@@ -85,7 +110,7 @@ else
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    
+
     //Delete db
     //context.Database.EnsureDeleted();
     context.Database.Migrate();
