@@ -163,29 +163,6 @@ namespace Companions.API.Migrations
                     b.ToTable("BuddyWeights");
                 });
 
-            modelBuilder.Entity("Companions.Domain.DailyFeeding", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("BuddyId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FeedingScheduleId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BuddyId");
-
-                    b.HasIndex("FeedingScheduleId");
-
-                    b.ToTable("DailyFeeding");
-                });
-
             modelBuilder.Entity("Companions.Domain.FeedBrand", b =>
                 {
                     b.Property<string>("Id")
@@ -288,6 +265,9 @@ namespace Companions.API.Migrations
                     b.Property<string>("PasswordSalt")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Role")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -388,21 +368,6 @@ namespace Companions.API.Migrations
                     b.Navigation("Buddy");
                 });
 
-            modelBuilder.Entity("Companions.Domain.DailyFeeding", b =>
-                {
-                    b.HasOne("Companions.Domain.Buddy", "Buddy")
-                        .WithMany("DailyFeedingEvents")
-                        .HasForeignKey("BuddyId");
-
-                    b.HasOne("Companions.Domain.FeedingSchedule", "FeedingSchedule")
-                        .WithMany()
-                        .HasForeignKey("FeedingScheduleId");
-
-                    b.Navigation("Buddy");
-
-                    b.Navigation("FeedingSchedule");
-                });
-
             modelBuilder.Entity("Companions.Domain.FeedProduct", b =>
                 {
                     b.HasOne("Companions.Domain.FeedBrand", "BrandName")
@@ -455,8 +420,6 @@ namespace Companions.API.Migrations
                     b.Navigation("Activities");
 
                     b.Navigation("BuddyWeights");
-
-                    b.Navigation("DailyFeedingEvents");
 
                     b.Navigation("FeedingSchedules");
 

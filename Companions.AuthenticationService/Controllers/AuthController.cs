@@ -36,12 +36,12 @@ namespace Companions.AuthenticationService.Controllers
             var x = HttpContext;
             var token = HttpContext.Request.Cookies[_jwtConfig.JWTHttpCookieName];
 
-            if (token == null) return NotFound("No user found");
+            if (token == null) return NotFound($"{_jwtConfig.JWTHttpCookieName} Cookie not found");
 
             var decodedToken = _tokenService.DecodeJwtSecurityToken(token);
             var id = decodedToken.Claims.FirstOrDefault(claim => claim.Type == "id");
 
-            var user = _userRepository.GetUser(Convert.ToInt32(id.Value));
+            var user = await _userRepository.GetUserById(id.Value);
 
 
             return Ok(user);

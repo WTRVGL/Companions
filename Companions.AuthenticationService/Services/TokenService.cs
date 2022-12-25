@@ -30,7 +30,7 @@ namespace Companions.AuthenticationService.Services
         {
             var claims = new List<Claim>
             {
-                new Claim("username", user.Email),
+                new Claim("username", user.UserName),
                 new Claim("id", user.Id.ToString()),
                 new Claim("role", user.Role)
             };
@@ -55,7 +55,7 @@ namespace Companions.AuthenticationService.Services
 
         public int ExtractIdFromJwtSecurityToken(JwtSecurityToken securityToken)
         {
-            var idClaim =  securityToken.Claims.FirstOrDefault(claim => claim.Type == "id");
+            var idClaim = securityToken.Claims.FirstOrDefault(claim => claim.Type == "id");
             return int.Parse(idClaim.Value);
         }
     }

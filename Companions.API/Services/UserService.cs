@@ -16,6 +16,20 @@ namespace Companions.API.Services
             _httpClient.BaseAddress = new Uri(apiBaseURL);
         }
 
+        public User GetUserById(string id)
+        {
+            var user = _db.Users.FirstOrDefault(u => u.Id == id);
+            if (user == null) return null;
+            return user;
+        }
+
+        public User GetUserByUserName(string username)
+        {
+            var user = _db.Users.FirstOrDefault(u => u.UserName == username);
+            if (user == null) return null;
+            return user;
+        }
+
         public async Task<User> AddUser(CreateUser user)
         {
             var hashRequest = new HashRequest { Password = user.Password };
@@ -39,17 +53,13 @@ namespace Companions.API.Services
             return newUser;
         }
 
- 
 
         public bool DeleteUser(string id)
         {
             throw new NotImplementedException();
         }
 
-        public User GetUserById(string id)
-        {
-            throw new NotImplementedException();
-        }
+
 
         public User UpdateUser(User user)
         {

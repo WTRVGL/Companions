@@ -15,5 +15,6 @@ namespace Companions.API.DTOs
         public string PasswordSalt { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string Role { get; set; }
     }
 }

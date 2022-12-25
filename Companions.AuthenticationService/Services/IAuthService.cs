@@ -8,6 +8,6 @@ namespace Companions.AuthenticationService.Services
 {
     public interface IAuthService
     {
-        AuthenticateResponse AuthenticateUser(AuthenticateRequest model);
+        Task<AuthenticateResponse> AuthenticateUser(AuthenticateRequest model);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Companions.AuthenticationService.Models;
 using Companions.AuthenticationService.Repositories;
 using Companions.AuthenticationService.Services;
+using System.Net.Http;
 
 namespace Companions.AuthenticationService.Repositories
 {
@@ -8,44 +9,27 @@ namespace Companions.AuthenticationService.Repositories
     {
         private readonly List<User> _users;
         private readonly IHashPasswordService _hashPasswordService;
+        private readonly HttpClient _httpClient;
 
-        public UserRepository(IHashPasswordService hashPasswordService)
+        public UserRepository(IHashPasswordService hashPasswordService, IConfiguration config)
         {
             _hashPasswordService = hashPasswordService;
-            _users= new List<User>();
-            _users.Add(CreateUser("admin", "Wouter", "Vangeel", "admin"));
+
+            _httpClient = new HttpClient();
+            var apiBaseURL = config.GetValue<string>("CompanionsAPIURL");
+            _httpClient.BaseAddress = new Uri(apiBaseURL);
         }
 
-        public User CreateUser(string email, string firstName, string lastName, string password)
+        public async Task<User> GetUserById(string id)
         {
-            var hashAndSalt = _hashPasswordService.GenerateHashAndSalt(password);
-            var user = new User { 
-                Id = _users.Count + 1, 
-                Email = email, 
-                FirstName = firstName, 
-                LastName = lastName ,
-                PasswordHash = hashAndSalt.Hash,
-                PasswordSalt= hashAndSalt.Salt,
-                Role = "admin"
-            };
-            
-            _users.Add(user);
+            var user = await _httpClient.GetFromJsonAsync<User>($"api/User/GetUserById/{id}");
             return user;
         }
 
-        public User GetUser(int id)
+        public async Task<User> GetUserByUserName(string username)
         {
-            return _users.FirstOrDefault(u => u.Id == id);
-        }   
-
-        public User GetUserByUserName(string username)
-        {
-            return _users.FirstOrDefault(u => u.Email == username);
-        }
-
-        public List<User> GetUsers()
-        {
-            return _users;
+            var user = await _httpClient.GetFromJsonAsync<User>($"api/User/GetUserByUserName/{username}");
+            return user;
         }
     }
 }

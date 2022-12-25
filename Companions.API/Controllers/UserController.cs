@@ -35,25 +35,36 @@ namespace Companions.API.Controllers
             return Ok(await response.Content.ReadAsStringAsync());
         }
 
-        // GET api/<UserController>/5
-        [HttpGet("{id}")]
-        public string GetUserById(int id)
+
+        [HttpGet("GetUserById/{id}")]
+        public ActionResult<UserDTO> GetUserById(string id)
         {
-            return "value";
+            var user = _userService.GetUserById(id);
+            if (user == null) return NotFound("User not found");
+            return _mapper.Map<UserDTO>(user);
+        }
+
+        [HttpGet("GetUserByUserName/{username}")]
+        public ActionResult<UserDTO> GetUserByUserName(string username)
+        {
+            var user = _userService.GetUserByUserName(username) as Domain.User; ;
+            if (user == null) return NotFound("User not found");
+            return _mapper.Map<UserDTO>(user);
         }
 
         // POST api/<UserController>
         [HttpPost(nameof(CreateUser))]
         [SwaggerOperation("Creates a new user", "Makes usage of the Companions Authentication Service")]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(UserDTO), Description = "Returns the newly created user")]
-        [SwaggerResponse(StatusCodes.Status303SeeOther, Description = "User already exists")]
+        [SwaggerResponse(StatusCodes.Status302Found, Description = "User already exists")]
         [SwaggerResponse(StatusCodes.Status400BadRequest, Description = "Incompatible request body")]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, Description = "Unauthorized")]
         public async Task<ActionResult<UserDTO>> CreateUser(CreateUser createUser)
         {
             //Get user by Id
-
+            var userExists = _userService.GetUserByUserName(createUser.UserName) != null;
             //If user exists return error
+            if (userExists) return new StatusCodeResult(302);
 
             var user = await _userService.AddUser(createUser);
             var userDTO = _mapper.Map<UserDTO>(user);
