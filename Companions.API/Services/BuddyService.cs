@@ -36,6 +36,7 @@ namespace Companions.API.Services
                 .Include(b => b.BuddyWeights)
                 .Include(b => b.Activities)
                     .ThenInclude(a => a.ActivityType)
+                .Include(b => b.)
                 .ToList();
             return buddies;
         }
