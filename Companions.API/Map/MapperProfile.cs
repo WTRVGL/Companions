@@ -20,6 +20,8 @@ namespace Companions.API.Mapper
             CreateMap<Activity, ActivityDTO>();
             CreateMap<BuddyWeight, BuddyWeightDTO>();
             CreateMap<User, UserDTO>();
+
+            CreateMap<Domain.User, UserDTO>();
         }
     }
 }

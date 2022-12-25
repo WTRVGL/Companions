@@ -30,6 +30,7 @@ namespace Companions.AuthenticationService.Controllers
         [HttpPost]
         [SwaggerOperation("Tries to authenticate an user and attaches a secure HTTP Only JWT token")]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(User), Description = "Sucessfully authenticated the user. HTTP Only cookie attached.")]
+        [SwaggerResponse(StatusCodes.Status400BadRequest, Description = "Incompatible request body")]
         [SwaggerResponse(StatusCodes.Status404NotFound, Description = "User does not exist")]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, Description = "Incorrect password entered")]
         public IActionResult Authenticate([FromBody] AuthenticateRequest request)

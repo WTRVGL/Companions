@@ -11,19 +11,19 @@ namespace Companions.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BuddyController : ControllerBase
+    public class BuddiesController : ControllerBase
     {
         private readonly IBuddyService _buddyService;
         private readonly IMapper _mapper;
 
-        public BuddyController(IBuddyService buddyService, IMapper mapper)
+        public BuddiesController(IBuddyService buddyService, IMapper mapper)
         {
             _buddyService = buddyService;
             _mapper = mapper;
         }
 
         // GET: api/<BuddyController>
-        [HttpGet]
+        [HttpGet(nameof(GetAllBuddies))]
         [SwaggerOperation("Returns all buddies associated with the current User (HTTP Only Cookie JWT Claim)")]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<BuddyDTO>), Description = "Returns list of buddies")]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, Description = "Unauthorized")]

@@ -27,8 +27,6 @@ namespace Companions.AuthenticationService.Services
             rng.GetBytes(saltBytes);
             var saltBase64 = Convert.ToBase64String(saltBytes);
 
-            
-
             var rfc = new Rfc2898DeriveBytes(password, saltBytes);
             var hashBytes = rfc.GetBytes(20);
             var hashBase64 = Convert.ToBase64String(hashBytes);

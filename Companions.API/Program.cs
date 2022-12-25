@@ -64,6 +64,7 @@ builder.Services.AddDbContext<AppDbContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("Local")));
 
 builder.Services.AddTransient<IBuddyService, BuddyService>();
+builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddAutoMapper(typeof(MapperProfile));
 
 
