@@ -13,6 +13,7 @@ namespace Companions.Domain
 
         [Required]
         public User User { get; set; }
+        public string UserId { get; set; }
         public List<BuddyWeight> BuddyWeights { get; set; }
         public List<Activity> Activities { get; set; }
         public List<Appointment> Appointments { get; set; }

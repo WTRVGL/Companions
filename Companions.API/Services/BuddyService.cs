@@ -36,8 +36,22 @@ namespace Companions.API.Services
                 .Include(b => b.BuddyWeights)
                 .Include(b => b.Activities)
                     .ThenInclude(a => a.ActivityType)
-                .Include(b => b.)
+                .Include(b => b.FeedingSchedules)
                 .ToList();
+            return buddies;
+        }
+
+        public List<Buddy> GetAllBuddiesByUserId(string userId)
+        {
+            var buddies = _db.Buddies
+                .Where(b => b.UserId == userId)
+                .Include(b => b.BuddyWeights)
+                .Include(b => b.Activities)
+                    .ThenInclude(a => a.ActivityType)
+                .Include(b => b.FeedingSchedules)
+                .ToList();
+
+            if (buddies == null) return null;
             return buddies;
         }
 
