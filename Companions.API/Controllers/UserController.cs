@@ -26,7 +26,7 @@ namespace Companions.API.Controllers
         }
 
         [HttpGet("GetUserById/{id}")]
-        [SwaggerOperation("Retrieves a user by submitting a")]
+        [SwaggerOperation("Retrieves a user by submitting an Id")]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(UserDTO), Description = "Returns the user")]
         [SwaggerResponse(StatusCodes.Status400BadRequest, Description = "Incompatible request body")]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, Description = "Unauthorized")]
