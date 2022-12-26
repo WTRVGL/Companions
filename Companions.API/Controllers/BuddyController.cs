@@ -38,7 +38,7 @@ namespace Companions.API.Controllers
 
             //call db
             var buddy = _mapper.Map<BuddyDTO>(createBuddyDTO);
-            return new BuddyDTO();
+            return buddy;
         }
 
         // PUT api/<BuddyController>/5

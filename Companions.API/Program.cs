@@ -53,7 +53,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 
-string swaggerFileLinkAuthServiceURL = builder.Configuration.GetValue<string>("CompanionsAuthenticationServiceURL") + "/swagger/index.html#operations-tag-Token";
+string swaggerFileLinkAuthServiceURL = builder.Configuration.GetValue<string>("CompanionsAuthenticationServiceURL") + "/swagger/index.html";
+string swaggerFileLinkImageServiceURL = builder.Configuration.GetValue<string>("CompanionsImageServiceURL") + "/swagger/index.html";
 
 builder.Services.AddSwaggerGen(config =>
 {
@@ -71,14 +72,30 @@ builder.Services.AddSwaggerGen(config =>
                 $"</li>" +
                 $"<li>" +
                     $"<h3>" +
-                        $"Requires valid JWT Bearer:" +
+                        $"JWT token needs to be present in the Header as Authorization" +
                      $"</h3>" +
-                     $"<a href=\"{swaggerFileLinkAuthServiceURL}\">Authentication Service</a>" +
                 $"</li>" +
-             $"</ul>" 
+                $"<li>" +
+                    $"<h3>" +
+                        $"Companion Services:" +
+                     $"</h3>" +
+                     $"<ul>" +
+                       $"<li>" +
+                           $"<h3>" +
+                               $"<a href=\"{swaggerFileLinkAuthServiceURL}\">Authentication Service</a>" +
+                            $"</h3>" +
+                       $"</li>" +
+                       $"<li>" +
+                           $"<h3>" +
+                               $"<a href=\"{swaggerFileLinkImageServiceURL}\">Image Service</a>" +
+                            $"</h3>" +
+                       $"</li>" +
+                    $"</ul>" +
+                $"</li>" +
+            $"</ul>" 
     });
 
-    config.EnableAnnotations();
+config.EnableAnnotations();
 
     config.AddSecurityDefinition("bearer", new OpenApiSecurityScheme
     {
