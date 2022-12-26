@@ -93,7 +93,8 @@ namespace Companions.API
 
             _users = new List<User>()
             {
-                new User { FirstName = "Wouter", LastName = "Vangeel", UserName = "admin"}
+                new User { FirstName = "Wouter", LastName = "Vangeel", UserName = "admin", PasswordHash = "4jwzl+ml7TFb2tL7sDV5biYluCQ=", PasswordSalt = "EkhfFEzSfey9+jnp6jg=", Role = "admin" },
+                new User { FirstName = "Test", LastName = "Account", UserName = "test", PasswordHash = "NkMp2QoHDJG+yJ7tFm6zQW4TQoI=", PasswordSalt = "ClfbpELGxImZtX6nhXE=", Role = "admin" }
             };
 
 
@@ -142,6 +143,17 @@ namespace Companions.API
                     User = _users.First(u => u.UserName == "admin"),
                     DateOfBirth = DateTime.Parse("2018-09-14"),
                     Race = "Tabby",
+                    Gender = "Male",
+                    BuddyWeights = new List<BuddyWeight>(),
+                    ImageURL="https://i.imgur.com/Z0J26m6.png",
+                    Activities = new List<Activity>(),
+                    FeedingSchedules = _feedingSchedules.GetRange(4, 2)
+                },
+                new Buddy {
+                    Name = "Test Buddy",
+                    User = _users.First(u => u.UserName == "test"),
+                    DateOfBirth = DateTime.Parse("2018-09-14"),
+                    Race = "Awesome Colored Cat",
                     Gender = "Male",
                     BuddyWeights = new List<BuddyWeight>(),
                     ImageURL="https://i.imgur.com/Z0J26m6.png",

@@ -28,8 +28,18 @@ namespace Companions.AuthenticationService.Repositories
 
         public async Task<User> GetUserByUserName(string username)
         {
-            var user = await _httpClient.GetFromJsonAsync<User>($"api/User/GetUserByUserName/{username}");
-            return user;
+            try
+            {
+                var user = await _httpClient.GetFromJsonAsync<User>($"api/User/GetUserByUserName/{username}");
+                return user;
+            }
+
+            catch (HttpRequestException ex)
+            {
+                if (ex.StatusCode == System.Net.HttpStatusCode.NotFound) return null;
+                throw ex;
+            }
+            
         }
     }
 }

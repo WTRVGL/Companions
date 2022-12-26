@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Companions.API.DTOs;
 using Companions.API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Security.Claims;
@@ -10,7 +11,7 @@ using System.Security.Claims;
 namespace Companions.API.Controllers
 {
     [Route("api/[controller]")]
-    [SwaggerTag("JWT in HTTPOnly Cookie is required to turn the user's Buddiess")]
+    [SwaggerTag("Requires JWT")]
     [ApiController]
     public class BuddiesController : ControllerBase
     {
@@ -29,23 +30,21 @@ namespace Companions.API.Controllers
         }
 
         [HttpGet(nameof(GetAllBuddies))]
-        [SwaggerOperation("Returns all buddies associated with the current User (HTTP Only Cookie JWT Claim)")]
+        [SwaggerOperation("Returns all buddies associated with the current User")]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<BuddyDTO>), Description = "Returns list of buddies")]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, Description = "Unauthorized")]
+        [Authorize]
         public ActionResult<List<BuddyDTO>> GetAllBuddies()
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
-            string userId; 
-            userId = identity.FindFirst("id").Value;
-
-            if (identity == null) return Unauthorized("No user ID found");
+            string userId = identity.FindFirst("id").Value;
 
             IEnumerable<Claim> claims = identity.Claims;
 
             //Fetch buddies by userID when auth service supports
-            //var buddies = _buddyService.GetAllBuddiesByUserId(userId);
+            var buddies = _buddyService.GetAllBuddiesByUserId(userId);
 
-            var buddies = _buddyService.GetAllBuddies();
+           // var buddies = _buddyService.GetAllBuddies();
 
             if (buddies == null) return NotFound();
             var buddiesDTO = _mapper.Map<List<BuddyDTO>>(buddies);

@@ -24,11 +24,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 new SymmetricSecurityKey(Convert.FromBase64String(jwtConfig.Secret)),
             ValidateIssuerSigningKey = true
         };
+
         options.Events = new JwtBearerEvents
         {
             OnMessageReceived = context =>
             {
-                context.Token = context.Request.Cookies[jwtConfig.JWTHttpCookieName];
+                //context.Token = context.Request.Cookies[jwtConfig.JWTHttpCookieName];
+                //return Task.CompletedTask;
+                context.Token = context.Request.Headers.Authorization;
                 return Task.CompletedTask;
             }
         };
@@ -49,6 +52,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
+
+string swaggerFileLinkAuthServiceURL = builder.Configuration.GetValue<string>("CompanionsAuthenticationServiceURL") + "/swagger/index.html#operations-tag-Token";
+
 builder.Services.AddSwaggerGen(config =>
 {
     config.SwaggerDoc("v1", new OpenApiInfo
@@ -65,20 +71,21 @@ builder.Services.AddSwaggerGen(config =>
                 $"</li>" +
                 $"<li>" +
                     $"<h3>" +
-                        $"Requires Authentication Service to create a new User" +
+                        $"Requires valid JWT Bearer:" +
                      $"</h3>" +
+                     $"<a href=\"{swaggerFileLinkAuthServiceURL}\">Authentication Service</a>" +
                 $"</li>" +
              $"</ul>" 
     });
 
     config.EnableAnnotations();
 
-    config.AddSecurityDefinition("Cookie", new OpenApiSecurityScheme
+    config.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         In = ParameterLocation.Header,
         Description = $"Supply a valid JWT containing an \"id\" claim",
         Name = "Authorization",
-        Type = SecuritySchemeType.Http,
+        Type = SecuritySchemeType.ApiKey,
         BearerFormat = "JWT",
         Scheme = "Bearer",
 

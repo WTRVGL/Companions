@@ -1,5 +1,6 @@
 using Companions.ImageService;
 using Microsoft.OpenApi.Models;
+using System.Xml.Linq;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,8 +26,12 @@ builder.Services.AddSwaggerGen(config =>
 });
 builder.Services.AddSingleton<ICloudStorage, GoogleCloudStorage>();
 
-
 var app = builder.Build();
+
+//Check required configs
+var serviceKeyFileLocation = app.Configuration.GetValue<string>("GoogleServiceKey");
+if (!File.Exists(serviceKeyFileLocation)) throw new Exception("Google Service Key JSON missing");
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

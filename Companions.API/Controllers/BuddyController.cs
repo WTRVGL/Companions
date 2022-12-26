@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Companions.API.DTOs;
 using Companions.API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Security.Claims;
@@ -24,6 +25,7 @@ namespace Companions.API.Controllers
 
         // POST api/<BuddyController>
         [HttpPost]
+        [Authorize]
         public void Post([FromBody] string value)
         {
         }

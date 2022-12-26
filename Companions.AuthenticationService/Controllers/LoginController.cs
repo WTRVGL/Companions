@@ -55,16 +55,6 @@ namespace Companions.AuthenticationService.Controllers
                 SameSite = SameSiteMode.None
             });
 
-            Response.Cookies.Append("Id", $"{response.User.Id}", new CookieOptions()
-            {
-                Expires = DateTimeOffset.Now.AddHours(24),
-                Path = "/",
-                HttpOnly = false,
-                Secure = true,
-                SameSite = SameSiteMode.None
-            });
-
-
             return Ok(response.User);
         }
 
