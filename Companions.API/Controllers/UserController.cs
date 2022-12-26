@@ -28,6 +28,10 @@ namespace Companions.API.Controllers
         }
 
         [HttpGet("GetUserById/{id}")]
+        [SwaggerOperation("Retrieves a user by submitting an id")]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(UserDTO), Description = "Returns the user")]
+        [SwaggerResponse(StatusCodes.Status400BadRequest, Description = "Incompatible request body")]
+        [SwaggerResponse(StatusCodes.Status401Unauthorized, Description = "Unauthorized")]
         public ActionResult<UserDTO> GetUserById(string id)
         {
             var user = _userService.GetUserById(id);
@@ -36,6 +40,10 @@ namespace Companions.API.Controllers
         }
 
         [HttpGet("GetUserByUserName/{username}")]
+        [SwaggerOperation("Retrieves a user by submitting a username")]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(UserDTO), Description = "Returns the user")]
+        [SwaggerResponse(StatusCodes.Status400BadRequest, Description = "Incompatible request body")]
+        [SwaggerResponse(StatusCodes.Status401Unauthorized, Description = "Unauthorized")]
         public ActionResult<UserDTO> GetUserByUserName(string username)
         {
             var user = _userService.GetUserByUserName(username) as Domain.User; ;
@@ -60,18 +68,6 @@ namespace Companions.API.Controllers
             var user = await _userService.AddUser(createUser);
             var userDTO = _mapper.Map<UserDTO>(user);
             return userDTO;
-        }
-
-        // PUT api/<UserController>/5
-        [HttpPut("{id}")]
-        public void UpdateUser(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<UserController>/5
-        [HttpDelete("{id}")]
-        public void DeleteUser(int id)
-        {
         }
     }
 }

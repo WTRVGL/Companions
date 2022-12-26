@@ -26,6 +26,9 @@ namespace Companions.API.Controllers
 
         // POST api/<BuddyController>
         [HttpPost(nameof(CreateBuddy))]
+        [SwaggerOperation("Creates a barebones Buddy associated with the user")]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<BuddyDTO>), Description = "Returns a the newly created Buddy")]
+        [SwaggerResponse(StatusCodes.Status401Unauthorized, Description = "Unauthorized")]
         [Authorize]
         public ActionResult<BuddyDTO> CreateBuddy(CreateBuddyDTO createBuddyDTO)
         {
