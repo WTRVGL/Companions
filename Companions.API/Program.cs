@@ -29,6 +29,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         {
             OnMessageReceived = context =>
             {
+                //Extract Token from HTTPOnly Cookie
                 //context.Token = context.Request.Cookies[jwtConfig.JWTHttpCookieName];
                 //return Task.CompletedTask;
                 context.Token = context.Request.Headers.Authorization;
@@ -58,6 +59,7 @@ string swaggerFileLinkImageServiceURL = builder.Configuration.GetValue<string>("
 
 builder.Services.AddSwaggerGen(config =>
 {
+    //Swagger Service Documentation
     config.SwaggerDoc("v1", new OpenApiInfo
     {
         Title = "Companions REST Api",
@@ -95,8 +97,9 @@ builder.Services.AddSwaggerGen(config =>
             $"</ul>" 
     });
 
-config.EnableAnnotations();
+    config.EnableAnnotations();
 
+    //Swagger Bearer Auth Scheme
     config.AddSecurityDefinition("bearer", new OpenApiSecurityScheme
     {
         In = ParameterLocation.Header,
