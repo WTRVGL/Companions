@@ -80,14 +80,14 @@ builder.Services.AddSwaggerGen(config =>
 
     config.EnableAnnotations();
 
-    config.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    config.AddSecurityDefinition("bearer", new OpenApiSecurityScheme
     {
         In = ParameterLocation.Header,
         Description = $"Supply a valid JWT containing an \"id\" claim",
         Name = "Authorization",
         Type = SecuritySchemeType.ApiKey,
         BearerFormat = "JWT",
-        Scheme = "Bearer",
+        Scheme = "bearer",
 
     });
     config.AddSecurityRequirement(new OpenApiSecurityRequirement
@@ -98,7 +98,7 @@ builder.Services.AddSwaggerGen(config =>
                 Reference = new OpenApiReference
                 {
                     Type=ReferenceType.SecurityScheme,
-                    Id="Bearer"
+                    Id="bearer"
                 }
             },
             new string[]{}
