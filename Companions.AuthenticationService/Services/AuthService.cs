@@ -17,9 +17,13 @@ namespace Companions.AuthenticationService.Services
         }
 
         /// <summary>
-        /// Authenticates the user 
+        /// Calls external Companions REST API to retrieve a user and checks if credentials match.
         /// </summary>
-        /// <returns>null if user does not exist. Empty AuthenticationResul</returns>
+        /// <returns>
+        /// null if user does not exist. 
+        /// AuthStatus "Not Authenticated" if user is not authenticated.
+        /// AuthStatus "Authenticated" if user is authenticated.
+        /// </returns>
         public async Task<AuthenticateResponse> AuthenticateUser(AuthenticateRequest model)
         {
             var user = await _userRepository.GetUserByUserName(model.Username);
@@ -41,6 +45,7 @@ namespace Companions.AuthenticationService.Services
             return new AuthenticateResponse(user, authResult, "Authenticated");
 
         }
+
 
     }
 }
