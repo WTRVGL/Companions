@@ -16,7 +16,7 @@ namespace Companions.API.DTOs
         public DateTime DateOfBirth { get; set; }
         public string ImageURL { get; set; }
         public int Weight { get; set; }
-        public UserDTO User { get; set; }
+        public string UserId { get; set; }
         public List<ActivityDTO> Activities { get; set; }
         public List<FeedingScheduleDTO> FeedingSchedules { get; set; }
         public List<BuddyWeightDTO> BuddyWeights { get; set; }

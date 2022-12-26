@@ -22,6 +22,7 @@ namespace Companions.API.Mapper
             CreateMap<User, UserDTO>();
 
             CreateMap<Domain.User, UserDTO>();
+            CreateMap<CreateBuddyDTO, BuddyDTO>();
         }
     }
 }

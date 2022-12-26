@@ -11,6 +11,7 @@ using System.Security.Claims;
 namespace Companions.API.Controllers
 {
     [Route("api/[controller]")]
+    [SwaggerTag("Requires JWT")]
     [ApiController]
     public class BuddyController : ControllerBase
     {
@@ -24,10 +25,17 @@ namespace Companions.API.Controllers
         }
 
         // POST api/<BuddyController>
-        [HttpPost]
+        [HttpPost(nameof(CreateBuddy))]
         [Authorize]
-        public void Post([FromBody] string value)
+        public ActionResult<BuddyDTO> CreateBuddy(CreateBuddyDTO createBuddyDTO)
         {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            string userId = identity.FindFirst("id").Value;
+            createBuddyDTO.UserId = userId;
+
+            //call db
+            var buddy = _mapper.Map<BuddyDTO>(createBuddyDTO);
+            return new BuddyDTO();
         }
 
         // PUT api/<BuddyController>/5
