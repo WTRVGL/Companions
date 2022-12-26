@@ -10,19 +10,24 @@ using System.Security.Claims;
 namespace Companions.API.Controllers
 {
     [Route("api/[controller]")]
+    [SwaggerTag("JWT in HTTPOnly Cookie is required to turn the user's Buddiess")]
     [ApiController]
     public class BuddiesController : ControllerBase
     {
         private readonly IBuddyService _buddyService;
         private readonly IMapper _mapper;
 
+        /// <summary>
+        /// yo
+        /// </summary>
+        /// <param name="buddyService"></param>
+        /// <param name="mapper"></param>
         public BuddiesController(IBuddyService buddyService, IMapper mapper)
         {
             _buddyService = buddyService;
             _mapper = mapper;
         }
 
-        // GET: api/<BuddyController>
         [HttpGet(nameof(GetAllBuddies))]
         [SwaggerOperation("Returns all buddies associated with the current User (HTTP Only Cookie JWT Claim)")]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<BuddyDTO>), Description = "Returns list of buddies")]
@@ -30,12 +35,12 @@ namespace Companions.API.Controllers
         public ActionResult<List<BuddyDTO>> GetAllBuddies()
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
-            string userId;
+            string userId; 
+            userId = identity.FindFirst("id").Value;
 
             if (identity == null) return Unauthorized("No user ID found");
 
             IEnumerable<Claim> claims = identity.Claims;
-            userId = identity.FindFirst("id").Value;
 
             //Fetch buddies by userID when auth service supports
             //var buddies = _buddyService.GetAllBuddiesByUserId(userId);
@@ -47,22 +52,5 @@ namespace Companions.API.Controllers
             return buddiesDTO;
         }
 
-        // POST api/<BuddyController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<BuddyController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<BuddyController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }

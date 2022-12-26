@@ -54,7 +54,21 @@ builder.Services.AddSwaggerGen(config =>
     config.SwaggerDoc("v1", new OpenApiInfo
     {
         Title = "Companions REST Api",
-        Version = "v1"
+        Version = "v1",
+        Description =
+            $"<h2>Main API to peform Database calls</h2>" +
+            $"<ul>" +
+                $"<li>" +
+                    $"<h3>" +
+                        $"Requires live Db connection" +
+                     $"</h3>" +
+                $"</li>" +
+                $"<li>" +
+                    $"<h3>" +
+                        $"Requires Authentication Service to create a new User" +
+                     $"</h3>" +
+                $"</li>" +
+             $"</ul>" 
     });
 
     config.EnableAnnotations();

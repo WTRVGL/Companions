@@ -44,7 +44,8 @@ namespace Companions.API.Services
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 PasswordHash = hashKeys.Hash,
-                PasswordSalt = hashKeys.Salt
+                PasswordSalt = hashKeys.Salt,
+                Role = user.Role
             };
 
             _db.Users.Add(newUser);

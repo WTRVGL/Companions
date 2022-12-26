@@ -15,7 +15,22 @@ builder.Services.AddSwaggerGen(config =>
     config.SwaggerDoc("v1", new OpenApiInfo
     {
         Title = "Authentication Service",
-        Version = "v1"
+        Version = "v1",
+        Description =
+            $"<h2>Companions JWT Authentication Service</h2>" +
+            $"<ul>" +
+                $"<li>" +
+                    $"<h3>" +
+                        $"Requires Companions REST API to make User requests" +
+                     $"</h3>" +
+                $"</li>" +
+                $"<li>" +
+                    $"<h3>" +
+                        $"Uses HTTPOnly Cookie for JWT bearer" +
+                     $"</h3>" +
+                $"</li>" +
+             $"</ul>" 
+
     });
 
     config.EnableAnnotations();

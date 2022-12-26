@@ -27,15 +27,6 @@ namespace Companions.API.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<string>> Test()
-        {
-            var req = new HashRequest { Password = "yo" };
-            var response = await _httpClient.PostAsJsonAsync<HashRequest>("/api/Hash/GenerateHashKeys", req);
-            return Ok(await response.Content.ReadAsStringAsync());
-        }
-
-
         [HttpGet("GetUserById/{id}")]
         public ActionResult<UserDTO> GetUserById(string id)
         {
