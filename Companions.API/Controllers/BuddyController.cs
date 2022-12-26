@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Companions.API.DTOs;
 using Companions.API.Services;
+using Companions.Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -27,7 +28,7 @@ namespace Companions.API.Controllers
         // POST api/<BuddyController>
         [HttpPost(nameof(CreateBuddy))]
         [SwaggerOperation("Creates a barebones Buddy associated with the user")]
-        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<BuddyDTO>), Description = "Returns a the newly created Buddy")]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(BuddyDTO), Description = "Returns a the newly created Buddy")]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, Description = "Unauthorized")]
         [Authorize]
         public ActionResult<BuddyDTO> CreateBuddy(CreateBuddyDTO createBuddyDTO)
@@ -36,21 +37,35 @@ namespace Companions.API.Controllers
             string userId = identity.FindFirst("id").Value;
             createBuddyDTO.UserId = userId;
 
-            //call db
-            var buddy = _mapper.Map<BuddyDTO>(createBuddyDTO);
-            return buddy;
+            //Map from DTO to Domain model
+            var buddy = _mapper.Map<Buddy>(createBuddyDTO);
+            var createdBuddy = _buddyService.AddBuddy(buddy);
+            //Map from Domain model to return DTO model
+            var createdBuddyDTO = _mapper.Map<BuddyDTO>(createdBuddy);
+            return createdBuddyDTO;
         }
 
-        // PUT api/<BuddyController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut(nameof(UpdateBuddy))]
+        [SwaggerOperation("Update an exiting Buddy")]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(BuddyDTO), Description = "Returns the updated Buddy")]
+        [SwaggerResponse(StatusCodes.Status401Unauthorized, Description = "Unauthorized")]
+        [SwaggerResponse(StatusCodes.Status404NotFound, Description = "Buddy does not exist")]
+        [Authorize]
+        public ActionResult<BuddyDTO> UpdateBuddy([FromBody] BuddyDTO buddyDTO)
         {
+            return new BuddyDTO();
         }
 
-        // DELETE api/<BuddyController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+ 
+        [HttpDelete(nameof(DeleteBuddy))]
+        [SwaggerOperation("Deletes a Buddy")]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(bool), Description = "Delete a Buddy")]
+        [SwaggerResponse(StatusCodes.Status401Unauthorized, Description = "Unauthorized")]
+        [SwaggerResponse(StatusCodes.Status404NotFound, Description = "Buddy does not exist")]
+        [Authorize]
+        public ActionResult<bool> DeleteBuddy(string id)
         {
+            return true;
         }
     }
 }

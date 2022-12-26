@@ -6,8 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Net.Http;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace Companions.API.Controllers
 {
     [Route("api/[controller]")]
@@ -28,7 +26,7 @@ namespace Companions.API.Controllers
         }
 
         [HttpGet("GetUserById/{id}")]
-        [SwaggerOperation("Retrieves a user by submitting an id")]
+        [SwaggerOperation("Retrieves a user by submitting a")]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(UserDTO), Description = "Returns the user")]
         [SwaggerResponse(StatusCodes.Status400BadRequest, Description = "Incompatible request body")]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, Description = "Unauthorized")]

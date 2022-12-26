@@ -8,10 +8,7 @@ namespace Companions.Domain
         public string ImageURL { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Gender { get; set; }
-        [Required]
         public string Race { get; set; }
-
-        [Required]
         public User User { get; set; }
         public string UserId { get; set; }
         public List<BuddyWeight> BuddyWeights { get; set; }

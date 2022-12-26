@@ -30,6 +30,12 @@ namespace Companions.API.Services
             return user;
         }
 
+        /// <summary>
+        /// Adds a new user in the database with a default "user" role. Password hash pairs are generated from an external Companions Authentication Service. 
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns>The created user</returns>
+        /// <exception cref="Exception"></exception>
         public async Task<User> AddUser(CreateUser user)
         {
             var hashRequest = new HashRequest { Password = user.Password };
@@ -45,7 +51,7 @@ namespace Companions.API.Services
                 LastName = user.LastName,
                 PasswordHash = hashKeys.Hash,
                 PasswordSalt = hashKeys.Salt,
-                Role = user.Role
+                Role = "user"
             };
 
             _db.Users.Add(newUser);
