@@ -17,8 +17,9 @@ namespace Companions.API
             List<Buddy> _buddies;
             List<Activity> _activities;
             List<FeedingSchedule> _feedingSchedules;
+            List<Appointment> _appointments;
             List<User> _users;
-
+            List<Place> _places;
 
             if (context.Users.Any())
             {
@@ -169,11 +170,62 @@ namespace Companions.API
             _buddies.First(b => b.Name == "Ori").Activities.AddRange(_activities.GetRange(0, _activities.Count));
 
             _buddies.First(b => b.Name == "Robot").Activities.AddRange(_activities.Where(x => x.ActivityType.Name == "Feeding").ToList());
-            
-            
+
+
             context.Buddies.AddRange(_buddies);
             context.SaveChanges();
 
+
+            _places = new List<Place>
+            {
+                new Place { Name = "DAC Prinsenhof", Address = "Nieuwstraat 143, 3511 Hasselt", Latitude = 50.956659, Longitude = 5.328609, Description = "Dierenarts"},
+                new Place { Name = "Ine's Trimpaleis", Address = "Nieuwstraat 51, 3520 Zonhoven", Latitude = 51.000720, Longitude = 5.339853, Description = "Kapper"}
+            };
+
+            context.Places.AddRange(_places);
+            context.SaveChanges();
+
+            _appointments = new List<Appointment>()
+            {
+                new Appointment {
+                    Buddy =  _buddies.FirstOrDefault(b => b.Name == "Ori"),
+                    AppointmentName = "CPV Vaccinatie",
+                    AppointmentDate = new DateTime(2022,12,24,10,10,00),
+                    Description = "Tweede herhalingsprik voor CPV. Nog één vaccinatiemoment vereist tot volledige immunisatie. Standaard checkup wordt ook uitgevoerd en voedingsschema wordt nagekeken. Gewichtsverlies zal gecheckt worden.",
+                    Place = _places[0]
+                },
+                new Appointment {
+                    AppointmentName = "Jaarlijkse checkup",
+                    Buddy = _buddies.FirstOrDefault(b => b.Name == "Bassie"),
+                    Description = "Routine checkup ter controle gewicht en voedings.",
+                    AppointmentDate = new DateTime(2022,12,24,10,10,00),
+                    Place = _places[0]
+                },
+                new Appointment {
+                    AppointmentName = "Gewone afspraak",
+                    Buddy = _buddies.FirstOrDefault(b => b.Name == "Ori"),
+                    Description = "Routine checkup ter controle gewicht en voedings.",
+                    AppointmentDate = new DateTime(2023,02,03,10,10,00),
+                    Place = _places[0]
+                },
+                new Appointment {
+                    AppointmentName = "Halfjaarlijkse checkup",
+                    Buddy = _buddies.FirstOrDefault(b => b.Name == "Robot"),
+                    Description = "Routine checkup ter controle gewicht en voedings.",
+                    AppointmentDate = new DateTime(2023,02,03,10,10,00),
+                    Place = _places[0]
+                },
+                new Appointment {
+                    AppointmentName = "Kappersbezoek",
+                    Buddy = _buddies.FirstOrDefault(b => b.Name == "Ori"),
+                    Description = "Gewone kappersbezoek",
+                    AppointmentDate = new DateTime(2023,01,04,10,10,00),
+                    Place = _places[1]
+                },
+            };
+
+            context.Appointments.AddRange(_appointments);
+            context.SaveChanges();
 
 
 

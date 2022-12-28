@@ -22,21 +22,6 @@ namespace Companions.API.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("AppointmentBuddy", b =>
-                {
-                    b.Property<string>("AppointmentsId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("BuddiesId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("AppointmentsId", "BuddiesId");
-
-                    b.HasIndex("BuddiesId");
-
-                    b.ToTable("AppointmentBuddy");
-                });
-
             modelBuilder.Entity("Companions.Domain.Activity", b =>
                 {
                     b.Property<string>("Id")
@@ -82,16 +67,32 @@ namespace Companions.API.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<DateTime>("AppoinmentDueDate")
+                    b.Property<DateTime>("AppointmentDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("AppointmentName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("AppointmentTypeId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("BuddyId")
                         .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PlaceId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AppointmentTypeId");
+
+                    b.HasIndex("BuddyId");
+
+                    b.HasIndex("PlaceId");
 
                     b.ToTable("Appointments");
                 });
@@ -226,6 +227,31 @@ namespace Companions.API.Migrations
                     b.ToTable("FeedingSchedules");
                 });
 
+            modelBuilder.Entity("Companions.Domain.Place", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Latitude")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Longitude")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Places");
+                });
+
             modelBuilder.Entity("Companions.Domain.Species", b =>
                 {
                     b.Property<string>("Id")
@@ -301,21 +327,6 @@ namespace Companions.API.Migrations
                     b.ToTable("Vaccinations");
                 });
 
-            modelBuilder.Entity("AppointmentBuddy", b =>
-                {
-                    b.HasOne("Companions.Domain.Appointment", null)
-                        .WithMany()
-                        .HasForeignKey("AppointmentsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Companions.Domain.Buddy", null)
-                        .WithMany()
-                        .HasForeignKey("BuddiesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Companions.Domain.Activity", b =>
                 {
                     b.HasOne("Companions.Domain.ActivityType", "ActivityType")
@@ -337,11 +348,23 @@ namespace Companions.API.Migrations
                 {
                     b.HasOne("Companions.Domain.AppointmentType", "AppointmentType")
                         .WithMany("Appointments")
-                        .HasForeignKey("AppointmentTypeId")
+                        .HasForeignKey("AppointmentTypeId");
+
+                    b.HasOne("Companions.Domain.Buddy", "Buddy")
+                        .WithMany("Appointments")
+                        .HasForeignKey("BuddyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Companions.Domain.Place", "Place")
+                        .WithMany()
+                        .HasForeignKey("PlaceId");
+
                     b.Navigation("AppointmentType");
+
+                    b.Navigation("Buddy");
+
+                    b.Navigation("Place");
                 });
 
             modelBuilder.Entity("Companions.Domain.Buddy", b =>
@@ -414,6 +437,8 @@ namespace Companions.API.Migrations
             modelBuilder.Entity("Companions.Domain.Buddy", b =>
                 {
                     b.Navigation("Activities");
+
+                    b.Navigation("Appointments");
 
                     b.Navigation("BuddyWeights");
 

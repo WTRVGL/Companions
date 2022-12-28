@@ -11,6 +11,7 @@ using System.Security.Claims;
 namespace Companions.API.Controllers
 {
     [Route("api/[controller]")]
+    [SwaggerTag("Requires JWT")]
     [ApiController]
     public class AppointmentsController : ControllerBase
     {
@@ -35,8 +36,13 @@ namespace Companions.API.Controllers
 
             var appointments = _appointmentService.GetAllAppointmentsByUserId(userId);
 
-
-            return appointments;
+            var appointmentsDTO = new List<AppointmentDTO>();
+            appointments.ForEach(a =>
+            {
+                var appointmentDTO = _mapper.Map<AppointmentDTO>(a);
+                appointmentsDTO.Add(appointmentDTO);
+            });
+            return appointmentsDTO;
         }
     }
 }

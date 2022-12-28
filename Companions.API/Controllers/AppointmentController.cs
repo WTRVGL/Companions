@@ -2,10 +2,12 @@
 using Companions.API.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace Companions.API.Controllers
 {
     [Route("api/[controller]")]
+    [SwaggerTag("Requires JWT")]
     [ApiController]
     public class AppointmentController : ControllerBase
     {

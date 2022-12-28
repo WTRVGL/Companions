@@ -46,6 +46,8 @@ namespace Companions.API.Services
             var buddies = _db.Buddies
                 .Where(b => b.UserId == userId)
                 .Include(b => b.BuddyWeights)
+                .Include(b => b.Appointments)
+                    .ThenInclude(a => a.Place)
                 .Include(b => b.Activities)
                     .ThenInclude(a => a.ActivityType)
                 .Include(b => b.FeedingSchedules)

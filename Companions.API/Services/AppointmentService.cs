@@ -49,6 +49,7 @@ namespace Companions.API.Services
             //For each buddy
             for (int i = 0; i < buddiesByUser.Count; i++)
             {
+                if (buddiesByUser[i].Appointments == null) continue;
                 //For each appointment
                 buddiesByUser[i].Appointments.ForEach(a =>
                 {

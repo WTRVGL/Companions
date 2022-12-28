@@ -4,11 +4,15 @@ namespace Companions.Domain
 {
     public class Appointment : Entity
     {
-        public DateTime AppoinmentDueDate { get; set; }
+        public string AppointmentName { get; set; }
+        public DateTime AppointmentDate { get; set; }
+        public string Description { get; set; }
         [Required]
         public Buddy Buddy { get; set; }
-
-        [Required]
+        public string BuddyId { get; set; }
+        public Place Place { get; set; }
+        public string PlaceId { get; set; }
         public AppointmentType AppointmentType { get; set; }
+        public string AppointmentTypeId { get; set; }
     }
 }
