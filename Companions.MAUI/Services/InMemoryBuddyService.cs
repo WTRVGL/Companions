@@ -107,10 +107,10 @@ namespace Companions.MAUI.Services
             #endregion
         }
 
-        public Buddy AddBuddy(Buddy buddy)
+        public Task<Buddy> AddBuddy(Buddy buddy)
         {
             _buddies.Add(buddy);
-            return buddy;
+            return Task.FromResult(buddy);
         }
 
 
@@ -138,6 +138,16 @@ namespace Companions.MAUI.Services
         public Task<ObservableCollection<Buddy>> GetBuddies()
         {
             return Task.FromResult(_buddies.OrderBy(b => b.Id).ToObservableCollection());
+        }
+
+        public Task<Buddy> GetBuddyById(string id)
+        {
+            return Task.FromResult(_buddies.FirstOrDefault(b => b.Id == id));
+        }
+
+        public Task<Buddy> GetBuddyById(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

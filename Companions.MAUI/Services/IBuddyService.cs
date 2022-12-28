@@ -10,7 +10,7 @@ namespace Companions.MAUI.Services
 {
     public interface IBuddyService
     {
-        Task<Buddy> GetBuddyById(int id);
+        Task<Buddy> GetBuddyById(string id);
         Task<ObservableCollection<Buddy>> GetBuddies();
         Task<Buddy> AddBuddy(Buddy buddy);
         Buddy UpdateBuddy(Buddy buddy);

@@ -4,6 +4,7 @@ namespace Companions.Domain
 {
     public class FeedingSchedule : Entity
     {
+        public string BuddyId { get; set; }
         [Required]
         public FeedProduct FeedProduct { get; set; }
 

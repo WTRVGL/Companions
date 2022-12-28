@@ -6,7 +6,7 @@ namespace Companions.Domain
     {
         public DateTime AppoinmentDueDate { get; set; }
         [Required]
-        public List<Buddy> Buddies { get; set; }
+        public Buddy Buddy { get; set; }
 
         [Required]
         public AppointmentType AppointmentType { get; set; }

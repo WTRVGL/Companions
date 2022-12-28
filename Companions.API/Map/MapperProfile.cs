@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Companions.API.DTOs;
+using Companions.API.DTOs.Appointment;
 using Companions.Domain;
 
 namespace Companions.API.Mapper

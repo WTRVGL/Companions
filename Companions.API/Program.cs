@@ -94,7 +94,7 @@ builder.Services.AddSwaggerGen(config =>
                        $"</li>" +
                     $"</ul>" +
                 $"</li>" +
-            $"</ul>" 
+            $"</ul>"
     });
 
     config.EnableAnnotations();
@@ -131,6 +131,8 @@ builder.Services.AddDbContext<AppDbContext>(
 
 builder.Services.AddTransient<IBuddyService, BuddyService>();
 builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IAppointmentService, AppointmentService>();
+
 builder.Services.AddAutoMapper(typeof(MapperProfile));
 
 

@@ -8,6 +8,5 @@
         public int CurrentAge { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string ImageURL { get; set; }
-        public string UserId { get; set; }
     }
 }
