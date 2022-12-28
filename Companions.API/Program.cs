@@ -132,6 +132,7 @@ builder.Services.AddDbContext<AppDbContext>(
 builder.Services.AddTransient<IBuddyService, BuddyService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IAppointmentService, AppointmentService>();
+builder.Services.AddTransient<IPlaceService, PlaceService>();
 
 builder.Services.AddAutoMapper(typeof(MapperProfile));
 

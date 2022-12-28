@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Companions.API.DTOs;
+using Companions.API.DTOs.Buddy;
 using Companions.API.Services;
 using Companions.Domain;
 using Microsoft.AspNetCore.Authorization;

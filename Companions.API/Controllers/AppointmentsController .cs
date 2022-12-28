@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Companions.API.DTOs;
 using Companions.API.DTOs.Appointment;
+using Companions.API.DTOs.Buddy;
 using Companions.API.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -26,7 +26,7 @@ namespace Companions.API.Controllers
 
         [HttpGet]
         [SwaggerOperation("Returns the Appointments from every Buddies associated with the user")]
-        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<BuddyDTO>), Description = "Returns a list of Appointments")]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<AppointmentDTO>), Description = "Returns a list of Appointments")]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, Description = "Unauthorized")]
         [Authorize]
         public ActionResult<List<AppointmentDTO>> GetAppointmentsFromUsersBuddies()
