@@ -26,7 +26,7 @@ namespace Companions.API.Controllers
         }
 
         // POST api/<BuddyController>
-        [HttpPost(nameof(CreateBuddy))]
+        [HttpPost]
         [SwaggerOperation("Creates a barebones Buddy associated with the user")]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(BuddyDTO), Description = "Returns a the newly created Buddy")]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, Description = "Unauthorized")]
@@ -35,29 +35,31 @@ namespace Companions.API.Controllers
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
             string userId = identity.FindFirst("id").Value;
-            createBuddyDTO.UserId = userId;
 
             //Map from DTO to Domain model
             var buddy = _mapper.Map<Buddy>(createBuddyDTO);
+
+            buddy.UserId = userId;
+
             var createdBuddy = _buddyService.AddBuddy(buddy);
             //Map from Domain model to return DTO model
             var createdBuddyDTO = _mapper.Map<BuddyDTO>(createdBuddy);
             return createdBuddyDTO;
         }
 
-        [HttpPut(nameof(UpdateBuddy))]
+        [HttpPut("{id}")]
         [SwaggerOperation("Update an exiting Buddy")]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(BuddyDTO), Description = "Returns the updated Buddy")]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, Description = "Unauthorized")]
         [SwaggerResponse(StatusCodes.Status404NotFound, Description = "Buddy does not exist")]
         [Authorize]
-        public ActionResult<BuddyDTO> UpdateBuddy([FromBody] BuddyDTO buddyDTO)
+        public ActionResult<BuddyDTO> UpdateBuddy(BuddyDTO buddyDTO, string id)
         {
             return new BuddyDTO();
         }
 
- 
-        [HttpDelete(nameof(DeleteBuddy))]
+
+        [HttpDelete("{id}")]
         [SwaggerOperation("Deletes a Buddy")]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(bool), Description = "Delete a Buddy")]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, Description = "Unauthorized")]
