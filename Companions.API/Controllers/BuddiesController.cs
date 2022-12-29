@@ -18,18 +18,13 @@ namespace Companions.API.Controllers
         private readonly IBuddyService _buddyService;
         private readonly IMapper _mapper;
 
-        /// <summary>
-        /// yo
-        /// </summary>
-        /// <param name="buddyService"></param>
-        /// <param name="mapper"></param>
         public BuddiesController(IBuddyService buddyService, IMapper mapper)
         {
             _buddyService = buddyService;
             _mapper = mapper;
         }
 
-        [HttpGet(nameof(GetAllBuddies))]
+        [HttpGet]
         [SwaggerOperation("Returns all buddies associated with the current User")]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<BuddyDTO>), Description = "Returns list of buddies")]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, Description = "Unauthorized")]
