@@ -107,9 +107,9 @@ namespace Companions.MAUI.Services
             return true;
         }
 
-        public ObservableCollection<Appointment> GetAppointments()
+        public Task<ObservableCollection<Appointment>> GetAppointments()
         {
-            return _appointments.OrderBy(a => a.AppointmentDate).ToObservableCollection();
+            return Task.FromResult(_appointments.OrderBy(a => a.AppointmentDate).ToObservableCollection());
         }
 
         public ObservableCollection<SchedulerAppointment> GetSchedulerAppointments()

@@ -11,7 +11,7 @@ namespace Companions.MAUI.Services
 {
     public interface IAppointmentService
     {
-        ObservableCollection<Appointment> GetAppointments();
+        Task<ObservableCollection<Appointment>> GetAppointments();
         ObservableCollection<SchedulerAppointment> GetSchedulerAppointments();
         Appointment UpdateAppointment(Appointment appointment);
         Appointment AddAppointment(Appointment appointment);

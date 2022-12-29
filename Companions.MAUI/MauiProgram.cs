@@ -61,7 +61,7 @@ namespace Companions.MAUI
 
 
 
-#region View Services
+            #region View Services
             builder.Services.AddSingleton<StartPage>();
             builder.Services.AddSingleton<LoginPage>();
             builder.Services.AddSingleton<SignUpPage>();
@@ -74,9 +74,9 @@ namespace Companions.MAUI
             builder.Services.AddTransient<AppointmentDetailPage>();
             builder.Services.AddTransient<EditAppointmentPage>();
             builder.Services.AddTransient<EditBuddyPage>();
-#endregion
+            #endregion
 
-#region ViewModel Services
+            #region ViewModel Services
             builder.Services.AddSingleton<StartPageViewModel>();
             builder.Services.AddSingleton<LoginPageViewModel>();
             builder.Services.AddSingleton<SignUpPageViewModel>();
@@ -90,10 +90,10 @@ namespace Companions.MAUI
             builder.Services.AddTransient<EditAppointmentPageViewModel>();
             builder.Services.AddTransient<EditBuddyPageViewModel>();
 
-            builder.Services.AddSingleton<IBuddyService, BuddyService>();
-            builder.Services.AddSingleton<IAppointmentService, InMemoryAppointmentService>();
+            #endregion
 
-#endregion
+            builder.Services.AddSingleton<IBuddyService, InMemoryBuddyService>();
+            builder.Services.AddSingleton<IAppointmentService, InMemoryAppointmentService>();
 
             builder.ConfigureSyncfusionListView();
 

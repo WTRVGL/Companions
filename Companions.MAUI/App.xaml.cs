@@ -1,4 +1,4 @@
-﻿using Companions.MAUI.Models.App;
+﻿using Companions.MAUI.Models;
 using Microsoft.Extensions.Configuration;
 
 namespace Companions.MAUI
@@ -11,6 +11,11 @@ namespace Companions.MAUI
             InitializeComponent();
             MainPage = new LoginShell();
             //MainPage = new MainShell();
+        }
+
+        protected async override void OnStart()
+        {
+            base.OnStart();
         }
     }
 }

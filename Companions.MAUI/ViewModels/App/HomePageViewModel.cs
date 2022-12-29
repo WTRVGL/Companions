@@ -21,7 +21,7 @@ namespace Companions.MAUI.ViewModels.App
     public partial class HomePageViewModel : BaseViewModel
     {
         private readonly IBuddyService _buddyService;
-        private readonly IAppointmentService _appointmentService; 
+        private readonly IAppointmentService _appointmentService;
 
         private readonly IConfiguration _config;
 
@@ -44,7 +44,7 @@ namespace Companions.MAUI.ViewModels.App
         [RelayCommand]
         async void Refresh()
         {
-            await Shell.Current.GoToAsync(nameof(HomePage),false);
+            await Shell.Current.GoToAsync(nameof(HomePage), false);
             var previousPage = Application.Current.MainPage.Navigation.NavigationStack.LastOrDefault();
             Application.Current.MainPage.Navigation.RemovePage(previousPage);
             IsRefreshing = false;
@@ -76,7 +76,7 @@ namespace Companions.MAUI.ViewModels.App
         async void PageAppearing()
         {
             Buddies = await _buddyService.GetBuddies();
-            Appointments = _appointmentService.GetAppointments();
+            Appointments = await _appointmentService.GetAppointments();
         }
 
     }

@@ -24,14 +24,14 @@ namespace Companions.MAUI.Services
             _apiBaseURL = config.GetValue<string>("CompanionsAPIBaseURL");
         }
 
-        public async Task<Buddy> GetBuddyById(int id)
+        public async Task<Buddy> GetBuddyById(string id)
         {
             var res = await _httpClient.GetAsync(_apiBaseURL);
             var buddy = res.Content.ReadFromJsonAsync<Buddy>();
 
             // //
             return new Buddy();
-        
+
         }
 
         public async Task<Buddy> AddBuddy(Buddy buddy)
@@ -50,12 +50,12 @@ namespace Companions.MAUI.Services
 
         public async Task<ObservableCollection<Buddy>> GetBuddies()
         {
-            var res = await _httpClient.GetAsync($"{_apiBaseURL}/api/buddy");
+            var res = await _httpClient.GetAsync($"{_apiBaseURL}/api/Buddies");
             var buddies = await res.Content.ReadFromJsonAsync<List<Buddy>>();
             return buddies.ToObservableCollection();
         }
 
-        
+
 
         public Buddy UpdateBuddy(Buddy buddy)
         {
