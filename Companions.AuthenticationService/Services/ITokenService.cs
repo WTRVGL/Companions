@@ -11,7 +11,7 @@ namespace Companions.AuthenticationService.Services
     {
         string GetJwtSecurityToken(User user);
         JwtSecurityToken DecodeJwtSecurityToken(string token);
-        int ExtractIdFromJwtSecurityToken(JwtSecurityToken securityToken);
+        string ExtractIdFromJwtSecurityToken(JwtSecurityToken securityToken);
 
     }
 }

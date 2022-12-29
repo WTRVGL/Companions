@@ -1,4 +1,4 @@
-﻿namespace Companions.Api.Models
+﻿namespace Companions.API.Models
 {
     public class JWTConfiguration
     {

@@ -1,7 +1,7 @@
 ﻿using Companions.Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace Companions.Api
+namespace Companions.API
 {
     public class AppDbContext : DbContext
     {
@@ -11,7 +11,13 @@ namespace Companions.Api
         {
         }
 
-        public DbSet<Account> Accounts { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
+
+
+        public DbSet<User> Users { get; set; }
         public DbSet<Activity> Activities { get; set; }
         public DbSet<ActivityType> ActivityTypes { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
@@ -23,5 +29,6 @@ namespace Companions.Api
         public DbSet<FeedProduct> FeedProducts { get; set; }
         public DbSet<Species> Species { get; set; }
         public DbSet<Vaccination> Vaccinations { get; set; }
+        public DbSet<Place> Places { get; set; }
     }
 }

@@ -18,11 +18,12 @@ namespace Companions.MAUI.Services
         public InMemoryAppointmentService(IBuddyService buddyService)
         {
             _buddyService = buddyService;
+            var buddies = Task.Run(_buddyService.GetBuddies).Result;
             _appointments = new ObservableCollection<Appointment>()
             {
                 new Appointment {
                     Id = "1",
-                    Buddy = _buddyService.GetBuddies().FirstOrDefault(b => b.Name == "Ori"),
+                    Buddy =  buddies.FirstOrDefault(b => b.Name == "Ori"),
                     AppointmentName = "CPV Vaccinatie",
                     AppointmentDate = new DateTime(2022,12,24,10,10,00),
                     AppointmentTime = new DateTime(2022,12,24,15,45,00),
@@ -37,7 +38,7 @@ namespace Companions.MAUI.Services
                 new Appointment {
                     Id = "2",
                     AppointmentName = "Jaarlijkse checkup",
-                    Buddy = _buddyService.GetBuddies().FirstOrDefault(b => b.Name == "Bassie"),
+                    Buddy = buddies.FirstOrDefault(b => b.Name == "Bassie"),
                     Description = "Routine checkup ter controle gewicht en voedings.",
                     AppointmentDate = new DateTime(2022,12,24,10,10,00),
                     AppointmentTime = new DateTime(2022,12,24,15,30,00),
@@ -51,7 +52,7 @@ namespace Companions.MAUI.Services
                 new Appointment {
                     Id = "3",
                     AppointmentName = "Gewone afspraak",
-                    Buddy = _buddyService.GetBuddies().FirstOrDefault(b => b.Name == "Ori"),
+                    Buddy = buddies.FirstOrDefault(b => b.Name == "Ori"),
                     Description = "Routine checkup ter controle gewicht en voedings.",
                     AppointmentDate = new DateTime(2023,02,03,10,10,00),
                     AppointmentTime = new DateTime(2023,02,03,15,30,00),
@@ -65,7 +66,7 @@ namespace Companions.MAUI.Services
                 new Appointment {
                     Id = "5",
                     AppointmentName = "Halfjaarlijkse checkup",
-                    Buddy = _buddyService.GetBuddies().FirstOrDefault(b => b.Name == "Robot"),
+                    Buddy = buddies.FirstOrDefault(b => b.Name == "Robot"),
                     Description = "Routine checkup ter controle gewicht en voedings.",
                     AppointmentDate = new DateTime(2023,02,03,10,10,00),
                     AppointmentTime = new DateTime(2023,04,02,15,30,00),
@@ -79,7 +80,7 @@ namespace Companions.MAUI.Services
                 new Appointment {
                     Id = "4",
                     AppointmentName = "Kappersbezoek",
-                    Buddy = _buddyService.GetBuddies().FirstOrDefault(b => b.Name == "Ori"),
+                    Buddy = buddies.FirstOrDefault(b => b.Name == "Ori"),
                     Description = "Gewone kappersbezoek",
                     AppointmentDate = new DateTime(2023,01,04,10,10,00),
                     AppointmentTime = new DateTime(2023,01,04,12,30,00),
@@ -92,6 +93,7 @@ namespace Companions.MAUI.Services
                 },
             };
         }
+
 
         public Appointment AddAppointment(Appointment appointment)
         {

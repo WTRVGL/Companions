@@ -5,7 +5,11 @@ using Microsoft.Maui.Controls.Platform.Compatibility;
 
 namespace Companions.MAUI
 {
+    #if DEBUG
+    [Application(AllowBackup = false, Debuggable = true, UsesCleartextTraffic = true)]
+    #else
     [Application]
+    #endif
     public class MainApplication : MauiApplication
     {
         public MainApplication(IntPtr handle, JniHandleOwnership ownership)

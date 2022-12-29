@@ -23,7 +23,7 @@ namespace Companions.MAUI.ViewModels.App
         {
             _buddyService = buddyService;
             _appointmentService = appointmentService;
-            Buddies = _buddyService.GetBuddies();
+            //Buddies = _buddyService.GetBuddies();
         }
 
         [ObservableProperty]

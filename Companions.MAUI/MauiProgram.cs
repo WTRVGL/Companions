@@ -20,16 +20,21 @@ namespace Companions.MAUI
         {
             var builder = MauiApp.CreateBuilder();
 
-            //string package = AppInfo.Current.PackageName;
+            string package = AppInfo.Current.PackageName;
 
-            //var a = Assembly.GetExecutingAssembly();
-            //using var stream = a.GetManifestResourceStream("Companions.MAUI.appsettings.json");
+            var a = Assembly.GetExecutingAssembly();
 
-            //var config = new ConfigurationBuilder()
-            //    .AddJsonStream(stream)
-            //    .Build();
+#if DEBUG
+            using var stream = a.GetManifestResourceStream("Companions.MAUI.appsettings.Development.json");
+#else
+            using var stream = a.GetManifestResourceStream("Companions.MAUI.appsettings.json");
+#endif
 
-            //builder.Configuration.AddConfiguration(config);
+            var config = new ConfigurationBuilder()
+                .AddJsonStream(stream)
+                .Build();
+
+            builder.Configuration.AddConfiguration(config);
 
             builder
                 .UseMauiApp<App>()
@@ -56,7 +61,7 @@ namespace Companions.MAUI
 
 
 
-            #region View Services
+#region View Services
             builder.Services.AddSingleton<StartPage>();
             builder.Services.AddSingleton<LoginPage>();
             builder.Services.AddSingleton<SignUpPage>();
@@ -69,9 +74,9 @@ namespace Companions.MAUI
             builder.Services.AddTransient<AppointmentDetailPage>();
             builder.Services.AddTransient<EditAppointmentPage>();
             builder.Services.AddTransient<EditBuddyPage>();
-            #endregion
+#endregion
 
-            #region ViewModel Services
+#region ViewModel Services
             builder.Services.AddSingleton<StartPageViewModel>();
             builder.Services.AddSingleton<LoginPageViewModel>();
             builder.Services.AddSingleton<SignUpPageViewModel>();
@@ -85,10 +90,10 @@ namespace Companions.MAUI
             builder.Services.AddTransient<EditAppointmentPageViewModel>();
             builder.Services.AddTransient<EditBuddyPageViewModel>();
 
-            builder.Services.AddSingleton<IBuddyService, InMemoryBuddyService>();
+            builder.Services.AddSingleton<IBuddyService, BuddyService>();
             builder.Services.AddSingleton<IAppointmentService, InMemoryAppointmentService>();
 
-            #endregion
+#endregion
 
             builder.ConfigureSyncfusionListView();
 
@@ -100,10 +105,10 @@ namespace Companions.MAUI
         }
 
 #if __ANDROID__
-        public static void PrependToMappingImageSource(IImageHandler handler, Microsoft.Maui.IImage image)
-        {
-            handler.PlatformView?.Clear();
-        }
+            public static void PrependToMappingImageSource(IImageHandler handler, Microsoft.Maui.IImage image)
+            {
+                handler.PlatformView?.Clear();
+            }
 #endif
     }
 }

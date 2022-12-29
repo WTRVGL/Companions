@@ -26,11 +26,18 @@ namespace Companions.AuthenticationService.Services
             _jwtConfig = _config.GetSection("JWT").Get<JWTConfiguration>();
         }
 
+        /// <summary>
+        /// Generate a JWT with claims from a user.
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns>
+        /// A Base64 encoded JWT with username, id and role claims.
+        /// </returns>
         public string GetJwtSecurityToken(User user)
         {
             var claims = new List<Claim>
             {
-                new Claim("username", user.Email),
+                new Claim("username", user.UserName),
                 new Claim("id", user.Id.ToString()),
                 new Claim("role", user.Role)
             };
@@ -48,15 +55,25 @@ namespace Companions.AuthenticationService.Services
             return tokenString;
         }
 
+        /// <summary>
+        /// Decodes a JWT string
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns>JwtSecurityToken object</returns>
         public JwtSecurityToken DecodeJwtSecurityToken(string token)
         {
             return new JwtSecurityTokenHandler().ReadJwtToken(token);
         }
 
-        public int ExtractIdFromJwtSecurityToken(JwtSecurityToken securityToken)
+        /// <summary>
+        /// Extracts the user id from a JwtSecurityToken object
+        /// </summary>
+        /// <param name="securityToken"></param>
+        /// <returns>user id</returns>
+        public string ExtractIdFromJwtSecurityToken(JwtSecurityToken securityToken)
         {
-            var idClaim =  securityToken.Claims.FirstOrDefault(claim => claim.Type == "id");
-            return int.Parse(idClaim.Value);
+            var idClaim = securityToken.Claims.FirstOrDefault(claim => claim.Type == "id");
+            return idClaim.Value;
         }
     }
 }

@@ -10,12 +10,23 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen(config =>
 {
     config.SwaggerDoc("v1", new OpenApiInfo
     {
         Title = "Authentication Service",
-        Version = "v1"
+        Version = "v1",
+        Description =
+            $"<h2>Companions JWT Authentication Service</h2>" +
+            $"<ul>" +
+                $"<li>" +
+                    $"<h3>" +
+                        $"Requires Companions REST API to fetch User" +
+                     $"</h3>" +
+                $"</li>" +
+             $"</ul>" 
+
     });
 
     config.EnableAnnotations();
