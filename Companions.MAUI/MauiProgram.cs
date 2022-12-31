@@ -4,7 +4,6 @@ using Companions.MAUI.ViewModels.Login;
 using Companions.MAUI.Views.App;
 using Companions.MAUI.Views.App.BuddyDetail;
 using Companions.MAUI.Views.Login;
-using Syncfusion.Maui.ListView.Hosting;
 using Syncfusion.Maui.Core.Hosting;
 using Microsoft.Maui.Handlers;
 using Microsoft.Maui.Platform;
@@ -94,8 +93,9 @@ namespace Companions.MAUI
 
             builder.Services.AddSingleton<IBuddyService, InMemoryBuddyService>();
             builder.Services.AddSingleton<IAppointmentService, InMemoryAppointmentService>();
+            builder.Services.AddSingleton<IAuthService, AuthService>();
 
-            builder.ConfigureSyncfusionListView();
+            builder.ConfigureSyncfusionCore();
 
 #if __ANDROID__
             ImageHandler.Mapper.PrependToMapping(nameof(Microsoft.Maui.IImage.Source), (handler, view) => PrependToMappingImageSource(handler, view));

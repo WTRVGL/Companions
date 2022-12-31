@@ -15,7 +15,11 @@ namespace Companions.MAUI
 
         protected async override void OnStart()
         {
-            base.OnStart();
+            //Check if JWT exists
+
+            //Set User
+
+            //Go to main screen
         }
     }
 }

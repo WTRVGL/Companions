@@ -1,4 +1,5 @@
-﻿using Companions.MAUI.Models.Login;
+﻿using Companions.MAUI.Models;
+using Companions.MAUI.Models.Login;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace Companions.MAUI.Services
     public interface IAuthService
     {
         Task<string> GetJWTToken(LoginModel loginModel);
+        Task<RegistrationResponse> RegisterUser(RegisterModel registerModel);
 
     }
 }
