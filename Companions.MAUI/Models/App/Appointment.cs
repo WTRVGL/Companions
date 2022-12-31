@@ -53,5 +53,7 @@ namespace Companions.MAUI.Models.App
             get => _appointmentTime;
             set => SetProperty(ref _appointmentTime, value);
         }
+
+
     }
 }

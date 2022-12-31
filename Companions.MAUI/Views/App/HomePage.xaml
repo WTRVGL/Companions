@@ -85,7 +85,7 @@
             <!--  Upcoming Activities Control  -->
             <syncfusion:SfListView
                 x:Name="appointmentList"
-                HeightRequest="300"
+                HeightRequest="280"
                 IsScrollingEnabled="True"
                 ItemSize="70"
                 ItemsSource="{Binding Appointments}"
@@ -95,7 +95,7 @@
                     <DataTemplate x:DataType="models:Appointment">
                         <VerticalStackLayout Margin="0,10,0,0">
                             <VerticalStackLayout>
-                                <Grid Margin="0,0,0,10">
+                                <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="0.2*" />
                                         <ColumnDefinition Width="*" />

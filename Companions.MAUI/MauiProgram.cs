@@ -58,7 +58,8 @@ namespace Companions.MAUI
                 .UseMauiCommunityToolkit();
 
 
-
+            var sfKey = builder.Configuration.GetValue<string>("SFLicenseKey");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(sfKey);
 
             #region View Services
             builder.Services.AddTransient<StartPage>();

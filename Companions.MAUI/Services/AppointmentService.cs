@@ -50,7 +50,10 @@ namespace Companions.MAUI.Services
 
             var res = await _httpClient.GetAsync($"{_apiBaseURL}/api/Appointments");
             var appointments = await res.Content.ReadFromJsonAsync<List<Appointment>>();
-            return appointments.ToObservableCollection();
+            return appointments
+                .Where(a => a.AppointmentDate > DateTime.Now)
+                .OrderBy(a => a.AppointmentDate)
+                .ToObservableCollection();
         }
 
         public ObservableCollection<SchedulerAppointment> GetSchedulerAppointments()
