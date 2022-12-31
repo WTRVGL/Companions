@@ -7,10 +7,12 @@
     xmlns:vm="clr-namespace:Companions.MAUI.ViewModels.Login"
     x:DataType="vm:SignUpPageViewModel"
     xmlns:customControls="clr-namespace:Companions.MAUI.Controls"
+    
     Shell.NavBarIsVisible="False">
 
 
     <VerticalStackLayout Padding="5,0" VerticalOptions="Center">
+        <ActivityIndicator IsRunning="{Binding IsBusy}" />
 
         <customControls:Entry Placeholder="User name" Text="{Binding Email}" />
         <customControls:Entry Placeholder="First Name" Text="{Binding FirstName}" />

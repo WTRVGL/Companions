@@ -10,7 +10,7 @@ namespace Companions.MAUI.Services
 {
     public interface IAuthService
     {
-        Task<string> GetJWTToken(LoginModel loginModel);
+        Task<AuthResponse> GetJWTToken(LoginModel loginModel);
         Task<RegistrationResponse> RegisterUser(RegisterModel registerModel);
 
     }

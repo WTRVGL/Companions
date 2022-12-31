@@ -58,6 +58,7 @@ namespace Companions.MAUI.ViewModels.Login
         [RelayCommand(CanExecute = nameof(CanSignUp))]
         async void SignUp()
         {
+            //Check if passwords match, else Display Alert.
             if (Password != PasswordRepeat)
             {
                 await Application.Current.MainPage.DisplayAlert("Error", $"Passwords do not match", "Ok");
@@ -72,8 +73,15 @@ namespace Companions.MAUI.ViewModels.Login
                 Username = Email
             };
 
+            //Try and register user
+            IsBusy = true;
             RegistrationResponse registrationResponse = await _authService.RegisterUser(req);
+            IsBusy = false;
 
+            //User object
+            var user = registrationResponse.User;
+
+            //If user exists
             if (registrationResponse.RegistrationStatus == RegistrationStatus.UserExists)
             {
                 await Application.Current.MainPage.DisplayAlert("Error", $"User already exists", "Ok");
@@ -81,11 +89,20 @@ namespace Companions.MAUI.ViewModels.Login
             }
 
             //Retrieve JWT
+            IsBusy = true;
             var loginModel = new LoginModel { Username = req.Username, Password = req.Password };
-            var token = await _authService.GetJWTToken(loginModel);
+            var authResponse = await _authService.GetJWTToken(loginModel);
+            
 
             //Set token
-            await SecureStorage.SetAsync("JWT", token);
+            await SecureStorage.SetAsync("JWT", authResponse.Token);
+
+            //Set user
+
+            //Go to home screen. / Walktrough screen.
+            Application.Current.MainPage = new MainShell();
+
+            IsBusy = false;
         }
 
         private bool CanSignUp()

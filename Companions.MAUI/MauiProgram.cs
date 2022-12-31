@@ -91,9 +91,9 @@ namespace Companions.MAUI
 
             #endregion
 
-            builder.Services.AddSingleton<IBuddyService, InMemoryBuddyService>();
-            builder.Services.AddSingleton<IAppointmentService, InMemoryAppointmentService>();
-            builder.Services.AddSingleton<IAuthService, AuthService>();
+            builder.Services.AddTransient<IBuddyService, BuddyService>();
+            builder.Services.AddTransient<IAppointmentService, AppointmentService>();
+            builder.Services.AddTransient<IAuthService, AuthService>();
 
             builder.ConfigureSyncfusionCore();
 

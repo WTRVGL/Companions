@@ -25,13 +25,13 @@ namespace Companions.MAUI.Services
             _apiBaseURL = config.GetValue<string>("CompanionsAPIBaseURL");
             _authBaseURL = config.GetValue<string>("CompanionsAuthBaseURL");
         }
-        public async Task<string> GetJWTToken(LoginModel loginModel)
+        public async Task<AuthResponse> GetJWTToken(LoginModel loginModel)
         {
             var req = await _httpClient.PostAsJsonAsync<LoginModel>($"{_authBaseURL}/api/Token", loginModel);
             if (req.StatusCode != HttpStatusCode.OK) return null;
 
             var authResponse = await req.Content.ReadFromJsonAsync<AuthResponse>();
-            return authResponse.Token;
+            return authResponse;
         }
 
         public async Task<RegistrationResponse> RegisterUser(RegisterModel registerModel)

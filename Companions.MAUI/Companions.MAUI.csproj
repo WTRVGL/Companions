@@ -96,6 +96,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Compile Update="BogusShell.xaml.cs">
+		  <DependentUpon>BogusShell.xaml</DependentUpon>
+		</Compile>
 		<Compile Update="LoginShell.xaml.cs">
 			<DependentUpon>LoginShell.xaml</DependentUpon>
 		</Compile>
@@ -120,6 +123,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<MauiXaml Update="BogusShell.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 		<MauiXaml Update="MainShell.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
@@ -185,6 +191,9 @@
 		</MauiXaml>
 		<MauiXaml Update="Views\App\SettingsPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\BogusPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Login\LoginPage.xaml">
 			<Generator>MSBuild:Compile</Generator>

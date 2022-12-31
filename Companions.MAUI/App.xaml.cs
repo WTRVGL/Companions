@@ -9,17 +9,23 @@ namespace Companions.MAUI
         public App(IConfiguration config)
         {
             InitializeComponent();
-            MainPage = new LoginShell();
-            //MainPage = new MainShell();
+            MainPage = new BogusShell();
+            
         }
 
         protected async override void OnStart()
         {
-            //Check if JWT exists
+            var token = await SecureStorage.GetAsync("JWT");
 
-            //Set User
+            if (token == null)
+            {
+                MainPage = new LoginShell();
+                return;
+            }
 
-            //Go to main screen
+            MainPage = new MainShell();
+            base.OnStart();
         }
     }
 }
+

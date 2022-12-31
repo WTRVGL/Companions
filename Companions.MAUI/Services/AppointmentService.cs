@@ -25,6 +25,15 @@ namespace Companions.MAUI.Services
             _apiBaseURL = config.GetValue<string>("CompanionsAPIBaseURL");
         }
 
+        private async Task EnsureAuthHeaders()
+        {
+            //Check if headers present
+            if (_httpClient.DefaultRequestHeaders.Authorization != null) return;
+
+            var jwt = await SecureStorage.GetAsync("JWT");
+            _httpClient.DefaultRequestHeaders.Add("Authorization", jwt);
+        }
+
         public Appointment AddAppointment(Appointment appointment)
         {
             throw new NotImplementedException();
@@ -37,6 +46,8 @@ namespace Companions.MAUI.Services
 
         public async Task<ObservableCollection<Appointment>> GetAppointments()
         {
+            await EnsureAuthHeaders();
+
             var res = await _httpClient.GetAsync($"{_apiBaseURL}/api/Appointments");
             var appointments = await res.Content.ReadFromJsonAsync<List<Appointment>>();
             return appointments.ToObservableCollection();
@@ -44,7 +55,7 @@ namespace Companions.MAUI.Services
 
         public ObservableCollection<SchedulerAppointment> GetSchedulerAppointments()
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public Appointment UpdateAppointment(Appointment appointment)
