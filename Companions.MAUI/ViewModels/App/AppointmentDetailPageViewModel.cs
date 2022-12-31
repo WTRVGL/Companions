@@ -89,10 +89,8 @@ namespace Companions.MAUI.ViewModels.App
 
         partial void OnAppointmentChanged(Appointment appointment)
         {
-            var places = new List<Place>
-            {
-                new Place { Location = appointment.Place.Location }
-            };
+            var places = new List<Place>();
+            places.Add(appointment.Place);
 
             BindablePlaces = new ObservableCollection<Place>(places);
             IsReady = true;

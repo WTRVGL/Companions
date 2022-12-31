@@ -3,11 +3,14 @@
     x:Class="Companions.MAUI.Views.Login.LoginPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:Companions.MAUI.ViewModels.Login"
+    x:DataType="vm:LoginPageViewModel"
     xmlns:customControls="clr-namespace:Companions.MAUI.Controls"
     Shell.NavBarIsVisible="False">
 
     <VerticalStackLayout Padding="30" VerticalOptions="Center">
-
+        <ActivityIndicator IsRunning="{Binding IsBusy}" />
+        
         <customControls:Entry Placeholder="E-mail" Text="{Binding Email}" />
         <customControls:Entry
             IsPassword="True"

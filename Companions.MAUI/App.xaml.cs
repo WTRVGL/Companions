@@ -1,4 +1,4 @@
-﻿using Companions.MAUI.Models.App;
+﻿using Companions.MAUI.Models;
 using Microsoft.Extensions.Configuration;
 
 namespace Companions.MAUI
@@ -9,8 +9,23 @@ namespace Companions.MAUI
         public App(IConfiguration config)
         {
             InitializeComponent();
-            MainPage = new LoginShell();
-            //MainPage = new MainShell();
+            MainPage = new BogusShell();
+            
+        }
+
+        protected async override void OnStart()
+        {
+            var token = await SecureStorage.GetAsync("JWT");
+
+            if (token == null)
+            {
+                MainPage = new LoginShell();
+                return;
+            }
+
+            MainPage = new MainShell();
+            base.OnStart();
         }
     }
 }
+

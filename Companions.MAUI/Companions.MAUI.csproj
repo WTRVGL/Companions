@@ -51,153 +51,159 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="appsettings.Development.json" />
-	  <None Remove="appsettings.json" />
-	  <None Remove="Resources\Fonts\fa-brands-400.otf" />
-	  <None Remove="Resources\Fonts\fa-regular-400.otf" />
-	  <None Remove="Resources\Fonts\fa-solid-900.otf" />
-	  <None Remove="Resources\Fonts\Inter-Black.ttf" />
-	  <None Remove="Resources\Fonts\Inter-Bold.ttf" />
-	  <None Remove="Resources\Fonts\Inter-ExtraBold.ttf" />
-	  <None Remove="Resources\Fonts\Inter-ExtraLight.ttf" />
-	  <None Remove="Resources\Fonts\Inter-Light.ttf" />
-	  <None Remove="Resources\Fonts\Inter-Medium.ttf" />
-	  <None Remove="Resources\Fonts\Inter-Regular.ttf" />
-	  <None Remove="Resources\Fonts\Inter-SemiBold.ttf" />
-	  <None Remove="Resources\Fonts\Inter-Thin.ttf" />
-	  <None Remove="Resources\Fonts\Poppins-Black.ttf" />
-	  <None Remove="Resources\Fonts\Poppins-Bold.ttf" />
-	  <None Remove="Resources\Images\icnmenuclose.png" />
-	  <None Remove="Resources\Images\startimg.png" />
+		<None Remove="appsettings.Development.json" />
+		<None Remove="Resources\Fonts\fa-brands-400.otf" />
+		<None Remove="Resources\Fonts\fa-regular-400.otf" />
+		<None Remove="Resources\Fonts\fa-solid-900.otf" />
+		<None Remove="Resources\Fonts\Inter-Black.ttf" />
+		<None Remove="Resources\Fonts\Inter-Bold.ttf" />
+		<None Remove="Resources\Fonts\Inter-ExtraBold.ttf" />
+		<None Remove="Resources\Fonts\Inter-ExtraLight.ttf" />
+		<None Remove="Resources\Fonts\Inter-Light.ttf" />
+		<None Remove="Resources\Fonts\Inter-Medium.ttf" />
+		<None Remove="Resources\Fonts\Inter-Regular.ttf" />
+		<None Remove="Resources\Fonts\Inter-SemiBold.ttf" />
+		<None Remove="Resources\Fonts\Inter-Thin.ttf" />
+		<None Remove="Resources\Fonts\Poppins-Black.ttf" />
+		<None Remove="Resources\Fonts\Poppins-Bold.ttf" />
+		<None Remove="Resources\Images\icnmenuclose.png" />
+		<None Remove="Resources\Images\startimg.png" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="appsettings.Development.json">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </EmbeddedResource>
-	  <EmbeddedResource Include="appsettings.json">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </EmbeddedResource>
+		<EmbeddedResource Include="appsettings.Development.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="CommunityToolkit.Maui" Version="3.1.0" />
-	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
-	  <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
-	  <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.1" />
-	  <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="7.0.0" />
-	  <PackageReference Include="Microsoft.Maui.Controls.Maps" Version="7.0.52" />
-	  <PackageReference Include="Microsoft.Maui.Maps" Version="7.0.52" />
-	  <PackageReference Include="Syncfusion.Maui.Core" Version="20.3.56" />
-	  <PackageReference Include="Syncfusion.Maui.ListView" Version="20.3.56" />
-	  <PackageReference Include="Syncfusion.Maui.Scheduler" Version="20.3.56" />
-	  <PackageReference Include="Syncfusion.Maui.TabView" Version="20.3.56" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="3.1.0" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Maui.Controls.Maps" Version="7.0.52" />
+		<PackageReference Include="Microsoft.Maui.Maps" Version="7.0.52" />
+		<PackageReference Include="Syncfusion.Maui.Core" Version="20.4.41" />
+		<PackageReference Include="Syncfusion.Maui.DataForm" Version="20.4.41" />
+		<PackageReference Include="Syncfusion.Maui.ListView" Version="20.4.41" />
+		<PackageReference Include="Syncfusion.Maui.Scheduler" Version="20.4.41" />
+		<PackageReference Include="Syncfusion.Maui.TabView" Version="20.4.41" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Companions.Domain\Companions.Domain.csproj" />
+		<ProjectReference Include="..\Companions.Domain\Companions.Domain.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="LoginShell.xaml.cs">
-	    <DependentUpon>LoginShell.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="MainShell.xaml.cs">
-	    <DependentUpon>MainShell.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Resources\Icons\Brands.xaml.cs">
-	    <DependentUpon>Brands.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Resources\Icons\Solid.xaml.cs">
-	    <DependentUpon>Solid.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Views\App\BuddyDetail\TabControl.xaml.cs">
-	    <DependentUpon>TabControl.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Views\App\HomePage.xaml.cs">
-	    <DependentUpon>HomePage.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Views\App\AppointmentDetailPage.xaml.cs">
-	    <DependentUpon>AppointmentDetailPage.xaml</DependentUpon>
-	  </Compile>
+		<Compile Update="BogusShell.xaml.cs">
+		  <DependentUpon>BogusShell.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="LoginShell.xaml.cs">
+			<DependentUpon>LoginShell.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="MainShell.xaml.cs">
+			<DependentUpon>MainShell.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Resources\Icons\Brands.xaml.cs">
+			<DependentUpon>Brands.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Resources\Icons\Solid.xaml.cs">
+			<DependentUpon>Solid.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\App\BuddyDetail\TabControl.xaml.cs">
+			<DependentUpon>TabControl.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\App\HomePage.xaml.cs">
+			<DependentUpon>HomePage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\App\AppointmentDetailPage.xaml.cs">
+			<DependentUpon>AppointmentDetailPage.xaml</DependentUpon>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="MainShell.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Controls\Entry.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Resources\Icons\Brands.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Resources\Icons\Solid.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Resources\Styles\Companions.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Controls\BuddyCard.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\App\Actions\AppointmentPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\App\Actions\FeedingPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\App\Actions\TrackWeightPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\App\Actions\WalkingPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\App\Action.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\App\BuddyDetail\BuddyDetailPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\App\EditAppointmentPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\App\BuddyDetail\FoodControl.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\App\BuddyDetail\OverviewControl.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\App\BuddyDetail\TabControl.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\App\DiscoverPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\App\EditBuddyPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\App\HomePage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\App\AppointmentDetailPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\App\SchedulePage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\App\SettingsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Login\LoginPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Login\SignUpPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Login\StartPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
+		<MauiXaml Update="BogusShell.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="MainShell.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Controls\Entry.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Resources\Icons\Brands.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Resources\Icons\Solid.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Resources\Styles\Companions.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Controls\BuddyCard.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\App\Actions\AppointmentPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\App\Actions\FeedingPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\App\Actions\TrackWeightPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\App\Actions\WalkingPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\App\Action.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\App\BuddyDetail\BuddyDetailPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\App\EditAppointmentPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\App\BuddyDetail\FoodControl.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\App\BuddyDetail\OverviewControl.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\App\BuddyDetail\TabControl.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\App\DiscoverPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\App\EditBuddyPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\App\HomePage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\App\AppointmentDetailPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\App\SchedulePage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\App\SettingsPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\BogusPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Login\LoginPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Login\SignUpPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Login\StartPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 	</ItemGroup>
 </Project>
 

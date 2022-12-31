@@ -4,7 +4,6 @@ using Companions.MAUI.ViewModels.Login;
 using Companions.MAUI.Views.App;
 using Companions.MAUI.Views.App.BuddyDetail;
 using Companions.MAUI.Views.Login;
-using Syncfusion.Maui.ListView.Hosting;
 using Syncfusion.Maui.Core.Hosting;
 using Microsoft.Maui.Handlers;
 using Microsoft.Maui.Platform;
@@ -59,12 +58,13 @@ namespace Companions.MAUI
                 .UseMauiCommunityToolkit();
 
 
+            var sfKey = builder.Configuration.GetValue<string>("SFLicenseKey");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(sfKey);
 
-
-#region View Services
-            builder.Services.AddSingleton<StartPage>();
-            builder.Services.AddSingleton<LoginPage>();
-            builder.Services.AddSingleton<SignUpPage>();
+            #region View Services
+            builder.Services.AddTransient<StartPage>();
+            builder.Services.AddTransient<LoginPage>();
+            builder.Services.AddTransient<SignUpPage>();
 
             builder.Services.AddTransient<BuddyDetailPage>();
             builder.Services.AddTransient<SchedulePage>();
@@ -74,12 +74,12 @@ namespace Companions.MAUI
             builder.Services.AddTransient<AppointmentDetailPage>();
             builder.Services.AddTransient<EditAppointmentPage>();
             builder.Services.AddTransient<EditBuddyPage>();
-#endregion
+            #endregion
 
-#region ViewModel Services
-            builder.Services.AddSingleton<StartPageViewModel>();
-            builder.Services.AddSingleton<LoginPageViewModel>();
-            builder.Services.AddSingleton<SignUpPageViewModel>();
+            #region ViewModel Services
+            builder.Services.AddTransient<StartPageViewModel>();
+            builder.Services.AddTransient<LoginPageViewModel>();
+            builder.Services.AddTransient<SignUpPageViewModel>();
 
             builder.Services.AddTransient<HomePageViewModel>();
             builder.Services.AddTransient<SchedulePageViewModel>();
@@ -90,12 +90,13 @@ namespace Companions.MAUI
             builder.Services.AddTransient<EditAppointmentPageViewModel>();
             builder.Services.AddTransient<EditBuddyPageViewModel>();
 
-            builder.Services.AddSingleton<IBuddyService, BuddyService>();
-            builder.Services.AddSingleton<IAppointmentService, InMemoryAppointmentService>();
+            #endregion
 
-#endregion
+            builder.Services.AddTransient<IBuddyService, BuddyService>();
+            builder.Services.AddTransient<IAppointmentService, AppointmentService>();
+            builder.Services.AddTransient<IAuthService, AuthService>();
 
-            builder.ConfigureSyncfusionListView();
+            builder.ConfigureSyncfusionCore();
 
 #if __ANDROID__
             ImageHandler.Mapper.PrependToMapping(nameof(Microsoft.Maui.IImage.Source), (handler, view) => PrependToMappingImageSource(handler, view));

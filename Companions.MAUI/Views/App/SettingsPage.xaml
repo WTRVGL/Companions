@@ -7,9 +7,7 @@
     Title="SettingsPage"
     x:DataType="vm:SettingsPageViewModel">
     <VerticalStackLayout>
-        <Label
-            HorizontalOptions="Center"
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" />
+        <Button Text="Log Out"
+                Command="{Binding LogoutCommand}"/>
     </VerticalStackLayout>
 </ContentPage>

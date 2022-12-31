@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Companions.MAUI.ViewModels
 {
-    public partial class BaseViewModel : ObservableObject
+    public partial class BaseViewModel : ObservableValidator
     {
         [ObservableProperty]
         private bool _isBusy;
@@ -16,4 +16,3 @@ namespace Companions.MAUI.ViewModels
         private string _title;
     }
 }
- 
