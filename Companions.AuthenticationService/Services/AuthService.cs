@@ -28,7 +28,10 @@ namespace Companions.AuthenticationService.Services
         {
             var user = await _userRepository.GetUserByUserName(model.Username);
 
-            if (user == null) return null;
+            if (user == null)
+            {
+                return new AuthenticateResponse(null, null, "User does not exist");
+            }
 
 
             var authenticated =

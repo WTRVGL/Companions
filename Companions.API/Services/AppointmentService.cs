@@ -29,7 +29,6 @@ namespace Companions.API.Services
             _db.Appointments.Remove(appointment);
             _db.SaveChanges();
             return true;
-
         }
 
         public List<Appointment> GetAllAppointmentsByBuddyId(string buddyId)
@@ -60,14 +59,14 @@ namespace Companions.API.Services
             return appointments;
         }
 
-        public Appointment GetAppointentById(string id)
+        public Appointment? GetAppointentById(string id)
         {
             var appointment = _db.Appointments.FirstOrDefault(a => a.Id == id);
             if (appointment == null) return null;
             return appointment;
         }
 
-        public Appointment UpdateAppointment(Appointment appointment)
+        public Appointment? UpdateAppointment(Appointment appointment)
         {
             var appointmentToBeUpdated = _db.Appointments.FirstOrDefault(a => a.Id == appointment.Id);
             if (appointment == null) return null;

@@ -32,6 +32,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 //Extract Token from HTTPOnly Cookie
                 //context.Token = context.Request.Cookies[jwtConfig.JWTHttpCookieName];
                 //return Task.CompletedTask;
+
                 context.Token = context.Request.Headers.Authorization;
                 return Task.CompletedTask;
             }
