@@ -38,7 +38,6 @@ namespace Companions.MAUI.ViewModels.Login
         [RelayCommand(CanExecute = nameof(CanLogin))]
         async public void Login()
         {
-
             var req = new LoginModel
             {
                 Username = Email,
@@ -49,6 +48,12 @@ namespace Companions.MAUI.ViewModels.Login
             IsBusy = true;
             var authResponse = await _authService.GetJWTToken(req);
             IsBusy = false;
+
+            if (authResponse.AuthStatus == "User does not exist")
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", $"User does not exist", "Ok");
+                return;
+            }
 
             //If failed to login
             if (authResponse == null)

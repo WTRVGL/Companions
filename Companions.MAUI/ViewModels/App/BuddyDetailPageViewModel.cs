@@ -57,6 +57,12 @@ namespace Companions.MAUI.ViewModels.App
                 });
             }
         }
+
+        partial void OnBuddyChanged(Buddy buddy)
+        {
+
+        }
+
     }
 
 }

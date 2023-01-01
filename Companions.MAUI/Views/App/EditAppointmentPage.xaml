@@ -10,8 +10,7 @@
              Title="EditAppointmentPage"
              Shell.NavBarIsVisible="False"
              Shell.TabBarIsVisible="False">
-  
-
+    
     <ContentPage.Resources>
         <Style TargetType="Label" x:Key="FieldTitle">
             <Setter Property="FontSize" Value="16"/>
@@ -93,12 +92,14 @@
                 Style="{StaticResource FieldTitle}"
                 Text="Appointment date"/>
             <DatePicker Date="{Binding Appointment.AppointmentDate}"/>
+
         </VerticalStackLayout>
-        <VerticalStackLayout Margin="0,30,0,0">
+
+        <!--<VerticalStackLayout Margin="0,30,0,0">
             <Label 
                 Style="{StaticResource FieldTitle}"
                 Text="Appointment Time"/>
             <TimePicker Time="{Binding Appointment.AppointmentTime}"/>
-        </VerticalStackLayout>
+        </VerticalStackLayout>-->
     </VerticalStackLayout>
 </ContentPage>

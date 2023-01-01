@@ -1,20 +1,18 @@
-﻿using Companions.API.DTOs.Buddy;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Companions.API.DTOs.Appointment
+namespace Companions.MAUI.Services.Models
 {
-    public class AppointmentDTO
+    internal class UpdateAppointmentRequest
     {
-        public string Id { get; set; }
+        public string Id{ get; set; }
         public string AppointmentName { get; set; }
         public string Description { get; set; }
-        public BuddyDTO Buddy { get; set; }
         public string BuddyId { get; set; }
         public DateTime AppointmentDate { get; set; }
-        public PlaceDTO Place { get; set; }
+        public string PlaceId { get; set; }
     }
 }
