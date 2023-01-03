@@ -105,18 +105,17 @@
                                         <RowDefinition Height="auto" />
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
-                                    <Frame
+                                    <Border
                                         Grid.RowSpan="2"
-                                        Padding="0"
-                                        BorderColor="Transparent"
-                                        CornerRadius="50">
-                                        <Grid>
-                                            <Image
-                                                HeightRequest="40"
-                                                Source="{Binding Buddy.ImageURL}"
-                                                VerticalOptions="Center" />
-                                        </Grid>
-                                    </Frame>
+                                        HeightRequest="40"
+                                        WidthRequest="40">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="50" />
+                                        </Border.StrokeShape>
+                                        <Image
+                                            Source="{Binding Buddy.ImageURL}"
+                                            VerticalOptions="Center" />
+                                    </Border>
                                     <Label
                                         Grid.Row="0"
                                         Grid.Column="1"
