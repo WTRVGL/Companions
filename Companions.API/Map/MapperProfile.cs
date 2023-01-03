@@ -26,6 +26,9 @@ namespace Companions.API.Mapper
             CreateMap<CreateBuddyDTO, Buddy>();
             CreateMap<BuddyDTO, Buddy>();
 
+            CreateMap<UpdateBuddyDTO, Buddy>();
+            CreateMap<Buddy, UpdateBuddyDTO>();
+
 
             CreateMap<UpdateAppointmentDTO, Appointment>();
             CreateMap<Appointment, UpdateAppointmentDTO>();

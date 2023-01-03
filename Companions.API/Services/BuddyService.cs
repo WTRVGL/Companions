@@ -21,7 +21,14 @@ namespace Companions.API.Services
 
         public bool DeleteBuddy(string id)
         {
-            var buddy = _db.Buddies.First(b => b.Id == id);
+            var buddy = _db.Buddies
+                .Include(b => b.Activities)
+                .Include(b => b.Vaccinations)
+                .Include(b => b.Appointments)
+                .Include(b => b.FeedingSchedules)
+                .Include(b => b.BuddyWeights)
+                .First(b => b.Id == id);
+
             if (buddy == null) return false;
 
             _db.Buddies.Remove(buddy);
@@ -59,27 +66,31 @@ namespace Companions.API.Services
 
         public Buddy GetBuddyById(string id)
         {
-            var buddy = _db.Buddies.First(b => b.Id == id);
+            var buddy = _db.Buddies.FirstOrDefault(b => b.Id == id);
             if (buddy == null) return null;
             return buddy;
         }
 
         public Buddy UpdateBuddy(Buddy request)
         {
-            var buddy = _db.Buddies.First(b => b.Id == request.Id);
+            var buddy = _db.Buddies.FirstOrDefault(b => b.Id == request.Id);
             if (buddy == null) return null;
 
-            buddy.FeedingSchedules = request.FeedingSchedules;
-            buddy.Vaccinations = request.Vaccinations;
-            buddy.User = request.User;
-            buddy.DateOfBirth = request.DateOfBirth;
-            buddy.Activities = request.Activities;
-            buddy.Appointments = request.Appointments;
             buddy.Name = request.Name;
-            buddy.ImageURL = request.ImageURL;
-            buddy.Activities = request.Activities;
             buddy.Race = request.Race;
-            buddy.BuddyWeights = request.BuddyWeights;
+            buddy.Gender = request.Gender;
+
+            //buddy.FeedingSchedules = request.FeedingSchedules;
+            //buddy.Vaccinations = request.Vaccinations;
+            //buddy.User = request.User;
+            //buddy.DateOfBirth = request.DateOfBirth;
+            //buddy.Activities = request.Activities;
+            //buddy.Appointments = request.Appointments;
+            //buddy.Name = request.Name;
+            //buddy.ImageURL = request.ImageURL;
+            //buddy.Activities = request.Activities;
+            //buddy.Race = request.Race;
+            //buddy.BuddyWeights = request.BuddyWeights;
 
             _db.SaveChanges();
             return buddy;

@@ -36,6 +36,11 @@ namespace Companions.API.Controllers
         }
 
         [HttpPut]
+        [SwaggerOperation("Update an appointment")]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(bool), Description = "Appointment updated")]
+        [SwaggerResponse(StatusCodes.Status401Unauthorized, Description = "Unauthorized")]
+        [SwaggerResponse(StatusCodes.Status404NotFound, Description = "Appointment does not exist")]
+        [Authorize]
         public  ActionResult<UpdateAppointmentDTO> UpdateAppointment(UpdateAppointmentDTO updateAppointmentDTO)
         {
             var appointment = _appointmentService.GetAppointentById(updateAppointmentDTO.Id);

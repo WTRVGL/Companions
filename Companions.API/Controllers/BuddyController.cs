@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Companions.API.DTOs;
+using Companions.API.DTOs.Appointment;
 using Companions.API.DTOs.Buddy;
 using Companions.API.Services;
 using Companions.Domain;
@@ -48,15 +49,23 @@ namespace Companions.API.Controllers
             return createdBuddyDTO;
         }
 
-        [HttpPut("{id}")]
+        [HttpPut]
         [SwaggerOperation("Update an exiting Buddy")]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(BuddyDTO), Description = "Returns the updated Buddy")]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, Description = "Unauthorized")]
         [SwaggerResponse(StatusCodes.Status404NotFound, Description = "Buddy does not exist")]
         [Authorize]
-        public ActionResult<BuddyDTO> UpdateBuddy(BuddyDTO buddyDTO, string id)
+        public ActionResult<BuddyDTO> UpdateBuddy(UpdateBuddyDTO updateBuddyDTO)
         {
-            return new BuddyDTO();
+            var buddy = _buddyService.GetBuddyById(updateBuddyDTO.Id);
+            if (buddy == null) return NotFound("Buddy does not exist.");
+
+            var updateBuddy = _mapper.Map<Buddy>(updateBuddyDTO);
+            var updatedBuddy = _buddyService.UpdateBuddy(updateBuddy);
+            
+            var updatedBuddyDTO = _mapper.Map<BuddyDTO>(updatedBuddy);
+
+            return updatedBuddyDTO;
         }
 
 
@@ -68,7 +77,13 @@ namespace Companions.API.Controllers
         [Authorize]
         public ActionResult<bool> DeleteBuddy(string id)
         {
-            return true;
+            var appointment = _buddyService.GetBuddyById(id);
+            if (appointment == null) return NotFound("Buddy does not exist");
+
+            var deleted = _buddyService.DeleteBuddy(id);
+            if (!deleted) return false;
+
+            return Ok(deleted);
         }
     }
 }

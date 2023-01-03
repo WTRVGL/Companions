@@ -43,7 +43,8 @@ namespace Companions.MAUI.ViewModels.App
                 var secondAction = await Application.Current.MainPage.DisplayActionSheet("Are you sure?", "Cancel", null, "Delete Buddy");
                 if (secondAction == "Delete Buddy")
                 {
-                    _buddyService.DeleteBuddy(Buddy.Id);
+                    var deleted = await _buddyService.DeleteBuddy(Buddy.Id);
+                    if (!deleted) await Application.Current.MainPage.DisplayAlert("Error", "Appointment couldn't be deleted", "Ok");
                     GoBack();
                 }
             }
