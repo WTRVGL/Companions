@@ -13,6 +13,7 @@
 
     <ContentPage.Resources>
         <converters:LastWeightFromListConverter x:Key="LastWeightFromListConverter"/>
+        <converters:DateOfBirthToAgeConverter x:Key="DateOfBirthToAgeConverter"/>
 
         <Style x:Key="BuddyName" TargetType="{Type Label}">
             <Setter Property="FontSize" Value="36" />
@@ -99,15 +100,18 @@
                     Text="{Binding Buddy.Name}" />
                 <!--  Subtext  -->
                 <HorizontalStackLayout Margin="0,0,0,30" HorizontalOptions="Center">
-                    <Label Style="{StaticResource Key=BuddySubtext}">
-                        <Label.Text>
-                            <MultiBinding StringFormat="{} {0} - {1} years - {2} - ">
-                                <Binding Path="Buddy.Race" />
-                                <Binding Path="Buddy.Age" />
-                                <Binding Path="Buddy.Gender" />
-                            </MultiBinding>
-                        </Label.Text>
-                    </Label>
+                    <Label Style="{StaticResource Key=BuddySubtext}"
+                           Text="{Binding Buddy.Race}"/>
+                    <Label Style="{StaticResource Key=BuddySubtext}"
+                           Text=" - "/>
+                    <Label Style="{StaticResource Key=BuddySubtext}"
+                           Text="{Binding Buddy.DateOfBirth, Converter={StaticResource DateOfBirthToAgeConverter}}"/>
+                    <Label Style="{StaticResource Key=BuddySubtext}"
+                           Text=" years - "/>
+                    <Label Style="{StaticResource Key=BuddySubtext}"
+                           Text="{Binding Buddy.Gender}"/>
+                    <Label Style="{StaticResource Key=BuddySubtext}"
+                           Text=" - "/>
                     <Label Style="{StaticResource Key=BuddySubtext}"
                            Text="{Binding Buddy.BuddyWeights, Converter={StaticResource LastWeightFromListConverter}}"/>
                     <Label Style="{StaticResource Key=BuddySubtext}"

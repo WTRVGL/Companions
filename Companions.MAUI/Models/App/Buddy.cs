@@ -31,7 +31,7 @@ namespace Companions.MAUI.Models.App
         }
 
         public string Id { get; set; }
-        public int Age { get; set; }
+        public DateTime DateOfBirth { get; set; }
         public string ImageURL { get; set; }
         public List<BuddyWeight> BuddyWeights { get; set; }
         public List<Activity> Activities { get; set; }

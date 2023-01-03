@@ -5,11 +5,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:appModels="clr-namespace:Companions.MAUI.Models.App"
     xmlns:vm="clr-namespace:Companions.MAUI.ViewModels.App"
+    xmlns:converters="clr-namespace:Companions.MAUI.Converters"
     x:Name="this"
     Margin="0,0,30,0"
     Shell.NavBarIsVisible="False">
 
     <ContentView.Resources>
+        <converters:DateOfBirthToAgeConverter x:Key="DateOfBirthToAgeConverter"/>
+
         <Color x:Key="CardSubTextColor">#C0C0C0</Color>
         <Style x:Key="CardSubText" TargetType="Label">
             <Setter Property="TextColor" Value="{StaticResource CardSubTextColor}" />
@@ -52,7 +55,7 @@
                 <!--  Buddy Race  -->
                 <Label Style="{StaticResource CardSubText}" Text="{Binding Source={x:Reference this}, Path=Buddy.Race}" />
                 <Label Text=" " />
-                <Label Style="{StaticResource CardSubText}" Text="{Binding Source={x:Reference this}, Path=Buddy.Age}" />
+                <Label Style="{StaticResource CardSubText}" Text="{Binding Source={x:Reference this}, Path=Buddy.DateOfBirth, Converter={StaticResource DateOfBirthToAgeConverter}}" />
                 <Label Style="{StaticResource CardSubText}" Text=" Years" />
             </HorizontalStackLayout>
         </VerticalStackLayout>
