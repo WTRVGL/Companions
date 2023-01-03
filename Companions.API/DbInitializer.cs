@@ -112,8 +112,9 @@ namespace Companions.API
                 new BuddyWeight { Weight = 5.4, DateWeighed = DateTime.Parse("2022-09-17") },
                 new BuddyWeight { Weight = 3.2, DateWeighed = DateTime.Parse("2022-09-14") },
                 new BuddyWeight { Weight = 3.3, DateWeighed = DateTime.Parse("2022-09-14") },
-                new BuddyWeight { Weight = 432, DateWeighed = DateTime.Parse("2022-09-16") },
+                new BuddyWeight { Weight = 4.32, DateWeighed = DateTime.Parse("2022-09-16") },
             };
+
 
             _buddies = new List<Buddy>()
             {
@@ -163,7 +164,9 @@ namespace Companions.API
                 }
             };
 
-            _buddies.First(b => b.Name == "Bassie").BuddyWeights.AddRange(_buddyWeights.Take(2));
+            _buddies.First(b => b.Name == "Bassie").BuddyWeights.AddRange(_buddyWeights.GetRange(0, 2));
+            _buddies.First(b => b.Name == "Ori").BuddyWeights.AddRange(_buddyWeights.GetRange(2, 2));
+            _buddies.First(b => b.Name == "Robot").BuddyWeights.AddRange(_buddyWeights.GetRange(4, 2));
 
             _buddies.First(b => b.Name == "Bassie").Activities.AddRange(_activities.GetRange(0, _activities.Count));
 

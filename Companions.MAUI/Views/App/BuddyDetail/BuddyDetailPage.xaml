@@ -5,12 +5,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:buddyControls="clr-namespace:Companions.MAUI.Views.App.BuddyDetail"
     xmlns:vm="clr-namespace:Companions.MAUI.ViewModels.App"
+    xmlns:converters="clr-namespace:Companions.MAUI.Converters"
     Title="BuddyDetailPage"
     x:DataType="vm:BuddyDetailPageViewModel"
     Shell.NavBarIsVisible="False"
     Shell.TabBarIsVisible="False">
 
     <ContentPage.Resources>
+        <converters:LastWeightFromListConverter x:Key="LastWeightFromListConverter"/>
+
         <Style x:Key="BuddyName" TargetType="{Type Label}">
             <Setter Property="FontSize" Value="36" />
             <Setter Property="FontFamily" Value="InterBold" />
@@ -98,14 +101,17 @@
                 <HorizontalStackLayout Margin="0,0,0,30" HorizontalOptions="Center">
                     <Label Style="{StaticResource Key=BuddySubtext}">
                         <Label.Text>
-                            <MultiBinding StringFormat="{} {0} - {1} years - {2} - {3}kg">
+                            <MultiBinding StringFormat="{} {0} - {1} years - {2} - ">
                                 <Binding Path="Buddy.Race" />
                                 <Binding Path="Buddy.Age" />
                                 <Binding Path="Buddy.Gender" />
-                                <Binding Path="Buddy.Weight" />
                             </MultiBinding>
                         </Label.Text>
                     </Label>
+                    <Label Style="{StaticResource Key=BuddySubtext}"
+                           Text="{Binding Buddy.BuddyWeights, Converter={StaticResource LastWeightFromListConverter}}"/>
+                    <Label Style="{StaticResource Key=BuddySubtext}"
+                           Text="kg"/>
                 </HorizontalStackLayout>
             </VerticalStackLayout>
         </Grid>

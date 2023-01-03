@@ -39,8 +39,6 @@ namespace Companions.API.Controllers
             //Fetch buddies by userID when auth service supports
             var buddies = _buddyService.GetAllBuddiesByUserId(userId);
 
-           // var buddies = _buddyService.GetAllBuddies();
-
             if (buddies == null) return NotFound();
             var buddiesDTO = _mapper.Map<List<BuddyDTO>>(buddies);
             return buddiesDTO;
