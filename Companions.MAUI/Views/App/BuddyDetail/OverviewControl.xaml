@@ -26,15 +26,21 @@
                             <RowDefinition Height="auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <Image
-                            Grid.RowSpan="2"
-                            Margin="0,0,10,0"
-                            Source="{Binding ImageURL}"
-                            VerticalOptions="Center" />
+                        <Border
+                            HeightRequest="55"
+                            WidthRequest="55"
+                            Grid.RowSpan="2">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="50" />
+                            </Border.StrokeShape>
+                            <Image
+                                Aspect="Fill"
+                                Source="{Binding ImageURL}"/>
+                        </Border>
                         <Label
                             Grid.Row="0"
                             Grid.Column="1"
-                            Margin="0,0,0,0"
+                            Margin="15,0,0,0"
                             FontFamily="InterSemiBold"
                             FontSize="16"
                             Text="Walking" />
@@ -48,7 +54,8 @@
                         <Label
                             Grid.Row="1"
                             Grid.Column="1"
-                            Grid.ColumnSpan="2">
+                            Grid.ColumnSpan="2"
+                            Margin="15,0,0,0">
                             <Label.Text>
                                 <MultiBinding Converter="{StaticResource TimeBetweenDates}" StringFormat="{}Just finished a {0} walk!">
                                     <Binding Path="StartDate" />
@@ -60,7 +67,7 @@
                     <Line
                         Stroke="#BDBDBD"
                         StrokeThickness="1"
-                        X1="40"
+                        X1="0"
                         X2="500"
                         Y1="0"
                         Y2="0" />
@@ -79,15 +86,21 @@
                             <RowDefinition Height="auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <Image
-                            Grid.RowSpan="2"
-                            Margin="0,0,10,0"
-                            Source="{Binding ImageURL}"
-                            VerticalOptions="Center" />
+                        <Border
+                            HeightRequest="55"
+                            WidthRequest="55"
+                            Grid.RowSpan="2">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="50" />
+                            </Border.StrokeShape>
+                            <Image
+                                Aspect="Fill"
+                                Source="{Binding ImageURL}"/>
+                        </Border>
                         <Label
                             Grid.Row="0"
                             Grid.Column="1"
-                            Margin="0,0,0,0"
+                            Margin="15,0,0,0"
                             FontFamily="InterSemiBold"
                             FontSize="16"
                             Text="Feeding" />
@@ -101,13 +114,14 @@
                         <Label
                             Grid.Row="1"
                             Grid.Column="1"
+                            Margin="15,0,0,0"
                             Grid.ColumnSpan="2"
                             Text="Was just fed!" />
                     </Grid>
                     <Line
                         Stroke="#BDBDBD"
                         StrokeThickness="1"
-                        X1="40"
+                        X1="0"
                         X2="500"
                         Y1="0"
                         Y2="0" />
