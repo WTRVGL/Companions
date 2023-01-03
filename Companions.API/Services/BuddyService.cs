@@ -58,6 +58,7 @@ namespace Companions.API.Services
                 .Include(b => b.Activities)
                     .ThenInclude(a => a.ActivityType)
                 .Include(b => b.FeedingSchedules)
+                    .ThenInclude(f => f.FeedProduct)
                 .ToList();
 
             if (buddies == null) return null;
