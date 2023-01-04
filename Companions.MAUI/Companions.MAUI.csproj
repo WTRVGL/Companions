@@ -86,6 +86,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Remove="v\**" />
+	  <EmbeddedResource Remove="v\**" />
+	  <MauiCss Remove="v\**" />
+	  <MauiXaml Remove="v\**" />
+	  <None Remove="v\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<None Remove="appsettings.Development.json" />
 		<None Remove="Resources\Fonts\fa-brands-400.otf" />
 		<None Remove="Resources\Fonts\fa-regular-400.otf" />
@@ -101,6 +109,7 @@
 		<None Remove="Resources\Fonts\Inter-Thin.ttf" />
 		<None Remove="Resources\Fonts\Poppins-Black.ttf" />
 		<None Remove="Resources\Fonts\Poppins-Bold.ttf" />
+		<None Remove="Resources\Images\basori.jpg" />
 		<None Remove="Resources\Images\icnmenuclose.png" />
 		<None Remove="Resources\Images\startimg.png" />
 	</ItemGroup>
@@ -131,10 +140,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Update="LoginShell.xaml.cs">
+		<Compile Update="Shells\WalktroughShell.xaml.cs">
+		  <DependentUpon>WalktroughShell.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Shells\LoginShell.xaml.cs">
 			<DependentUpon>LoginShell.xaml</DependentUpon>
 		</Compile>
-		<Compile Update="MainShell.xaml.cs">
+		<Compile Update="Shells\MainShell.xaml.cs">
 			<DependentUpon>MainShell.xaml</DependentUpon>
 		</Compile>
 		<Compile Update="Resources\Icons\Brands.xaml.cs">
@@ -143,19 +155,13 @@
 		<Compile Update="Resources\Icons\Solid.xaml.cs">
 			<DependentUpon>Solid.xaml</DependentUpon>
 		</Compile>
-		<Compile Update="Views\App\BuddyDetail\TabControl.xaml.cs">
-			<DependentUpon>TabControl.xaml</DependentUpon>
-		</Compile>
-		<Compile Update="Views\App\HomePage.xaml.cs">
-			<DependentUpon>HomePage.xaml</DependentUpon>
-		</Compile>
-		<Compile Update="Views\App\AppointmentDetailPage.xaml.cs">
-			<DependentUpon>AppointmentDetailPage.xaml</DependentUpon>
-		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-		<MauiXaml Update="MainShell.xaml">
+		<MauiXaml Update="Shells\WalktroughShell.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Shells\MainShell.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Controls\Entry.xaml">
@@ -173,68 +179,8 @@
 		<MauiXaml Update="Controls\BuddyCard.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
-		<MauiXaml Update="Views\App\Actions\AppointmentPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Views\App\Actions\FeedingPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Views\App\Actions\TrackWeightPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Views\App\Actions\WalkingPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Views\App\Action.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Views\App\BuddyDetail\BuddyDetailPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Views\App\BuddyDetail\HealthControl.xaml">
+		<MauiXaml Update="Views\Walktrough\MainPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Views\App\EditAppointmentPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Views\App\BuddyDetail\FoodControl.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Views\App\BuddyDetail\OverviewControl.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Views\App\BuddyDetail\TabControl.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Views\App\DiscoverPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Views\App\EditBuddyPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Views\App\HomePage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Views\App\AppointmentDetailPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Views\App\SchedulePage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Views\App\SettingsPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Views\BogusPage.xaml">
-		  <Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Views\Login\LoginPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Views\Login\SignUpPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Views\Login\StartPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 	</ItemGroup>
 </Project>
