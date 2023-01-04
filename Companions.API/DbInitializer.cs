@@ -102,17 +102,43 @@ namespace Companions.API
             context.Users.AddRange(_users);
             context.SaveChanges();
 
-            _buddyWeights = new List<BuddyWeight>()
+            var _bassieWeights = new List<BuddyWeight>()
+            {
+                new BuddyWeight { Weight = 10.2, DateWeighed = DateTime.Parse("2022-09-14") },
+                new BuddyWeight { Weight = 10.1, DateWeighed = DateTime.Parse("2022-09-15") },
+                new BuddyWeight { Weight = 10.2, DateWeighed = DateTime.Parse("2022-09-16") },
+                new BuddyWeight { Weight = 10.3, DateWeighed = DateTime.Parse("2022-09-17") },
+                new BuddyWeight { Weight = 10.4, DateWeighed = DateTime.Parse("2022-09-18") },
+                new BuddyWeight { Weight = 10.6, DateWeighed = DateTime.Parse("2022-09-19") },
+                new BuddyWeight { Weight = 10.4, DateWeighed = DateTime.Parse("2022-09-20") },
+                new BuddyWeight { Weight = 10.0, DateWeighed = DateTime.Parse("2022-09-21") },
+                new BuddyWeight { Weight = 10.1, DateWeighed = DateTime.Parse("2022-09-22") },
+            };
+
+            var _oriWeights = new List<BuddyWeight>()
+            {
+                new BuddyWeight { Weight = 7.2, DateWeighed = DateTime.Parse("2022-09-14") },
+                new BuddyWeight { Weight = 7.1, DateWeighed = DateTime.Parse("2022-09-15") },
+                new BuddyWeight { Weight = 7.2, DateWeighed = DateTime.Parse("2022-09-16") },
+                new BuddyWeight { Weight = 7.3, DateWeighed = DateTime.Parse("2022-09-17") },
+                new BuddyWeight { Weight = 7.4, DateWeighed = DateTime.Parse("2022-09-18") },
+                new BuddyWeight { Weight = 7.6, DateWeighed = DateTime.Parse("2022-09-19") },
+                new BuddyWeight { Weight = 7.4, DateWeighed = DateTime.Parse("2022-09-20") },
+                new BuddyWeight { Weight = 7.0, DateWeighed = DateTime.Parse("2022-09-21") },
+                new BuddyWeight { Weight = 7.1, DateWeighed = DateTime.Parse("2022-09-22") },
+            };
+
+            var _robotWeights = new List<BuddyWeight>()
             {
                 new BuddyWeight { Weight = 4.2, DateWeighed = DateTime.Parse("2022-09-14") },
-                new BuddyWeight { Weight = 4.3, DateWeighed = DateTime.Parse("2022-09-15") },
-                new BuddyWeight { Weight = 4.4, DateWeighed = DateTime.Parse("2022-09-16") },
-                new BuddyWeight { Weight = 5.2, DateWeighed = DateTime.Parse("2022-09-14") },
-                new BuddyWeight { Weight = 5.3, DateWeighed = DateTime.Parse("2022-09-16") },
-                new BuddyWeight { Weight = 5.4, DateWeighed = DateTime.Parse("2022-09-17") },
-                new BuddyWeight { Weight = 3.2, DateWeighed = DateTime.Parse("2022-09-14") },
-                new BuddyWeight { Weight = 3.3, DateWeighed = DateTime.Parse("2022-09-14") },
-                new BuddyWeight { Weight = 4.32, DateWeighed = DateTime.Parse("2022-09-16") },
+                new BuddyWeight { Weight = 4.1, DateWeighed = DateTime.Parse("2022-09-15") },
+                new BuddyWeight { Weight = 4.2, DateWeighed = DateTime.Parse("2022-09-16") },
+                new BuddyWeight { Weight = 4.3, DateWeighed = DateTime.Parse("2022-09-17") },
+                new BuddyWeight { Weight = 4.4, DateWeighed = DateTime.Parse("2022-09-18") },
+                new BuddyWeight { Weight = 4.6, DateWeighed = DateTime.Parse("2022-09-19") },
+                new BuddyWeight { Weight = 4.4, DateWeighed = DateTime.Parse("2022-09-20") },
+                new BuddyWeight { Weight = 4.0, DateWeighed = DateTime.Parse("2022-09-21") },
+                new BuddyWeight { Weight = 4.1, DateWeighed = DateTime.Parse("2022-09-22") },
             };
 
 
@@ -127,7 +153,7 @@ namespace Companions.API
                     BuddyWeights = new List<BuddyWeight>(),
                     ImageURL = "https://i.imgur.com/GJe4t90.jpg",
                     Activities = new List<Activity>(),
-                    FeedingSchedules = _feedingSchedules.GetRange(0, 2),
+                    FeedingSchedules = _feedingSchedules.GetRange(0, 3),
                 },
                 new Buddy {
                     Name = "Ori",
@@ -138,7 +164,7 @@ namespace Companions.API
                     Gender = "Male",
                     ImageURL="https://i.imgur.com/UUzY06O.png",
                     Activities = new List<Activity>(),
-                    FeedingSchedules = _feedingSchedules.GetRange(2, 2)
+                    FeedingSchedules = _feedingSchedules.GetRange(1, 3)
                 },
                 new Buddy {
                     Name = "Robot",
@@ -149,7 +175,7 @@ namespace Companions.API
                     BuddyWeights = new List<BuddyWeight>(),
                     ImageURL="https://i.imgur.com/Z0J26m6.png",
                     Activities = new List<Activity>(),
-                    FeedingSchedules = _feedingSchedules.GetRange(4, 2)
+                    FeedingSchedules = _feedingSchedules.GetRange(2, 3)
                 },
                 new Buddy {
                     Name = "Test Buddy",
@@ -160,13 +186,13 @@ namespace Companions.API
                     BuddyWeights = new List<BuddyWeight>(),
                     ImageURL="https://i.imgur.com/Z0J26m6.png",
                     Activities = new List<Activity>(),
-                    FeedingSchedules = _feedingSchedules.GetRange(4, 2)
+                    FeedingSchedules = _feedingSchedules.GetRange(1, 4)
                 }
             };
 
-            _buddies.First(b => b.Name == "Bassie").BuddyWeights.AddRange(_buddyWeights.GetRange(0, 2));
-            _buddies.First(b => b.Name == "Ori").BuddyWeights.AddRange(_buddyWeights.GetRange(2, 2));
-            _buddies.First(b => b.Name == "Robot").BuddyWeights.AddRange(_buddyWeights.GetRange(4, 2));
+            _buddies.First(b => b.Name == "Bassie").BuddyWeights.AddRange(_bassieWeights);
+            _buddies.First(b => b.Name == "Ori").BuddyWeights.AddRange(_oriWeights);
+            _buddies.First(b => b.Name == "Robot").BuddyWeights.AddRange(_robotWeights);
 
             _buddies.First(b => b.Name == "Bassie").Activities.AddRange(_activities.GetRange(0, _activities.Count));
 

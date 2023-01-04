@@ -5,8 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:vm="clr-namespace:Companions.MAUI.ViewModels.Login"
     x:DataType="vm:LoginPageViewModel"
-    xmlns:customControls="clr-namespace:Companions.MAUI.Controls"
-    Shell.NavBarIsVisible="False">
+    xmlns:customControls="clr-namespace:Companions.MAUI.Controls">
 
     <VerticalStackLayout Padding="30" VerticalOptions="Center">
         <ActivityIndicator IsRunning="{Binding IsBusy}" />

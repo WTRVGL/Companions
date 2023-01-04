@@ -53,7 +53,7 @@
 
                     <tabView:SfTabItem Header="Health">
                         <tabView:SfTabItem.Content>
-                            <Grid BackgroundColor="Blue" />
+                            <buddyTabs:HealthControl/>
                         </tabView:SfTabItem.Content>
                     </tabView:SfTabItem>
                 </tabView:SfTabView.Items>

@@ -26,7 +26,7 @@ namespace Companions.MAUI
 #if DEBUG
             using var stream = a.GetManifestResourceStream("Companions.MAUI.appsettings.Development.json");
 #else
-            using var stream = a.GetManifestResourceStream("Companions.MAUI.appsettings.json");
+            using var stream = a.GetManifestResourceStream("Companions.MAUI.appsettings.Development.json");
 #endif
 
             var config = new ConfigurationBuilder()
