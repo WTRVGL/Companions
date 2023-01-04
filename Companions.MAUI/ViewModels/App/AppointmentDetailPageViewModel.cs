@@ -44,7 +44,8 @@ namespace Companions.MAUI.ViewModels.App
                 var secondAction = await Application.Current.MainPage.DisplayActionSheet("Are you sure?", "Cancel", null, "Delete appointment");
                 if (secondAction == "Delete appointment")
                 {
-                    _appointmentService.DeleteAppointment(Appointment);
+                    var deleted = await _appointmentService.DeleteAppointment(Appointment.Id);
+                    if (!deleted) await Application.Current.MainPage.DisplayAlert("Error", "Appointment couldn't be deleted", "Ok");
                     GoBack();
                 }
             }

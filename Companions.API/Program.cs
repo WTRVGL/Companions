@@ -151,14 +151,17 @@ else
     app.UseHttpsRedirection();
 }
 
-//Seed db
+
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
     //Delete db
-    //context.Database.EnsureDeleted();
+    context.Database.EnsureDeleted();
+
     context.Database.Migrate();
+
+    //Seed db
     DbInitializer.InitializeDb(context);
 }
 

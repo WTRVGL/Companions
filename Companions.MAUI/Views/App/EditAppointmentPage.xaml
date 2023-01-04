@@ -10,8 +10,7 @@
              Title="EditAppointmentPage"
              Shell.NavBarIsVisible="False"
              Shell.TabBarIsVisible="False">
-  
-
+    
     <ContentPage.Resources>
         <Style TargetType="Label" x:Key="FieldTitle">
             <Setter Property="FontSize" Value="16"/>
@@ -63,23 +62,36 @@
         <VerticalStackLayout Margin="0,30,0,0">
             <Label 
                 Style="{StaticResource FieldTitle}"
-                Text="Buddy"/>
+                Text="Buddy"
+                Margin="0,0,0,5"/>
+            
             <syncfusion:SfListView
                 SelectedItem="{Binding SelectedBuddy}"
                 SelectionChangedCommand="{Binding BuddySelectedCommand}"
                 SelectionMode="Single"
-                HeightRequest="150"
+                HeightRequest="120"
                 ItemSize="100"
                 x:Name="listView" 
                 ItemsSource="{Binding Buddies}"
                 Orientation="Horizontal">
                 <syncfusion:SfListView.ItemTemplate>
                     <DataTemplate x:DataType="models:Buddy">
-                        <VerticalStackLayout>
-                            <Image Source="{Binding ImageURL}"
-                                   Margin="10"
-                                   Aspect="AspectFit"
-                                   HeightRequest="100"/>
+                        <VerticalStackLayout
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center">
+                            <Border
+                                BackgroundColor="Transparent"
+                                Grid.RowSpan="2"
+                                HeightRequest="100"
+                                WidthRequest="100">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="50" />
+                                </Border.StrokeShape>
+                                <Image
+                                    Aspect="AspectFit"
+                                    VerticalOptions="Center"
+                                    Source="{Binding ImageURL}"/>
+                            </Border>
                             <Label Text="{Binding Name}"
                                    HorizontalOptions="Center"/>
                         </VerticalStackLayout>
@@ -93,12 +105,14 @@
                 Style="{StaticResource FieldTitle}"
                 Text="Appointment date"/>
             <DatePicker Date="{Binding Appointment.AppointmentDate}"/>
+
         </VerticalStackLayout>
-        <VerticalStackLayout Margin="0,30,0,0">
+
+        <!--<VerticalStackLayout Margin="0,30,0,0">
             <Label 
                 Style="{StaticResource FieldTitle}"
                 Text="Appointment Time"/>
             <TimePicker Time="{Binding Appointment.AppointmentTime}"/>
-        </VerticalStackLayout>
+        </VerticalStackLayout>-->
     </VerticalStackLayout>
 </ContentPage>

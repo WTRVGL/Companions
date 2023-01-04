@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui.Core.Extensions;
 using Companions.MAUI.Models.App;
+using Companions.MAUI.Services.Models;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -58,9 +59,14 @@ namespace Companions.MAUI.Services
             return new Buddy();
         }
 
-        public bool DeleteBuddy(string id)
+        public async Task<bool> DeleteBuddy(string id)
         {
-            return false;
+            await EnsureAuthHeaders();
+
+            var res = await _httpClient.DeleteAsync($"{_apiBaseURL}/api/Buddy/{id}");
+            var deleted = await res.Content.ReadFromJsonAsync<bool>();
+
+            return deleted;
         }
 
         public async Task<ObservableCollection<Buddy>> GetBuddies()
@@ -77,9 +83,25 @@ namespace Companions.MAUI.Services
 
 
 
-        public Buddy UpdateBuddy(Buddy buddy)
+        public async Task<Buddy> UpdateBuddy(Buddy buddy)
         {
-            throw new NotImplementedException();
+            await EnsureAuthHeaders();
+
+            var req = new UpdateBuddyRequest
+            {
+                Id = buddy.Id,
+                Gender = buddy.Gender,
+                Name = buddy.Name,
+                Race = buddy.Race
+            };
+
+            var res = await _httpClient.PutAsJsonAsync<UpdateBuddyRequest>($"{_apiBaseURL}/api/Buddy", req);
+            var updatedBuddy = await res.Content.ReadFromJsonAsync<Buddy>();
+
+            //If...
+
+            return updatedBuddy;
         }
     }
 }
+

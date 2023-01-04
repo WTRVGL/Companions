@@ -13,8 +13,8 @@ namespace Companions.MAUI.Services
         Task<Buddy> GetBuddyById(string id);
         Task<ObservableCollection<Buddy>> GetBuddies();
         Task<Buddy> AddBuddy(Buddy buddy);
-        Buddy UpdateBuddy(Buddy buddy);
-        bool DeleteBuddy(string id);
+        Task<Buddy> UpdateBuddy(Buddy buddy);
+        Task<bool> DeleteBuddy(string id);
 
     }
 }

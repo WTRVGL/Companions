@@ -1,7 +1,8 @@
 ﻿namespace Companions.API.DTOs.Appointment
 {
-    public class CreateAppointmentDTO
+    public class UpdateAppointmentDTO
     {
+        public string Id { get; set; }
         public string AppointmentName { get; set; }
         public string Description { get; set; }
         public string BuddyId { get; set; }

@@ -13,8 +13,8 @@ namespace Companions.MAUI.Services
     {
         Task<ObservableCollection<Appointment>> GetAppointments();
         ObservableCollection<SchedulerAppointment> GetSchedulerAppointments();
-        Appointment UpdateAppointment(Appointment appointment);
-        Appointment AddAppointment(Appointment appointment);
-        bool DeleteAppointment(Appointment appointment);
+        Task<Appointment> UpdateAppointment(Appointment appointment);
+        Task<Appointment> AddAppointment(Appointment appointment);
+        Task<bool> DeleteAppointment(string id);
     }
 }

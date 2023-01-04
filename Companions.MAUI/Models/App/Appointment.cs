@@ -10,12 +10,10 @@ namespace Companions.MAUI.Models.App
     public class Appointment : ObservableObject
     {
         public string Id { get; set; }
-
         private string _appointmentName;
         private string _description;
         private Buddy _buddy;
         private DateTime _appointmentDate;
-        private DateTime _appointmentTime;
         private Place _place;
 
         public Place Place
@@ -48,12 +46,7 @@ namespace Companions.MAUI.Models.App
             set => SetProperty(ref _appointmentDate, value);
         }
 
-        public DateTime AppointmentTime
-        {
-            get => _appointmentTime;
-            set => SetProperty(ref _appointmentTime, value);
-        }
-
+        public string BuddyId { get; set; }
 
     }
 }

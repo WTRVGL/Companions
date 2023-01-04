@@ -70,7 +70,17 @@ namespace Companions.API.Services
         {
             var appointmentToBeUpdated = _db.Appointments.FirstOrDefault(a => a.Id == appointment.Id);
             if (appointment == null) return null;
-            appointmentToBeUpdated = appointment;
+
+            //Automapper here?
+            appointmentToBeUpdated.AppointmentDate = appointment.AppointmentDate;
+            appointmentToBeUpdated.AppointmentName = appointment.AppointmentName;
+            appointmentToBeUpdated.AppointmentType = appointment.AppointmentType;
+            appointmentToBeUpdated.AppointmentTypeId = appointment.AppointmentTypeId;
+            appointmentToBeUpdated.BuddyId = appointment.BuddyId;
+            appointmentToBeUpdated.PlaceId = appointment.PlaceId;
+            appointmentToBeUpdated.Description = appointment.Description;
+
+
             _db.SaveChanges();
             return appointmentToBeUpdated;
         }

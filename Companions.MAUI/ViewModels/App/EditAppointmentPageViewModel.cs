@@ -23,7 +23,8 @@ namespace Companions.MAUI.ViewModels.App
         {
             _buddyService = buddyService;
             _appointmentService = appointmentService;
-            //Buddies = _buddyService.GetBuddies();
+
+            Task.Run(async () => await FetchDataAsync()).Wait();
         }
 
         [ObservableProperty]
@@ -48,11 +49,17 @@ namespace Companions.MAUI.ViewModels.App
         async void BuddySelected()
         {
             Appointment.Buddy = _selectedBuddy;
+            Appointment.BuddyId = _selectedBuddy.Id;
+        }
+
+        [RelayCommand]
+        async Task FetchDataAsync()
+        {
+            Buddies = await _buddyService.GetBuddies();
         }
 
         partial void OnAppointmentChanged(Appointment appointment)
         {
-            SelectedBuddy = Buddies.First(b => b.Id == appointment.Buddy.Id);
         }
     }
 }

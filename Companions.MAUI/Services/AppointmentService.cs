@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui.Core.Extensions;
 using Companions.MAUI.Models.App;
+using Companions.MAUI.Services.Models;
 using Microsoft.Extensions.Configuration;
 using Syncfusion.Maui.Scheduler;
 using System;
@@ -34,14 +35,19 @@ namespace Companions.MAUI.Services
             _httpClient.DefaultRequestHeaders.Add("Authorization", jwt);
         }
 
-        public Appointment AddAppointment(Appointment appointment)
+        public Task<Appointment> AddAppointment(Appointment appointment)
         {
             throw new NotImplementedException();
         }
 
-        public bool DeleteAppointment(Appointment appointment)
+        public async Task<bool> DeleteAppointment(string id)
         {
-            throw new NotImplementedException();
+            await EnsureAuthHeaders();
+
+            var res = await _httpClient.DeleteAsync($"{_apiBaseURL}/api/Appointment/{id}");
+            var deleted = await res.Content.ReadFromJsonAsync<bool>();
+
+            return deleted;
         }
 
         public async Task<ObservableCollection<Appointment>> GetAppointments()
@@ -61,9 +67,24 @@ namespace Companions.MAUI.Services
             return null;
         }
 
-        public Appointment UpdateAppointment(Appointment appointment)
+        public async Task<Appointment> UpdateAppointment(Appointment appointment)
         {
-            throw new NotImplementedException();
+            await EnsureAuthHeaders();
+
+            var req = new UpdateAppointmentRequest
+            {
+                Id = appointment.Id,
+                AppointmentDate = appointment.AppointmentDate,
+                AppointmentName = appointment.AppointmentName,
+                BuddyId = appointment.BuddyId,
+                Description = appointment.Description,
+                PlaceId = appointment.Place.Id
+            };
+
+
+            var res = await _httpClient.PutAsJsonAsync<UpdateAppointmentRequest>($"{_apiBaseURL}/api/Appointment", req);
+            var updatedAppointment = await res.Content.ReadFromJsonAsync<Appointment>();
+            return updatedAppointment;
         }
     }
 }
