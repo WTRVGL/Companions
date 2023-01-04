@@ -68,7 +68,10 @@ namespace Companions.MAUI.ViewModels.Login
             //Set token
             await SecureStorage.SetAsync("JWT", authResponse.Token);
 
-            //Set user
+            //If user has no buddies, go to walktrough shell.
+            //IsBusy = true;
+            //Application.Current.MainPage = new WalkTroughShell();
+            //IsBusy = false;
 
             //Go to home screen. / Walktrough screen.
             IsBusy = true;

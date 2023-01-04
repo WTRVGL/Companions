@@ -99,8 +99,8 @@ namespace Companions.MAUI.ViewModels.Login
 
             //Set user
 
-            //Go to home screen. / Walktrough screen.
-            Application.Current.MainPage = new MainShell();
+            //Go to Walktrough screen.
+            Application.Current.MainPage = new WalkTroughShell();
 
             IsBusy = false;
         }

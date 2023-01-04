@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Companions.MAUI.WalkTroughShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Companions.MAUI"
+    xmlns:walktroughViews="clr-namespace:Companions.MAUI.Views.Walktrough">
+
+    <ShellContent ContentTemplate="{DataTemplate walktroughViews:MainPage}" Route="MainPage" />
+</Shell>
