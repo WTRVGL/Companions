@@ -13,7 +13,7 @@
         <ActivityIndicator IsRunning="{Binding IsBusy}" />
         
         <customControls:Entry 
-            Placeholder="E-mail" 
+            Placeholder="Username" 
             Text="{Binding Email}" 
             x:Name="EmailEntry"/>
         <customControls:Entry
