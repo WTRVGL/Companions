@@ -107,12 +107,5 @@
             <DatePicker Date="{Binding Appointment.AppointmentDate}"/>
 
         </VerticalStackLayout>
-
-        <!--<VerticalStackLayout Margin="0,30,0,0">
-            <Label 
-                Style="{StaticResource FieldTitle}"
-                Text="Appointment Time"/>
-            <TimePicker Time="{Binding Appointment.AppointmentTime}"/>
-        </VerticalStackLayout>-->
     </VerticalStackLayout>
 </ContentPage>
