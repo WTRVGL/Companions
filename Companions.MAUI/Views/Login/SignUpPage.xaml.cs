@@ -14,4 +14,11 @@ public partial class SignUpPage : ContentPage
     {
         return true;
     }
+
+    //Hides the keyboard to prevent ugly glitch
+    private void Signup_Clicked(object sender, EventArgs e)
+    {
+        UsernameEntry.IsEnabled = false;
+        UsernameEntry.IsEnabled = true;
+    }
 }

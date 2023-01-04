@@ -18,19 +18,19 @@
 
     <TabBar>
         <Tab Title="Home" Icon="{FontImage FontFamily=FaSolid, Glyph={StaticResource SolidHouse}}">
-            <ShellContent ContentTemplate="{DataTemplate mainViews:HomePage}" Route="MainPage" />
+            <ShellContent ContentTemplate="{DataTemplate mainViews:HomePage}"/>
         </Tab>
         <Tab Title="Schedule" Icon="{FontImage FontFamily=FaSolid, Glyph={StaticResource SolidCalendarDay}}">
-            <ShellContent ContentTemplate="{DataTemplate mainViews:SchedulePage}" Route="MainPage" />
+            <ShellContent ContentTemplate="{DataTemplate mainViews:SchedulePage}"/>
         </Tab>
         <Tab Icon="{FontImage FontFamily=FaSolid, Glyph={StaticResource BrandPlus}}">
-            <ShellContent ContentTemplate="{DataTemplate mainViews:Action}" Route="Action"/>
+            <ShellContent ContentTemplate="{DataTemplate mainViews:Action}"/>
         </Tab>
         <Tab Title="Discover" Icon="{FontImage FontFamily=FaSolid, Glyph={StaticResource SolidCompass}}">
-            <ShellContent ContentTemplate="{DataTemplate mainViews:DiscoverPage}" Route="MainPage" />
+            <ShellContent ContentTemplate="{DataTemplate mainViews:DiscoverPage}"/>
         </Tab>
         <Tab Title="Settings" Icon="{FontImage FontFamily=FaSolid, Glyph={StaticResource SolidGears}}">
-            <ShellContent ContentTemplate="{DataTemplate mainViews:SettingsPage}" Route="MainPage" />
+            <ShellContent ContentTemplate="{DataTemplate mainViews:SettingsPage}"/>
         </Tab>
     </TabBar>
 

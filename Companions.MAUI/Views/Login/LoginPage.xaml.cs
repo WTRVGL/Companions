@@ -14,4 +14,11 @@ public partial class LoginPage : ContentPage
 	{
 		return true;
 	}
+
+	//Hides the keyboard to prevent ugly glitch
+    private void Login_Clicked(object sender, EventArgs e)
+	{
+		EmailEntry.IsEnabled = false;
+		EmailEntry.IsEnabled = true;
+	}
 }

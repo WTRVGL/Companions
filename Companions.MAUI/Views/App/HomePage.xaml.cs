@@ -6,12 +6,7 @@ public partial class HomePage : ContentPage
 {
 	public HomePage(HomePageViewModel vm)
 	{
-		this.BindingContext = vm;
 		InitializeComponent();
+		this.BindingContext = vm;
 	}
-
-	protected override void OnNavigatedTo(NavigatedToEventArgs args)
-	{
-		base.OnNavigatedTo(args);
-	 }
 }

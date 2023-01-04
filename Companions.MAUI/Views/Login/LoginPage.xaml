@@ -5,18 +5,23 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:vm="clr-namespace:Companions.MAUI.ViewModels.Login"
     x:DataType="vm:LoginPageViewModel"
-    xmlns:customControls="clr-namespace:Companions.MAUI.Controls">
+    xmlns:customControls="clr-namespace:Companions.MAUI.Controls"
+    Shell.NavBarIsVisible="False"
+    Shell.TabBarIsVisible="False">
 
     <VerticalStackLayout Padding="30" VerticalOptions="Center">
         <ActivityIndicator IsRunning="{Binding IsBusy}" />
         
-        <customControls:Entry Placeholder="E-mail" Text="{Binding Email}" />
+        <customControls:Entry 
+            Placeholder="E-mail" 
+            Text="{Binding Email}" 
+            x:Name="EmailEntry"/>
         <customControls:Entry
             IsPassword="True"
             Placeholder="Password"
             Text="{Binding Password}" />
 
-        <Button Command="{Binding LoginCommand}" Text="Log In" />
+        <Button Command="{Binding LoginCommand}" Text="Log In" Clicked="Login_Clicked"/>
         <HorizontalStackLayout>
             <Label Text="No account? Click" />
             <Button

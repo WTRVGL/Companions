@@ -1,4 +1,5 @@
 ﻿using Companions.MAUI.Models;
+using Companions.MAUI.Views;
 using Microsoft.Extensions.Configuration;
 
 namespace Companions.MAUI
@@ -9,8 +10,7 @@ namespace Companions.MAUI
         public App(IConfiguration config)
         {
             InitializeComponent();
-            MainPage = new BogusShell();
-            
+            MainPage = new BogusPage();
         }
 
         protected async override void OnStart()
@@ -20,11 +20,15 @@ namespace Companions.MAUI
             if (token == null)
             {
                 MainPage = new LoginShell();
-                return;
+                base.OnStart();
             }
 
-            MainPage = new MainShell();
-            base.OnStart();
+            else
+            {
+                MainPage = new MainShell();
+                base.OnStart();
+            }
+
         }
     }
 }
