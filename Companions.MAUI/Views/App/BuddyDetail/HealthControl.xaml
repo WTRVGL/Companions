@@ -4,7 +4,8 @@
              x:Class="Companions.MAUI.Views.App.BuddyDetail.HealthControl"
              xmlns:chart="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
              xmlns:vm="clr-namespace:Companions.MAUI.ViewModels.App"
-             x:DataType="vm:BuddyDetailPageViewModel">
+             x:DataType="vm:BuddyDetailPageViewModel"
+             BackgroundColor="White">
     <VerticalStackLayout>
         <Label 
             Text="Welcome to .NET MAUI!"
