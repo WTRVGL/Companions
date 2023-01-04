@@ -24,7 +24,7 @@
             <ShellContent ContentTemplate="{DataTemplate mainViews:SchedulePage}"/>
         </Tab>
         <Tab Icon="{FontImage FontFamily=FaSolid, Glyph={StaticResource BrandPlus}}">
-            <ShellContent ContentTemplate="{DataTemplate mainViews:Action}"/>
+            <ShellContent ContentTemplate="{DataTemplate mainViews:Action}" Route="Action"/>
         </Tab>
         <Tab Title="Discover" Icon="{FontImage FontFamily=FaSolid, Glyph={StaticResource SolidCompass}}">
             <ShellContent ContentTemplate="{DataTemplate mainViews:DiscoverPage}"/>
