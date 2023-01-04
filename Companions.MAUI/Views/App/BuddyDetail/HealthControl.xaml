@@ -7,9 +7,13 @@
              x:DataType="vm:BuddyDetailPageViewModel"
              BackgroundColor="White">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <chart:SfCartesianChart>
+            <chart:SfCartesianChart.XAxes>
+                <chart:CategoryAxis/>
+            </chart:SfCartesianChart.XAxes>
+            <chart:SfCartesianChart.YAxes>
+                <chart:NumericalAxis/>
+            </chart:SfCartesianChart.YAxes>
+        </chart:SfCartesianChart>
     </VerticalStackLayout>
 </ContentView>
