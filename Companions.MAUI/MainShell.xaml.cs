@@ -53,7 +53,7 @@ namespace Companions.MAUI
                 switch (action)
                 {
                     case "Feeding":
-                        await Application.Current.MainPage.Navigation.PushAsync(new FeedingPage());
+                        await Shell.Current.GoToAsync(nameof(FeedingPage));
                         return;
                     case "Walking":
                         await Application.Current.MainPage.Navigation.PushAsync(new WalkingPage());
