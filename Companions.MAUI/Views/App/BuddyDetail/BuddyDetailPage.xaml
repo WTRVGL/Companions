@@ -126,8 +126,7 @@
             Grid.RowSpan="2"
             BackgroundColor="White"
             BorderColor="Transparent"
-            CornerRadius="25"
-            ZIndex="10">
+            CornerRadius="25">
             <buddyControls:TabControl />
         </Frame>
 

@@ -10,8 +10,6 @@ namespace Companions.MAUI
     {
         public MainShell()
         {
-            InitializeComponent();
-
             //Register routing
             Routing.RegisterRoute(nameof(HomePage), typeof(HomePage));
             Routing.RegisterRoute(nameof(BuddyDetailPage), typeof(BuddyDetailPage));
@@ -27,6 +25,8 @@ namespace Companions.MAUI
             Routing.RegisterRoute(nameof(AppointmentDetailPage), typeof(AppointmentDetailPage));
             Routing.RegisterRoute(nameof(EditAppointmentPage), typeof(EditAppointmentPage));
             Routing.RegisterRoute(nameof(EditBuddyPage), typeof(EditBuddyPage));
+
+            InitializeComponent();
         }
 
         //HACK LOL

@@ -78,8 +78,7 @@
                         X1="0"
                         X2="0"
                         Y1="0"
-                        Y2="440"
-                        ZIndex="0" />
+                        Y2="440"/>
                     <VerticalStackLayout Margin="10,0,0,0">
                         <HorizontalStackLayout>
                             <Label

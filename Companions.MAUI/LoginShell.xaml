@@ -5,8 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Companions.MAUI"
     xmlns:loginViews="clr-namespace:Companions.MAUI.Views.Login"
-    xmlns:mainViews="clr-namespace:Companions.MAUI.Views.App"
-    Shell.FlyoutBehavior="Disabled">
+    xmlns:mainViews="clr-namespace:Companions.MAUI.Views.App">
 
     <ShellContent ContentTemplate="{DataTemplate loginViews:StartPage}" Route="MainPage" />
 
