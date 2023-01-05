@@ -1,4 +1,4 @@
-﻿namespace Companions.API.DTOs
+﻿namespace Companions.API.DTOs.Activity
 {
     public class ActivityTypeDTO
     {
