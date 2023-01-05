@@ -14,6 +14,7 @@ namespace Companions.MAUI.Selectors
     {
         public DataTemplate WalkTemplate { get; set; }
         public DataTemplate FeedingTemplate { get; set; }
+        public DataTemplate WeightTemplate { get; set; }
 
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
@@ -25,6 +26,8 @@ namespace Companions.MAUI.Selectors
                     return FeedingTemplate;
                 case "Walk":
                     return WalkTemplate;
+                case "Weight":
+                    return WeightTemplate;
                 default:
                     throw new NotImplementedException();
             }

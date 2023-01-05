@@ -28,7 +28,8 @@ namespace Companions.API
 
             _activityTypes = new List<ActivityType>() {
                 new ActivityType { Name = "Walk" },
-                new ActivityType { Name= "Feeding" }
+                new ActivityType { Name= "Feeding" },
+                new ActivityType { Name = "Weight" }
             };
 
             context.ActivityTypes.AddRange(_activityTypes);

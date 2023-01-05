@@ -17,11 +17,13 @@ namespace Companions.MAUI.ViewModels.App.Actions
     public partial class TrackWeightViewModel : BaseViewModel
     {
         private readonly IBuddyService _buddyService;
+        private readonly IActivityService _activityService;
 
-        public TrackWeightViewModel(IBuddyService buddyService)
+        public TrackWeightViewModel(IBuddyService buddyService, IActivityService activityService)
         {
             _buddyService = buddyService;
             Task.Run(async () => await FetchDataAsync()).Wait();
+            _activityService = activityService;
         }
 
 
@@ -69,6 +71,19 @@ namespace Companions.MAUI.ViewModels.App.Actions
             buddy.BuddyWeights.Add(createWeight);
 
             var updatedBuddy = await _buddyService.UpdateBuddy(buddy);
+
+            List<ActivityType> types = await _activityService.GetActivityTypes();
+            var walkActivity = types.FirstOrDefault(a => a.Name == "Weight");
+
+            var createActivity = new Activity
+            { 
+                ActivityType = walkActivity,
+                BuddyId = selectedBuddy.Id,
+                EndDate = DateTime.Now,
+                StartDate  = DateTime.Now,
+            };
+
+            var createdActivity = await _activityService.CreateActivity(createActivity);
 
 
             //    //Display notification and close
