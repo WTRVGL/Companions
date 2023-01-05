@@ -7,7 +7,7 @@ namespace Companions.MAUI.Models.App
         public string Id { get; set; }
         public ActivityType ActivityType { get; set; }
         public string ImageURL { get { return GetRandomActivityImage(); } }
-
+        public DateTime DateCreated { get; }
         public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public string BuddyId { get; set; }

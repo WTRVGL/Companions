@@ -33,6 +33,9 @@ namespace Companions.MAUI.ViewModels.App.Actions
         private ObservableCollection<object> _selectedBuddies;
 
         [ObservableProperty]
+        private int _selectedDuration;
+
+        [ObservableProperty]
         private ObservableCollection<Buddy> _buddies;
 
 
@@ -53,60 +56,31 @@ namespace Companions.MAUI.ViewModels.App.Actions
         [RelayCommand]
         async void BuddySelected()
         {
-            FeedingSchedules = new ObservableCollection<ActionFeedingSchedule>();
 
-            foreach (Buddy buddy in SelectedBuddies)
-            {
-                var schedule = new ActionFeedingSchedule
-                {
-                    BuddyName = buddy.Name,
-                    FeedingSchedules = buddy.FeedingSchedules
-                };
-
-                FeedingSchedules.Add(schedule);
-            }
         }
 
         [RelayCommand]
-        async void AddFeeding()
+        async void AddWalking()
         {
+            var endTime = DateTime.Now.AddMinutes(SelectedDuration).AddSeconds(5);
 
-            List<FeedingSchedule> checkedFeedings = new List<FeedingSchedule>();
-
-            if (FeedingSchedules.Count == 0)
-            {
-                await Application.Current.MainPage.DisplayAlert("Error", "Nothing was selected", "Ok");
-                return;
-            }
-
-            //Adds any FeedingSchedule to checkedFeedings if it is checked
-            for (int i = 0; i < FeedingSchedules.Count; i++)
-            {
-                for (int j = 0; j < FeedingSchedules[i].FeedingSchedules.Count; j++)
-                {
-                    if (FeedingSchedules[i].FeedingSchedules[j].IsChecked)
-                    {
-                        checkedFeedings.Add(FeedingSchedules[i].FeedingSchedules[j]);
-                    }
-                }
-            }
-
-            //Get Id of Feeding Activity
+            //Get Id of Walk Activity
             var activityTypes = await _activityService.GetActivityTypes();
-            var feedingActivityType = activityTypes.FirstOrDefault(a => a.Name == "Feeding");
-            if (feedingActivityType == null)
+            var walkActivityType = activityTypes.FirstOrDefault(a => a.Name == "Walk");
+
+            if (walkActivityType == null)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "Feeding id not found", "Ok");
+                await Application.Current.MainPage.DisplayAlert("Error", "Walk id not found", "Ok");
             }
 
-            foreach (var feedingActivity in checkedFeedings)
+            foreach (Buddy buddy in SelectedBuddies)
             {
                 var createActivity = new Activity
                 {
-                    ActivityType = feedingActivityType,
-                    EndDate = DateTime.Now,
+                    ActivityType = walkActivityType,
+                    EndDate = endTime,
                     StartDate = DateTime.Now,
-                    BuddyId = feedingActivity.BuddyId,
+                    BuddyId = buddy.Id,
                 };
 
                 var createdActivity = await _activityService.CreateActivity(createActivity);
@@ -115,13 +89,7 @@ namespace Companions.MAUI.ViewModels.App.Actions
             //Display notification and close
             await Application.Current.MainPage.DisplayAlert("Succes", "Sucesfully added Feeding Activity", "Ok");
             await Application.Current.MainPage.Navigation.PopAsync();
-
         }
 
-
-        [RelayCommand]
-        async void FeedingChecked(CheckedChangedEventArgs e)
-        {
-        }
     }
 }

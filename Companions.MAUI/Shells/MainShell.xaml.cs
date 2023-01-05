@@ -11,13 +11,6 @@ namespace Companions.MAUI
     {
         public MainShell()
         {
-
-            //Routing.RegisterRoute(nameof(HomePage), typeof(HomePage));
-            //Routing.RegisterRoute(nameof(SchedulePage), typeof(SchedulePage));
-            //Routing.RegisterRoute(nameof(DiscoverPage), typeof(DiscoverPage));
-            //Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
-            //Routing.RegisterRoute(nameof(Action), typeof(Action));
-
             //Register routing
 
             Routing.RegisterRoute(nameof(BuddyDetailPage), typeof(BuddyDetailPage));
@@ -57,7 +50,7 @@ namespace Companions.MAUI
                         await Shell.Current.GoToAsync(nameof(FeedingPage));
                         return;
                     case "Walking":
-                        await Application.Current.MainPage.Navigation.PushAsync(new WalkingPage());
+                        await Shell.Current.GoToAsync(nameof(WalkingPage));
                         return;
                     case "Appointment":
                         await Application.Current.MainPage.Navigation.PushAsync(new AppointmentPage());

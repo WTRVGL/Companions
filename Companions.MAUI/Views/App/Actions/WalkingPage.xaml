@@ -6,7 +6,7 @@
              xmlns:toolkitBehaviors="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:viewmodels="clr-namespace:Companions.MAUI.ViewModels.App.Actions"
              xmlns:syncfusion="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
-             x:DataType="viewmodels:FeedingPageViewModel"
+             x:DataType="viewmodels:WalkingPageViewModel"
              x:Name="RootPage"
              Shell.NavBarIsVisible="False"
              Shell.TabBarIsVisible="False">
@@ -42,43 +42,44 @@
         <Label 
             Margin="0,25,0,0"
             Style="{StaticResource FieldTitle}"
-            Text="Select Buddy:"/>
+            Text="Select Buddies:"/>
 
         <syncfusion:SfListView
-                SelectedItems="{Binding SelectedBuddies}"
-                SelectionMode="Multiple"
-                HeightRequest="120"
-                ItemSize="100"
-                x:Name="listView" 
-                ItemsSource="{Binding Buddies}"
-                Orientation="Horizontal">
-            <syncfusion:SfListView.Behaviors>
-                <toolkitBehaviors:EventToCommandBehavior EventName="SelectionChanged"
-                    Command="{Binding BuddySelectedCommand}"/>
-            </syncfusion:SfListView.Behaviors>
-            <syncfusion:SfListView.ItemTemplate>
-                <DataTemplate x:DataType="models:Buddy">
-                    <VerticalStackLayout
-                            VerticalOptions="Center"
-                            HorizontalOptions="Center">
-                        <Border
-                                BackgroundColor="Transparent"
-                                Grid.RowSpan="2"
-                                HeightRequest="100"
-                                WidthRequest="100">
-                            <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="10" />
-                            </Border.StrokeShape>
-                            <Image
-                                Aspect="AspectFit"
+            HorizontalOptions="Center"
+            SelectedItems="{Binding SelectedBuddies}"
+            SelectionMode="Multiple"
+            HeightRequest="120"
+            ItemSize="100"
+            x:Name="listView" 
+            ItemsSource="{Binding Buddies}"
+            Orientation="Horizontal">
+                <syncfusion:SfListView.Behaviors>
+                    <toolkitBehaviors:EventToCommandBehavior EventName="SelectionChanged"
+                        Command="{Binding BuddySelectedCommand}"/>
+                </syncfusion:SfListView.Behaviors>
+                <syncfusion:SfListView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Buddy">
+                        <VerticalStackLayout
                                 VerticalOptions="Center"
-                                Source="{Binding ImageURL}"/>
-                        </Border>
-                        <Label Text="{Binding Name}"
-                                   HorizontalOptions="Center"/>
-                    </VerticalStackLayout>
-                </DataTemplate>
-            </syncfusion:SfListView.ItemTemplate>
+                                HorizontalOptions="Center">
+                            <Border
+                                    BackgroundColor="Transparent"
+                                    Grid.RowSpan="2"
+                                    HeightRequest="100"
+                                    WidthRequest="100">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="10" />
+                                </Border.StrokeShape>
+                                <Image
+                                    Aspect="AspectFit"
+                                    VerticalOptions="Center"
+                                    Source="{Binding ImageURL}"/>
+                            </Border>
+                            <Label Text="{Binding Name}"
+                                       HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </syncfusion:SfListView.ItemTemplate>
         </syncfusion:SfListView>
 
         <VerticalStackLayout Margin="0,30,0,0">
@@ -88,20 +89,52 @@
                 IsVisible="True"
                 Text="How long was the walk?">
                 <Label.Triggers>
-                    <DataTrigger TargetType="Label" Binding="{Binding FeedingSchedules.Count}" Value="0">
+                    <DataTrigger TargetType="Label" Binding="{Binding SelectedBuddies.Count}" Value="0">
                         <Setter Property="IsVisible" Value="False" />
                     </DataTrigger>
                 </Label.Triggers>
             </Label>
-            
+            <Picker 
+                x:Name="picker"
+                Title="Select duration"
+                IsVisible="True"
+                SelectedItem="{Binding SelectedDuration}"
+                SelectedIndexChanged="OnPickerSelectedIndexChanged">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:Double}">
+                        <x:Double>5</x:Double>
+                        <x:Double>10</x:Double>
+                        <x:Double>15</x:Double>
+                        <x:Double>20</x:Double>
+                        <x:Double>25</x:Double>
+                        <x:Double>30</x:Double>
+                        <x:Double>35</x:Double>
+                        <x:Double>40</x:Double>
+                        <x:Double>45</x:Double>
+                        <x:Double>50</x:Double>
+                        <x:Double>55</x:Double>
+                        <x:Double>60</x:Double>
+                        <x:Double>75</x:Double>
+                        <x:Double>80</x:Double>
+                        <x:Double>95</x:Double>
+                        <x:Double>100</x:Double>
+                    </x:Array>
+                </Picker.ItemsSource>
+                <Picker.Triggers>
+                    <DataTrigger TargetType="Picker" Binding="{Binding SelectedBuddies.Count}" Value="0">
+                        <Setter Property="IsVisible" Value="False" />
+                    </DataTrigger>
+                </Picker.Triggers>
+            </Picker>
+
         </VerticalStackLayout>
 
         <Button Style="{StaticResource PrimaryButton}"
                 Text="Add Walking Events"
-                Command="{Binding AddFeedingCommand}"
+                Command="{Binding AddWalkingCommand}"
                 IsVisible="True">
             <Button.Triggers>
-                <DataTrigger TargetType="Button" Binding="{Binding FeedingSchedules.Count}" Value="0">
+                <DataTrigger TargetType="Button" Binding="{Binding SelectedBuddies.Count}" Value="0">
                     <Setter Property="IsVisible" Value="False"/>
                 </DataTrigger>
             </Button.Triggers>
