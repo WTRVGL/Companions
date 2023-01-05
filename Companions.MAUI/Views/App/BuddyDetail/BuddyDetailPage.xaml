@@ -39,7 +39,7 @@
         <Image
             Grid.Row="0"
             Grid.RowSpan="2"
-            Aspect="Fill"
+            Aspect="AspectFill"
             MinimumWidthRequest="600"
             Source="{Binding Buddy.ImageURL}" />
 
