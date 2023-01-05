@@ -17,7 +17,7 @@ namespace Companions.MAUI.Converters
             DateTime activityEndDate = (DateTime)value;
             var difference = DateTime.Now - activityEndDate;
 
-            if(difference.Hours == 0)
+            if(difference.Hours == 0 && difference.TotalHours < 1)
             {
                 if (difference.Minutes == 0)
                 {
