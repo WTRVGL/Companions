@@ -18,7 +18,7 @@ namespace Companions.MAUI.Services
         private readonly HttpClient _httpClient;
 
         private readonly string _apiBaseURL;
-       
+
         public BuddyService(IConfiguration config)
         {
             _httpClient = new HttpClient();
@@ -92,7 +92,8 @@ namespace Companions.MAUI.Services
                 Id = buddy.Id,
                 Gender = buddy.Gender,
                 Name = buddy.Name,
-                Race = buddy.Race
+                Race = buddy.Race,
+                BuddyWeights = buddy.BuddyWeights
             };
 
             var res = await _httpClient.PutAsJsonAsync<UpdateBuddyRequest>($"{_apiBaseURL}/api/Buddy", req);

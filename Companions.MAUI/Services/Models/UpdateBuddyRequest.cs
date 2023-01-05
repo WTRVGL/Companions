@@ -1,4 +1,4 @@
-﻿using Companions.Domain;
+﻿using Companions.MAUI.Models.App;
 using System;
 using System.Collections.Generic;
 using System.Linq;
