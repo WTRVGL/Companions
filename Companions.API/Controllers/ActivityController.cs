@@ -19,12 +19,14 @@ namespace Companions.API.Controllers
     public class ActivityController : ControllerBase
     {
         private readonly IActivityService _activityService;
+        private readonly IBuddyService _buddyService;
         private readonly IMapper _mapper;
 
-        public ActivityController(IMapper mapper, IActivityService activityService)
+        public ActivityController(IMapper mapper, IActivityService activityService, IBuddyService buddyService)
         {
             _mapper = mapper;
             _activityService = activityService;
+            _buddyService = buddyService;
         }
 
         // POST api/<BuddyController>
@@ -38,8 +40,12 @@ namespace Companions.API.Controllers
             var identity = HttpContext.User.Identity as ClaimsIdentity;
             string userId = identity.FindFirst("id").Value;
 
+            var buddy = _buddyService.GetBuddyById(buddyId);
+            if (buddy == null) return NotFound("Buddy does not exist");
+
             //Map from DTO to Domain model
             var activity = _mapper.Map<Activity>(createActivityDTO);
+            activity.BuddyId = buddyId;
 
             var createdActivity = _activityService.CreateActivity(activity);
             //Map from Domain model to return DTO model
