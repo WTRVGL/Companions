@@ -11,7 +11,7 @@
 
     <VerticalStackLayout Padding="30" VerticalOptions="Center">
         <ActivityIndicator IsRunning="{Binding IsBusy}" />
-        
+
         <customControls:Entry 
             Placeholder="Username" 
             Text="{Binding Email}" 

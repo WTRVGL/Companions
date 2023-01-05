@@ -10,7 +10,7 @@
              x:Name="RootPage"
              Shell.NavBarIsVisible="False"
              Shell.TabBarIsVisible="False">
-    
+
     <ContentPage.Resources>
         <Style TargetType="Label" x:Key="FieldTitle">
             <Setter Property="FontSize" Value="20"/>
@@ -53,33 +53,33 @@
             x:Name="listView" 
             ItemsSource="{Binding Buddies}"
             Orientation="Horizontal">
-                <syncfusion:SfListView.Behaviors>
-                    <toolkitBehaviors:EventToCommandBehavior EventName="SelectionChanged"
+            <syncfusion:SfListView.Behaviors>
+                <toolkitBehaviors:EventToCommandBehavior EventName="SelectionChanged"
                         Command="{Binding BuddySelectedCommand}"/>
-                </syncfusion:SfListView.Behaviors>
-                <syncfusion:SfListView.ItemTemplate>
-                    <DataTemplate x:DataType="models:Buddy">
-                        <VerticalStackLayout
+            </syncfusion:SfListView.Behaviors>
+            <syncfusion:SfListView.ItemTemplate>
+                <DataTemplate x:DataType="models:Buddy">
+                    <VerticalStackLayout
                                 VerticalOptions="Center"
                                 HorizontalOptions="Center">
-                            <Border
+                        <Border
                                     BackgroundColor="Transparent"
                                     Grid.RowSpan="2"
                                     HeightRequest="100"
                                     WidthRequest="100">
-                                <Border.StrokeShape>
-                                    <RoundRectangle CornerRadius="10" />
-                                </Border.StrokeShape>
-                                <Image
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10" />
+                            </Border.StrokeShape>
+                            <Image
                                     Aspect="AspectFit"
                                     VerticalOptions="Center"
                                     Source="{Binding ImageURL}"/>
-                            </Border>
-                            <Label Text="{Binding Name}"
+                        </Border>
+                        <Label Text="{Binding Name}"
                                        HorizontalOptions="Center"/>
-                        </VerticalStackLayout>
-                    </DataTemplate>
-                </syncfusion:SfListView.ItemTemplate>
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </syncfusion:SfListView.ItemTemplate>
         </syncfusion:SfListView>
 
         <VerticalStackLayout Margin="0,30,0,0">
