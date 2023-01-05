@@ -99,7 +99,6 @@ namespace Companions.MAUI.Services
             var res = await _httpClient.PutAsJsonAsync<UpdateBuddyRequest>($"{_apiBaseURL}/api/Buddy", req);
             var updatedBuddy = await res.Content.ReadFromJsonAsync<Buddy>();
 
-            //If...
 
             return updatedBuddy;
         }

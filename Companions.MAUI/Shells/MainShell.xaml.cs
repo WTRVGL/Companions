@@ -56,7 +56,7 @@ namespace Companions.MAUI
                         await Application.Current.MainPage.Navigation.PushAsync(new AppointmentPage());
                         return;
                     case "Track weight":
-                        await Application.Current.MainPage.Navigation.PushAsync(new TrackWeightPage());
+                        await Shell.Current.GoToAsync(nameof(TrackWeightPage));
                         return;
                     default:
                         break;
