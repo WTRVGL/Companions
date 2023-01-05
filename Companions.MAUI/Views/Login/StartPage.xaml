@@ -28,8 +28,8 @@
             Grid.Row="0"
             Grid.Column="0"
             Grid.ColumnSpan="2"
-            Aspect="Fill"
-            Source="startimg.png" />
+            Aspect="AspectFill"
+            Source="basori.jpg" />
 
         <!--<Rectangle
             Grid.Row="0"

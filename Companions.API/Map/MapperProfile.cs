@@ -16,8 +16,13 @@ namespace Companions.API.Mapper
             CreateMap<DailyFeeding, DailyFeedingDTO>();
             CreateMap<FeedingSchedule, FeedingScheduleDTO>();
             CreateMap<FeedProduct, FeedProductDTO>();
-            CreateMap<BuddyWeight, BuddyWeightDTO>();
+
             CreateMap<User, UserDTO>();
+
+            CreateMap<BuddyWeight, BuddyWeightDTO>();
+            CreateMap<BuddyWeightDTO, BuddyWeight>();
+            CreateMap<CreateBuddyWeightDTO, BuddyWeight>();
+            CreateMap<BuddyWeight, CreateBuddyWeightDTO>();
 
             CreateMap<Place, PlaceDTO>();
             CreateMap<Place, PlaceDTO>();

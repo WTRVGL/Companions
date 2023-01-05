@@ -67,7 +67,12 @@ namespace Companions.API.Services
 
         public Buddy GetBuddyById(string id)
         {
-            var buddy = _db.Buddies.FirstOrDefault(b => b.Id == id);
+            var buddy = _db.Buddies
+                .Include(b => b.Activities)
+                .Include(b => b.BuddyWeights)
+                .Include(b => b.Appointments)
+                .Include(b => b.FeedingSchedules)
+                .FirstOrDefault(b => b.Id == id);
             if (buddy == null) return null;
             return buddy;
         }
@@ -80,6 +85,7 @@ namespace Companions.API.Services
             buddy.Name = request.Name;
             buddy.Race = request.Race;
             buddy.Gender = request.Gender;
+            buddy.BuddyWeights= request.BuddyWeights;
 
             //buddy.FeedingSchedules = request.FeedingSchedules;
             //buddy.Vaccinations = request.Vaccinations;

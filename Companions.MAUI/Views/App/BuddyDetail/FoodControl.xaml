@@ -39,7 +39,7 @@
                             Grid.ColumnSpan="2"
                             LineBreakMode="CharacterWrap">
                             <Label.Text>
-                                <MultiBinding StringFormat="{}{0}g {1} {2}!">
+                                <MultiBinding StringFormat="{}{0}g {1} {2}">
                                     <Binding Path="Amount" />
                                     <Binding Path="FeedProduct.BrandName" />
                                     <Binding Path="FeedProduct.Name" />

@@ -128,6 +128,60 @@
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </DataTemplate>
+        <DataTemplate x:Key="WeightTemplate" x:DataType="models:Activity">
+            <VerticalStackLayout Margin="0,0,0,20">
+                <VerticalStackLayout>
+                    <Grid Margin="0,0,0,15">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.2*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Border
+                            HeightRequest="55"
+                            WidthRequest="55"
+                            Grid.RowSpan="2">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="50" />
+                            </Border.StrokeShape>
+                            <Image
+                                Aspect="Fill"
+                                Source="{Binding ImageURL}"/>
+                        </Border>
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Margin="15,0,0,0"
+                            FontFamily="InterSemiBold"
+                            FontSize="16"
+                            Text="Weighing" />
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            HorizontalOptions="End"
+                            Text="{Binding StartDate, Converter={StaticResource DateToTimeAgo}}"
+                            TextColor="#BDBDBD" />
+
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="15,0,0,0"
+                            Grid.ColumnSpan="2"
+                            Text="Was just weighed!" />
+                    </Grid>
+                    <Line
+                        Stroke="#BDBDBD"
+                        StrokeThickness="1"
+                        X1="0"
+                        X2="500"
+                        Y1="0"
+                        Y2="0" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </DataTemplate>
 
     </ContentView.Resources>
 
@@ -136,7 +190,7 @@
         ItemsSource="{Binding Buddy.Activities}"
         VerticalScrollBarVisibility="Never">
         <CollectionView.ItemTemplate>
-            <selectors:BuddyOverviewSelector FeedingTemplate="{StaticResource FeedingTemplate}" WalkTemplate="{StaticResource WalkingTemplate}" />
+            <selectors:BuddyOverviewSelector FeedingTemplate="{StaticResource FeedingTemplate}" WalkTemplate="{StaticResource WalkingTemplate}"  WeightTemplate="{StaticResource WeightTemplate}"/>
         </CollectionView.ItemTemplate>
     </CollectionView>
 </ContentView>
