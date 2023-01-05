@@ -33,13 +33,13 @@ namespace Companions.API.Controllers
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(ActivityDTO), Description = "Returns the created Activity")]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, Description = "Unauthorized")]
         [Authorize]
-        public ActionResult<ActivityDTO> CreateActivity(CreateActivityDTO activityDTO, string buddyId)
+        public ActionResult<ActivityDTO> CreateActivity(CreateActivityDTO createActivityDTO, string buddyId)
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
             string userId = identity.FindFirst("id").Value;
 
             //Map from DTO to Domain model
-            var activity = _mapper.Map<Activity>(activityDTO);
+            var activity = _mapper.Map<Activity>(createActivityDTO);
 
             var createdActivity = _activityService.CreateActivity(activity);
             //Map from Domain model to return DTO model
