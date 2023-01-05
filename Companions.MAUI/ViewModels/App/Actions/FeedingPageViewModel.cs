@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using Companions.MAUI.Models.App;
 using Companions.MAUI.Services;
+using Companions.MAUI.Services.Models;
 using Syncfusion.Maui.DataSource.Extensions;
 using Syncfusion.Maui.ListView;
 using System;
@@ -16,12 +17,14 @@ namespace Companions.MAUI.ViewModels.App.Actions
     public partial class FeedingPageViewModel : BaseViewModel
     {
         private readonly IBuddyService _buddyService;
+        private readonly IActivityService _activityService;
 
-        public FeedingPageViewModel(IBuddyService buddyService)
+        public FeedingPageViewModel(IBuddyService buddyService, IActivityService activityService)
         {
             _buddyService = buddyService;
             SelectedBuddies = new ObservableCollection<object>();
             _feedingSchedules = new ObservableCollection<ActionFeedingSchedule>();
+            _activityService = activityService;
 
             Task.Run(async () => await FetchDataAsync()).Wait();
         }
@@ -90,7 +93,28 @@ namespace Companions.MAUI.ViewModels.App.Actions
                 }
             }
 
+            //Get Id of Feeding Activity
+            var activityTypes = await _activityService.GetActivityTypes();
+            var feedingActivityType = activityTypes.FirstOrDefault(a => a.Name == "Feeding");
+            if (feedingActivityType == null)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "Feeding id not found", "Ok");
+            }
 
+            foreach (var feedingActivity in checkedFeedings)
+            {
+                var createActivity = new Activity
+                {
+                    ActivityType = feedingActivityType,
+                    EndDate = DateTime.Now,
+                    StartDate = DateTime.Now,
+                    BuddyId = feedingActivity.BuddyId,
+                };
+
+                var createdActivity = await _activityService.CreateActivity(createActivity);
+
+
+            }
         }
 
 

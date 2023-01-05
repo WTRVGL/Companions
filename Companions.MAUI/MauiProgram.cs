@@ -101,6 +101,7 @@ namespace Companions.MAUI
             builder.Services.AddTransient<IBuddyService, BuddyService>();
             builder.Services.AddTransient<IAppointmentService, AppointmentService>();
             builder.Services.AddTransient<IAuthService, AuthService>();
+            builder.Services.AddTransient<IActivityService, ActivityService>();
 
             builder.ConfigureSyncfusionCore();
 

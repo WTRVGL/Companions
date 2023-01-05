@@ -10,6 +10,7 @@ namespace Companions.MAUI.Models.App
 
         public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
+        public string BuddyId { get; set; }
 
         private string GetRandomActivityImage()
         {

@@ -35,9 +35,32 @@ namespace Companions.MAUI.Services
             _httpClient.DefaultRequestHeaders.Add("Authorization", jwt);
         }
 
-        public Task<Activity> CreateActivity(Activity activity)
+        public async Task<Activity> CreateActivity(Activity activity)
         {
-            throw new NotImplementedException();
+            await EnsureAuthHeaders();
+
+            var buddyId = activity.BuddyId;
+            var createActivityModel = new CreateActivity
+            {
+                ActivityTypeId = activity.ActivityType.Id,
+                EndDate = activity.EndDate,
+                StartDate = activity.StartDate,
+            };
+
+            var res = await _httpClient.PostAsJsonAsync<CreateActivity>($"{_apiBaseURL}/api/Buddy/{buddyId}/Activity", createActivityModel);
+
+            var createdActivity = await res.Content.ReadFromJsonAsync<Activity>();
+            return createdActivity;
+        }
+
+        public async Task<List<ActivityType>> GetActivityTypes()
+        {
+            await EnsureAuthHeaders();
+
+            var res = await _httpClient.GetAsync($"{_apiBaseURL}/api/ActivityTypes");
+
+            var activityTypes = await res.Content.ReadFromJsonAsync<List<ActivityType>>();
+            return activityTypes;
         }
     }
 }
