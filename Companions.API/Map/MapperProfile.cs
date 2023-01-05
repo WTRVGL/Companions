@@ -11,13 +11,14 @@ namespace Companions.API.Mapper
         public MapperProfile()
         {
             CreateMap<Activity, ActivityDTO>();
+            CreateMap<ActivityDTO, Activity>();
             CreateMap<ActivityType, ActivityTypeDTO>();
             CreateMap<DailyFeeding, DailyFeedingDTO>();
             CreateMap<FeedingSchedule, FeedingScheduleDTO>();
             CreateMap<FeedProduct, FeedProductDTO>();
             CreateMap<Place, PlaceDTO>();
             CreateMap<Place, PlaceDTO>();
-            CreateMap<Activity, ActivityDTO>();
+            
             CreateMap<BuddyWeight, BuddyWeightDTO>();
 
             CreateMap<User, UserDTO>();
