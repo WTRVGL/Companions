@@ -59,9 +59,11 @@ namespace Companions.MAUI.ViewModels.App
             }
         }
 
+        //Sort Activities list. (why here tho?)
         partial void OnBuddyChanged(Buddy buddy)
         {
-
+            var orderedActivities = Buddy.Activities.OrderByDescending(a => a.EndDate).ToList();
+            Buddy.Activities = orderedActivities;
         }
 
     }

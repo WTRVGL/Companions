@@ -58,19 +58,34 @@ namespace Companions.API
             context.FeedProducts.AddRange(_feedProducts);
             context.SaveChanges();
 
-            _feedingSchedules = new List<FeedingSchedule>
+            var _bassieFeedingSchedules = new List<FeedingSchedule>
             {
                 new FeedingSchedule { Amount = 100, FeedProduct = _feedProducts[0], TimeOfDay = "Morning"},
                 new FeedingSchedule { Amount = 100, FeedProduct = _feedProducts[0], TimeOfDay = "Evening"},
+            };
 
+            var _oriFeedingSchedules = new List<FeedingSchedule>
+            {
                 new FeedingSchedule { Amount = 80, FeedProduct = _feedProducts[1], TimeOfDay = "Morning"},
                 new FeedingSchedule { Amount = 80, FeedProduct = _feedProducts[1], TimeOfDay = "Evening"},
+            };
 
+            var _robotFeedingSchedules = new List<FeedingSchedule>
+            {   
                 new FeedingSchedule { Amount = 120, FeedProduct = _feedProducts[4], TimeOfDay = "Morning"},
                 new FeedingSchedule { Amount = 800, FeedProduct = _feedProducts[5], TimeOfDay = "Evening"},
             };
 
-            context.FeedingSchedules.AddRange(_feedingSchedules);
+            var _testBuddyFeedingSchedules = new List<FeedingSchedule>
+            {
+                new FeedingSchedule { Amount = 120, FeedProduct = _feedProducts[4], TimeOfDay = "Morning"},
+                new FeedingSchedule { Amount = 800, FeedProduct = _feedProducts[5], TimeOfDay = "Evening"},
+            };
+
+            context.FeedingSchedules.AddRange(_bassieFeedingSchedules);
+            context.FeedingSchedules.AddRange(_oriFeedingSchedules);
+            context.FeedingSchedules.AddRange(_robotFeedingSchedules);
+            context.FeedingSchedules.AddRange(_testBuddyFeedingSchedules);
             context.SaveChanges();
 
             _activities = new List<Activity>
@@ -153,7 +168,7 @@ namespace Companions.API
                     BuddyWeights = new List<BuddyWeight>(),
                     ImageURL = "https://i.imgur.com/GJe4t90.jpg",
                     Activities = new List<Activity>(),
-                    FeedingSchedules = _feedingSchedules.GetRange(0, 3),
+                    FeedingSchedules = _bassieFeedingSchedules,
                 },
                 new Buddy {
                     Name = "Ori",
@@ -164,7 +179,7 @@ namespace Companions.API
                     Gender = "Male",
                     ImageURL="https://i.imgur.com/UUzY06O.png",
                     Activities = new List<Activity>(),
-                    FeedingSchedules = _feedingSchedules.GetRange(1, 3)
+                    FeedingSchedules = _oriFeedingSchedules
                 },
                 new Buddy {
                     Name = "Robot",
@@ -175,7 +190,7 @@ namespace Companions.API
                     BuddyWeights = new List<BuddyWeight>(),
                     ImageURL="https://i.imgur.com/Z0J26m6.png",
                     Activities = new List<Activity>(),
-                    FeedingSchedules = _feedingSchedules.GetRange(2, 3)
+                    FeedingSchedules = _robotFeedingSchedules
                 },
                 new Buddy {
                     Name = "Test Buddy",
@@ -186,7 +201,7 @@ namespace Companions.API
                     BuddyWeights = new List<BuddyWeight>(),
                     ImageURL="https://i.imgur.com/Z0J26m6.png",
                     Activities = new List<Activity>(),
-                    FeedingSchedules = _feedingSchedules.GetRange(1, 4)
+                    FeedingSchedules = _testBuddyFeedingSchedules
                 }
             };
 

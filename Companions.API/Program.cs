@@ -134,6 +134,7 @@ builder.Services.AddTransient<IBuddyService, BuddyService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IAppointmentService, AppointmentService>();
 builder.Services.AddTransient<IPlaceService, PlaceService>();
+builder.Services.AddTransient<IActivityService, ActivityService>();
 
 builder.Services.AddAutoMapper(typeof(MapperProfile));
 

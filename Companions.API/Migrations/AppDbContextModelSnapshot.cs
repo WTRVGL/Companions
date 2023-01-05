@@ -28,7 +28,6 @@ namespace Companions.API.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ActivityTypeId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("BuddyId")
@@ -331,9 +330,7 @@ namespace Companions.API.Migrations
                 {
                     b.HasOne("Companions.Domain.ActivityType", "ActivityType")
                         .WithMany("Activities")
-                        .HasForeignKey("ActivityTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ActivityTypeId");
 
                     b.HasOne("Companions.Domain.Buddy", "Buddy")
                         .WithMany("Activities")

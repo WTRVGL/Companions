@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Companions.MAUI.Views.Walktrough.MainPage"
+             Title="MainPage"
+             Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="False">
+    
+    <ContentPage.Resources>
+        <Style x:Key="LabelLogo" TargetType="Label">
+            <Setter Property="FontSize" Value="25" />
+            <Setter Property="FontFamily" Value="PoppinsBold" />
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+
+        <Image
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Aspect="AspectFill"
+            Source="basori.png" />
+
+        <VerticalStackLayout
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Padding="20"
+            HorizontalOptions="Center"
+            VerticalOptions="Center">
+
+            <Label Style="{StaticResource Key=LabelLogo}" Text="Welcome to Companions!"/>
+            <Label Margin="0,0,0,10" Text="You are almost ready to explore." />
+            <Label Margin="0,0,0,50" Text="Let's add a Buddy first!" />
+            <Button
+                Style="{StaticResource PrimaryButton}"
+                Text="Let's get started" />
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

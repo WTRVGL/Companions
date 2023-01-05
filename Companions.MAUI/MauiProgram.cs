@@ -10,6 +10,8 @@ using Microsoft.Maui.Platform;
 using System.Reflection;
 using Microsoft.Extensions.Configuration;
 using CommunityToolkit.Maui;
+using Companions.MAUI.ViewModels.App.Actions;
+using Companions.MAUI.Views.App.Actions;
 
 namespace Companions.MAUI
 {
@@ -74,12 +76,16 @@ namespace Companions.MAUI
             builder.Services.AddTransient<AppointmentDetailPage>();
             builder.Services.AddTransient<EditAppointmentPage>();
             builder.Services.AddTransient<EditBuddyPage>();
+
+            builder.Services.AddTransient<FeedingPage>();
             #endregion
 
             #region ViewModel Services
             builder.Services.AddTransient<StartPageViewModel>();
             builder.Services.AddTransient<LoginPageViewModel>();
             builder.Services.AddTransient<SignUpPageViewModel>();
+
+            builder.Services.AddTransient<FeedingPageViewModel>();
 
             builder.Services.AddTransient<HomePageViewModel>();
             builder.Services.AddTransient<SchedulePageViewModel>();
@@ -95,6 +101,7 @@ namespace Companions.MAUI
             builder.Services.AddTransient<IBuddyService, BuddyService>();
             builder.Services.AddTransient<IAppointmentService, AppointmentService>();
             builder.Services.AddTransient<IAuthService, AuthService>();
+            builder.Services.AddTransient<IActivityService, ActivityService>();
 
             builder.ConfigureSyncfusionCore();
 

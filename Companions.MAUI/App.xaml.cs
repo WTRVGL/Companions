@@ -1,4 +1,5 @@
 ﻿using Companions.MAUI.Models;
+using Companions.MAUI.Services;
 using Companions.MAUI.Views;
 using Microsoft.Extensions.Configuration;
 
@@ -7,8 +8,11 @@ namespace Companions.MAUI
     public partial class App : Application
     {
         public static User User;
-        public App(IConfiguration config)
+        private readonly IAuthService _authService;
+
+        public App(IConfiguration config, IAuthService authService)
         {
+            _authService = authService;
             InitializeComponent();
             MainPage = new BogusPage();
         }
@@ -21,13 +25,11 @@ namespace Companions.MAUI
             {
                 MainPage = new LoginShell();
                 base.OnStart();
+                return;
             }
 
-            else
-            {
-                MainPage = new MainShell();
-                base.OnStart();
-            }
+            MainPage = new MainShell();
+            base.OnStart();
 
         }
     }
