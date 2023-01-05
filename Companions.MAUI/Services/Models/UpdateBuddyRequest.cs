@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Companions.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,5 +13,6 @@ namespace Companions.MAUI.Services.Models
         public string Name { get; set; }
         public string Gender { get; set; }
         public string Race { get; set; }
+        public List<BuddyWeight> BuddyWeights { get; set; }
     }
 }
