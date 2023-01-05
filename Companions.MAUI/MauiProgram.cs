@@ -78,6 +78,8 @@ namespace Companions.MAUI
             builder.Services.AddTransient<EditBuddyPage>();
 
             builder.Services.AddTransient<FeedingPage>();
+            builder.Services.AddTransient<WalkingPage>();
+
             #endregion
 
             #region ViewModel Services
@@ -86,6 +88,7 @@ namespace Companions.MAUI
             builder.Services.AddTransient<SignUpPageViewModel>();
 
             builder.Services.AddTransient<FeedingPageViewModel>();
+            builder.Services.AddTransient<WalkingPageViewModel>();
 
             builder.Services.AddTransient<HomePageViewModel>();
             builder.Services.AddTransient<SchedulePageViewModel>();
