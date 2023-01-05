@@ -1,4 +1,4 @@
-using Companions.MAUI.ViewModels.App.Actions;
+  using Companions.MAUI.ViewModels.App.Actions;
 
 namespace Companions.MAUI.Views.App.Actions;
 
@@ -9,4 +9,9 @@ public partial class FeedingPage : ContentPage
 		InitializeComponent();
 		this.BindingContext = vm;
 	}
+
+    private void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+
+    }
 }
