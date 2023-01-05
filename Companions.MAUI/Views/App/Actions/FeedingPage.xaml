@@ -97,7 +97,9 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:ActionFeedingSchedule">
                         <VerticalStackLayout>
-                            <Label Text="{Binding BuddyName}" FontAttributes="Bold" FontSize="16"/>
+                            <Label 
+                                Style="{StaticResource FieldTitle}"
+                                Text="{Binding BuddyName}" FontAttributes="Bold" FontSize="16"/>
                             <Label Text="{Binding FeedingCheckedCommand, Source={x:Reference RootPage}}"/>
                             <CollectionView ItemsSource="{Binding FeedingSchedules}">
                                 <CollectionView.ItemTemplate>

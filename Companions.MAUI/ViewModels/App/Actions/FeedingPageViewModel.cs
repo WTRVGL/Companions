@@ -78,6 +78,7 @@ namespace Companions.MAUI.ViewModels.App.Actions
                 return;
             }
 
+            //Adds any FeedingSchedule to checkedFeedings if it is checked
             for (int i = 0; i < FeedingSchedules.Count; i++)
             {
                 for (int j = 0; j < FeedingSchedules[i].FeedingSchedules.Count; j++)
@@ -88,7 +89,6 @@ namespace Companions.MAUI.ViewModels.App.Actions
                     }
                 }
             }
-
         }
 
 
