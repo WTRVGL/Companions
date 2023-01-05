@@ -42,7 +42,7 @@
         <Label 
             Margin="0,25,0,0"
             Style="{StaticResource FieldTitle}"
-            Text="Select Buddy:"/>
+            Text="Select Buddies:"/>
         
         <syncfusion:SfListView
                 SelectedItems="{Binding SelectedBuddies}"

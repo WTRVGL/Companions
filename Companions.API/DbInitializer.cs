@@ -88,7 +88,7 @@ namespace Companions.API
             context.FeedingSchedules.AddRange(_testBuddyFeedingSchedules);
             context.SaveChanges();
 
-            _activities = new List<Activity>
+            var _basActivities = new List<Activity>
             {
                 new Activity { ActivityType = _activityTypes.First(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,01,08,15,00), EndDate = new DateTime(2022,11,01,09,31,00) },
                 new Activity { ActivityType = _activityTypes.First(a => a.Name == "Feeding"), StartDate = new DateTime(2022,11,01,12,00,00), EndDate = new DateTime(2022,11,01,12,31,00) },
@@ -104,7 +104,34 @@ namespace Companions.API
                 new Activity { ActivityType = _activityTypes.First(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,03,23,15,00), EndDate = new DateTime(2022,11,03,23,34,00) },
             };
 
-            context.Activities.AddRange(_activities);
+            var _oriActivities = new List<Activity>
+            {
+                new Activity { ActivityType = _activityTypes.First(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,01,08,15,00), EndDate = new DateTime(2022,11,01,09,31,00) },
+                new Activity { ActivityType = _activityTypes.First(a => a.Name == "Feeding"), StartDate = new DateTime(2022,11,01,12,00,00), EndDate = new DateTime(2022,11,01,12,31,00) },
+                new Activity { ActivityType = _activityTypes.First(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,01,16,15,00), EndDate = new DateTime(2022,11,01,16,42,00) },
+                new Activity { ActivityType = _activityTypes.First(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,02,09,15,00), EndDate = new DateTime(2022,11,02,09,51,00) },
+                new Activity { ActivityType = _activityTypes.First(a => a.Name == "Feeding"), StartDate = new DateTime(2022,11,02,13,15,00), EndDate = new DateTime(2022,11,02,14,03,00) },
+                new Activity { ActivityType = _activityTypes.First(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,02,16,15,00), EndDate = new DateTime(2022,11,02,17,02,00) },
+                new Activity { ActivityType = _activityTypes.First(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,02,20,15,00), EndDate = new DateTime(2022,11,02,21,01,00) },
+                new Activity { ActivityType = _activityTypes.First(a => a.Name == "Feeding"), StartDate = new DateTime(2022,11,03,08,30,00), EndDate = new DateTime(2022,11,03,09,02,00) },
+                new Activity { ActivityType = _activityTypes.First(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,03,12,15,00), EndDate = new DateTime(2022,11,03,12,31,00) },
+                new Activity { ActivityType = _activityTypes.First(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,03,15,15,00), EndDate = new DateTime(2022,11,03,15,44,00) },
+                new Activity { ActivityType = _activityTypes.First(a => a.Name == "Feeding"), StartDate = new DateTime(2022,11,03,20,15,00), EndDate = new DateTime(2022,11,03,20,41,00) },
+                new Activity { ActivityType = _activityTypes.First(a => a.Name == "Walk"), StartDate = new DateTime(2022,11,03,23,15,00), EndDate = new DateTime(2022,11,03,23,34,00) },
+            };
+
+            var _robotActivities = new List<Activity>
+            {
+                new Activity { ActivityType = _activityTypes.First(a => a.Name == "Feeding"), StartDate = new DateTime(2022,11,01,12,00,00), EndDate = new DateTime(2022,11,01,12,31,00) },
+                new Activity { ActivityType = _activityTypes.First(a => a.Name == "Feeding"), StartDate = new DateTime(2022,11,02,13,15,00), EndDate = new DateTime(2022,11,02,14,03,00) },
+                new Activity { ActivityType = _activityTypes.First(a => a.Name == "Feeding"), StartDate = new DateTime(2022,11,03,08,30,00), EndDate = new DateTime(2022,11,03,09,02,00) },
+                new Activity { ActivityType = _activityTypes.First(a => a.Name == "Feeding"), StartDate = new DateTime(2022,11,03,20,15,00), EndDate = new DateTime(2022,11,03,20,41,00) },
+            };
+
+
+            context.Activities.AddRange(_oriActivities);
+            context.Activities.AddRange(_basActivities);
+            context.Activities.AddRange(_robotActivities);
             context.SaveChanges();
 
             _users = new List<User>()
@@ -209,11 +236,9 @@ namespace Companions.API
             _buddies.First(b => b.Name == "Ori").BuddyWeights.AddRange(_oriWeights);
             _buddies.First(b => b.Name == "Robot").BuddyWeights.AddRange(_robotWeights);
 
-            _buddies.First(b => b.Name == "Bassie").Activities.AddRange(_activities.GetRange(0, _activities.Count));
-
-            _buddies.First(b => b.Name == "Ori").Activities.AddRange(_activities.GetRange(0, _activities.Count));
-
-            _buddies.First(b => b.Name == "Robot").Activities.AddRange(_activities.Where(x => x.ActivityType.Name == "Feeding").ToList());
+            _buddies.First(b => b.Name == "Bassie").Activities.AddRange(_basActivities);
+            _buddies.First(b => b.Name == "Ori").Activities.AddRange(_oriActivities);
+            _buddies.First(b => b.Name == "Robot").Activities.AddRange(_robotActivities);
 
 
             context.Buddies.AddRange(_buddies);

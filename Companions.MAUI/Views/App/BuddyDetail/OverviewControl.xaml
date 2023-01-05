@@ -48,7 +48,7 @@
                             Grid.Row="0"
                             Grid.Column="1"
                             HorizontalOptions="End"
-                            Text="{Binding EndDate, Converter={StaticResource DateToTimeAgo}}"
+                            Text="{Binding StartDate, Converter={StaticResource DateToTimeAgo}}"
                             TextColor="#BDBDBD" />
 
                         <Label
@@ -108,7 +108,7 @@
                             Grid.Row="0"
                             Grid.Column="1"
                             HorizontalOptions="End"
-                            Text="{Binding EndDate, Converter={StaticResource DateToTimeAgo}}"
+                            Text="{Binding StartDate, Converter={StaticResource DateToTimeAgo}}"
                             TextColor="#BDBDBD" />
 
                         <Label
