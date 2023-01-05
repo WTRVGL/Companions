@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Companions.API.DTOs;
+using Companions.API.DTOs.Activity;
 using Companions.API.DTOs.Appointment;
 using Companions.API.DTOs.Buddy;
 using Companions.Domain;

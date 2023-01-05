@@ -13,38 +13,44 @@ using System.Security.Claims;
 
 namespace Companions.API.Controllers
 {
-    [Route("api/Buddy/{buddyId}/[controller]")]
+    [Route("api/[controller]")]
     [SwaggerTag("Requires JWT")]
     [ApiController]
-    public class ActivityController : ControllerBase
+    public class ActivityTypesController : ControllerBase
     {
         private readonly IActivityService _activityService;
         private readonly IMapper _mapper;
 
-        public ActivityController(IMapper mapper, IActivityService activityService)
+        public ActivityTypesController(IMapper mapper, IActivityService activityService)
         {
             _mapper = mapper;
             _activityService = activityService;
         }
 
         // POST api/<BuddyController>
-        [HttpPost]
-        [SwaggerOperation("Create a new Activity for a Buddy")]
-        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(ActivityDTO), Description = "Returns the created Activity")]
+        [HttpGet]
+        [SwaggerOperation("Get all available Activity Types")]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(List<ActivityTypeDTO>), Description = "Return all available Activity Types")]
+        [SwaggerResponse(StatusCodes.Status404NotFound, Description = "No activities found")]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, Description = "Unauthorized")]
         [Authorize]
-        public ActionResult<ActivityDTO> CreateActivity(CreateActivityDTO activityDTO, string buddyId)
+        public ActionResult<List<ActivityTypeDTO>> GetAllActivityTypes()
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
             string userId = identity.FindFirst("id").Value;
 
-            //Map from DTO to Domain model
-            var activity = _mapper.Map<Activity>(activityDTO);
+            var activityTypes = _activityService.GetActivityTypes();
+            var activityTypesDTO = new List<ActivityTypeDTO>();
 
-            var createdActivity = _activityService.CreateActivity(activity);
-            //Map from Domain model to return DTO model
-            var createdActivityDTO = _mapper.Map<ActivityDTO>(createdActivity);
-            return createdActivityDTO;
+            if (activityTypes == null) return NotFound("No activities found");
+
+            foreach (var activity in activityTypes)
+            {
+                var activityTypeDTO = _mapper.Map<ActivityTypeDTO>(activity);
+                activityTypesDTO.Add(activityTypeDTO);
+            }
+
+            return activityTypesDTO;
         }
     }
 }
