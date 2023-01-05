@@ -6,8 +6,6 @@ namespace Companions.Domain
     {
         public Buddy Buddy { get; set; }
         public string BuddyId { get; set; }
-
-        [Required]
         public ActivityType ActivityType { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
