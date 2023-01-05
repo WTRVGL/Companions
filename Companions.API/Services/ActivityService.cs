@@ -17,5 +17,10 @@ namespace Companions.API.Services
             _db.SaveChanges();
             return activity;
         }
+
+        public List<ActivityType> GetActivityTypes()
+        {
+            return _db.ActivityTypes.ToList();
+        }
     }
 }
