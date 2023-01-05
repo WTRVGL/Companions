@@ -21,12 +21,15 @@ namespace Companions.MAUI.ViewModels.App.Actions
 
         public FeedingPageViewModel(IBuddyService buddyService, IActivityService activityService)
         {
+            IsBusy = true;
+
             _buddyService = buddyService;
             SelectedBuddies = new ObservableCollection<object>();
             _feedingSchedules = new ObservableCollection<ActionFeedingSchedule>();
             _activityService = activityService;
 
             Task.Run(async () => await FetchDataAsync()).Wait();
+            IsBusy = false;
         }
 
 
@@ -73,6 +76,7 @@ namespace Companions.MAUI.ViewModels.App.Actions
         [RelayCommand]
         async void AddFeeding()
         {
+
             List<FeedingSchedule> checkedFeedings = new List<FeedingSchedule>();
 
             if (FeedingSchedules.Count == 0)
@@ -112,9 +116,12 @@ namespace Companions.MAUI.ViewModels.App.Actions
                 };
 
                 var createdActivity = await _activityService.CreateActivity(createActivity);
-
-
             }
+
+            //Display notification and close
+            await Application.Current.MainPage.DisplayAlert("Succes", "Sucesfully added Feeding Activity", "Ok");
+            await Application.Current.MainPage.Navigation.PopAsync();
+
         }
 
 

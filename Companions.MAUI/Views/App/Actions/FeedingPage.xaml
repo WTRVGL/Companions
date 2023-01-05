@@ -25,7 +25,8 @@
     </ContentPage.Resources>
 
     <VerticalStackLayout Margin="20,25">
-        
+
+        <ActivityIndicator IsVisible="{Binding IsBusy}"/>
         <Label
             FontFamily="FaSolid"
             HorizontalOptions="Start"

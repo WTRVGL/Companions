@@ -17,6 +17,20 @@ namespace Companions.MAUI.Converters
             DateTime activityEndDate = (DateTime)value;
             var difference = DateTime.Now - activityEndDate;
 
+            if(difference.Hours == 0)
+            {
+                if (difference.Minutes == 0)
+                {
+                    return difference.Seconds + " seconds ago";
+                }
+
+                if (difference.Minutes == 1)
+                {
+                    return difference.Minutes + " minute ago";
+                }
+                return difference.Minutes + " minutes ago";
+            }
+
             if(difference.TotalMinutes / 1440 >= 1)
             {
                 return  difference.Days + " days ago";
@@ -30,8 +44,7 @@ namespace Companions.MAUI.Converters
                 }
                 return difference.Hours + " hours ago";
             }
-
-            return difference.Minutes + " minutes ago";
+            return "";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
