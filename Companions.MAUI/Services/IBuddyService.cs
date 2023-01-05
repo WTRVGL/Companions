@@ -15,6 +15,7 @@ namespace Companions.MAUI.Services
         Task<Buddy> AddBuddy(Buddy buddy);
         Task<Buddy> UpdateBuddy(Buddy buddy);
         Task<bool> DeleteBuddy(string id);
+        Task<BuddyWeight> AddBuddyWeight(BuddyWeight buddyWeight);
 
     }
 }

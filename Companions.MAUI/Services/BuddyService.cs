@@ -103,6 +103,25 @@ namespace Companions.MAUI.Services
 
             return updatedBuddy;
         }
+
+        public async Task<BuddyWeight> AddBuddyWeight(BuddyWeight buddyWeight)
+        {
+            await EnsureAuthHeaders();
+
+            string buddyId = buddyWeight.BuddyId;
+
+            var req = new BuddyWeight
+            {
+                BuddyId = buddyId,
+                DateWeighed = buddyWeight.DateWeighed,
+                Weight = buddyWeight.Weight,
+            };
+
+            var res = await _httpClient.PostAsJsonAsync<BuddyWeight>($"{_apiBaseURL}/api/Buddy/{buddyId}", req);
+            var createdBuddyWeight = await res.Content.ReadFromJsonAsync<BuddyWeight>();
+
+            return createdBuddyWeight;
+        }
     }
 }
 
