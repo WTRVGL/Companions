@@ -119,7 +119,7 @@ namespace Companions.MAUI.ViewModels.App.Actions
             }
 
             //Display notification and close
-            await Application.Current.MainPage.DisplayAlert("Succes", "Sucesfully added Feeding Activity", "Ok");
+            await Application.Current.MainPage.DisplayAlert("Success", "Successfully added Feeding event", "Ok");
             await Application.Current.MainPage.Navigation.PopAsync();
 
         }

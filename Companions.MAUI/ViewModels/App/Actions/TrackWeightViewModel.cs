@@ -87,7 +87,7 @@ namespace Companions.MAUI.ViewModels.App.Actions
 
 
             //    //Display notification and close
-            await Application.Current.MainPage.DisplayAlert("Succes", "Sucesfully recorded weight", "Ok");
+            await Application.Current.MainPage.DisplayAlert("Success", "Sucesfully recorded weight", "Ok");
             await Application.Current.MainPage.Navigation.PopAsync();
         }
     }
