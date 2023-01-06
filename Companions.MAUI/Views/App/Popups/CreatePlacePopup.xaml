@@ -42,22 +42,6 @@
                 Text="Find place"
                 Margin="0,20,0,20"
                 Command="{Binding GoogleSearchAppointmentCommand}"/>
-        <!--<Entry.Behaviors>
-                <toolkit:UserStoppedTypingBehavior
-                    Command="{Binding GoogleSearchAppointmentCommand}"
-                    CommandParameter=""
-                    StoppedTypingTimeThreshold="1000"
-                    MinimumLengthThreshold="3"
-                    ShouldDismissKeyboardAutomatically="True" />
-            </Entry.Behaviors>-->
-
-        <!--<CollectionView ItemsSource="{Binding GooglePlaces}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:Place">
-                    <Label Text="{Binding Name}"/>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>-->
 
         <syncfusion:SfListView
             HeightRequest="240"

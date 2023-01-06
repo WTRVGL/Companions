@@ -14,5 +14,6 @@ namespace Companions.MAUI.Services.Models
         public string BuddyId { get; set; }
         public DateTime AppointmentDate { get; set; }
         public string PlaceId { get; set; }
+
     }
 }

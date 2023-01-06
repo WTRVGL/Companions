@@ -10,7 +10,7 @@
              Title="EditAppointmentPage"
              Shell.NavBarIsVisible="False"
              Shell.TabBarIsVisible="False">
-    
+
     <ContentPage.Resources>
         <Style TargetType="Label" x:Key="FieldTitle">
             <Setter Property="FontSize" Value="16"/>
@@ -49,14 +49,7 @@
                 Style="{StaticResource FieldTitle}"
                 Text="Appointment description"/>
             <Editor Text="{Binding Appointment.Description}"
-                    HeightRequest="100"/>
-        </VerticalStackLayout>
-
-        <VerticalStackLayout Margin="0,30,0,0">
-            <Label 
-                Style="{StaticResource FieldTitle}"
-                Text="Appointment type"/>
-            <Entry Text="{Binding Appointment.Place.Description}"/>
+                    HeightRequest="60"/>
         </VerticalStackLayout>
 
         <VerticalStackLayout Margin="0,30,0,0">
@@ -64,7 +57,7 @@
                 Style="{StaticResource FieldTitle}"
                 Text="Buddy"
                 Margin="0,0,0,5"/>
-            
+
             <syncfusion:SfListView
                 SelectedItem="{Binding SelectedBuddy}"
                 SelectionChangedCommand="{Binding BuddySelectedCommand}"
@@ -105,7 +98,34 @@
                 Style="{StaticResource FieldTitle}"
                 Text="Appointment date"/>
             <DatePicker Date="{Binding Appointment.AppointmentDate}"/>
+        </VerticalStackLayout>
 
+
+        <!--Appointment Location-->
+        <VerticalStackLayout Margin="0,30,0,0">
+            <HorizontalStackLayout>
+                <Label
+                Style="{StaticResource FieldTitle}"
+                Margin="0,0,0,10"
+                IsVisible="True"
+                Text="Appointment location">
+                </Label>
+                <Label FontFamily="FaSolid"
+                       TextColor="Black"
+                        Text="{StaticResource SolidAlignRight}"
+                        Margin="160,5,0,0">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CreatePlaceCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </HorizontalStackLayout>
+            <Picker 
+                Title="{Binding Appointment.Place.Name}"
+                IsVisible="True"
+                ItemsSource="{Binding DbPlaces}"
+                SelectedItem="{Binding Appointment.Place}"
+                ItemDisplayBinding="{Binding Name}">
+            </Picker>
         </VerticalStackLayout>
     </VerticalStackLayout>
 </ContentPage>
