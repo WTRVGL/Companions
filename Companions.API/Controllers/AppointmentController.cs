@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Companions.API.DTOs;
 using Companions.API.DTOs.Appointment;
 using Companions.API.Services;
 using Companions.Domain;
@@ -30,9 +31,16 @@ namespace Companions.API.Controllers
         }
 
         [HttpPost]
+        [SwaggerOperation("Create a new Appointment")]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(AppointmentDTO), Description = "Returns the newly created Appointment")]
+        [SwaggerResponse(StatusCodes.Status401Unauthorized, Description = "Unauthorized")]
+        [Authorize]
         public ActionResult<AppointmentDTO> CreateAppointment(CreateAppointmentDTO createAppointmentDTO)
         {
-            return new AppointmentDTO();
+            var appointment = _mapper.Map<Appointment>(createAppointmentDTO);
+            var createdAppointment = _appointmentService.CreateAppointment(appointment);
+            var createdAppointmentDTO = _mapper.Map<AppointmentDTO>(createdAppointment);
+            return createdAppointmentDTO;
         }
 
         [HttpPut]
@@ -41,7 +49,7 @@ namespace Companions.API.Controllers
         [SwaggerResponse(StatusCodes.Status401Unauthorized, Description = "Unauthorized")]
         [SwaggerResponse(StatusCodes.Status404NotFound, Description = "Appointment does not exist")]
         [Authorize]
-        public  ActionResult<UpdateAppointmentDTO> UpdateAppointment(UpdateAppointmentDTO updateAppointmentDTO)
+        public ActionResult<UpdateAppointmentDTO> UpdateAppointment(UpdateAppointmentDTO updateAppointmentDTO)
         {
             var appointment = _appointmentService.GetAppointentById(updateAppointmentDTO.Id);
             if (appointment == null) return NotFound("Appointment does not exist.");

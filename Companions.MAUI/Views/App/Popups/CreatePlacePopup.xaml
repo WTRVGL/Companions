@@ -64,7 +64,6 @@
             IsScrollingEnabled="True"
             ItemSize="60"
             ItemsSource="{Binding GooglePlaces}"
-            TapCommand="{Binding PlaceSelectedCommand}"
             SelectedItem="{Binding SelectedPlace}"
             
                 >

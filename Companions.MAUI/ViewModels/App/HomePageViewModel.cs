@@ -75,7 +75,10 @@ namespace Companions.MAUI.ViewModels.App
         [RelayCommand]
         async void PageAppearing()
         {
+            Buddies = new ObservableCollection<Buddy>();
             Buddies = await _buddyService.GetBuddies();
+
+            Appointments = new ObservableCollection<Appointment>();
             Appointments = await _appointmentService.GetAppointments();
         }
 

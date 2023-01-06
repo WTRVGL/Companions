@@ -13,6 +13,7 @@ namespace Companions.MAUI
         {
             //Register routing
 
+            Routing.RegisterRoute(nameof(HomePage), typeof(HomePage));
             Routing.RegisterRoute(nameof(BuddyDetailPage), typeof(BuddyDetailPage));
             Routing.RegisterRoute(nameof(FeedingPage), typeof(FeedingPage));
             Routing.RegisterRoute(nameof(WalkingPage), typeof(WalkingPage));

@@ -14,6 +14,7 @@ namespace Companions.API.Services
         public Place CreatePlace(Place place)
         {
             _db.Places.Add(place);
+            _db.SaveChanges();
             return place;
         }
 

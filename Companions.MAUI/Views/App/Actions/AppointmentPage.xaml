@@ -56,10 +56,6 @@
             x:Name="listView" 
             ItemsSource="{Binding Buddies}"
             Orientation="Horizontal">
-            <syncfusion:SfListView.Behaviors>
-                <toolkitBehaviors:EventToCommandBehavior EventName="SelectionChanged"
-                        Command="{Binding BuddySelectedCommand}"/>
-            </syncfusion:SfListView.Behaviors>
             <syncfusion:SfListView.ItemTemplate>
                 <DataTemplate x:DataType="models:Buddy">
                     <VerticalStackLayout
@@ -151,16 +147,28 @@
                 ItemsSource="{Binding DbPlaces}"
                 SelectedItem="{Binding SelectedPlace}"
                 ItemDisplayBinding="{Binding Name}">
-                <Picker.Behaviors>
-                    <toolkitBehaviors:EventToCommandBehavior Command="{Binding PlaceSelectedCommand}"/>
-                </Picker.Behaviors>
                 <Picker.Triggers>
                     <DataTrigger TargetType="Picker" Binding="{Binding SelectedBuddy}" Value="{x:Null}">
                         <Setter Property="IsVisible" Value="False" />
                     </DataTrigger>
                 </Picker.Triggers>
             </Picker>
+        </VerticalStackLayout>
 
+        <!--Appointment Date-->
+        <VerticalStackLayout Margin="0,30,0,0">
+            <Label
+                Style="{StaticResource FieldTitle}"
+                Margin="0,0,0,10"
+                IsVisible="True"
+                Text="Appointment date">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding SelectedBuddy}" Value="{x:Null}">
+                        <Setter Property="IsVisible" Value="False" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+            <DatePicker Date="{Binding AppointmentDate}"/>
         </VerticalStackLayout>
 
         <Button Style="{StaticResource PrimaryButton}"

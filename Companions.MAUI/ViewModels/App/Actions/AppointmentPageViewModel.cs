@@ -21,14 +21,18 @@ namespace Companions.MAUI.ViewModels.App.Actions
         private readonly IBuddyService _buddyService;
         private readonly IPlaceService _placeService;
         private readonly IGoogleService _googleService;
+        private readonly IAppointmentService _appointmentService;
 
-        public AppointmentPageViewModel(IBuddyService buddyService, IGoogleService googleService, IPlaceService placeService)
+        public AppointmentPageViewModel(IBuddyService buddyService, IGoogleService googleService, IPlaceService placeService, IAppointmentService appointmentService)
         {
             _buddyService = buddyService;
             _googleService = googleService;
             _placeService = placeService;
+            _appointmentService = appointmentService;
 
             GooglePlaces = new ObservableCollection<Place>();
+            AppointmentDate = DateTime.Now.AddDays(1);
+
             Task.Run(FetchDataAsync).Wait();
         }
 
@@ -49,6 +53,8 @@ namespace Companions.MAUI.ViewModels.App.Actions
         private string _placeSearchRange;
         [ObservableProperty]
         private string _selectedPlaceType;
+        [ObservableProperty]
+        private DateTime _appointmentDate;
 
         [ObservableProperty]
         private ObservableCollection<Buddy> _buddies;
@@ -71,23 +77,11 @@ namespace Companions.MAUI.ViewModels.App.Actions
         }
 
         [RelayCommand]
-        async void BuddySelected()
-        {
-
-        }
-
-        [RelayCommand]
         async void CreateAppointment()
         {
             var popup = new CreatePlacePopup();
             Shell.Current.ShowPopup(popup);
         }
-
-        [RelayCommand]
-        async void PlaceSelected()
-        {
-        }
-
 
         [RelayCommand]
         async void GoogleSearchAppointment()
@@ -113,15 +107,29 @@ namespace Companions.MAUI.ViewModels.App.Actions
                 //create new
                 var place = new CreatePlace
                 {
+                    Id = Guid.NewGuid().ToString(),
                     Address = SelectedPlace.Address,
-                    Description = SelectedPlace.Description,
+                    Description = SelectedPlaceType,
                     Latitude = SelectedPlace.Latitude,
                     Longitude = SelectedPlace.Longitude,
                     Name = SelectedPlace.Name
                 };
 
                 await _placeService.CreatePlace(place);
+
+                SelectedPlace.Id = place.Id;
             }
+
+            var appointment = new CreateAppointment
+            {
+                AppointmentDate = AppointmentDate,
+                AppointmentName = AppointmentName,
+                BuddyId = SelectedBuddy.Id,
+                Description = AppointmentDescription,
+                PlaceId = SelectedPlace.Id
+            };
+
+            var createdAppointment = await _appointmentService.CreateAppointment(appointment);
 
             //var endTime = DateTime.Now.AddMinutes(SelectedDuration).AddSeconds(5);
 
@@ -148,7 +156,7 @@ namespace Companions.MAUI.ViewModels.App.Actions
             //}
 
             //Display notification and close
-            await Application.Current.MainPage.DisplayAlert("Success", "Succesfully added Walking events", "Ok");
+            await Application.Current.MainPage.DisplayAlert("Success", "Succesfully created Appointment", "Ok");
             await Application.Current.MainPage.Navigation.PopAsync();
         }
     }
