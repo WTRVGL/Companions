@@ -80,6 +80,7 @@ namespace Companions.MAUI
             builder.Services.AddTransient<FeedingPage>();
             builder.Services.AddTransient<WalkingPage>();
             builder.Services.AddTransient<TrackWeightPage>();
+            builder.Services.AddTransient<AppointmentPage>();
 
             #endregion
 
@@ -91,6 +92,7 @@ namespace Companions.MAUI
             builder.Services.AddTransient<FeedingPageViewModel>();
             builder.Services.AddTransient<WalkingPageViewModel>();
             builder.Services.AddTransient<TrackWeightViewModel>();
+            builder.Services.AddTransient<AppointmentPageViewModel>();
 
             builder.Services.AddTransient<HomePageViewModel>();
             builder.Services.AddTransient<SchedulePageViewModel>();

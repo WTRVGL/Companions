@@ -53,7 +53,7 @@ namespace Companions.MAUI
                         await Shell.Current.GoToAsync(nameof(WalkingPage));
                         return;
                     case "Appointment":
-                        await Application.Current.MainPage.Navigation.PushAsync(new AppointmentPage());
+                        await Shell.Current.GoToAsync(nameof(AppointmentPage));
                         return;
                     case "Track weight":
                         await Shell.Current.GoToAsync(nameof(TrackWeightPage));
