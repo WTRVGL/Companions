@@ -31,9 +31,14 @@
 		<UserSecretsId>e78ca562-8dfb-49b4-a706-259b65a790c6</UserSecretsId>
 		<Nullable>enable</Nullable>
 		<AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+		<Configurations>Debug;Release;Local Debug</Configurations>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
+	  <Optimize>False</Optimize>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Local Debug|net7.0-ios|AnyCPU'">
 	  <Optimize>False</Optimize>
 	</PropertyGroup>
 
@@ -42,11 +47,24 @@
 	  <AndroidKeyStore>False</AndroidKeyStore>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Local Debug|net7.0-android|AnyCPU'">
+	  <Optimize>False</Optimize>
+	  <AndroidKeyStore>False</AndroidKeyStore>
+	</PropertyGroup>
+
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-maccatalyst|AnyCPU'">
 	  <Optimize>False</Optimize>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Local Debug|net7.0-maccatalyst|AnyCPU'">
+	  <Optimize>False</Optimize>
+	</PropertyGroup>
+
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-windows10.0.19041|AnyCPU'">
+	  <Optimize>False</Optimize>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Local Debug|net7.0-windows10.0.19041|AnyCPU'">
 	  <Optimize>False</Optimize>
 	</PropertyGroup>
 
@@ -95,6 +113,8 @@
 
 	<ItemGroup>
 		<None Remove="appsettings.Development.json" />
+		<None Remove="appsettings.LocalDevelopment.json" />
+		<None Remove="appsettings.Production.json" />
 		<None Remove="Resources\Fonts\fa-brands-400.otf" />
 		<None Remove="Resources\Fonts\fa-regular-400.otf" />
 		<None Remove="Resources\Fonts\fa-solid-900.otf" />
@@ -115,6 +135,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<EmbeddedResource Include="appsettings.Production.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="appsettings.LocalDevelopment.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
 		<EmbeddedResource Include="appsettings.Development.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>
@@ -127,6 +153,7 @@
 		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="7.0.0" />
 		<PackageReference Include="Microsoft.Maui.Controls.Maps" Version="7.0.52" />
 		<PackageReference Include="Microsoft.Maui.Maps" Version="7.0.52" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
 		<PackageReference Include="Syncfusion.Maui.Charts" Version="20.4.41" />
 		<PackageReference Include="Syncfusion.Maui.Core" Version="20.4.41" />
 		<PackageReference Include="Syncfusion.Maui.DataForm" Version="20.4.41" />
@@ -179,6 +206,9 @@
 		</MauiXaml>
 		<MauiXaml Update="Controls\BuddyCard.xaml">
 			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\App\Popups\CreatePlacePopup.xaml">
+		  <Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Walktrough\MainPage.xaml">
 		  <Generator>MSBuild:Compile</Generator>

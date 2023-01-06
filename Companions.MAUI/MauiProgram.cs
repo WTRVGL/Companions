@@ -25,10 +25,12 @@ namespace Companions.MAUI
 
             var a = Assembly.GetExecutingAssembly();
 
-#if DEBUG
+#if LOCAL_DEBUG
+            using var stream = a.GetManifestResourceStream("Companions.MAUI.appsettings.LocalDevelopment.json");
+#elif DEBUG
             using var stream = a.GetManifestResourceStream("Companions.MAUI.appsettings.Development.json");
-#else
-            using var stream = a.GetManifestResourceStream("Companions.MAUI.appsettings.Development.json");
+#elif RELEASE
+            using var stream = a.GetManifestResourceStream("Companions.MAUI.appsettings.Production.json");
 #endif
 
             var config = new ConfigurationBuilder()
@@ -108,9 +110,13 @@ namespace Companions.MAUI
             builder.Services.AddTransient<IBuddyService, BuddyService>();
             builder.Services.AddTransient<IAppointmentService, AppointmentService>();
             builder.Services.AddTransient<IAuthService, AuthService>();
+            builder.Services.AddTransient<IGoogleService, GoogleService>();
+            builder.Services.AddTransient<IPlaceService, PlaceService>();
             builder.Services.AddTransient<IActivityService, ActivityService>();
 
             builder.ConfigureSyncfusionCore();
+
+
 
 #if __ANDROID__
             ImageHandler.Mapper.PrependToMapping(nameof(Microsoft.Maui.IImage.Source), (handler, view) => PrependToMappingImageSource(handler, view));

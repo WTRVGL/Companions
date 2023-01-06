@@ -12,21 +12,24 @@
              Shell.TabBarIsVisible="False">
 
     <ContentPage.Resources>
+        <toolkitBehaviors:EventToCommandBehavior x:Key="EventToCommandBehavior"/>
+
         <Style TargetType="Label" x:Key="FieldTitle">
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontFamily" Value="InterBold"/>
         </Style>
         <Style TargetType="Entry">
-            <Setter Property="TextColor" Value="#BDBDBD"/>
+            <Setter Property="TextColor" Value="Black"/>
         </Style>
         <Style TargetType="Editor">
-            <Setter Property="TextColor" Value="#BDBDBD"/>
+            <Setter Property="TextColor" Value="Black"/>
         </Style>
     </ContentPage.Resources>
 
     <VerticalStackLayout Margin="20,25">
 
         <ActivityIndicator IsVisible="{Binding IsBusy}"/>
+
         <Label
             FontFamily="FaSolid"
             HorizontalOptions="Start"
@@ -40,14 +43,14 @@
         </Label>
 
         <Label 
-            Margin="0,25,0,0"
+            Margin="0,25,0,25"
             Style="{StaticResource FieldTitle}"
-            Text="Select Buddies:"/>
+            Text="Select Buddy"/>
 
         <syncfusion:SfListView
             HorizontalOptions="Center"
-            SelectedItems="{Binding SelectedBuddies}"
-            SelectionMode="Multiple"
+            SelectedItem="{Binding SelectedBuddy}"
+            SelectionMode="Single"
             HeightRequest="120"
             ItemSize="100"
             x:Name="listView" 
@@ -63,10 +66,10 @@
                                 VerticalOptions="Center"
                                 HorizontalOptions="Center">
                         <Border
-                                    BackgroundColor="Transparent"
-                                    Grid.RowSpan="2"
-                                    HeightRequest="100"
-                                    WidthRequest="100">
+                            BackgroundColor="Transparent"
+                            Grid.RowSpan="2"
+                            HeightRequest="100"
+                            WidthRequest="100">
                             <Border.StrokeShape>
                                 <RoundRectangle CornerRadius="10" />
                             </Border.StrokeShape>
@@ -76,51 +79,83 @@
                                     Source="{Binding ImageURL}"/>
                         </Border>
                         <Label Text="{Binding Name}"
-                                       HorizontalOptions="Center"/>
+                               FontFamily="InterSemiBold"
+                               HorizontalOptions="Center"/>
                     </VerticalStackLayout>
                 </DataTemplate>
             </syncfusion:SfListView.ItemTemplate>
         </syncfusion:SfListView>
 
+
+        <!--Select Appointment Name-->
         <VerticalStackLayout Margin="0,30,0,0">
             <Label
                 Style="{StaticResource FieldTitle}"
                 Margin="0,0,0,10"
                 IsVisible="True"
-                Text="How long was the walk?">
+                Text="Appointment name">
                 <Label.Triggers>
-                    <DataTrigger TargetType="Label" Binding="{Binding SelectedBuddies.Count}" Value="0">
+                    <DataTrigger TargetType="Label" Binding="{Binding SelectedBuddy}" Value="{x:Null}">
                         <Setter Property="IsVisible" Value="False" />
                     </DataTrigger>
                 </Label.Triggers>
             </Label>
-            <Picker 
-                x:Name="picker"
-                Title="Select duration"
+            <Entry Text="{Binding AppointmentName}"/>
+
+        </VerticalStackLayout>
+
+        <!--Appointment Description-->
+        <VerticalStackLayout Margin="0,30,0,0">
+            <Label
+                Style="{StaticResource FieldTitle}"
+                Margin="0,0,0,10"
                 IsVisible="True"
-                SelectedItem="{Binding SelectedDuration}">
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:Double}">
-                        <x:Double>5</x:Double>
-                        <x:Double>10</x:Double>
-                        <x:Double>15</x:Double>
-                        <x:Double>20</x:Double>
-                        <x:Double>25</x:Double>
-                        <x:Double>30</x:Double>
-                        <x:Double>35</x:Double>
-                        <x:Double>40</x:Double>
-                        <x:Double>45</x:Double>
-                        <x:Double>50</x:Double>
-                        <x:Double>55</x:Double>
-                        <x:Double>60</x:Double>
-                        <x:Double>75</x:Double>
-                        <x:Double>80</x:Double>
-                        <x:Double>95</x:Double>
-                        <x:Double>100</x:Double>
-                    </x:Array>
-                </Picker.ItemsSource>
+                Text="Appointment description">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding SelectedBuddy}" Value="{x:Null}">
+                        <Setter Property="IsVisible" Value="False" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+            <Editor 
+                Text="{Binding AppointmentDescription}"
+                HeightRequest="50"/>
+        </VerticalStackLayout>
+
+        <!--Appointment Location-->
+        <VerticalStackLayout Margin="0,30,0,0">
+            <HorizontalStackLayout>
+                <Label
+                Style="{StaticResource FieldTitle}"
+                Margin="0,0,0,10"
+                IsVisible="True"
+                Text="Appointment location">
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding SelectedBuddy}" Value="{x:Null}">
+                            <Setter Property="IsVisible" Value="False" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+                <Label FontFamily="FaSolid"
+                       TextColor="Black"
+                        Text="{StaticResource SolidAlignRight}"
+                        Margin="120,5,0,0">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CreateAppointmentCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </HorizontalStackLayout>
+            <Picker 
+                Title="{Binding SelectedPlace.Name}"
+                IsVisible="True"
+                ItemsSource="{Binding DbPlaces}"
+                SelectedItem="{Binding SelectedPlace}"
+                ItemDisplayBinding="{Binding Name}">
+                <Picker.Behaviors>
+                    <toolkitBehaviors:EventToCommandBehavior Command="{Binding PlaceSelectedCommand}"/>
+                </Picker.Behaviors>
                 <Picker.Triggers>
-                    <DataTrigger TargetType="Picker" Binding="{Binding SelectedBuddies.Count}" Value="0">
+                    <DataTrigger TargetType="Picker" Binding="{Binding SelectedBuddy}" Value="{x:Null}">
                         <Setter Property="IsVisible" Value="False" />
                     </DataTrigger>
                 </Picker.Triggers>
@@ -129,11 +164,11 @@
         </VerticalStackLayout>
 
         <Button Style="{StaticResource PrimaryButton}"
-                Text="Add Walking Events"
-                Command="{Binding AddWalkingCommand}"
+                Text="Create Appointment"
+                Command="{Binding AddAppointmentCommand}"
                 IsVisible="True">
             <Button.Triggers>
-                <DataTrigger TargetType="Button" Binding="{Binding SelectedBuddies.Count}" Value="0">
+                <DataTrigger TargetType="Button" Binding="{Binding SelectedBuddy}" Value="{x:Null}">
                     <Setter Property="IsVisible" Value="False"/>
                 </DataTrigger>
             </Button.Triggers>

@@ -32,7 +32,7 @@
         Margin="25,30"
         Command="{Binding RefreshCommand}"
         IsRefreshing="{Binding IsRefreshing}">
-        
+
         <VerticalStackLayout>
             <!--<VerticalStackLayout.Triggers>
                 <DataTrigger TargetType="VerticalStackLayout" Binding="{Binding IsBusy}" Value="false">

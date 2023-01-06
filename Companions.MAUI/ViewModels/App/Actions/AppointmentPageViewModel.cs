@@ -1,8 +1,10 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Maui.Views;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Companions.MAUI.Models.App;
 using Companions.MAUI.Services;
 using Companions.MAUI.Services.Models;
+using Companions.MAUI.Views.App.Popups;
 using Syncfusion.Maui.DataSource.Extensions;
 using Syncfusion.Maui.ListView;
 using System;
@@ -17,33 +19,47 @@ namespace Companions.MAUI.ViewModels.App.Actions
     public partial class AppointmentPageViewModel : BaseViewModel
     {
         private readonly IBuddyService _buddyService;
-        private readonly IActivityService _activityService;
+        private readonly IPlaceService _placeService;
+        private readonly IGoogleService _googleService;
 
-        public AppointmentPageViewModel(IBuddyService buddyService, IActivityService activityService)
+        public AppointmentPageViewModel(IBuddyService buddyService, IGoogleService googleService, IPlaceService placeService)
         {
             _buddyService = buddyService;
-            SelectedBuddies = new ObservableCollection<object>();
-            _activityService = activityService;
+            _googleService = googleService;
+            _placeService = placeService;
 
-            Task.Run(async () => await FetchDataAsync()).Wait();
+            GooglePlaces = new ObservableCollection<Place>();
+            Task.Run(FetchDataAsync).Wait();
         }
 
 
         [ObservableProperty]
-        private ObservableCollection<object> _selectedBuddies;
-
+        private Buddy _selectedBuddy;
         [ObservableProperty]
-        private int _selectedDuration;
+        private string _selectedAppointmentType;
+        [ObservableProperty]
+        private string _appointmentDescription;
+        [ObservableProperty]
+        private string _appointmentName;
+        [ObservableProperty]
+        private Place _selectedPlace;
+        [ObservableProperty]
+        private string _placeSearchQuery;
+        [ObservableProperty]
+        private string _placeSearchRange;
+        [ObservableProperty]
+        private string _selectedPlaceType;
 
         [ObservableProperty]
         private ObservableCollection<Buddy> _buddies;
-
+        [ObservableProperty]
+        private ObservableCollection<Place> _dbPlaces;
+        [ObservableProperty]
+        private ObservableCollection<Place> _googlePlaces;
 
         [RelayCommand]
         async void GoBack()
         {
-            ////Update appointment in db
-            //var updatedAppointment = _appointmentService.UpdateAppointment(Appointment);
             await Application.Current.MainPage.Navigation.PopAsync();
         }
 
@@ -51,6 +67,7 @@ namespace Companions.MAUI.ViewModels.App.Actions
         async Task FetchDataAsync()
         {
             Buddies = await _buddyService.GetBuddies();
+            DbPlaces = await _placeService.GetPlaces();
         }
 
         [RelayCommand]
@@ -60,36 +77,79 @@ namespace Companions.MAUI.ViewModels.App.Actions
         }
 
         [RelayCommand]
-        async void AddWalking()
+        async void CreateAppointment()
         {
-            var endTime = DateTime.Now.AddMinutes(SelectedDuration).AddSeconds(5);
+            var popup = new CreatePlacePopup();
+            Shell.Current.ShowPopup(popup);
+        }
 
-            //Get Id of Walk Activity
-            var activityTypes = await _activityService.GetActivityTypes();
-            var walkActivityType = activityTypes.FirstOrDefault(a => a.Name == "Walk");
+        [RelayCommand]
+        async void PlaceSelected()
+        {
+        }
 
-            if (walkActivityType == null)
+
+        [RelayCommand]
+        async void GoogleSearchAppointment()
+        {
+            GeolocationRequest request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(10));
+            Location location = await Geolocation.Default.GetLocationAsync(request);
+
+            //Convert string to double, then round it up and then convert to int. I love spaghetti.
+            var searchRangeInMeters = Convert.ToInt32(Math.Round(Convert.ToDouble(PlaceSearchRange)));
+            var searchRangeInKilometers = searchRangeInMeters * 1000;
+
+            var uriEncodedSearchQuery = Uri.EscapeDataString(PlaceSearchQuery);
+            var places = await _googleService.FetchPlaces(uriEncodedSearchQuery, location.Latitude, location.Longitude, searchRangeInKilometers);
+            GooglePlaces = places.ToObservableCollection();
+
+        }
+
+        [RelayCommand]
+        async void AddAppointment()
+        {
+            if (SelectedPlace.Id == null)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "Walk id not found", "Ok");
-            }
-
-            foreach (Buddy buddy in SelectedBuddies)
-            {
-                var createActivity = new Activity
+                //create new
+                var place = new CreatePlace
                 {
-                    ActivityType = walkActivityType,
-                    EndDate = endTime,
-                    StartDate = DateTime.Now,
-                    BuddyId = buddy.Id,
+                    Address = SelectedPlace.Address,
+                    Description = SelectedPlace.Description,
+                    Latitude = SelectedPlace.Latitude,
+                    Longitude = SelectedPlace.Longitude,
+                    Name = SelectedPlace.Name
                 };
 
-                var createdActivity = await _activityService.CreateActivity(createActivity);
+                await _placeService.CreatePlace(place);
             }
+
+            //var endTime = DateTime.Now.AddMinutes(SelectedDuration).AddSeconds(5);
+
+            ////Get Id of Walk Activity
+            //var activityTypes = await _activityService.GetActivityTypes();
+            //var walkActivityType = activityTypes.FirstOrDefault(a => a.Name == "Walk");
+
+            //if (walkActivityType == null)
+            //{
+            //    await Application.Current.MainPage.DisplayAlert("Error", "Walk id not found", "Ok");
+            //}
+
+            //foreach (Buddy buddy in SelectedBuddies)
+            //{
+            //    var createActivity = new Activity
+            //    {
+            //        ActivityType = walkActivityType,
+            //        EndDate = endTime,
+            //        StartDate = DateTime.Now,
+            //        BuddyId = buddy.Id,
+            //    };
+
+            //    var createdActivity = await _activityService.CreateActivity(createActivity);
+            //}
 
             //Display notification and close
             await Application.Current.MainPage.DisplayAlert("Success", "Succesfully added Walking events", "Ok");
             await Application.Current.MainPage.Navigation.PopAsync();
         }
-
     }
 }

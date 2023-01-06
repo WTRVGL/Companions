@@ -6,13 +6,14 @@ namespace Companions.MAUI.Controls;
 public partial class BuddyCard : ContentView
 {
     private readonly TapGestureRecognizer _tapGestureRecognizer;
-	public BuddyCard()
-	{
+
+    public BuddyCard()
+    {
         InitializeComponent();
         _tapGestureRecognizer = new TapGestureRecognizer();
         _tapGestureRecognizer.Tapped += _tapGestureRecognizer_Tapped;
         cardFrame.GestureRecognizers.Add(_tapGestureRecognizer);
-	}
+    }
 
     private async void _tapGestureRecognizer_Tapped(object sender, EventArgs e)
     {
