@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Companions.API.DTOs;
 using Companions.API.Services;
+using Companions.Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -22,10 +23,9 @@ namespace Companions.API.Controllers
         }
 
         [HttpGet("{id}")]
-        [SwaggerOperation("Create a new Place")]
-        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(PlaceDTO), Description = "Created a new Place")]
+        [SwaggerOperation("Gets a Place by Id")]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(PlaceDTO), Description = "Gets a Place")]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, Description = "Unauthorized")]
-        [SwaggerResponse(StatusCodes.Status302Found, Description = "Place already exists")]
         [Authorize]
         public ActionResult<PlaceDTO> GetPlaceById(string id)
         {
@@ -53,6 +53,18 @@ namespace Companions.API.Controllers
             });
 
             return placesDTO;
+        }
+
+        [HttpPost]
+        [SwaggerOperation("Create a new Place")]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(PlaceDTO), Description = "Returns the newly created Place")]
+        [SwaggerResponse(StatusCodes.Status401Unauthorized, Description = "Unauthorized")]
+        [Authorize]
+        public ActionResult<PlaceDTO> CreatePlace(PlaceDTO placeDTO)
+        {
+            var place = _mapper.Map<Place>(placeDTO);
+            var createdPlace = _placeService.CreatePlace(place);
+            return placeDTO;
         }
     }
 }

@@ -17,6 +17,9 @@ namespace Companions.API.Mapper
             CreateMap<FeedingSchedule, FeedingScheduleDTO>();
             CreateMap<FeedProduct, FeedProductDTO>();
 
+            CreateMap<Place, PlaceDTO>();
+            CreateMap<PlaceDTO, Place>();
+
             CreateMap<User, UserDTO>();
 
             CreateMap<BuddyWeight, BuddyWeightDTO>();
@@ -38,9 +41,11 @@ namespace Companions.API.Mapper
             CreateMap<UpdateBuddyDTO, Buddy>();
             CreateMap<Buddy, UpdateBuddyDTO>();
 
+            CreateMap<CreateAppointmentDTO, Appointment>();
             CreateMap<UpdateAppointmentDTO, Appointment>();
             CreateMap<Appointment, UpdateAppointmentDTO>();
             CreateMap<Appointment, AppointmentDTO>();
+            CreateMap<CreateAppointmentDTO, AppointmentDTO>();
 
         }
     }

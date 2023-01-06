@@ -2,12 +2,184 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Companions.MAUI.Views.App.Actions.AppointmentPage"
-             Title="AppointmentPage"
+             xmlns:models="clr-namespace:Companions.MAUI.Models.App"
+             xmlns:toolkitBehaviors="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viewmodels="clr-namespace:Companions.MAUI.ViewModels.App.Actions"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
+             x:DataType="viewmodels:AppointmentPageViewModel"
+             x:Name="RootPage"
+             Shell.NavBarIsVisible="False"
              Shell.TabBarIsVisible="False">
-    <VerticalStackLayout>
+
+    <ContentPage.Resources>
+        <toolkitBehaviors:EventToCommandBehavior x:Key="EventToCommandBehavior"/>
+
+        <Style TargetType="Label" x:Key="FieldTitle">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="InterBold"/>
+        </Style>
+        <Style TargetType="Entry">
+            <Setter Property="TextColor" Value="Black"/>
+        </Style>
+        <Style TargetType="Editor">
+            <Setter Property="TextColor" Value="Black"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <VerticalStackLayout Margin="20,25">
+
+        <ActivityIndicator IsVisible="{Binding IsBusy}"/>
+
+        <Label
+            FontFamily="FaSolid"
+            HorizontalOptions="Start"
+            Scale="2"
+            Text="{StaticResource SolidArrowLeft}"
+            TextColor="Black"
+            VerticalOptions="Center">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding GoBackCommand}" />
+            </Label.GestureRecognizers>
+        </Label>
+
         <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            Margin="0,25,0,25"
+            Style="{StaticResource FieldTitle}"
+            Text="Select Buddy"/>
+
+        <syncfusion:SfListView
+            HorizontalOptions="Center"
+            SelectedItem="{Binding SelectedBuddy}"
+            SelectionMode="Single"
+            HeightRequest="120"
+            ItemSize="100"
+            x:Name="listView" 
+            ItemsSource="{Binding Buddies}"
+            Orientation="Horizontal">
+            <syncfusion:SfListView.ItemTemplate>
+                <DataTemplate x:DataType="models:Buddy">
+                    <VerticalStackLayout
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center">
+                        <Border
+                            BackgroundColor="Transparent"
+                            Grid.RowSpan="2"
+                            HeightRequest="100"
+                            WidthRequest="100">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10" />
+                            </Border.StrokeShape>
+                            <Image
+                                    Aspect="AspectFit"
+                                    VerticalOptions="Center"
+                                    Source="{Binding ImageURL}"/>
+                        </Border>
+                        <Label Text="{Binding Name}"
+                               FontFamily="InterSemiBold"
+                               HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </syncfusion:SfListView.ItemTemplate>
+        </syncfusion:SfListView>
+
+
+        <!--Select Appointment Name-->
+        <VerticalStackLayout Margin="0,30,0,0">
+            <Label
+                Style="{StaticResource FieldTitle}"
+                Margin="0,0,0,10"
+                IsVisible="True"
+                Text="Appointment name">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding SelectedBuddy}" Value="{x:Null}">
+                        <Setter Property="IsVisible" Value="False" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+            <Entry Text="{Binding AppointmentName}"/>
+
+        </VerticalStackLayout>
+
+        <!--Appointment Description-->
+        <VerticalStackLayout Margin="0,30,0,0">
+            <Label
+                Style="{StaticResource FieldTitle}"
+                Margin="0,0,0,10"
+                IsVisible="True"
+                Text="Appointment description">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding SelectedBuddy}" Value="{x:Null}">
+                        <Setter Property="IsVisible" Value="False" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+            <Editor 
+                Text="{Binding AppointmentDescription}"
+                HeightRequest="50"/>
+        </VerticalStackLayout>
+
+        <!--Appointment Location-->
+        <VerticalStackLayout Margin="0,30,0,0">
+            <HorizontalStackLayout>
+                <Label
+                Style="{StaticResource FieldTitle}"
+                Margin="0,0,0,10"
+                IsVisible="True"
+                Text="Appointment location">
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding SelectedBuddy}" Value="{x:Null}">
+                            <Setter Property="IsVisible" Value="False" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+                <Label FontFamily="FaSolid"
+                       TextColor="Black"
+                        Text="{StaticResource SolidAlignRight}"
+                        Margin="120,5,0,0">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CreateAppointmentCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </HorizontalStackLayout>
+            <Picker 
+                Title="{Binding SelectedPlace.Name}"
+                IsVisible="True"
+                ItemsSource="{Binding DbPlaces}"
+                SelectedItem="{Binding SelectedPlace}"
+                ItemDisplayBinding="{Binding Name}">
+                <Picker.Triggers>
+                    <DataTrigger TargetType="Picker" Binding="{Binding SelectedBuddy}" Value="{x:Null}">
+                        <Setter Property="IsVisible" Value="False" />
+                    </DataTrigger>
+                </Picker.Triggers>
+            </Picker>
+        </VerticalStackLayout>
+
+        <!--Appointment Date-->
+        <VerticalStackLayout Margin="0,30,0,0">
+            <Label
+                Style="{StaticResource FieldTitle}"
+                Margin="0,0,0,10"
+                IsVisible="True"
+                Text="Appointment date">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding SelectedBuddy}" Value="{x:Null}">
+                        <Setter Property="IsVisible" Value="False" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+            <DatePicker Date="{Binding AppointmentDate}"/>
+        </VerticalStackLayout>
+
+        <Button Style="{StaticResource PrimaryButton}"
+                Text="Create Appointment"
+                Command="{Binding AddAppointmentCommand}"
+                IsVisible="True">
+            <Button.Triggers>
+                <DataTrigger TargetType="Button" Binding="{Binding SelectedBuddy}" Value="{x:Null}">
+                    <Setter Property="IsVisible" Value="False"/>
+                </DataTrigger>
+            </Button.Triggers>
+        </Button>
     </VerticalStackLayout>
 </ContentPage>

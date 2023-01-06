@@ -128,7 +128,7 @@ builder.Services.AddSwaggerGen(config =>
 });
 
 builder.Services.AddDbContext<AppDbContext>(
-    options => options.UseSqlServer(builder.Configuration.GetConnectionString("Local")));
+    options => options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
 
 builder.Services.AddTransient<IBuddyService, BuddyService>();
 builder.Services.AddTransient<IUserService, UserService>();

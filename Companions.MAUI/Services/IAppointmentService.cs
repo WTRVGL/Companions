@@ -1,4 +1,5 @@
 ﻿using Companions.MAUI.Models.App;
+using Companions.MAUI.Services.Models;
 using Syncfusion.Maui.Scheduler;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace Companions.MAUI.Services
         Task<ObservableCollection<Appointment>> GetAppointments();
         ObservableCollection<SchedulerAppointment> GetSchedulerAppointments();
         Task<Appointment> UpdateAppointment(Appointment appointment);
-        Task<Appointment> AddAppointment(Appointment appointment);
+        Task<Appointment> CreateAppointment(CreateAppointment appointment);
         Task<bool> DeleteAppointment(string id);
     }
 }

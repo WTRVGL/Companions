@@ -35,11 +35,6 @@ namespace Companions.MAUI.Services
             _httpClient.DefaultRequestHeaders.Add("Authorization", jwt);
         }
 
-        public Task<Appointment> AddAppointment(Appointment appointment)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<bool> DeleteAppointment(string id)
         {
             await EnsureAuthHeaders();
@@ -56,10 +51,12 @@ namespace Companions.MAUI.Services
 
             var res = await _httpClient.GetAsync($"{_apiBaseURL}/api/Appointments");
             var appointments = await res.Content.ReadFromJsonAsync<List<Appointment>>();
-            return appointments
+            var sortedAppointments = appointments
                 .Where(a => a.AppointmentDate > DateTime.Now)
                 .OrderBy(a => a.AppointmentDate)
                 .ToObservableCollection();
+
+            return sortedAppointments;
         }
 
         public ObservableCollection<SchedulerAppointment> GetSchedulerAppointments()
@@ -83,6 +80,16 @@ namespace Companions.MAUI.Services
 
 
             var res = await _httpClient.PutAsJsonAsync<UpdateAppointmentRequest>($"{_apiBaseURL}/api/Appointment", req);
+            var updatedAppointment = await res.Content.ReadFromJsonAsync<Appointment>();
+            return updatedAppointment;
+        }
+
+        public async Task<Appointment> CreateAppointment(CreateAppointment appointment)
+        {
+            await EnsureAuthHeaders();
+
+
+            var res = await _httpClient.PostAsJsonAsync<CreateAppointment>($"{_apiBaseURL}/api/Appointment", appointment);
             var updatedAppointment = await res.Content.ReadFromJsonAsync<Appointment>();
             return updatedAppointment;
         }
