@@ -2,7 +2,7 @@
 using Companions.MAUI.Services.Models;
 using System.Collections.ObjectModel;
 
-namespace Companions.MAUI.Services
+namespace Companions.MAUI.Services.Interface
 {
     public interface IPlaceService
     {

@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Companions.MAUI.Services
+namespace Companions.MAUI.Services.Interface
 {
     public interface IAppointmentService
     {

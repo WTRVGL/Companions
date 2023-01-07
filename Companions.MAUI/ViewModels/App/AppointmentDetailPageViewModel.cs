@@ -3,7 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Companions.MAUI.Messages;
 using Companions.MAUI.Models.App;
-using Companions.MAUI.Services;
+using Companions.MAUI.Services.Interface;
 using Companions.MAUI.Views.App;
 using System;
 using System.Collections.Generic;

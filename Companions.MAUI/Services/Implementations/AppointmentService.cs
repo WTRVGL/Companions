@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui.Core.Extensions;
 using Companions.MAUI.Models.App;
+using Companions.MAUI.Services.Interface;
 using Companions.MAUI.Services.Models;
 using Microsoft.Extensions.Configuration;
 using Syncfusion.Maui.Scheduler;
@@ -11,7 +12,7 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Companions.MAUI.Services
+namespace Companions.MAUI.Services.Implementation
 {
     public class AppointmentService : IAppointmentService
     {
@@ -79,7 +80,7 @@ namespace Companions.MAUI.Services
             };
 
 
-            var res = await _httpClient.PutAsJsonAsync<UpdateAppointmentRequest>($"{_apiBaseURL}/api/Appointment", req);
+            var res = await _httpClient.PutAsJsonAsync($"{_apiBaseURL}/api/Appointment", req);
             var updatedAppointment = await res.Content.ReadFromJsonAsync<Appointment>();
             return updatedAppointment;
         }
@@ -89,7 +90,7 @@ namespace Companions.MAUI.Services
             await EnsureAuthHeaders();
 
 
-            var res = await _httpClient.PostAsJsonAsync<CreateAppointment>($"{_apiBaseURL}/api/Appointment", appointment);
+            var res = await _httpClient.PostAsJsonAsync($"{_apiBaseURL}/api/Appointment", appointment);
             var updatedAppointment = await res.Content.ReadFromJsonAsync<Appointment>();
             return updatedAppointment;
         }

@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Companions.MAUI.Models.App;
-using Companions.MAUI.Services;
+using Companions.MAUI.Services.Interface;
 using Companions.MAUI.Services.Models;
 using Syncfusion.Maui.DataSource.Extensions;
 using Syncfusion.Maui.ListView;

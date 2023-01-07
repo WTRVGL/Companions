@@ -1,4 +1,5 @@
 ﻿using Companions.MAUI.Models.App;
+using Companions.MAUI.Services.Interface;
 using Companions.MAUI.Services.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
@@ -10,7 +11,7 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Companions.MAUI.Services
+namespace Companions.MAUI.Services.Implementation
 {
     public class GoogleService : IGoogleService
     {

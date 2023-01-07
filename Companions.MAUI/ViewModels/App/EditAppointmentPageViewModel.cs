@@ -5,7 +5,7 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Companions.MAUI.Messages;
 using Companions.MAUI.Models.App;
-using Companions.MAUI.Services;
+using Companions.MAUI.Services.Interface;
 using Companions.MAUI.Services.Models;
 using Companions.MAUI.Views.App.Popups;
 using System;
@@ -74,9 +74,9 @@ namespace Companions.MAUI.ViewModels.App
         {
             //Update hour
             var newDate = new DateTime(
-                Appointment.AppointmentDate.Year, 
-                Appointment.AppointmentDate.Month, 
-                Appointment.AppointmentDate.Day, 
+                Appointment.AppointmentDate.Year,
+                Appointment.AppointmentDate.Month,
+                Appointment.AppointmentDate.Day,
                 SelectedTime.Hours,
                 SelectedTime.Minutes,
                 SelectedTime.Seconds);
@@ -142,8 +142,14 @@ namespace Companions.MAUI.ViewModels.App
         [RelayCommand]
         async void GoogleSearchAppointment()
         {
-            GeolocationRequest request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(10));
-            Location location = await Geolocation.Default.GetLocationAsync(request);
+            Location location = await Geolocation.Default.GetLastKnownLocationAsync();
+
+            if (location == null)
+            {
+                GeolocationRequest request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(10));
+                location = await Geolocation.Default.GetLocationAsync(request);
+            }
+
 
             //Convert string to double, then round it up and then convert to int. I love spaghetti.
             var searchRangeInMeters = Convert.ToInt32(Math.Round(Convert.ToDouble(PlaceSearchRange)));

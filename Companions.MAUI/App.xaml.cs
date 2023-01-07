@@ -1,5 +1,5 @@
 ﻿using Companions.MAUI.Models;
-using Companions.MAUI.Services;
+using Companions.MAUI.Services.Interface;
 using Companions.MAUI.Views;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;

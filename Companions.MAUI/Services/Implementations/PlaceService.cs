@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui.Core.Extensions;
 using Companions.MAUI.Models.App;
+using Companions.MAUI.Services.Interface;
 using Companions.MAUI.Services.Models;
 using Microsoft.Extensions.Configuration;
 using Syncfusion.Maui.Scheduler;
@@ -11,14 +12,14 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Companions.MAUI.Services
+namespace Companions.MAUI.Services.Implementation
 {
-    public class ActivityService : IActivityService
+    public class PlaceService : IPlaceService
     {
         private readonly HttpClient _httpClient;
 
         private readonly string _apiBaseURL;
-        public ActivityService(IConfiguration config)
+        public PlaceService(IConfiguration config)
         {
             _httpClient = new HttpClient();
             _httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
@@ -35,32 +36,34 @@ namespace Companions.MAUI.Services
             _httpClient.DefaultRequestHeaders.Add("Authorization", jwt);
         }
 
-        public async Task<Activity> CreateActivity(Activity activity)
+        public async Task<Place> CreatePlace(CreatePlace place)
         {
             await EnsureAuthHeaders();
 
-            var buddyId = activity.BuddyId;
-            var createActivityModel = new CreateActivity
-            {
-                ActivityTypeId = activity.ActivityType.Id,
-                EndDate = activity.EndDate,
-                StartDate = activity.StartDate,
-            };
+            var res = await _httpClient.PostAsJsonAsync($"{_apiBaseURL}/api/Places/", place);
 
-            var res = await _httpClient.PostAsJsonAsync<CreateActivity>($"{_apiBaseURL}/api/Buddy/{buddyId}/Activity", createActivityModel);
-
-            var createdActivity = await res.Content.ReadFromJsonAsync<Activity>();
-            return createdActivity;
+            var createdPlace = await res.Content.ReadFromJsonAsync<Place>();
+            return createdPlace;
         }
 
-        public async Task<List<ActivityType>> GetActivityTypes()
+        public async Task<ObservableCollection<Place>> GetPlaces()
         {
             await EnsureAuthHeaders();
 
-            var res = await _httpClient.GetAsync($"{_apiBaseURL}/api/ActivityTypes");
+            var res = await _httpClient.GetAsync($"{_apiBaseURL}/api/Places");
 
-            var activityTypes = await res.Content.ReadFromJsonAsync<List<ActivityType>>();
-            return activityTypes;
+            var places = await res.Content.ReadFromJsonAsync<ObservableCollection<Place>>();
+            return places;
+        }
+
+        public async Task<Place> GetPlaceById(string placeId)
+        {
+            await EnsureAuthHeaders();
+
+            var res = await _httpClient.GetAsync($"{_apiBaseURL}/api/Places/{placeId}");
+
+            var place = await res.Content.ReadFromJsonAsync<Place>();
+            return place;
         }
     }
 }

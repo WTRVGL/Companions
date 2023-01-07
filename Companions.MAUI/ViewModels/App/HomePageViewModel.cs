@@ -4,7 +4,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using Companions.MAUI.Messages;
 using Companions.MAUI.Models;
 using Companions.MAUI.Models.App;
-using Companions.MAUI.Services;
+using Companions.MAUI.Services.Interface;
 using Companions.MAUI.Views.App;
 using Companions.MAUI.Views.App.BuddyDetail;
 using Microsoft.Extensions.Configuration;
@@ -39,6 +39,7 @@ namespace Companions.MAUI.ViewModels.App
 
         [ObservableProperty]
         private ObservableCollection<Buddy> _buddies;
+
 
         [ObservableProperty]
         private ObservableCollection<Appointment> _appointments;

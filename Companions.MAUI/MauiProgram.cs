@@ -1,5 +1,4 @@
-﻿using Companions.MAUI.Services;
-using Companions.MAUI.ViewModels.App;
+﻿using Companions.MAUI.ViewModels.App;
 using Companions.MAUI.ViewModels.Login;
 using Companions.MAUI.Views.App;
 using Companions.MAUI.Views.App.BuddyDetail;
@@ -12,6 +11,8 @@ using Microsoft.Extensions.Configuration;
 using CommunityToolkit.Maui;
 using Companions.MAUI.ViewModels.App.Actions;
 using Companions.MAUI.Views.App.Actions;
+using Companions.MAUI.Services.Interface;
+using Companions.MAUI.Services.Implementation;
 
 namespace Companions.MAUI
 {

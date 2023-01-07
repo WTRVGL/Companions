@@ -1,5 +1,6 @@
 ﻿using Companions.MAUI.Models;
 using Companions.MAUI.Models.Login;
+using Companions.MAUI.Services.Interface;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Companions.MAUI.Services
+namespace Companions.MAUI.Services.Implementation
 {
     public class AuthService : IAuthService
     {
@@ -27,7 +28,7 @@ namespace Companions.MAUI.Services
         }
         public async Task<AuthResponse> GetJWTToken(LoginModel loginModel)
         {
-            var req = await _httpClient.PostAsJsonAsync<LoginModel>($"{_authBaseURL}/api/Token", loginModel);
+            var req = await _httpClient.PostAsJsonAsync($"{_authBaseURL}/api/Token", loginModel);
             if (req.StatusCode != HttpStatusCode.OK) return null;
 
             var authResponse = await req.Content.ReadFromJsonAsync<AuthResponse>();
@@ -36,7 +37,7 @@ namespace Companions.MAUI.Services
 
         public async Task<RegistrationResponse> RegisterUser(RegisterModel registerModel)
         {
-            var res = await _httpClient.PostAsJsonAsync<RegisterModel>($"{_apiBaseURL}/api/User/CreateUser", registerModel);
+            var res = await _httpClient.PostAsJsonAsync($"{_apiBaseURL}/api/User/CreateUser", registerModel);
 
             if (res.StatusCode == HttpStatusCode.Found)
                 return new RegistrationResponse

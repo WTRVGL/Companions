@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Companions.MAUI.Models.Login;
-using Companions.MAUI.Services;
+using Companions.MAUI.Services.Interface;
 using Companions.MAUI.Validation;
 using Companions.MAUI.Validation.Rules;
 using Companions.MAUI.Views.Login;

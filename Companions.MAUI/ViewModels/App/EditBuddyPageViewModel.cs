@@ -2,7 +2,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Companions.MAUI.Models.App;
-using Companions.MAUI.Services;
+using Companions.MAUI.Services.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Internal;
 using System;
@@ -45,7 +45,7 @@ namespace Companions.MAUI.ViewModels.App
             {
                 newBuddy.ImageURL = SelectedImage.ImageURL;
                 Buddy.ImageURL = SelectedImage.ImageURL;
-            } 
+            }
 
             if (SelectedGender != null)
             {
@@ -85,7 +85,7 @@ namespace Companions.MAUI.ViewModels.App
                     //Sync UI
                     BuddyImages.Add(image);
                     Buddy.Images.Add(image);
-                    
+
                     //Update DB
                     await _buddyService.AddImage(image);
                     IsBusy = false;

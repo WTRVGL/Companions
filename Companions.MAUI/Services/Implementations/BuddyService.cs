@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui.Core.Extensions;
 using Companions.MAUI.Models.App;
+using Companions.MAUI.Services.Interface;
 using Companions.MAUI.Services.Models;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -12,7 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Image = Companions.MAUI.Models.App.Image;
 
-namespace Companions.MAUI.Services
+namespace Companions.MAUI.Services.Implementation
 {
     public class BuddyService : IBuddyService
     {
@@ -98,7 +99,7 @@ namespace Companions.MAUI.Services
                 ImageURL = buddy.ImageURL
             };
 
-            var res = await _httpClient.PutAsJsonAsync<UpdateBuddyRequest>($"{_apiBaseURL}/api/Buddy", req);
+            var res = await _httpClient.PutAsJsonAsync($"{_apiBaseURL}/api/Buddy", req);
             var updatedBuddy = await res.Content.ReadFromJsonAsync<Buddy>();
 
 
@@ -118,7 +119,7 @@ namespace Companions.MAUI.Services
                 Weight = buddyWeight.Weight,
             };
 
-            var res = await _httpClient.PostAsJsonAsync<BuddyWeight>($"{_apiBaseURL}/api/Buddy/{buddyId}", req);
+            var res = await _httpClient.PostAsJsonAsync($"{_apiBaseURL}/api/Buddy/{buddyId}", req);
             var createdBuddyWeight = await res.Content.ReadFromJsonAsync<BuddyWeight>();
 
             return createdBuddyWeight;
@@ -127,7 +128,7 @@ namespace Companions.MAUI.Services
         public async Task<Image> AddImage(Image image)
         {
             await EnsureAuthHeaders();
-            var res = await _httpClient.PostAsJsonAsync<Image>($"{_apiBaseURL}/api/Buddy/{image.BuddyId}/Image", image);
+            var res = await _httpClient.PostAsJsonAsync($"{_apiBaseURL}/api/Buddy/{image.BuddyId}/Image", image);
             return await res.Content.ReadFromJsonAsync<Image>();
 
         }

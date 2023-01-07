@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Image = Companions.MAUI.Models.App.Image;
 
-namespace Companions.MAUI.Services
+namespace Companions.MAUI.Services.Interface
 {
     public interface IBuddyService
     {

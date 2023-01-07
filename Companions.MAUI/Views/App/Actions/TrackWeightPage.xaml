@@ -63,18 +63,18 @@
                     <VerticalStackLayout
                                 VerticalOptions="Center"
                                 HorizontalOptions="Center">
-                        <Border
-                                    BackgroundColor="Transparent"
-                                    Grid.RowSpan="2"
-                                    HeightRequest="100"
-                                    WidthRequest="100">
+                        <Border BackgroundColor="Transparent"
+                                Grid.RowSpan="2"
+                                HeightRequest="100"
+                                WidthRequest="100">
                             <Border.StrokeShape>
                                 <RoundRectangle CornerRadius="10" />
                             </Border.StrokeShape>
-                            <Image
-                                    Aspect="AspectFit"
-                                    VerticalOptions="Center"
-                                    Source="{Binding ImageURL}"/>
+                            <Image Aspect="AspectFill"
+                                   HeightRequest="100"
+                                   WidthRequest="100"
+                                   VerticalOptions="Center"
+                                   Source="{Binding ImageURL}"/>
                         </Border>
                         <Label Text="{Binding Name}"
                                        HorizontalOptions="Center"/>

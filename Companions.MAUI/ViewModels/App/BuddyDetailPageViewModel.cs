@@ -2,7 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using Companions.Domain;
 using Companions.MAUI.Models.App;
-using Companions.MAUI.Services;
+using Companions.MAUI.Services.Interface;
 using Companions.MAUI.Views.App;
 using System;
 using System.Collections.Generic;
