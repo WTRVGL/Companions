@@ -55,6 +55,8 @@ namespace Companions.MAUI.ViewModels.App.Actions
         private string _selectedPlaceType;
         [ObservableProperty]
         private DateTime _appointmentDate;
+        [ObservableProperty]
+        private TimeSpan _appointmentTime;
 
         [ObservableProperty]
         private ObservableCollection<Buddy> _buddies;
@@ -102,6 +104,15 @@ namespace Companions.MAUI.ViewModels.App.Actions
         [RelayCommand]
         async void AddAppointment()
         {
+            var appointmentDateWithTime = new DateTime(
+                AppointmentDate.Year,
+                AppointmentDate.Month,
+                AppointmentDate.Day,
+                AppointmentTime.Hours,
+                AppointmentTime.Minutes,
+                AppointmentTime.Seconds);
+
+
             if (SelectedPlace.Id == null)
             {
                 //create new
@@ -122,7 +133,7 @@ namespace Companions.MAUI.ViewModels.App.Actions
 
             var appointment = new CreateAppointment
             {
-                AppointmentDate = AppointmentDate,
+                AppointmentDate = appointmentDateWithTime,
                 AppointmentName = AppointmentName,
                 BuddyId = SelectedBuddy.Id,
                 Description = AppointmentDescription,
@@ -130,30 +141,6 @@ namespace Companions.MAUI.ViewModels.App.Actions
             };
 
             var createdAppointment = await _appointmentService.CreateAppointment(appointment);
-
-            //var endTime = DateTime.Now.AddMinutes(SelectedDuration).AddSeconds(5);
-
-            ////Get Id of Walk Activity
-            //var activityTypes = await _activityService.GetActivityTypes();
-            //var walkActivityType = activityTypes.FirstOrDefault(a => a.Name == "Walk");
-
-            //if (walkActivityType == null)
-            //{
-            //    await Application.Current.MainPage.DisplayAlert("Error", "Walk id not found", "Ok");
-            //}
-
-            //foreach (Buddy buddy in SelectedBuddies)
-            //{
-            //    var createActivity = new Activity
-            //    {
-            //        ActivityType = walkActivityType,
-            //        EndDate = endTime,
-            //        StartDate = DateTime.Now,
-            //        BuddyId = buddy.Id,
-            //    };
-
-            //    var createdActivity = await _activityService.CreateActivity(createActivity);
-            //}
 
             //Display notification and close
             await Application.Current.MainPage.DisplayAlert("Success", "Succesfully created Appointment", "Ok");

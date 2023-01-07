@@ -85,63 +85,61 @@
             <!--  Upcoming Activities Control  -->
             <syncfusion:SfListView
                 x:Name="appointmentList"
-                HeightRequest="280"
+                HeightRequest="250"
                 IsScrollingEnabled="True"
-                ItemSize="65"
+                ItemSize="55"
                 ItemsSource="{Binding Appointments}"
                 SelectionBackground="Transparent"
                 TapCommand="{Binding OpenAppointmentDetailCommand}">
                 <syncfusion:SfListView.ItemTemplate>
                     <DataTemplate x:DataType="models:Appointment">
                         <VerticalStackLayout>
-                            <VerticalStackLayout>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="0.2*" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="auto" />
-                                        <RowDefinition Height="*" />
-                                    </Grid.RowDefinitions>
-                                    <Border
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.2*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Border
                                         Grid.RowSpan="2"
                                         HeightRequest="40"
                                         WidthRequest="40">
-                                        <Border.StrokeShape>
-                                            <RoundRectangle CornerRadius="50" />
-                                        </Border.StrokeShape>
-                                        <Image
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="50" />
+                                    </Border.StrokeShape>
+                                    <Image
                                             Source="{Binding Buddy.ImageURL}"
                                             VerticalOptions="Center" />
-                                    </Border>
-                                    <Label
+                                </Border>
+                                <Label
                                         Grid.Row="0"
                                         Grid.Column="1"
                                         Margin="0,0,0,5"
                                         FontFamily="InterSemiBold"
                                         FontSize="16"
                                         Text="{Binding AppointmentName}" />
-                                    <Label
+                                <Label
                                         Grid.Row="0"
                                         Grid.Column="1"
                                         HorizontalOptions="End"
                                         Text="{Binding AppointmentDate, Converter={StaticResource TimeBetweenNowAndDateTime}}"
                                         TextColor="#BDBDBD" />
-                                    <Label
+                                <Label
                                         Grid.Row="1"
                                         Grid.Column="1"
                                         Text="{Binding Buddy.Name}"
                                         TextColor="Black" />
-                                </Grid>
-                                <Line
+                            </Grid>
+                            <Line
                                     Stroke="#BDBDBD"
                                     StrokeThickness="1"
                                     X1="0"
                                     X2="500"
                                     Y1="0"
                                     Y2="0" />
-                            </VerticalStackLayout>
                         </VerticalStackLayout>
                     </DataTemplate>
                 </syncfusion:SfListView.ItemTemplate>

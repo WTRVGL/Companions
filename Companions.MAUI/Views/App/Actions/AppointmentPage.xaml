@@ -43,7 +43,7 @@
         </Label>
 
         <Label 
-            Margin="0,25,0,25"
+            Margin="0,25,0,10"
             Style="{StaticResource FieldTitle}"
             Text="Select Buddy"/>
 
@@ -84,7 +84,7 @@
 
 
         <!--Select Appointment Name-->
-        <VerticalStackLayout Margin="0,30,0,0">
+        <VerticalStackLayout Margin="0,15,0,0">
             <Label
                 Style="{StaticResource FieldTitle}"
                 Margin="0,0,0,10"
@@ -101,10 +101,9 @@
         </VerticalStackLayout>
 
         <!--Appointment Description-->
-        <VerticalStackLayout Margin="0,30,0,0">
+        <VerticalStackLayout Margin="0,10,0,0">
             <Label
                 Style="{StaticResource FieldTitle}"
-                Margin="0,0,0,10"
                 IsVisible="True"
                 Text="Appointment description">
                 <Label.Triggers>
@@ -115,11 +114,11 @@
             </Label>
             <Editor 
                 Text="{Binding AppointmentDescription}"
-                HeightRequest="50"/>
+                HeightRequest="65"/>
         </VerticalStackLayout>
 
         <!--Appointment Location-->
-        <VerticalStackLayout Margin="0,30,0,0">
+        <VerticalStackLayout Margin="0,10,0,0">
             <HorizontalStackLayout>
                 <Label
                 Style="{StaticResource FieldTitle}"
@@ -155,8 +154,17 @@
             </Picker>
         </VerticalStackLayout>
 
+
+
+        <VerticalStackLayout Margin="0,10,0,0">
+            <Label 
+                Style="{StaticResource FieldTitle}"
+                Text="Appointment time"/>
+            <TimePicker Time="{Binding AppointmentTime}" />
+        </VerticalStackLayout>
+
         <!--Appointment Date-->
-        <VerticalStackLayout Margin="0,30,0,0">
+        <VerticalStackLayout Margin="0,25,0,0">
             <Label
                 Style="{StaticResource FieldTitle}"
                 Margin="0,0,0,10"
