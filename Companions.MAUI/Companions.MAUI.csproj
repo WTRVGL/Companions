@@ -35,54 +35,54 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
-	  <Optimize>False</Optimize>
+		<Optimize>False</Optimize>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Local Debug|net7.0-ios|AnyCPU'">
-	  <Optimize>False</Optimize>
+		<Optimize>False</Optimize>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android|AnyCPU'">
-	  <Optimize>False</Optimize>
-	  <AndroidKeyStore>False</AndroidKeyStore>
+		<Optimize>False</Optimize>
+		<AndroidKeyStore>False</AndroidKeyStore>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Local Debug|net7.0-android|AnyCPU'">
-	  <Optimize>False</Optimize>
-	  <AndroidKeyStore>False</AndroidKeyStore>
+		<Optimize>False</Optimize>
+		<AndroidKeyStore>False</AndroidKeyStore>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-maccatalyst|AnyCPU'">
-	  <Optimize>False</Optimize>
+		<Optimize>False</Optimize>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Local Debug|net7.0-maccatalyst|AnyCPU'">
-	  <Optimize>False</Optimize>
+		<Optimize>False</Optimize>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-windows10.0.19041|AnyCPU'">
-	  <Optimize>False</Optimize>
+		<Optimize>False</Optimize>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Local Debug|net7.0-windows10.0.19041|AnyCPU'">
-	  <Optimize>False</Optimize>
+		<Optimize>False</Optimize>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-ios|AnyCPU'">
-	  <Optimize>False</Optimize>
+		<Optimize>False</Optimize>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android|AnyCPU'">
-	  <Optimize>False</Optimize>
-	  <AndroidKeyStore>False</AndroidKeyStore>
+		<Optimize>False</Optimize>
+		<AndroidKeyStore>False</AndroidKeyStore>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-maccatalyst|AnyCPU'">
-	  <Optimize>False</Optimize>
+		<Optimize>False</Optimize>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-windows10.0.19041|AnyCPU'">
-	  <Optimize>False</Optimize>
+		<Optimize>False</Optimize>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -104,11 +104,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Remove="v\**" />
-	  <EmbeddedResource Remove="v\**" />
-	  <MauiCss Remove="v\**" />
-	  <MauiXaml Remove="v\**" />
-	  <None Remove="v\**" />
+		<Compile Remove="v\**" />
+		<EmbeddedResource Remove="v\**" />
+		<MauiCss Remove="v\**" />
+		<MauiXaml Remove="v\**" />
+		<None Remove="v\**" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -136,10 +136,10 @@
 
 	<ItemGroup>
 		<EmbeddedResource Include="appsettings.Production.json">
-		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>
 		<EmbeddedResource Include="appsettings.LocalDevelopment.json">
-		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>
 		<EmbeddedResource Include="appsettings.Development.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -149,6 +149,8 @@
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="3.1.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+		<PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.1" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="7.0.0" />
 		<PackageReference Include="Microsoft.Maui.Controls.Maps" Version="7.0.52" />
@@ -169,7 +171,7 @@
 
 	<ItemGroup>
 		<Compile Update="Shells\WalktroughShell.xaml.cs">
-		  <DependentUpon>WalktroughShell.xaml</DependentUpon>
+			<DependentUpon>WalktroughShell.xaml</DependentUpon>
 		</Compile>
 		<Compile Update="Shells\LoginShell.xaml.cs">
 			<DependentUpon>LoginShell.xaml</DependentUpon>
@@ -187,7 +189,7 @@
 
 	<ItemGroup>
 		<MauiXaml Update="Shells\WalktroughShell.xaml">
-		  <Generator>MSBuild:Compile</Generator>
+			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Shells\MainShell.xaml">
 			<Generator>MSBuild:Compile</Generator>
@@ -208,10 +210,10 @@
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\App\Popups\CreatePlacePopup.xaml">
-		  <Generator>MSBuild:Compile</Generator>
+			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Walktrough\MainPage.xaml">
-		  <Generator>MSBuild:Compile</Generator>
+			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 	</ItemGroup>
 </Project>

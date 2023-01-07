@@ -8,5 +8,7 @@ namespace Companions.MAUI.Models.App
 {
     public class Image
     {
+        public string BuddyId { get; set; }
+        public string ImageURL { get; set; }
     }
 }

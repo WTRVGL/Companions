@@ -15,7 +15,7 @@ builder.Services.AddSwaggerGen(config =>
     {
         Title = "Companions Image Upload Service",
         Version = "v1",
-        Description = 
+        Description =
         $"<h2>Upload images to a Google Cloud Storage Bucket</h2>" +
         $"<h3>Requires a valid Google Service Key</h3>"
     });
@@ -39,8 +39,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-app.UseHttpsRedirection();
+else
+{
+    app.UseHttpsRedirection();
+}
 
 app.UseAuthorization();
 

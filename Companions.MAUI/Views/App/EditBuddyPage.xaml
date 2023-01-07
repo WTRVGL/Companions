@@ -4,6 +4,8 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:vm="clr-namespace:Companions.MAUI.ViewModels.App"
+    xmlns:models="clr-namespace:Companions.MAUI.Models.App"
+    xmlns:syncfusion="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
     Title="EditBuddyPage"
     x:DataType="vm:EditBuddyPageViewModel"
     Shell.NavBarIsVisible="False"
@@ -58,17 +60,67 @@
         </VerticalStackLayout>
 
         <VerticalStackLayout Margin="0,30,0,0">
-            <Label Style="{StaticResource FieldTitle}" Text="Select Buddy image" 
-                   Margin="0,0,0,10"/>
+            <Grid>
+                <Label Style="{StaticResource FieldTitle}" Text="Select Buddy image" 
+                       Margin="0,0,0,10"
+                       HorizontalOptions="Start"/>
+            </Grid>
+
+            <syncfusion:SfListView
+                SelectedItem="{Binding SelectedImage}"
+                SelectionChangedCommand="{Binding ImageSelectedCommand}"
+                SelectionMode="Single"
+                HeightRequest="120"
+                ItemSize="100"
+                x:Name="listView" 
+                ItemsSource="{Binding BuddyImages}"
+                Orientation="Horizontal">
+                <syncfusion:SfListView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Image">
+                        <VerticalStackLayout
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center">
+                            <Border
+                                BackgroundColor="Transparent"
+                                Grid.RowSpan="2"
+                                HeightRequest="100"
+                                WidthRequest="100">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="10" />
+                                </Border.StrokeShape>
+                                <Image
+                                    HeightRequest="100"
+                                    WidthRequest="100"
+                                    Aspect="AspectFill"
+                                    VerticalOptions="Center"
+                                    Source="{Binding ImageURL}"/>
+                            </Border>
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </syncfusion:SfListView.ItemTemplate>
+            </syncfusion:SfListView>
+            <Label Style="{StaticResource FieldTitle}" Text="Add images" 
+                       Margin="0,0,0,10"
+                       HorizontalOptions="Start"/>
             <Border BackgroundColor="Transparent"
+                    Grid.RowSpan="2"
                     HeightRequest="100"
-                    WidthRequest="100"> 
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="10" />
-            </Border.StrokeShape>
-                <Image Aspect="AspectFit"
-                   Source="{Binding Buddy.ImageURL}"/>
+                    WidthRequest="100">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10" />
+                </Border.StrokeShape>
+                <Label Text="{StaticResource SolidPlus}"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       Margin="0,0,0,10"
+                       FontFamily="FaSolid}"
+                       TextColor="#ADADAD"
+                       FontSize="40"/>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding AddImageTappedCommand}"/>
+                </Border.GestureRecognizers>
             </Border>
+
         </VerticalStackLayout>
     </VerticalStackLayout>
 

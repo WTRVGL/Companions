@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System.IO;
+using System.Net;
 using System.Net.Mime;
 using static System.IO.Path;
 
@@ -18,15 +19,16 @@ namespace Companions.ImageService.Controllers
             _cloudStorage = cloudStorage;
         }
 
-        [HttpPost(nameof(UploadFile))]
+        [HttpPost]
         [SwaggerOperation("Upload submitted image to Google Cloud Storage Bucket")]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(string), Description = "Returns Bucket URL of uploaded image")]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, Description = "Unauthorized")]
-        public async Task<string> UploadFile(IFormFile file)
+        public async Task<string> UploadFile()
         {
-            var stream = file.OpenReadStream();
-            var fileExtension = GetExtension(file.FileName);
-            var url = await _cloudStorage.UploadFileAsync(stream, GenerateFileName(file.FileName, fileExtension));
+            var httpRequest = HttpContext.Request;
+            var stream = httpRequest.Body;
+
+            var url = await _cloudStorage.UploadFileAsync(stream, GenerateFileName(Guid.NewGuid().ToString(), ".jpg"));
             return url;
         }
 
