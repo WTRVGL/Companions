@@ -2,12 +2,153 @@
 <ContentPage
     x:Class="Companions.MAUI.Views.App.SettingsPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:toolkitBehaviors="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:sfavatar="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:vm="clr-namespace:Companions.MAUI.ViewModels.App"
     Title="SettingsPage"
-    x:DataType="vm:SettingsPageViewModel">
+    x:DataType="vm:SettingsPageViewModel"
+    Shell.NavBarIsVisible="False">
+
+    <ContentPage.Behaviors>
+        <toolkitBehaviors:EventToCommandBehavior Command="{Binding PageAppearingCommand}" EventName="Appearing" />
+    </ContentPage.Behaviors>
+
+    <ContentPage.Resources>
+        <Style TargetType="Label" x:Key="Title">
+            <Setter Property="TextColor" Value="#ADADAD"/>
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+        <Style TargetType="Label" x:Key="Field">
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+    </ContentPage.Resources>
+
     <VerticalStackLayout>
-        <Button Text="Log Out"
-                Command="{Binding LogoutCommand}"/>
+        <Grid Padding="20,15,20,15">
+            <sfavatar:SfAvatarView 
+                ContentType="Custom"
+                AvatarSize="ExtraLarge"
+                ImageSource="{Binding User.ImageURL}"
+                VerticalOptions="Center"
+                HorizontalOptions="Start"   
+                HeightRequest="60"
+                CornerRadius="50"
+                WidthRequest="60" />
+            <Label Text="{Binding User.FullName}"
+                   FontSize="18"
+                   FontFamily="InterSemiBold"
+                   VerticalOptions="Center"
+                   Margin="70,0,0,0"/>
+            <Label Text="{StaticResource SolidDoorClosed}"
+                   FontSize="20"
+                   FontFamily="FaSolid"
+                   HorizontalOptions="End"
+                   VerticalOptions="Center"
+                   Margin="100,0,0,0">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding LogoutCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </Grid>
+        <Line Margin="0,0,0,0"
+              Stroke="#BDBDBD"
+              StrokeThickness="1"
+              X1="0"
+              X2="500"
+              Y1="0" Y2="0"/>
+        <VerticalStackLayout Padding="25">
+            <Label Style="{StaticResource Title}"
+               Text="Account Settings"/>
+            
+            <!--Edit Profile-->
+            <Grid Margin="0,30,0,0">
+                <Label Style="{StaticResource Field}"
+                       Text="Edit profile"/>
+                <Label FontFamily="FaSolid"
+                       HorizontalOptions="End"
+                       FontSize="20"
+                       Text="{StaticResource SolidAngleRight}"/>
+            </Grid>
+
+            <!--Change Password-->
+            <Grid Margin="0,30,0,0">
+                <Label Style="{StaticResource Field}"
+                       Text="Change password"/>
+                <Label FontFamily="FaSolid"
+                       HorizontalOptions="End"
+                       FontSize="20"
+                       Text="{StaticResource SolidAngleRight}"/>
+            </Grid>
+
+            <!--Push Notification-->
+            <Grid Margin="0,20,0,0">
+                <Label Style="{StaticResource Field}"
+                       Text="Push Notification"
+                       VerticalOptions="Center"/>
+                <Switch HorizontalOptions="End"/>
+            </Grid>
+
+            <!--Dark Mode-->
+            <Grid Margin="0,5,0,0">
+                <Label Style="{StaticResource Field}"
+                       Text="Dark Mode"
+                       VerticalOptions="Center"/>
+                <Switch HorizontalOptions="End"
+                        IsEnabled="False"/>
+            </Grid>
+
+            <!--Edit Friends-->
+            <Grid Margin="0,15,0,0">
+                <Label Style="{StaticResource Field}"
+                       Text="Edit friends"/>
+                <Label FontFamily="FaSolid"
+                       HorizontalOptions="End"
+                       FontSize="20"
+                       Text="{StaticResource SolidAngleRight}"/>
+            </Grid>
+        </VerticalStackLayout>
+
+        <Line Margin="0,0,0,0"
+              Stroke="#BDBDBD"
+              StrokeThickness="1"
+              X1="0"
+              X2="500"
+              Y1="0" Y2="0"/>
+
+        <VerticalStackLayout Padding="25">
+            <Label Style="{StaticResource Title}"
+               Text="More"/>
+
+            <!--About us-->
+            <Grid Margin="0,30,0,0">
+                <Label Style="{StaticResource Field}"
+                       Text="About us"/>
+                <Label FontFamily="FaSolid"
+                       HorizontalOptions="End"
+                       FontSize="20"
+                       Text="{StaticResource SolidAngleRight}"/>
+            </Grid>
+
+            <!--Privacy Policy-->
+            <Grid Margin="0,30,0,0">
+                <Label Style="{StaticResource Field}"
+                       Text="Privacy Policy"/>
+                <Label FontFamily="FaSolid"
+                       HorizontalOptions="End"
+                       FontSize="20"
+                       Text="{StaticResource SolidAngleRight}"/>
+            </Grid>
+
+            <!--Terms and Conditions-->
+            <Grid Margin="0,30,0,0">
+                <Label Style="{StaticResource Field}"
+                       Text="Terms and Conditions"/>
+                <Label FontFamily="FaSolid"
+                       HorizontalOptions="End"
+                       FontSize="20"
+                       Text="{StaticResource SolidAngleRight}"/>
+            </Grid>
+        </VerticalStackLayout>
     </VerticalStackLayout>
 </ContentPage>

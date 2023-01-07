@@ -1,12 +1,14 @@
 ﻿using Companions.AuthenticationService.Models;
 using Companions.AuthenticationService.Repositories;
 using Companions.AuthenticationService.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Companions.AuthenticationService.Controllers
@@ -28,21 +30,16 @@ namespace Companions.AuthenticationService.Controllers
         }
 
         [HttpGet]
-        [SwaggerOperation("Extracts JWT from HTTP Only Cookie and returns a user")]
+        [SwaggerOperation("Returns a User from a JWT")]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(User), Description = "User authenticated")]
         [SwaggerResponse(StatusCodes.Status404NotFound, Description = "No user found")]
-        public async Task<IActionResult> CheckAuthentication()
+        [Authorize]
+        public async Task<ActionResult<User>> CheckAuthentication()
         {
-            var x = HttpContext;
-            var token = HttpContext.Request.Cookies[_jwtConfig.JWTHttpCookieName];
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            string userId = identity.FindFirst("id").Value;
 
-            if (token == null) return NotFound($"{_jwtConfig.JWTHttpCookieName} Cookie not found");
-
-            var decodedToken = _tokenService.DecodeJwtSecurityToken(token);
-            var id = decodedToken.Claims.FirstOrDefault(claim => claim.Type == "id");
-
-            var user = await _userRepository.GetUserById(id.Value);
-
+            var user = await _userRepository.GetUserById(userId);
 
             return Ok(user);
         }

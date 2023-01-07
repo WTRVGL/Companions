@@ -14,6 +14,9 @@ namespace Companions.MAUI.Models
         public string PasswordSalt { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string FullName => FirstName + " " + LastName;
         public string Role { get; set; }
+        public string ImageURL { get; set; }
     }
+
 }

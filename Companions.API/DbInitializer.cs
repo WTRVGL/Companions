@@ -1,4 +1,5 @@
 ﻿using Companions.Domain;
+using Companions.Domain;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
 using System.Data;
@@ -72,7 +73,7 @@ namespace Companions.API
             };
 
             var _robotFeedingSchedules = new List<FeedingSchedule>
-            {   
+            {
                 new FeedingSchedule { Amount = 120, FeedProduct = _feedProducts[4], TimeOfDay = "Morning"},
                 new FeedingSchedule { Amount = 800, FeedProduct = _feedProducts[5], TimeOfDay = "Evening"},
             };
@@ -137,8 +138,8 @@ namespace Companions.API
 
             _users = new List<User>()
             {
-                new User { FirstName = "Wouter", LastName = "Vangeel", UserName = "admin", PasswordHash = "4jwzl+ml7TFb2tL7sDV5biYluCQ=", PasswordSalt = "EkhfFEzSfey9+jnp6jg=", Role = "admin" },
-                new User { FirstName = "Test", LastName = "Account", UserName = "test", PasswordHash = "NkMp2QoHDJG+yJ7tFm6zQW4TQoI=", PasswordSalt = "ClfbpELGxImZtX6nhXE=", Role = "admin" }
+                new User { FirstName = "Wouter", LastName = "Vangeel", UserName = "admin", PasswordHash = "4jwzl+ml7TFb2tL7sDV5biYluCQ=", PasswordSalt = "EkhfFEzSfey9+jnp6jg=", Role = "admin", ImageURL ="https://storage.googleapis.com/companions_bucket01/me%20%281%29-20230107092452.jpg" },
+                new User { FirstName = "Test", LastName = "Account", UserName = "test", PasswordHash = "NkMp2QoHDJG+yJ7tFm6zQW4TQoI=", PasswordSalt = "ClfbpELGxImZtX6nhXE=", Role = "admin", ImageURL = "https://storage.googleapis.com/companions_bucket01/koen-20230107091047.png" }
             };
 
 

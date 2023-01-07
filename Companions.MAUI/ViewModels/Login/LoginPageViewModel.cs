@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using Companions.MAUI.Models.Login;
 using Companions.MAUI.Services;
 using Companions.MAUI.Views.Login;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -68,10 +69,9 @@ namespace Companions.MAUI.ViewModels.Login
             //Set token
             await SecureStorage.SetAsync("JWT", authResponse.Token);
 
-            //If user has no buddies, go to walktrough shell.
-            //IsBusy = true;
-            //Application.Current.MainPage = new WalkTroughShell();
-            //IsBusy = false;
+            //Set User
+            var userSerialized = JsonConvert.SerializeObject(user);
+            Preferences.Set("User", userSerialized);
 
             //Go to home screen. / Walktrough screen.
             IsBusy = true;

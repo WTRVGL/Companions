@@ -25,11 +25,40 @@ builder.Services.AddSwaggerGen(config =>
                         $"Requires Companions REST API to fetch User" +
                      $"</h3>" +
                 $"</li>" +
-             $"</ul>" 
+             $"</ul>"
 
     });
 
     config.EnableAnnotations();
+
+    //Swagger Bearer Auth Scheme
+    config.AddSecurityDefinition("bearer", new OpenApiSecurityScheme
+    {
+        In = ParameterLocation.Header,
+        Description = $"Supply a valid JWT containing an \"id\" claim",
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey,
+        BearerFormat = "JWT",
+        Scheme = "bearer",
+
+    });
+    config.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type=ReferenceType.SecurityScheme,
+                    Id="bearer"
+                }
+            },
+            new string[]{}
+        }
+    });
+
+
+
 });
 
 builder.Services.AddTransient<IUserRepository, UserRepository>();
@@ -58,7 +87,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         {
             OnMessageReceived = context =>
             {
-                context.Token = context.Request.Cookies[jwtConfig.JWTHttpCookieName];
+                context.Token = context.Request.Headers.Authorization;
                 return Task.CompletedTask;
             }
         };
