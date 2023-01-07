@@ -3,6 +3,7 @@ using Companions.MAUI.Services;
 using Companions.MAUI.Views;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
 
@@ -36,10 +37,21 @@ namespace Companions.MAUI
             var _httpClient = new HttpClient();
             _httpClient.DefaultRequestHeaders.Add("Authorization", token);
 
-            var res = await _httpClient.GetAsync($"{_apiAuthBaseURL}/api/Auth");
-            var user = await res.Content.ReadFromJsonAsync<User>();
-            var userSerialized = JsonConvert.SerializeObject(user);
+            User user;
 
+            var res = await _httpClient.GetAsync($"{_apiAuthBaseURL}/api/Auth");
+
+            if (res.StatusCode == HttpStatusCode.InternalServerError)
+            {
+                user = new User();
+            }
+
+            else
+            {
+                user = await res.Content.ReadFromJsonAsync<User>();
+            }
+
+            var userSerialized = JsonConvert.SerializeObject(user);
             Preferences.Set("User", userSerialized);
             MainPage = new MainShell();
             base.OnStart();
