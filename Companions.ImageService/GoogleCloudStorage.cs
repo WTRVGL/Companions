@@ -3,7 +3,7 @@ using Google.Cloud.Storage.V1;
 
 namespace Companions.ImageService
 {
-    public class GoogleCloudStorage :  ICloudStorage
+    public class GoogleCloudStorage : ICloudStorage
     {
         private readonly GoogleCredential googleCredential;
         private readonly StorageClient storageClient;
@@ -19,7 +19,8 @@ namespace Companions.ImageService
         public async Task<string> UploadFileAsync(Stream stream, string fileNameForStorage)
         {
             var dataObject = await storageClient.UploadObjectAsync(bucketName, fileNameForStorage, null, stream);
-            return dataObject.MediaLink;
+            var url = $"https://storage.googleapis.com/companions_bucket01/{Uri.EscapeDataString(dataObject.Name)}";
+            return url;
         }
 
         public async Task DeleteFileAsync(string fileNameForStorage)
