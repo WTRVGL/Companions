@@ -89,7 +89,8 @@ namespace Companions.API.Services
             buddy.Name = request.Name;
             buddy.Race = request.Race;
             buddy.Gender = request.Gender;
-            buddy.BuddyWeights= request.BuddyWeights;
+            buddy.BuddyWeights = request.BuddyWeights;
+            buddy.ImageURL = request.ImageURL;
 
             //buddy.FeedingSchedules = request.FeedingSchedules;
             //buddy.Vaccinations = request.Vaccinations;
@@ -98,7 +99,7 @@ namespace Companions.API.Services
             //buddy.Activities = request.Activities;
             //buddy.Appointments = request.Appointments;
             //buddy.Name = request.Name;
-            //buddy.ImageURL = request.ImageURL;
+
             //buddy.Activities = request.Activities;
             //buddy.Race = request.Race;
             //buddy.BuddyWeights = request.BuddyWeights;

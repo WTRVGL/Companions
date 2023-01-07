@@ -41,6 +41,12 @@ namespace Companions.MAUI.ViewModels.App
         {
             var newBuddy = Buddy;
 
+            if (SelectedImage != null)
+            {
+                newBuddy.ImageURL = SelectedImage.ImageURL;
+                Buddy.ImageURL = SelectedImage.ImageURL;
+            } 
+
             if (SelectedGender != null)
             {
                 newBuddy.Gender = SelectedGender;
@@ -66,7 +72,7 @@ namespace Companions.MAUI.ViewModels.App
                 if (result.FileName.EndsWith("jpg", StringComparison.OrdinalIgnoreCase) ||
                     result.FileName.EndsWith("png", StringComparison.OrdinalIgnoreCase))
                 {
-
+                    IsBusy = true;
                     var file = await result.OpenReadAsync();
                     var url = await _googleService.UploadImage(file);
 
@@ -76,10 +82,13 @@ namespace Companions.MAUI.ViewModels.App
                         ImageURL = url
                     };
 
+                    //Sync UI
                     BuddyImages.Add(image);
-
-                    //db update
-
+                    Buddy.Images.Add(image);
+                    
+                    //Update DB
+                    await _buddyService.AddImage(image);
+                    IsBusy = false;
                 }
             }
 

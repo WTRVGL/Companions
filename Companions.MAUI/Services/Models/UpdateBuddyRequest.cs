@@ -13,6 +13,7 @@ namespace Companions.MAUI.Services.Models
         public string Name { get; set; }
         public string Gender { get; set; }
         public string Race { get; set; }
+        public string ImageURL { get; set; }
         public List<BuddyWeight> BuddyWeights { get; set; }
     }
 }

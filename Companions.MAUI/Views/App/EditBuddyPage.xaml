@@ -37,10 +37,13 @@
             </Label.GestureRecognizers>
         </Label>
 
-        <VerticalStackLayout Margin="0,30,0,0">
-            <Label Style="{StaticResource FieldTitle}" Text="Buddy name" />
-            <Entry Text="{Binding Buddy.Name}" />
-        </VerticalStackLayout>
+        
+        <Grid Margin="0,30,0,0">
+            <ActivityIndicator IsRunning="{Binding IsBusy}" />
+            <Label Style="{StaticResource FieldTitle}" Text="Buddy name"/>
+            <Entry Text="{Binding Buddy.Name}" 
+                   Margin="0,25,0,0"/>
+        </Grid>
 
         <VerticalStackLayout Margin="0,30,0,0">
             <Label Style="{StaticResource FieldTitle}" Text="Gender" />

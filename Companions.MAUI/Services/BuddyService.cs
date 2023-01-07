@@ -10,6 +10,7 @@ using System.Net;
 using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
+using Image = Companions.MAUI.Models.App.Image;
 
 namespace Companions.MAUI.Services
 {
@@ -93,7 +94,8 @@ namespace Companions.MAUI.Services
                 Gender = buddy.Gender,
                 Name = buddy.Name,
                 Race = buddy.Race,
-                BuddyWeights = buddy.BuddyWeights
+                BuddyWeights = buddy.BuddyWeights,
+                ImageURL = buddy.ImageURL
             };
 
             var res = await _httpClient.PutAsJsonAsync<UpdateBuddyRequest>($"{_apiBaseURL}/api/Buddy", req);
@@ -120,6 +122,14 @@ namespace Companions.MAUI.Services
             var createdBuddyWeight = await res.Content.ReadFromJsonAsync<BuddyWeight>();
 
             return createdBuddyWeight;
+        }
+
+        public async Task<Image> AddImage(Image image)
+        {
+            await EnsureAuthHeaders();
+            var res = await _httpClient.PostAsJsonAsync<Image>($"{_apiBaseURL}/api/Buddy/{image.BuddyId}/Image", image);
+            return await res.Content.ReadFromJsonAsync<Image>();
+
         }
     }
 }
