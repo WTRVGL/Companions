@@ -2,10 +2,16 @@
 <ContentPage
     x:Class="Companions.MAUI.Views.App.SettingsPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:toolkitBehaviors="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:vm="clr-namespace:Companions.MAUI.ViewModels.App"
     Title="SettingsPage"
     x:DataType="vm:SettingsPageViewModel">
+
+    <ContentPage.Behaviors>
+        <toolkitBehaviors:EventToCommandBehavior Command="{Binding PageAppearingCommand}" EventName="Appearing" />
+    </ContentPage.Behaviors>
+
     <VerticalStackLayout>
         <Button Text="Log Out"
                 Command="{Binding LogoutCommand}"/>
