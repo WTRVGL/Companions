@@ -27,6 +27,7 @@ namespace Companions.API.Services
                 .Include(b => b.Appointments)
                 .Include(b => b.FeedingSchedules)
                 .Include(b => b.BuddyWeights)
+                .Include(b => b.Images)
                 .First(b => b.Id == id);
 
             if (buddy == null) return false;
@@ -44,6 +45,7 @@ namespace Companions.API.Services
                 .Include(b => b.Activities)
                     .ThenInclude(a => a.ActivityType)
                 .Include(b => b.FeedingSchedules)
+                .Include(b => b.Images)
                 .ToList();
             return buddies;
         }
@@ -53,6 +55,7 @@ namespace Companions.API.Services
             var buddies = _db.Buddies
                 .Where(b => b.UserId == userId)
                 .Include(b => b.BuddyWeights)
+                .Include(b => b.Images)
                 .Include(b => b.Appointments)
                     .ThenInclude(a => a.Place)
                 .Include(b => b.Activities)
@@ -70,6 +73,7 @@ namespace Companions.API.Services
             var buddy = _db.Buddies
                 .Include(b => b.Activities)
                 .Include(b => b.BuddyWeights)
+                .Include(b => b.Images)
                 .Include(b => b.Appointments)
                 .Include(b => b.FeedingSchedules)
                 .FirstOrDefault(b => b.Id == id);

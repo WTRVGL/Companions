@@ -56,6 +56,20 @@
             <Label Style="{StaticResource FieldTitle}" Text="Race" />
             <Entry Text="{Binding Buddy.Race}" />
         </VerticalStackLayout>
+
+        <VerticalStackLayout Margin="0,30,0,0">
+            <Label Style="{StaticResource FieldTitle}" Text="Select Buddy image" 
+                   Margin="0,0,0,10"/>
+            <Border BackgroundColor="Transparent"
+                    HeightRequest="100"
+                    WidthRequest="100"> 
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="10" />
+            </Border.StrokeShape>
+                <Image Aspect="AspectFit"
+                   Source="{Binding Buddy.ImageURL}"/>
+            </Border>
+        </VerticalStackLayout>
     </VerticalStackLayout>
 
 </ContentPage>

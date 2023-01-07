@@ -20,6 +20,9 @@ namespace Companions.API.Mapper
             CreateMap<Place, PlaceDTO>();
             CreateMap<PlaceDTO, Place>();
 
+            CreateMap<Image, ImageDTO>();
+            CreateMap<ImageDTO, Image>();
+
             CreateMap<User, UserDTO>();
 
             CreateMap<BuddyWeight, BuddyWeightDTO>();

@@ -1,10 +1,9 @@
-﻿using System;
+﻿using Companions.API.DTOs.Activity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Companions.API.DTOs.Activity;
-
 namespace Companions.API.DTOs.Buddy
 {
     public class BuddyDTO
@@ -18,6 +17,7 @@ namespace Companions.API.DTOs.Buddy
         public List<FeedingScheduleDTO> FeedingSchedules { get; set; }
         public List<BuddyWeightDTO> BuddyWeights { get; set; }
         public string ImageURL { get; set; }
+        public List<ImageDTO> Images { get; set; }
         public string UserId { get; set; }
     }
 }

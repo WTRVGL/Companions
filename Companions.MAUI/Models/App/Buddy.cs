@@ -36,6 +36,7 @@ namespace Companions.MAUI.Models.App
         public List<BuddyWeight> BuddyWeights { get; set; }
         public List<Activity> Activities { get; set; }
         public List<FeedingSchedule> FeedingSchedules { get; set; }
+        public List<Image> Images { get; set; }
 
 
     }

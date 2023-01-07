@@ -185,7 +185,6 @@ namespace Companions.API
                 new BuddyWeight { Weight = 4.1, DateWeighed = DateTime.Parse("2022-09-22") },
             };
 
-
             _buddies = new List<Buddy>()
             {
                 new Buddy {
@@ -246,6 +245,16 @@ namespace Companions.API
             context.Buddies.AddRange(_buddies);
             context.SaveChanges();
 
+            var buddyImages = new List<Image>()
+            {
+                new Image{BuddyId = _buddies.FirstOrDefault(b => b.Name == "Bassie").Id, ImageURL = "https://i.imgur.com/GJe4t90.jpg"},
+                new Image{BuddyId = _buddies.FirstOrDefault(b => b.Name == "Ori").Id, ImageURL = "https://i.imgur.com/UUzY06O.png"},
+                new Image{BuddyId = _buddies.FirstOrDefault(b => b.Name == "Robot").Id, ImageURL = "https://i.imgur.com/Z0J26m6.png"},
+                new Image{BuddyId = _buddies.FirstOrDefault(b => b.Name == "Test Buddy").Id, ImageURL = "https://i.imgur.com/Z0J26m6.png"},
+            };
+
+            context.Images.AddRange(buddyImages);
+            context.SaveChanges();
 
             _places = new List<Place>
             {
