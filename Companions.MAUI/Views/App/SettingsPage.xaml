@@ -6,7 +6,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:vm="clr-namespace:Companions.MAUI.ViewModels.App"
     Title="SettingsPage"
-    x:DataType="vm:SettingsPageViewModel">
+    x:DataType="vm:SettingsPageViewModel"
+    Shell.NavBarIsVisible="False">
 
     <ContentPage.Behaviors>
         <toolkitBehaviors:EventToCommandBehavior Command="{Binding PageAppearingCommand}" EventName="Appearing" />
