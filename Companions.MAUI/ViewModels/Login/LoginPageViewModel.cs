@@ -73,11 +73,6 @@ namespace Companions.MAUI.ViewModels.Login
             var userSerialized = JsonConvert.SerializeObject(user);
             Preferences.Set("User", userSerialized);
 
-            //If user has no buddies, go to walktrough shell.
-            //IsBusy = true;
-            //Application.Current.MainPage = new WalkTroughShell();
-            //IsBusy = false;
-
             //Go to home screen. / Walktrough screen.
             IsBusy = true;
             Application.Current.MainPage = new MainShell();

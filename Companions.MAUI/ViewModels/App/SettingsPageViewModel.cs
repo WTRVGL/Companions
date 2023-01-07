@@ -19,10 +19,14 @@ namespace Companions.MAUI.ViewModels.App
         [RelayCommand]
         public async void Logout()
         {
-            var success = SecureStorage.Remove("JWT");
-            Preferences.Remove("User");
-            if (success) Application.Current.MainPage = new LoginShell();
-
+            var logout = await Application.Current.MainPage.DisplayAlert("Logout?", "Are you sure you want to log out?", "Yes", "No");
+            if (logout)
+            {
+                var success = SecureStorage.Remove("JWT");
+                Preferences.Remove("User");
+                if (success) Application.Current.MainPage = new LoginShell();
+                return;
+            }
         }
 
         [RelayCommand]
