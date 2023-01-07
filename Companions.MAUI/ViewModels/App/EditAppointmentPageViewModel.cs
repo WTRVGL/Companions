@@ -57,6 +57,9 @@ namespace Companions.MAUI.ViewModels.App
         private string _selectedPlaceType;
         [ObservableProperty]
         private DateTime _appointmentDate;
+        [ObservableProperty]
+        private TimeSpan _selectedTime;
+
 
         [ObservableProperty]
         private ObservableCollection<Buddy> _buddies;
@@ -69,6 +72,18 @@ namespace Companions.MAUI.ViewModels.App
         [RelayCommand]
         async void GoBack()
         {
+            //Update hour
+            var newDate = new DateTime(
+                Appointment.AppointmentDate.Year, 
+                Appointment.AppointmentDate.Month, 
+                Appointment.AppointmentDate.Day, 
+                SelectedTime.Hours,
+                SelectedTime.Minutes,
+                SelectedTime.Seconds);
+
+            Appointment.AppointmentDate = newDate;
+
+
             //Update appointment in db
 
             if (SelectedPlace.Id == null)
@@ -143,6 +158,7 @@ namespace Companions.MAUI.ViewModels.App
         partial void OnAppointmentChanged(Appointment appointment)
         {
             SelectedPlace = Appointment.Place;
+            SelectedTime = Appointment.AppointmentDate.TimeOfDay;
         }
     }
 }

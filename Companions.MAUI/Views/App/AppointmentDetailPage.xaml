@@ -122,7 +122,7 @@
                                 Text="{StaticResource SolidClock}"
                                 TextColor="#586470"
                                 VerticalOptions="Center" />
-                            <Label Text="{Binding Appointment.AppointmentDate, StringFormat='{}{0:HH\\:mm}'}" />
+                            <Label Text="{Binding Appointment.AppointmentDate, StringFormat='{0:h:mm tt}'}" />
                         </HorizontalStackLayout>
                         <HorizontalStackLayout Margin="0,25,0,0">
                             <Label
@@ -135,7 +135,7 @@
                                 VerticalOptions="Center" />
                             <Label Text="{Binding Appointment.Place.Name}"/>
                         </HorizontalStackLayout>
-                        
+
                         <maps:Map 
                             HeightRequest="200"
                             WidthRequest="300"
