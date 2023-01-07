@@ -38,6 +38,8 @@
             <!--  Buddy Image  -->
             <Grid>
                 <Image
+                    HeightRequest="200"
+                    WidthRequest="200"
                     Aspect="AspectFill"
                     Source="{Binding Source={x:Reference this}, Path=Buddy.ImageURL}"
                     VerticalOptions="Center" />

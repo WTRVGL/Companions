@@ -7,5 +7,6 @@
         public string Gender { get; set; }
         public string Race { get; set; }
         public List<BuddyWeightDTO> BuddyWeights { get; set; }
+        public string ImageURL { get; set; }
     }
 }

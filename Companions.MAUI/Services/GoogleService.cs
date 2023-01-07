@@ -1,5 +1,6 @@
 ﻿using Companions.MAUI.Models.App;
 using Companions.MAUI.Services.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
@@ -14,11 +15,13 @@ namespace Companions.MAUI.Services
     public class GoogleService : IGoogleService
     {
         private readonly string _apiKey;
+        private readonly string _imageServiceBaseURL;
         private readonly HttpClient _httpClient;
 
         public GoogleService(IConfiguration config)
         {
             _apiKey = config.GetValue<string>("GoogleMapsBrowserKey");
+            _imageServiceBaseURL = config.GetValue<string>("CompanionsImageBaseURL");
             _httpClient = new HttpClient();
         }
 
@@ -49,6 +52,13 @@ namespace Companions.MAUI.Services
             }
 
             return places;
+        }
+
+        public async Task<string> UploadImage(Stream file)
+        {
+            HttpContent content = new StreamContent(file);
+            var res = await _httpClient.PostAsync($"{_imageServiceBaseURL}/api/Image", content);
+            return await res.Content.ReadAsStringAsync();
         }
     }
 }

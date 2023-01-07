@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Image = Companions.MAUI.Models.App.Image;
 
 namespace Companions.MAUI.Services
 {
@@ -16,6 +17,7 @@ namespace Companions.MAUI.Services
         Task<Buddy> UpdateBuddy(Buddy buddy);
         Task<bool> DeleteBuddy(string id);
         Task<BuddyWeight> AddBuddyWeight(BuddyWeight buddyWeight);
+        Task<Image> AddImage(Image image);
 
     }
 }

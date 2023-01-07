@@ -4,6 +4,7 @@ using Companions.API;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Companions.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230107093915_AddImages")]
+    partial class AddImages
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -433,9 +436,11 @@ namespace Companions.API.Migrations
 
             modelBuilder.Entity("Companions.Domain.Image", b =>
                 {
-                    b.HasOne("Companions.Domain.Buddy", null)
+                    b.HasOne("Companions.Domain.Buddy", "Buddy")
                         .WithMany("Images")
                         .HasForeignKey("BuddyId");
+
+                    b.Navigation("Buddy");
                 });
 
             modelBuilder.Entity("Companions.Domain.Vaccination", b =>

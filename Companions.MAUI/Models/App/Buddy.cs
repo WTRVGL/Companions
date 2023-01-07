@@ -13,11 +13,18 @@ namespace Companions.MAUI.Models.App
         private string _name;
         private string _race;
         private string _gender;
+        private string _imageURL;
 
         public string Name
         {
             get => _name;
             set => SetProperty(ref _name, value);
+        }
+
+        public string ImageURL
+        {
+            get => _imageURL;
+            set => SetProperty(ref _imageURL, value);
         }
         public string Race
         {
@@ -32,10 +39,10 @@ namespace Companions.MAUI.Models.App
 
         public string Id { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public string ImageURL { get; set; }
         public List<BuddyWeight> BuddyWeights { get; set; }
         public List<Activity> Activities { get; set; }
         public List<FeedingSchedule> FeedingSchedules { get; set; }
+        public List<Image> Images { get; set; }
 
 
     }

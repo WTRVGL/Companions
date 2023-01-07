@@ -30,5 +30,6 @@ namespace Companions.API
         public DbSet<Species> Species { get; set; }
         public DbSet<Vaccination> Vaccinations { get; set; }
         public DbSet<Place> Places { get; set; }
+        public DbSet<Image> Images { get; set; }
     }
 }

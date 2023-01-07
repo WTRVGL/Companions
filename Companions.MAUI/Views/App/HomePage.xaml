@@ -110,9 +110,11 @@
                                     <Border.StrokeShape>
                                         <RoundRectangle CornerRadius="50" />
                                     </Border.StrokeShape>
-                                    <Image
-                                            Source="{Binding Buddy.ImageURL}"
-                                            VerticalOptions="Center" />
+                                    <Image Source="{Binding Buddy.ImageURL}"
+                                           HeightRequest="40"
+                                           WidthRequest="40"
+                                           VerticalOptions="Center"
+                                           Aspect="AspectFill"/>
                                 </Border>
                                 <Label
                                         Grid.Row="0"
