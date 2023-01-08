@@ -213,7 +213,10 @@ This is an example of how to list things you need to use the software and how to
 
    <img src="https://user-images.githubusercontent.com/73450465/211178077-7fd89518-7c10-448f-8d32-a0eb748d99f6.png" />
 
-4. Run in Visual Studio in Development mode
+4. Make sure that the MAUI project has an Android Emulator associated (Pixel 4 API 33 with Google Play Store was used during development)
+<img src="https://user-images.githubusercontent.com/73450465/211181382-2c10ee8c-e050-48b0-b54e-e6ad4c9abd57.png" />
+
+5. Run in Visual Studio in Development mode
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
