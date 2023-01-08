@@ -107,23 +107,26 @@
         <li>ASP.NET Core REST Service
           <ul>
             <li>SQL Server</li>
+            <li>Open API documented (Swagger)</li>
           </ul>
         </li>
         <li>ASP.NET Core Authentication Service
           <ul>
             <li>JWT Authentication</li>
+            <li>Open API documented (Swagger)</li>
           </ul>
         </li>
         <li>ASP.NET Core Image Service
           <ul>
             <li>Google Cloud Bucket Storage</li>
+            <li>Open API documented (Swagger)</li>
           </ul>
         </li>
       </ul>
     </li>
   </ul>
 
-
+## Features
 
 <!-- GETTING STARTED -->
 ## Getting Started
