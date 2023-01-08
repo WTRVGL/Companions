@@ -227,6 +227,14 @@ This is an example of how to list things you need to use the software and how to
 
 <!-- USAGE EXAMPLES -->
 ## Usage
+MAUI Android Application Demo Video (submission for grading at school).
+
+
+https://user-images.githubusercontent.com/73450465/211187026-3e45d4af-2f49-4cf7-8d5a-64d61f8147a3.mp4
+
+
+
+[YT link](https://youtu.be/Lc8CxbSNvtY)
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
