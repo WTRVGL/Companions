@@ -20,8 +20,8 @@
         <Tab Title="Home" Icon="{FontImage FontFamily=FaSolid, Glyph={StaticResource SolidHouse}}">
             <ShellContent ContentTemplate="{DataTemplate mainViews:HomePage}"/>
         </Tab>
-        <Tab Title="Schedule" Icon="{FontImage FontFamily=FaSolid, Glyph={StaticResource SolidCalendarDay}}">
-            <ShellContent ContentTemplate="{DataTemplate mainViews:SchedulePage}"/>
+        <Tab Title="Memories" Icon="{FontImage FontFamily=FaSolid, Glyph={StaticResource SolidImages}}">
+            <ShellContent ContentTemplate="{DataTemplate mainViews:MemoriesPage}"/>
         </Tab>
         <Tab Icon="{FontImage FontFamily=FaSolid, Glyph={StaticResource BrandPlus}}">
             <ShellContent ContentTemplate="{DataTemplate mainViews:Action}" Route="Action"/>

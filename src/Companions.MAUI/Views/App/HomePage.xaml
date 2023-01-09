@@ -19,16 +19,10 @@
 
     <ContentPage.Resources>
         <converters:TimeBetweenNowAndDateTime x:Key="TimeBetweenNowAndDateTime" />
-        <Color x:Key="TitleColor">#404348</Color>
-        <Style x:Key="SectionTitle" TargetType="Label">
-            <Setter Property="FontFamily" Value="InterBold" />
-            <Setter Property="FontSize" Value="36" />
-            <Setter Property="TextColor" Value="{StaticResource TitleColor}" />
-        </Style>
     </ContentPage.Resources>
 
     <RefreshView
-        Margin="25,30"
+        Margin="30"
         Command="{Binding RefreshCommand}"
         IsRefreshing="{Binding IsRefreshing}">
 

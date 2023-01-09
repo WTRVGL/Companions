@@ -6,7 +6,8 @@
 
     <Color x:Key="Primary">#8CBBF1</Color>
     <Color x:Key="Secondary">#DFD8F7</Color>
-    <Color x:Key="Tertiary">#2B0B98</Color>
+    <Color x:Key="Tertiary">#2B0B98</Color>µ
+    <Color x:Key="TitleColor">#404348</Color>
     <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>
     <Color x:Key="Gray100">#E1E1E1</Color>
@@ -17,6 +18,7 @@
     <Color x:Key="Gray600">#404040</Color>
     <Color x:Key="Gray900">#212121</Color>
     <Color x:Key="Gray950">#141414</Color>
+
 
     <Color x:Key="LightBorder">#E8E8E8</Color>
 

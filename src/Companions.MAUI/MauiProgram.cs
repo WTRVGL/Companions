@@ -72,7 +72,7 @@ namespace Companions.MAUI
             builder.Services.AddTransient<SignUpPage>();
 
             builder.Services.AddTransient<BuddyDetailPage>();
-            builder.Services.AddTransient<SchedulePage>();
+            builder.Services.AddTransient<MemoriesPage>();
             builder.Services.AddTransient<DiscoverPage>();
             builder.Services.AddTransient<SettingsPage>();
             builder.Services.AddTransient<HomePage>();
@@ -98,7 +98,7 @@ namespace Companions.MAUI
             builder.Services.AddTransient<AppointmentPageViewModel>();
 
             builder.Services.AddTransient<HomePageViewModel>();
-            builder.Services.AddTransient<SchedulePageViewModel>();
+            builder.Services.AddTransient<MemoriesPageViewModel>();
             builder.Services.AddTransient<DiscoverPageViewModel>();
             builder.Services.AddTransient<SettingsPageViewModel>();
             builder.Services.AddTransient<BuddyDetailPageViewModel>();

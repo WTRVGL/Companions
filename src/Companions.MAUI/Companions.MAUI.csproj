@@ -185,6 +185,9 @@
 		<Compile Update="Resources\Icons\Solid.xaml.cs">
 			<DependentUpon>Solid.xaml</DependentUpon>
 		</Compile>
+		<Compile Update="Views\App\MemoriesPage.xaml.cs">
+		  <DependentUpon>MemoriesPage.xaml</DependentUpon>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>

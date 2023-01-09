@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Companions.MAUI.Views.App.MemoriesPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkitBehaviors="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vm="clr-namespace:Companions.MAUI.ViewModels.App"
+    xmlns:models="clr-namespace:Companions.MAUI.Models.App"
+    x:DataType="vm:MemoriesPageViewModel"
+    x:Name="Page">
+
+    <ContentPage.Behaviors>
+        <toolkitBehaviors:EventToCommandBehavior
+            EventName="Appearing"
+            Command="{Binding PageAppearingCommand}"/>
+    </ContentPage.Behaviors>
+
+    <ScrollView Padding="30">
+        <CollectionView ItemsSource="{Binding BuddyImages}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:BuddyImages"
+                              x:Name="this">
+                    <VerticalStackLayout Padding="0,0,0,40">
+                        <Grid>
+                            <Label Text="{Binding BuddyName}" 
+                               Style="{StaticResource SectionTitle}"
+                               Padding="0,0,0,5"/>
+                            <Label Text="{StaticResource SolidPlus}" FontFamily="FaSolid" FontSize="26"
+                                   VerticalOptions="Center" HorizontalOptions="End">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                        Command="{Binding BindingContext.AddBuddyImageCommand, Source={x:Reference Page}}"
+                                        CommandParameter="{Binding BuddyId}"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                        <Label Text="{Binding AddBuddyImageCommand, Source={x:Reference Page}}"/>
+                        <CollectionView  ItemsSource="{Binding Images}" 
+                                         ItemsLayout="HorizontalList">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="models:Image">
+                                    <Border
+                                        BackgroundColor="Transparent"
+                                        Grid.RowSpan="2"
+                                        HeightRequest="300"
+                                        WidthRequest="300"
+                                        Margin="0,0,5,0">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="10" />
+                                        </Border.StrokeShape>
+                                        <Image Aspect="AspectFill"
+                                           HeightRequest="300"
+                                           WidthRequest="300"
+                                           VerticalOptions="Center"
+                                           Source="{Binding ImageURL}"/>
+                                    </Border>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </ScrollView>
+</ContentPage>
