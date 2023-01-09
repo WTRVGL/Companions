@@ -16,50 +16,53 @@
     </ContentPage.Behaviors>
 
     <ScrollView Padding="30">
-        <CollectionView ItemsSource="{Binding BuddyImages}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:BuddyImages"
+        <Grid>
+            <ActivityIndicator IsVisible="{Binding IsBusy}"/>
+            <CollectionView ItemsSource="{Binding BuddyImages}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:BuddyImages"
                               x:Name="this">
-                    <VerticalStackLayout Padding="0,0,0,40">
-                        <Grid>
-                            <Label Text="{Binding BuddyName}" 
+                        <VerticalStackLayout Padding="0,0,0,40">
+                            <Grid>
+                                <Label Text="{Binding BuddyName}" 
                                Style="{StaticResource SectionTitle}"
                                Padding="0,0,0,5"/>
-                            <Label Text="{StaticResource SolidPlus}" FontFamily="FaSolid" FontSize="26"
+                                <Label Text="{StaticResource SolidPlus}" FontFamily="FaSolid" FontSize="26"
                                    VerticalOptions="Center" HorizontalOptions="End">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer 
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer 
                                         Command="{Binding BindingContext.AddBuddyImageCommand, Source={x:Reference Page}}"
                                         CommandParameter="{Binding BuddyId}"/>
-                                </Label.GestureRecognizers>
-                            </Label>
-                        </Grid>
-                        <Label Text="{Binding AddBuddyImageCommand, Source={x:Reference Page}}"/>
-                        <CollectionView  ItemsSource="{Binding Images}" 
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Grid>
+                            <Label Text="{Binding AddBuddyImageCommand, Source={x:Reference Page}}"/>
+                            <CollectionView  ItemsSource="{Binding Images}" 
                                          ItemsLayout="HorizontalList">
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate x:DataType="models:Image">
-                                    <Border
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate x:DataType="models:Image">
+                                        <Border
                                         BackgroundColor="Transparent"
                                         Grid.RowSpan="2"
                                         HeightRequest="300"
                                         WidthRequest="300"
                                         Margin="0,0,5,0">
-                                        <Border.StrokeShape>
-                                            <RoundRectangle CornerRadius="10" />
-                                        </Border.StrokeShape>
-                                        <Image Aspect="AspectFill"
+                                            <Border.StrokeShape>
+                                                <RoundRectangle CornerRadius="10" />
+                                            </Border.StrokeShape>
+                                            <Image Aspect="AspectFill"
                                            HeightRequest="300"
                                            WidthRequest="300"
                                            VerticalOptions="Center"
                                            Source="{Binding ImageURL}"/>
-                                    </Border>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
-                    </VerticalStackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                                        </Border>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
     </ScrollView>
 </ContentPage>

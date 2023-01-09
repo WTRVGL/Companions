@@ -31,12 +31,14 @@ namespace Companions.MAUI.ViewModels.App
         [RelayCommand]
         async void PageAppearing()
         {
+            IsBusy = true;
             BuddyImages = new ObservableCollection<BuddyImages>();
             var buddies = await _buddyService.GetBuddies();
             foreach (var buddy in buddies)
             {
-                BuddyImages.Add(new BuddyImages { BuddyName = buddy.Name, Images = buddy.Images, BuddyId = buddy.Id });
+                BuddyImages.Add(new BuddyImages { BuddyName = buddy.Name, Images = buddy.Images.ToObservableCollection(), BuddyId = buddy.Id });
             }
+            IsBusy = false;
         }
 
         [RelayCommand]
@@ -51,7 +53,6 @@ namespace Companions.MAUI.ViewModels.App
                     if (item.FileName.EndsWith("jpg", StringComparison.OrdinalIgnoreCase) ||
                     item.FileName.EndsWith("png", StringComparison.OrdinalIgnoreCase))
                     {
-                        IsBusy = true;
                         var file = await item.OpenReadAsync();
                         var url = await _googleService.UploadImage(file);
 
@@ -68,7 +69,6 @@ namespace Companions.MAUI.ViewModels.App
 
                         //Update DB
                         await _buddyService.AddImage(image);
-                        IsBusy = false;
                     }
                 }
             }
