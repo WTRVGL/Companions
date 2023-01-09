@@ -78,6 +78,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
+This project is the result of an assignment for the course C# Mobile at Hogeschool PXL during the last year of my associates degree Software Development.
 
 [![Product Name Screen Shot][product-screenshot]](https://user-images.githubusercontent.com/73450465/205472812-5027fa53-8151-4dac-9100-24b09c71ad59.png)
 
@@ -156,12 +157,12 @@ This is an example of how to list things you need to use the software and how to
 #### Companions.MAUI
    ```js
    {
-  "GoogleMapsKey": "AIzaSyCc4DXdwoD5CFGONmfKTkuGvAmerQViKQs",
-  "GoogleMapsBrowserKey": "AIzaSyBcQhN5RP3bDrXU6__K1rr3oYE9Xt8hGTA",
-  "CompanionsAPIBaseURL": "http://10.0.2.2:5048",
-  "CompanionsAuthBaseURL": "http://10.0.2.2:5176",
-  "CompanionsImageBaseURL": "http://10.0.2.2:5209",
-  "SFLicenseKey": "base64 string"
+    "GoogleMapsKey": "AIzaSyCc4DXdwoD5CFGONmfKTkuGvAmerQViKQs",
+    "GoogleMapsBrowserKey": "AIzaSyBcQhN5RP3bDrXU6__K1rr3oYE9Xt8hGTA",
+    "CompanionsAPIBaseURL": "http://10.0.2.2:5048",
+    "CompanionsAuthBaseURL": "http://10.0.2.2:5176",
+    "CompanionsImageBaseURL": "http://10.0.2.2:5209",
+    "SFLicenseKey": "base64 string"
    }
    ```
   * `SFLicenseKey` needs to be a valid SyncFusion key. Can be an empty string but the MAUI app will display warning.
@@ -171,17 +172,17 @@ This is an example of how to list things you need to use the software and how to
   #### Companions.API
    ```js
   {
-  "ConnectionStrings": {
-    "SqlServer": "Server=localhost;Database=Companions;Trusted_Connection=True;TrustServerCertificate=Yes;"
-  },
-  "JWT": {
-    "JWTHttpCookieName": "companions_user_jwt",
-    "ValidAudience": "http://localhost:4200",
-    "ValidIssuer": "http://localhost:61955",
-    "Secret": "V0FaQUFBTE9MRVBJQ1NBRkVLRVlZT09PT08="
-  },
-  "CompanionsAuthenticationServiceURL": "https://localhost:7017",
-  "CompanionsImageServiceURL": "https://localhost:7277"
+    "ConnectionStrings": {
+      "SqlServer": "Server=localhost;Database=Companions;Trusted_Connection=True;TrustServerCertificate=Yes;"
+    },
+    "JWT": {
+      "JWTHttpCookieName": "companions_user_jwt",
+      "ValidAudience": "http://localhost:4200",
+      "ValidIssuer": "http://localhost:61955",
+      "Secret": "V0FaQUFBTE9MRVBJQ1NBRkVLRVlZT09PT08="
+    },
+    "CompanionsAuthenticationServiceURL": "https://localhost:7017",
+    "CompanionsImageServiceURL": "https://localhost:7277"
   }
    ```
    * Make sure your connection string is present in `ConnetionStrings`
@@ -204,8 +205,8 @@ This is an example of how to list things you need to use the software and how to
 #### Companions.ImageService
    ```js
 {
-  "GoogleServiceKey": "google_service_key.json",
-  "StorageBucket":  "companions_bucket01"
+    "GoogleServiceKey": "google_service_key.json",
+    "StorageBucket":  "companions_bucket01"
 }
    ```
    * A Service Key for Bucket acces must be referenced in `GoogleServiceKey`. This service won't work without a key present.
